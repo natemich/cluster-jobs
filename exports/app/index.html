@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Jobs">
+<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>Cluster Jobs</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#f2f2f7;--card:#fff;--header:rgba(249,249,249,.94);--fill:#f2f2f7;
+  --text:#1c1c1e;--sub:rgba(60,60,67,.6);--dim:rgba(60,60,67,.45);
+  --hair:rgba(60,60,67,.13);--track:#e9e9eb;--accent:#007aff;--grid:rgba(60,60,67,.09);
+  --log:#1c1c1e;--failtext:#c62c22;--chip:rgba(0,122,255,.12);
+  --good:#34c759;--pend:#ff9f0a;--done:#8e8e93;--critical:#ff3b30;--idle:#5e5ce6;
+  --deep-good:#1c8b3b;--deep-pend:#a86200;--deep-done:#6c6c70;--deep-critical:#c62c22;--deep-idle:#4a44c4;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  --ui:-apple-system,"SF Pro Text",system-ui,sans-serif;
+}
+html[data-theme=dark]{
+  --bg:#000;--card:#1c1c1e;--header:rgba(28,28,30,.94);--fill:#2c2c2e;
+  --text:#f2f2f7;--sub:rgba(235,235,245,.6);--dim:rgba(235,235,245,.35);
+  --hair:rgba(84,84,88,.5);--track:#39393d;--accent:#0a84ff;--grid:rgba(235,235,245,.12);
+  --log:#0c0c0e;--failtext:#ff6961;--chip:rgba(10,132,255,.22);
+  --deep-good:#57e07a;--deep-pend:#ffc061;--deep-done:#c7c7cc;--deep-critical:#ff8078;--deep-idle:#a5a1ff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--ui);
+  font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.hdr{position:sticky;top:0;z-index:10;background:var(--header);backdrop-filter:blur(20px);
+  border-bottom:.5px solid var(--hair);padding:calc(env(safe-area-inset-top) + 12px) 16px 12px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hdr h1{margin:0;font:700 22px/25px var(--ui);letter-spacing:-.5px}
+.hdr .meta{font:400 11px var(--mono);color:var(--sub);margin-top:3px}
+.pill{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--card);
+  border:.5px solid var(--hair);border-radius:999px;font:590 12.5px var(--mono);color:var(--accent);cursor:pointer}
+.icon{width:34px;height:34px;padding:0;justify-content:center;font-size:13px}
+.wrap{padding:14px 14px 40px;display:flex;flex-direction:column;gap:12px;
+  max-width:560px;margin:0 auto}
+.fresh{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:var(--card);
+  border:.5px solid var(--hair);border-radius:11px;font:400 11.5px var(--mono);color:var(--sub);cursor:pointer}
+.stale{background:rgba(255,159,10,.12);border-color:rgba(255,159,10,.4);color:var(--deep-pend)}
+.card{background:var(--card);border:.5px solid var(--hair);border-radius:16px;padding:14px 15px 13px;
+  display:flex;flex-direction:column;gap:11px}
+.jobcard{cursor:pointer}
+.row{display:flex;align-items:flex-start;gap:10px}
+.name{font:590 15px var(--mono);letter-spacing:-.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app{font:400 11.5px var(--ui);color:var(--sub)}
+.chip{flex:none;display:flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;
+  font:590 10.5px var(--mono);letter-spacing:.2px}
+.dot{width:7px;height:7px;border-radius:999px;display:block}
+.bar{height:4px;border-radius:999px;background:var(--track);overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:999px}
+.barlbl{display:flex;justify-content:space-between;font:400 10.5px var(--mono);color:var(--sub)}
+.tiles{display:flex;gap:9px}
+.tile{flex:1;background:var(--fill);border-radius:9px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.tile b{font:700 16px var(--mono);letter-spacing:-.4px}
+.tile span{font:400 10px var(--ui);color:var(--sub)}
+.note{border-radius:9px;padding:8px 10px;font:400 10.5px/15px var(--mono)}
+.fail{background:rgba(255,59,48,.11);color:var(--failtext)}
+.soft{background:var(--fill);color:var(--sub)}
+.sect{font:590 13px var(--ui);letter-spacing:-.1px}
+.sub{font:400 11px var(--mono);color:var(--dim)}
+.stats{display:flex;gap:22px}
+.stats div{display:flex;flex-direction:column;gap:2px}
+.stats b{font:700 17px var(--mono);letter-spacing:-.3px}
+.stats span{font:400 10.5px var(--ui);color:var(--sub)}
+.mons{display:flex;gap:6px;flex-wrap:wrap}
+.mon{padding:5px 10px;border-radius:999px;background:var(--fill);color:var(--sub);
+  font:590 11px var(--mono);cursor:pointer}
+.mon.on{background:var(--chip);color:var(--accent)}
+.big{font:700 22px var(--mono);letter-spacing:-.5px}
+.read{font:400 13.5px/1.55 var(--ui);text-wrap:pretty}
+.bullet{display:flex;gap:8px;align-items:baseline}
+.bullet i{flex:none;width:5px;height:5px;border-radius:999px;transform:translateY(-2px)}
+.bullet span{font:400 11.5px/1.5 var(--mono);color:var(--sub)}
+.back{display:flex;align-items:center;gap:2px;color:var(--accent);font-size:17px;cursor:pointer;letter-spacing:-.2px}
+.back i{font-size:22px;line-height:17px;font-weight:300;font-style:normal}
+.logcard{background:var(--log);border:.5px solid rgba(255,255,255,.08);border-radius:14px;
+  padding:13px 14px 12px;display:flex;flex-direction:column;gap:8px;cursor:pointer}
+.logcard div{font:400 10.5px/15px var(--mono);color:rgba(235,235,245,.8);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.logview{background:var(--log);min-height:100vh}
+.logview .hdr{background:var(--log);border-color:rgba(255,255,255,.12)}
+.logview .hdr h1{font:590 13px var(--mono);color:#f2f2f7}
+.logline{display:flex;gap:12px;padding:1.5px 14px 1.5px 10px;font:400 11.5px/17px var(--mono)}
+.logline i{flex:none;width:44px;text-align:right;color:rgba(255,255,255,.25);font-style:normal}
+.logline span{color:rgba(235,235,245,.88);white-space:pre-wrap;word-break:break-word}
+.foot{display:flex;flex-direction:column;gap:4px;padding:2px 4px}
+.foot div{font:400 10.5px/1.6 var(--mono);color:var(--dim)}
+.dimmed{opacity:.45}
+svg{display:block;width:100%}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="status" type="application/json">{
+  "polled_at": "2026-07-30T14:12:03-04:00",
+  "next_poll": "2026-07-30T14:42:00-04:00",
+  "poll_interval_min": 30,
+  "clusters": [
+    { "name": "hazel", "sched": "lsf", "root": "Z:\\yip_afosr\\nsmichno\\Converge" },
+    { "name": "henry2", "sched": "lsf", "root": "/gpfs_share/nsmichno/runs" }
+  ],
+  "jobs": [
+    {
+      "id": "4188207",
+      "label": "TriangleRDE",
+      "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\triangleRDE",
+      "kind": "converge",
+      "cluster": "hazel",
+      "sched": "lsf",
+      "queue": "braun",
+      "state": "RUN",
+      "status": "good",
+      "state_note": "cycle 412,195 / 600,000",
+      "elapsed": "4:12:38",
+      "limit": "24:00:00",
+      "pct": 17,
+      "sim_now": "4.122 ms",
+      "sim_target": "6.000 ms",
+      "sim_pct": 69,
+      "monitors": [
+        {
+          "key": "p_max",
+          "label": "p_max",
+          "now": "41.2 bar",
+          "desc": "peak cell pressure, oscillating with the front",
+          "history": [[380000, 40.1], [385000, 42.6], [390000, 39.4], [395000, 42.9], [400000, 40.8], [405000, 41.6], [410000, 40.4], [412195, 41.2]]
+        },
+        {
+          "key": "front_rate",
+          "label": "front",
+          "now": "3.98 kHz",
+          "desc": "front rotation rate \u2014 drifting up ~0.4%/hr",
+          "history": [[380000, 3.94], [385000, 3.95], [390000, 3.95], [395000, 3.96], [400000, 3.96], [405000, 3.97], [410000, 3.98], [412195, 3.98]]
+        },
+        {
+          "key": "dt",
+          "label": "dt",
+          "now": "1.02e-09 s",
+          "desc": "timestep \u2014 steady, no collapse",
+          "history": [[380000, 1.03e-9], [390000, 1.01e-9], [400000, 1.02e-9], [410000, 1.02e-9], [412195, 1.02e-9]]
+        },
+        {
+          "key": "s_per_cycle",
+          "label": "s/cycle",
+          "now": "0.82 s",
+          "desc": "wall time per cycle",
+          "history": [[380000, 0.81], [390000, 0.82], [400000, 0.81], [410000, 0.82], [412195, 0.82]]
+        }
+      ],
+      "ranks": 128,
+      "rss": "4.1G",
+      "s_per_step": 0.82,
+      "node": "c[028-031] \u00b7 4\u00d732",
+      "restarts": 9,
+      "posts": 41,
+      "frames": 4188,
+      "newest": "frame_04188.png \u00b7 38s ago",
+      "submitted": "2026-07-30T03:11:00-04:00",
+      "cmd": "bsub < SubmitJob.sh  # queue braun",
+      "log_name": "converge.log",
+      "log_path": "triangleRDE/outputs_original",
+      "log_size": "18.4 MB",
+      "log_tail": [
+        " CYCLE = 412193   TIME = 4.12193e-03   DT = 1.02e-09",
+        "   MASS = 3.10442e-05  KE = 8.1102e+00  TEMP_MAX = 3241.7",
+        "   detonation front: theta = 214.6 deg   omega = 3.98 kHz",
+        " CYCLE = 412194   TIME = 4.12194e-03   DT = 1.01e-09",
+        "   WARNING: cell 8811902 courant limited (0.98)",
+        " CYCLE = 412195   TIME = 4.12195e-03   DT = 1.02e-09",
+        "   wrote outputs_original/output/restart_412195",
+        "   catalyst: wrote paraview_catalyst/frame_04188.png",
+        "   s/cycle 0.82   wall 4:12:38   eta cycle 600000  4h 08m"
+      ],
+      "summary": "Unsteady case, so nothing here is judged on residuals. The front has held a clean single-front mode at 3.98 kHz for the last ~40k cycles, p_max is oscillating in a repeating band around 41 bar rather than trending, dt is steady at ~1e-09 s, and T_max sits near 3240 K. At 0.82 s/cycle it reaches 6.00 ms of sim time in about 4h 10m, inside the 24h limit.",
+      "notes": [
+        { "txt": "front rate drifting up ~0.4%/hr \u2014 worth watching, not yet a mode change", "level": "warn" },
+        { "txt": "one courant-limited cell (8811902) warned twice; dt unaffected", "level": "warn" },
+        { "txt": "restart_412195 written 2m ago; Catalyst frames keeping up (4,188)", "level": "good" }
+      ]
+    },
+    {
+      "id": "4188392",
+      "label": "HX-mesh2-rev3",
+      "directory": "Z:\\yip_afosr\\nsmichno\\Fluent\\hx_mesh2",
+      "kind": "fluent",
+      "cluster": "hazel",
+      "sched": "lsf",
+      "queue": "braun",
+      "state": "PEND",
+      "status": "pend",
+      "state_note": "waiting for slots",
+      "elapsed": null,
+      "limit": "12:00:00",
+      "pct": 0,
+      "sim_now": null,
+      "sim_target": null,
+      "sim_pct": null,
+      "queue_pos": 7,
+      "queue_total": 23,
+      "eta_start": "18:40",
+      "monitors": [],
+      "ranks": 256,
+      "rss": null,
+      "s_per_step": null,
+      "node": null,
+      "restarts": 0,
+      "posts": 0,
+      "frames": 0,
+      "newest": null,
+      "submitted": "2026-07-30T06:44:00-04:00",
+      "cmd": "bsub < fluent_hx.bsub",
+      "log_name": "out.4188392",
+      "log_path": "fluentHX",
+      "log_size": "0 B",
+      "log_tail": [],
+      "summary": "Nothing wrong \u2014 just waiting. It has sat 1h 46m for 256 slots on braun, moved from position 11 to 7 in the last hour, and LSF estimates a start around 18:40. No output exists yet, so there is nothing to judge about the case itself.",
+      "notes": [
+        { "txt": "moved up 4 places in ~1h; queue is draining steadily", "level": "good" },
+        { "txt": "256 ranks is the reason for the wait \u2014 128 would likely start sooner", "level": "info" }
+      ]
+    },
+    {
+      "id": null,
+      "label": "ChannelPrep",
+      "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\channelPrep",
+      "kind": "converge",
+      "cluster": "hazel",
+      "sched": "lsf",
+      "queue": null,
+      "state": "IDLE",
+      "status": "idle",
+      "state_note": "check_inputs only",
+      "elapsed": null,
+      "limit": null,
+      "pct": 0,
+      "sim_now": null,
+      "sim_target": null,
+      "sim_pct": null,
+      "monitors": [],
+      "ranks": null,
+      "rss": null,
+      "s_per_step": null,
+      "node": null,
+      "restarts": 0,
+      "posts": 0,
+      "frames": 0,
+      "newest": "inputs.in \u00b7 3h 12m ago",
+      "submitted": null,
+      "cmd": null,
+      "log_name": "converge.log",
+      "log_path": "channelPrep/outputs_original",
+      "log_size": "2.1 KB",
+      "log_tail": [
+        "CONVERGE has checked the input files successfully.",
+        "(check_inputs only \u2014 no solver progress, no out.<jobid> yet)"
+      ],
+      "summary": "This one is not actually running. The only thing in the directory is a successful check_inputs pass \u2014 no out.<jobid>, no cycles, and the newest file is 3h old. It looks like the submit step was never run after the input check.",
+      "notes": [
+        { "txt": "inputs.in and boundary.in present and valid", "level": "good" },
+        { "txt": "no bsub record found \u2014 likely never submitted", "level": "warn" }
+      ]
+    },
+    {
+      "id": "4821193",
+      "label": "JetFlame Re5200",
+      "directory": "/gpfs_share/nsmichno/runs/nga2/jetflame",
+      "kind": "nga2",
+      "cluster": "henry2",
+      "sched": "lsf",
+      "queue": "shared_blade",
+      "state": "RUN",
+      "status": "good",
+      "state_note": "step 198,414",
+      "elapsed": "19:41:07",
+      "limit": "40:00:00",
+      "pct": 49,
+      "sim_now": "49.60 ms",
+      "sim_target": "100.0 ms",
+      "sim_pct": 50,
+      "monitors": [
+        {
+          "key": "cfl",
+          "label": "CFL",
+          "now": "0.42",
+          "desc": "below the 0.5 target, stable",
+          "history": [[150000, 0.41], [160000, 0.42], [170000, 0.42], [180000, 0.42], [190000, 0.42], [198414, 0.42]]
+        },
+        {
+          "key": "t_max",
+          "label": "T_max",
+          "now": "2118 K",
+          "desc": "flame lit, plateaued",
+          "history": [[150000, 2094], [160000, 2106], [170000, 2112], [180000, 2116], [190000, 2117], [198414, 2118]]
+        },
+        {
+          "key": "dt",
+          "label": "dt",
+          "now": "2.49e-07 s",
+          "desc": "timestep \u2014 slowly tightening",
+          "history": [[150000, 2.61e-7], [170000, 2.55e-7], [190000, 2.5e-7], [198414, 2.494e-7]]
+        },
+        {
+          "key": "s_per_step",
+          "label": "s/step",
+          "now": "1.41 s",
+          "desc": "wall time per step on 512 ranks",
+          "history": [[150000, 1.4], [170000, 1.41], [190000, 1.41], [198414, 1.41]]
+        }
+      ],
+      "ranks": 512,
+      "rss": "2.8G",
+      "s_per_step": 1.41,
+      "node": "bn[07-22] \u00b7 16\u00d732",
+      "restarts": 4,
+      "posts": 992,
+      "frames": 0,
+      "newest": "jetflame.00992 \u00b7 2m ago",
+      "submitted": "2026-07-29T11:03:00-04:00",
+      "cmd": "bsub < jetflame_Re5200.lsf",
+      "log_name": "out.4821193",
+      "log_path": "nga2/jetflame",
+      "log_size": "96.2 MB",
+      "log_tail": [
+        "Step  198412   t = 4.9603e-02   dt = 2.501e-07",
+        "  continuity res = 8.71e-07   iters = 4",
+        "  max |div(u)| = 3.2e-09   CFL = 0.42",
+        "  T_max = 2118.4 K   Y_OH_max = 4.71e-03",
+        "Step  198414   t = 4.9603e-02   dt = 2.494e-07",
+        "  wall time/step = 1.41 s   ranks = 512"
+      ],
+      "summary": "LES, so read it as a time-advancing run, not a converging one: it is at 49.6 ms of the 100 ms target, half way. CFL is pinned at 0.42 under the 0.5 cap, dt is tightening only gradually, the flame is statistically settled (T_max plateaued at 2118 K), and the Poisson solve still clears in 3\u20134 iterations.",
+      "notes": [
+        { "txt": "1.41 s/step on 512 ranks \u2014 flat, no drift over the last 40k steps", "level": "good" },
+        { "txt": "at this rate the remaining 50 ms needs ~19h; 20h of wall left", "level": "warn" },
+        { "txt": "ensight dump 992 written 2m ago", "level": "good" }
+      ]
+    },
+    {
+      "id": "4821010",
+      "label": "Transonic AoA4",
+      "directory": "/gpfs_share/nsmichno/runs/cfdpp/transonic",
+      "kind": "cfdpp",
+      "cluster": "henry2",
+      "sched": "lsf",
+      "queue": "shared_blade",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "died 05:12 \u00b7 after 1:03:22",
+      "elapsed": "1:03:22",
+      "limit": "24:00:00",
+      "pct": 100,
+      "sim_now": null,
+      "sim_target": null,
+      "sim_pct": null,
+      "exit_code": 1,
+      "monitors": [
+        {
+          "key": "res_rho",
+          "label": "res(rho)",
+          "now": "1.03e+00",
+          "desc": "steady RANS \u2014 here the residual IS the signal",
+          "history": [[3600, 6.2e-3], [3800, 5.9e-3], [4000, 7.1e-3], [4100, 8.4e-3], [4188, 9.11e-3], [4189, 2.74e-2], [4190, 1.03]]
+        },
+        {
+          "key": "dt",
+          "label": "dt",
+          "now": "1.0e-12 s",
+          "desc": "collapsed at iter 4190",
+          "history": [[3600, 4.0e-6], [4000, 3.8e-6], [4188, 2.1e-6], [4189, 8.0e-9], [4190, 1.0e-12]]
+        }
+      ],
+      "ranks": 192,
+      "rss": "5.9G",
+      "s_per_step": 2.1,
+      "node": "bn[31-36] \u00b7 6\u00d732",
+      "restarts": 1,
+      "posts": 12,
+      "frames": 0,
+      "newest": "err.4821010 \u00b7 1h 34m ago",
+      "submitted": "2026-07-30T04:09:00-04:00",
+      "cmd": "bsub < cfdpp_aoa4.lsf",
+      "log_name": "err.4821010",
+      "log_path": "cfdpp/transonic",
+      "log_size": "41.7 MB",
+      "log_tail": [
+        " iter  4189   res(rho) 2.74e-02   res(e) 1.88e-01",
+        " iter  4190   res(rho) 1.03e+00   res(e) 6.55e+00",
+        " WARNING: negative pressure at cell 3811902 (block 7)",
+        " WARNING: dt limited by cell 3811902 -> 1.0e-12",
+        " FATAL_ERROR: solution diverged; residual norm not finite",
+        "application called MPI_Abort(MPI_COMM_WORLD, 1)",
+        "Exited with exit code 1."
+      ],
+      "summary": "Dead, and it diverged rather than being killed. Density residual was well-behaved until iter ~4188, then blew up two orders of magnitude in three iterations; a negative pressure appeared in block 7 (cell 3811902), dt collapsed to 1e-12 and the solver aborted with MPI_Abort(1) after 1h 03m. This is a solution failure, not a wall-time or node problem.",
+      "notes": [
+        { "txt": "first bad cell is in block 7 \u2014 check mesh quality / BC there", "level": "critical" },
+        { "txt": "residual was rising slowly from iter ~3900 before the blow-up", "level": "warn" },
+        { "txt": "restart_1 at iter 4000 is usable \u2014 try a smaller dt or ramped CFL", "level": "info" }
+      ]
+    },
+    {
+      "id": "4820902",
+      "label": "Baseline 8bar",
+      "directory": "/gpfs_share/nsmichno/runs/converge/baseline8bar",
+      "kind": "converge",
+      "cluster": "henry2",
+      "sched": "lsf",
+      "queue": "shared_blade",
+      "state": "DONE",
+      "status": "done",
+      "state_note": "exit 0 \u00b7 6:12:44",
+      "elapsed": "6:12:44",
+      "limit": "12:00:00",
+      "pct": 100,
+      "sim_now": "6.000 ms",
+      "sim_target": "6.000 ms",
+      "sim_pct": 100,
+      "exit_code": 0,
+      "monitors": [
+        {
+          "key": "p_max",
+          "label": "p_max",
+          "now": "38.4 bar",
+          "desc": "peak pressure over the full run",
+          "history": [[0, 1.0], [100000, 36.8], [200000, 39.1], [300000, 37.4], [400000, 38.9], [500000, 37.9], [600000, 38.4]]
+        },
+        {
+          "key": "mass",
+          "label": "mass",
+          "now": "3.10e-05 kg",
+          "desc": "total mass \u2014 conserved to 0.02%",
+          "history": [[0, 3.101e-5], [200000, 3.102e-5], [400000, 3.104e-5], [600000, 3.104e-5]]
+        },
+        {
+          "key": "s_per_cycle",
+          "label": "s/cycle",
+          "now": "0.37 s",
+          "desc": "wall time per cycle",
+          "history": [[100000, 0.37], [300000, 0.37], [600000, 0.37]]
+        }
+      ],
+      "ranks": 128,
+      "rss": "3.9G",
+      "s_per_step": 0.37,
+      "node": "bn[41-44] \u00b7 4\u00d732",
+      "restarts": 12,
+      "posts": 60,
+      "frames": 0,
+      "newest": "post_600000.h5 \u00b7 4h ago",
+      "submitted": "2026-07-29T20:44:00-04:00",
+      "cmd": "bsub < converge_8bar.lsf",
+      "log_name": "out.4820902",
+      "log_path": "converge/baseline8bar",
+      "log_size": "22.9 MB",
+      "log_tail": [
+        " CYCLE = 600000   TIME = 6.00000e-03   DT = 1.11e-09",
+        "   wrote outputs_original/output/post_600000.h5",
+        " CONVERGE finished normally.  wall time 6:12:44",
+        "Successfully completed."
+      ],
+      "summary": "Finished clean. Reached the full 6.00 ms in 6h 12m with exit 0, mass conserved to 0.02% over the whole run, p_max staying in a repeating band, and all 60 post*.h5 files present. Nothing to fix; this is your baseline.",
+      "notes": [
+        { "txt": "exit 0, \"CONVERGE finished normally\" in the tail", "level": "good" },
+        { "txt": "12 restarts, 60 post files, 4h old \u2014 safe to archive", "level": "info" }
+      ]
+    }
+  ]
+}</script>
+<script>
+var S = JSON.parse(document.getElementById('status').textContent);
+var TK = 'clusterjobs.theme', VK = 'clusterjobs.view';
+var st = {
+  cluster: (JSON.parse(localStorage.getItem(VK) || '{}').cluster) || (S.clusters[0] || {}).name,
+  sel: null, view: 'list', mon: 0, checking: false
+};
+function setTheme(t) {
+  if (t) { localStorage.setItem(TK, t); document.documentElement.setAttribute('data-theme', t); }
+  else {
+    var s = localStorage.getItem(TK);
+    if (s) document.documentElement.setAttribute('data-theme', s);
+    else document.documentElement.setAttribute('data-theme',
+      matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }
+}
+function theme() { return document.documentElement.getAttribute('data-theme'); }
+setTheme();
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
+}
+function jobs() {
+  var rank = { RUN: 0, RUNNING: 0, PEND: 1, PENDING: 1, IDLE: 2, EXIT: 3, DONE: 4 };
+  return (S.jobs || []).filter(function (j) { return j.cluster === st.cluster; })
+    .sort(function (a, b) { return (rank[a.state] || 9) - (rank[b.state] || 9); });
+}
+function job(id) { return (S.jobs || []).filter(function (j) { return (j.id || j.label) === id; })[0]; }
+function ago(iso) {
+  if (!iso) return '—';
+  var m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return m + 'm ago';
+  var h = Math.floor(m / 60);
+  return h < 24 ? h + 'h ' + (m % 60) + 'm ago' : Math.floor(h / 24) + 'd ago';
+}
+function stale() {
+  if (!S.polled_at) return true;
+  var mins = (Date.now() - new Date(S.polled_at).getTime()) / 60000;
+  return mins > 2 * (S.poll_interval_min || 30);
+}
+function poly(hist, w, h) {
+  if (!hist || hist.length < 2) return '';
+  var ys = hist.map(function (p) { return p[1]; });
+  var lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys);
+  var useLog = lo > 0 && hi / lo > 100;
+  var f = useLog ? function (v) { return Math.log10(v); } : function (v) { return v; };
+  var a = f(lo), b = f(hi), d = (b - a) || 1;
+  var pad = 6;
+  return hist.map(function (p, i) {
+    var x = (i / (hist.length - 1)) * w;
+    var y = h - pad - ((f(p[1]) - a) / d) * (h - 2 * pad);
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+}
+function chart(hist, h) {
+  var pts = poly(hist, 300, h);
+  if (!pts) return '';
+  return '<svg viewBox="0 0 300 ' + h + '" preserveAspectRatio="none" style="height:' + h + 'px">' +
+    '<line x1="0" y1="' + (h * .25) + '" x2="300" y2="' + (h * .25) + '" stroke="var(--grid)"/>' +
+    '<line x1="0" y1="' + (h * .65) + '" x2="300" y2="' + (h * .65) + '" stroke="var(--grid)"/>' +
+    '<polyline points="' + pts + '" fill="none" stroke="var(--accent)" stroke-width="2" ' +
+    'stroke-linejoin="round" stroke-linecap="round"/></svg>';
+}
+function pct(v) { return (v == null ? 0 : v) + '%'; }
+function key(j) { return j.id || j.label; }
+
+function listView() {
+  var js = jobs(), cl = st.cluster;
+  var others = (S.clusters || []).filter(function (c) { return c.name !== cl; });
+  var next = others[0] ? others[0].name : cl;
+  var sched = ((S.clusters || []).filter(function (c) { return c.name === cl; })[0] || {}).sched || '';
+  var active = js.filter(function (j) { return j.status === 'good' || j.status === 'warn' || j.status === 'pend'; }).length;
+  var h = '<div class="hdr"><div><h1>' + esc(cl) + '</h1><div class="meta">' + esc(sched) +
+    ' · ' + active + ' active · ' + js.length + ' tracked</div></div>' +
+    '<div style="display:flex;gap:8px">' +
+    '<div class="pill icon" onclick="setTheme(theme()===\'dark\'?\'light\':\'dark\');render()">' +
+    (theme() === 'dark' ? '☀' : '☾') + '</div>' +
+    (others.length ? '<div class="pill" onclick="go({cluster:\'' + esc(next) + '\'})">' +
+      esc(next) + ' ⇄</div>' : '') +
+    '</div></div>';
+
+  h += '<div class="wrap' + (stale() ? ' dimmed' : '') + '">';
+  h += '<div class="fresh' + (stale() ? ' stale' : '') + '" onclick="recheck()">' +
+    (st.checking ? 're-reading status.json…'
+      : (stale() ? 'stale — polled ' + ago(S.polled_at) + ', poller not running'
+        : 'polled ' + ago(S.polled_at) + ' · tap to re-read')) + ' <span style="color:var(--accent)">⟳</span></div>';
+
+  js.forEach(function (j) {
+    var m = (j.monitors || [])[0];
+    h += '<div class="card jobcard" onclick="go({sel:\'' + esc(key(j)) + '\',view:\'detail\',mon:0})">' +
+      '<div class="row"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">' +
+      '<div class="name">' + esc(j.label || j.name) + '</div>' +
+      '<div class="app">' + esc(j.kind) + (j.id ? ' · ' + esc(j.id) : '') + '</div></div>' +
+      '<div class="chip" style="background:color-mix(in srgb, var(--' + j.status + ') 14%, transparent);' +
+      'color:var(--deep-' + j.status + ')"><i class="dot" style="background:var(--' + j.status + ')"></i>' +
+      esc(j.state) + '</div></div>';
+
+    if (m && m.history && m.history.length > 1) {
+      h += '<div style="display:flex;align-items:flex-end;gap:12px">' +
+        '<div style="flex:none;display:flex;flex-direction:column;gap:2px">' +
+        '<span style="font:400 10px var(--mono);color:var(--sub)">' + esc(m.label) + '</span>' +
+        '<span style="font:700 15px var(--mono);letter-spacing:-.3px;color:var(--accent)">' + esc(m.now) + '</span>' +
+        '</div><div style="flex:1">' + chart(m.history, 44) + '</div></div>';
+    }
+    if (j.status === 'pend') {
+      h += '<div class="tiles"><div class="tile"><b>' + esc(j.queue_pos || '—') + '</b><span>of ' +
+        esc(j.queue_total || '—') + ' in ' + esc(j.queue || 'queue') + '</span></div>' +
+        '<div class="tile"><b>' + esc(j.eta_start || '—') + '</b><span>est. start</span></div></div>';
+    }
+    if (j.status === 'idle') h += '<div class="note soft">nothing started yet — newest file ' + esc(j.newest || '—') + '</div>';
+    if (j.status === 'critical') h += '<div class="note fail">' + esc((j.notes || [{}])[0].txt || j.state_note) + '</div>';
+
+    h += '<div style="display:flex;flex-direction:column;gap:5px">' +
+      '<div class="bar"><i style="width:' + pct(j.pct) + ';background:var(--' + j.status + ')"></i></div>' +
+      '<div class="barlbl"><span>' + esc(j.elapsed || j.state_note || '—') + '</span><span>' +
+      (j.limit ? 'of ' + esc(j.limit) : '') + '</span></div></div></div>';
+  });
+
+  h += '<div class="foot"><div>/track-job · ' + js.length + ' dirs on ' + esc(cl) + '</div>' +
+    '<div>status.json written ' + esc((S.polled_at || '').replace('T', ' ').slice(0, 16)) +
+    ' · next poll ' + esc((S.next_poll || '').slice(11, 16) || '—') + ' · read-only</div></div></div>';
+  return h;
+}
+
+function detailView() {
+  var j = job(st.sel);
+  if (!j) { st.view = 'list'; return listView(); }
+  var mons = j.monitors || [], i = Math.min(st.mon, Math.max(mons.length - 1, 0)), m = mons[i] || null;
+  var h = '<div class="hdr"><div class="back" onclick="go({view:\'list\',sel:null})"><i>‹</i>Jobs</div>' +
+    '<div style="font:590 13px var(--mono)">' + esc(j.id || '—') + '</div><div style="width:44px"></div></div>';
+  h += '<div class="wrap">';
+  h += '<div style="display:flex;flex-direction:column;gap:7px"><div style="font:700 24px/28px var(--ui);' +
+    'letter-spacing:-.5px">' + esc(j.label || j.name) + '</div><div style="font:400 12px var(--mono);color:var(--sub)">' +
+    esc(j.cluster) + ' / ' + esc(j.queue || '—') + ' · ' + esc(j.sched || '') + ' · ' + esc(j.kind) + '</div></div>';
+
+  h += '<div class="card"><div class="row" style="align-items:center;justify-content:space-between">' +
+    '<div style="display:flex;align-items:center;gap:8px"><i class="dot" style="width:9px;height:9px;' +
+    'background:var(--' + j.status + ')"></i><span style="font:590 15px var(--ui);letter-spacing:-.2px">' +
+    esc(j.state) + '</span></div><span style="font:400 12px var(--mono);color:var(--sub)">' +
+    esc(j.state_note || '') + '</span></div>';
+  if (j.elapsed) h += '<div style="display:flex;flex-direction:column;gap:6px">' +
+    '<div class="bar" style="height:6px"><i style="width:' + pct(j.pct) + ';background:var(--' + j.status + ')"></i></div>' +
+    '<div class="barlbl"><span>' + esc(j.elapsed) + ' wall</span><span>limit ' + esc(j.limit || '—') + '</span></div></div>';
+  if (j.sim_pct != null) h += '<div style="display:flex;flex-direction:column;gap:6px">' +
+    '<div class="bar" style="height:6px"><i style="width:' + pct(j.sim_pct) + ';background:var(--accent)"></i></div>' +
+    '<div class="barlbl"><span>t = ' + esc(j.sim_now) + '</span><span>target ' + esc(j.sim_target) + '</span></div></div>';
+  if (j.status === 'pend') h += '<div class="tiles"><div class="tile"><b>' + esc(j.queue_pos || '—') +
+    '</b><span>of ' + esc(j.queue_total || '—') + ' in queue</span></div><div class="tile"><b>' +
+    esc(j.eta_start || '—') + '</b><span>est. start</span></div></div>';
+  h += '</div>';
+
+  if (j.summary) {
+    h += '<div class="card"><div class="row" style="justify-content:space-between;align-items:baseline">' +
+      '<span class="sect">Read</span><span class="sub">claude · ' + ago(j.polled_at || S.polled_at) + '</span></div>' +
+      '<div class="read">' + esc(j.summary) + '</div>';
+    (j.notes || []).forEach(function (n) {
+      var c = { good: 'var(--good)', warn: 'var(--pend)', critical: 'var(--critical)', info: 'var(--done)' }[n.level] || 'var(--done)';
+      h += '<div class="bullet"><i style="background:' + c + '"></i><span>' + esc(n.txt) + '</span></div>';
+    });
+    h += '</div>';
+  }
+
+  if (m) {
+    h += '<div class="card"><div class="mons">' + mons.map(function (x, k) {
+      return '<div class="mon' + (k === i ? ' on' : '') + '" onclick="go({mon:' + k + '})">' + esc(x.label) + '</div>';
+    }).join('') + '</div>' +
+      '<div style="display:flex;align-items:baseline;gap:9px"><span class="big">' + esc(m.now) + '</span>' +
+      '<span style="font:400 11.5px var(--ui);color:var(--sub)">' + esc(m.desc || '') + '</span></div>' +
+      chart(m.history, 96) +
+      '<div class="barlbl" style="color:var(--dim);font-size:10.5px"><span>' +
+      esc(((m.history || [[]])[0] || [])[0]) + '</span><span>' +
+      esc(((m.history || [[]])[(m.history || []).length - 1] || [])[0]) + '</span></div></div>';
+  }
+
+  h += '<div class="card"><div class="row" style="justify-content:space-between;align-items:baseline">' +
+    '<span class="sect">Allocation</span><span class="sub">' + esc(j.node || '—') + '</span></div>' +
+    '<div class="stats"><div><b>' + esc(j.ranks || '—') + '</b><span>ranks</span></div>' +
+    '<div><b>' + esc(j.rss || '—') + '</b><span>rss / node</span></div>' +
+    '<div><b>' + esc(j.s_per_step || '—') + '</b><span>s / step</span></div></div></div>';
+
+  h += '<div class="card"><span class="sect">Artifacts</span><div class="stats">' +
+    '<div><b>' + esc(j.restarts) + '</b><span>restarts</span></div>' +
+    '<div><b>' + esc(j.posts) + '</b><span>post files</span></div>' +
+    '<div><b>' + esc(j.frames) + '</b><span>frames</span></div></div>' +
+    '<div class="sub">newest ' + esc(j.newest || '—') + '</div></div>';
+
+  var tail = (j.log_tail || []).slice(-4);
+  h += '<div class="logcard" onclick="go({view:\'log\'})">' +
+    '<div style="display:flex;justify-content:space-between;color:rgba(235,235,245,.6);font:590 12px var(--mono)">' +
+    '<span>' + esc(j.log_name || 'log') + '</span><span style="color:#0a84ff">open ›</span></div>' +
+    (tail.length ? tail.map(function (l) { return '<div>' + esc(l) + '</div>'; }).join('')
+      : '<div>(no output yet)</div>') + '</div>';
+
+  h += '<div class="foot"><div>submitted ' + esc((j.submitted || '—').replace('T', ' ').slice(0, 16)) + '</div>' +
+    '<div>' + esc(j.cmd || '—') + '</div><div>polled ' + ago(j.polled_at || S.polled_at) + ' · read-only</div></div>';
+  return h + '</div>';
+}
+
+function logView() {
+  var j = job(st.sel) || {};
+  var h = '<div class="logview"><div class="hdr"><div class="back" onclick="go({view:\'detail\'})"><i>‹</i>Job</div>' +
+    '<h1>' + esc(j.log_name || 'log') + '</h1>' +
+    '<div style="font:400 11px var(--ui);color:rgba(255,255,255,.5)">' + (stale() ? 'stale' : 'last poll') + '</div></div>' +
+    '<div style="padding:10px 0 60px">';
+  var lines = j.log_tail || [];
+  if (!lines.length) h += '<div class="logline"><i></i><span>(no output yet)</span></div>';
+  lines.forEach(function (l, k) {
+    h += '<div class="logline"><i>' + (k + 1) + '</i><span>' + esc(l) + '</span></div>';
+  });
+  h += '<div class="logline"><i></i><span style="background:rgba(52,199,89,.9);color:transparent">&nbsp;</span></div>';
+  h += '</div><div style="padding:9px 16px calc(env(safe-area-inset-bottom) + 20px);' +
+    'border-top:.5px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;' +
+    'font:400 11px var(--mono);color:rgba(255,255,255,.45)"><span>tail -' + lines.length + ' · ' +
+    esc(j.log_path || '') + '</span><span>' + esc(j.log_size || '') + '</span></div></div>';
+  return h;
+}
+
+function render() {
+  document.getElementById('app').innerHTML =
+    st.view === 'log' ? logView() : st.view === 'detail' ? detailView() : listView();
+  window.scrollTo(0, 0);
+  localStorage.setItem(VK, JSON.stringify({ cluster: st.cluster }));
+}
+function go(patch) { Object.assign(st, patch); render(); }
+function recheck() {
+  if (st.checking) return;
+  st.checking = true; render();
+  fetch('status.json?v=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); })
+    .then(function (d) { S = d; }).catch(function () {})
+    .then(function () { st.checking = false; render(); });
+}
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+render();
+recheck();
+setInterval(recheck, 300000);
+</script>
+</body>
+</html>
