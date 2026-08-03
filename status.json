@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T10:57:45-04:00",
-  "next_poll": "2026-08-03T11:27:45-04:00",
+  "polled_at": "2026-08-03T11:26:38-04:00",
+  "next_poll": "2026-08-03T11:56:38-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 10963 · settled back down after the 178 bar spike, watching for more",
-      "elapsed": "11:34:06",
+      "state_note": "cycle 11576 · dt stuck oscillating at the 1ns floor for 30+ cycles, throughput stalled, no FATAL_ERROR yet",
+      "elapsed": "12:02:59",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "311.80 µs",
+      "sim_now": "316.44 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
@@ -723,25 +723,25 @@
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
         "Finished ParaView Catalyst execute",
-        "[  7.80%] ncyc    10970;  Time    3.120178566e-04 (sec); dt=    2.160025635e-08 (dt_cfl) ",
-        "[  7.80%] ncyc    10971;  Time    3.120396120e-04 (sec); dt=    2.175546921e-08 (dt_cfl) ",
-        "[  7.80%] ncyc    10972;  Time    3.120612388e-04 (sec); dt=    2.162679491e-08 (dt_cfl) ",
-        "[  7.80%] ncyc    10973;  Time    3.120827453e-04 (sec); dt=    2.150650536e-08 (dt_cfl) ",
-        "[  7.80%] ncyc    10974;  Time    3.121047533e-04 (sec); dt=    2.200795352e-08 (dt_cfl) ",
-        "[  7.80%] ncyc    10975;  Time    3.121265404e-04 (sec); dt=    2.178707343e-08 (dt_cfl) "
+        "[  7.91%] ncyc    11593;  Time    3.164560407e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  7.91%] ncyc    11594;  Time    3.164572907e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  7.91%] ncyc    11595;  Time    3.164582907e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  7.91%] ncyc    11596;  Time    3.164592907e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  7.91%] ncyc    11597;  Time    3.164605407e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  7.91%] ncyc    11598;  Time    3.164615407e-04 (sec); dt=    1.000000000e-09 (dt_recover) "
       ],
-      "summary": "Settled back down since the 178 bar/10,669K spike at t=121.8µs (peak still holds, no bigger event since) — now 11.5 bar / 2958 K at cycle 10963 (t=311.8µs), similar magnitude to where things sat before that spike. 45 timestep recoveries total (7 new since last poll), still no WARNING/FATAL_ERROR. Overall picture through 312µs: an artificial kernel deposit into unfueled air, a real ignition near the injector that propagated through the domain, and now at least one much larger (178 bar) transient spike elsewhere in the domain whose exact location is still unconfirmed — this case is producing repeated, large, localized combustion events rather than either a clean single detonation or a dead case. 11:34:06 into the 72-hour wall limit, 32 post files, ~59.8G memory across 64 ranks.",
+      "summary": "New regime since the last poll: starting around cycle 11500 (t≈316.4µs), dt has collapsed to the 1ns floor and is stuck oscillating dt_recover/dt_grow for 50+ cycles straight, instead of the usual single-cycle dip-and-recover — sim time has barely advanced (~316.42 to 316.46µs) while wall-clock keeps burning. stderr is now dominated by one single repeating WARNING [3467] temperature extrapolation error at rank 10, cell 43515, location <-0.0015, 0.08075, 0.0225> (region 3, level=8) — the same cell nearly every line, not the usual rotating set of different cells/ranks. No FATAL_ERROR yet and no domain p_max/T_max readout available for this window. Reads like one AMR cell has developed a persistent local numerical hot spot that is throttling the whole timestep — worth watching for either a FATAL_ERROR or a clean recovery. 12:02:59 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "back down to 11.5 bar / 2958 K, no new spike bigger than the 178 bar one from last poll",
-          "level": "good"
+          "txt": "dt pinned at the 1e-9s floor for 50+ cycles (vs. isolated single-cycle recoveries before) — throughput has stalled, not just a blip",
+          "level": "warn"
         },
         {
-          "txt": "45 timestep recoveries total (7 new since last check) — still no WARNING/FATAL_ERROR, nothing alarming",
-          "level": "info"
+          "txt": "stderr now spamming one specific cell (rank 10, cell 43515, region 3, level=8) instead of rotating through different cells — looks like a localized persistent hot spot, not general chatter",
+          "level": "warn"
         },
         {
-          "txt": "pattern so far: repeated large localized combustion events (not one clean front, not a dead case) — post000032 (t=310µs) is the newest 3D snapshot if you want to look at where these are happening",
+          "txt": "still no FATAL_ERROR — solver is grinding through it, not crashing, but worth rechecking next poll for whether it clears or escalates",
           "level": "info"
         }
       ]
