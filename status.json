@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T05:59:15-04:00",
-  "next_poll": "2026-08-03T06:29:15-04:00",
+  "polled_at": "2026-08-03T06:25:54-04:00",
+  "next_poll": "2026-08-03T06:55:54-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 5973 · monitor ring still holding an elevated reacted state (~2.3-2.9kK, 4.6-8 bar across all 13 points), dt not collapsing, no new fatal issues",
-      "elapsed": "6:35:36",
+      "state_note": "cycle 6413 · dt still growing smoothly (no collapse), no new fatal issues",
+      "elapsed": "7:02:15",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "175.55 µs",
+      "sim_now": "188.65 µs",
       "sim_target": "4000 µs",
       "sim_pct": 4,
       "monitors": [
