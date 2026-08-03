@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T11:57:35-04:00",
-  "next_poll": "2026-08-03T12:27:35-04:00",
+  "polled_at": "2026-08-03T12:25:56-04:00",
+  "next_poll": "2026-08-03T12:55:56-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 12261 · still stuck at dt floor (~680 cycles), cell drifted once, no FATAL_ERROR",
-      "elapsed": "12:33:56",
+      "state_note": "cycle 12858 · still stuck at dt floor (~1350 cycles now), cell continues to drift, no FATAL_ERROR",
+      "elapsed": "13:02:17",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "318.300 µs",
+      "sim_now": "319.51 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
