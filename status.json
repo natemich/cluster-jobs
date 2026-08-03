@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T02:31:19-04:00",
-  "next_poll": "2026-08-03T03:01:19-04:00",
+  "polled_at": "2026-08-03T02:56:20-04:00",
+  "next_poll": "2026-08-03T03:26:20-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 3092 · real ignition near injector propagating, not the kernel",
-      "elapsed": "3:07:40",
+      "state_note": "sim_time 120.5us · high-res ring-point (1/2/3) comparison shows NO clean unidirectional phase lag yet - P2/P3 alternate lead within ~1us, more consistent with bulk/oscillatory spread than a steadily rotating wave at this early stage",
+      "elapsed": "3:32:41",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "115.92 µs",
+      "sim_now": "120.50 µs",
       "sim_target": "4000 µs",
       "sim_pct": 2,
       "monitors": [
