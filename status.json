@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T16:27:33-04:00",
-  "next_poll": "2026-08-03T16:57:33-04:00",
+  "polled_at": "2026-08-03T16:55:59-04:00",
+  "next_poll": "2026-08-03T17:25:59-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,12 +19,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "cycle 17955 · running normally, no recoveries since the stall cleared",
-      "elapsed": "17:03:54",
+      "status": "warn",
+      "state_note": "cycle 18565 · NEW dt-floor stall started ~cycle 18548 (t≈389.7µs), different location this time (rank 60, region 0, level 11), no FATAL_ERROR",
+      "elapsed": "17:37:20",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "376.701 µs",
+      "sim_now": "389.68 µs",
       "sim_target": "4000 µs",
       "sim_pct": 9,
       "monitors": [
@@ -287,8 +287,8 @@
         {
           "key": "dt",
           "label": "dt",
-          "now": "3.032e-8 s",
-          "desc": "back to normal dt_cfl-limited growth, no recoveries since the stall cleared",
+          "now": "1.000e-9 s",
+          "desc": "NEW stall — pinned at the 1ns floor again since ~cycle 18548, different location than the earlier one",
           "history": [
             [
               1,
@@ -719,29 +719,29 @@
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
         "Finished ParaView Catalyst execute",
-        "[  9.44%] ncyc    17980;  Time    3.775225749e-04 (sec); dt=    3.039729226e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17981;  Time    3.775529976e-04 (sec); dt=    3.042272906e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17982;  Time    3.775833960e-04 (sec); dt=    3.039838985e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17983;  Time    3.776138837e-04 (sec); dt=    3.048772358e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17984;  Time    3.776444282e-04 (sec); dt=    3.054444902e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17985;  Time    3.776748722e-04 (sec); dt=    3.044406535e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17986;  Time    3.777052707e-04 (sec); dt=    3.039844944e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17987;  Time    3.777356972e-04 (sec); dt=    3.042650854e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17988;  Time    3.777661481e-04 (sec); dt=    3.045090121e-08 (dt_cfl) ",
-        "[  9.44%] ncyc    17989;  Time    3.777966165e-04 (sec); dt=    3.046839554e-08 (dt_cfl) "
+        "[  9.74%] ncyc    18549;  Time    3.896623848e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18550;  Time    3.896633848e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18551;  Time    3.896646348e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.74%] ncyc    18552;  Time    3.896656348e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18560;  Time    3.896741348e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18561;  Time    3.896751348e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18562;  Time    3.896763848e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.74%] ncyc    18563;  Time    3.896773848e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.74%] ncyc    18564;  Time    3.896786348e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.74%] ncyc    18565;  Time    3.896796348e-04 (sec); dt=    1.000000000e-09 (dt_recover) "
       ],
-      "summary": "Back to routine: no new dt recoveries since the stall cleared (still 2298 total), dt is holding steady at the normal dt_cfl-limited ~2.23e-8s, and post000038 (t=370µs) came at the normal ~30-40min cadence. Currently at cycle 17955, t=376.70µs (9% of the 4.0ms target). Domain-max 11.3 bar / 2656 K, in the same quasi-steady band this case has held since the post-ignition transients settled. 17:03:54 into the 72-hour wall limit, 38 post files, ~60.3G memory across 64 ranks.",
+      "summary": "A new dt-floor stall started around cycle 18548 (t≈389.7µs) — dt collapsed from the normal ~3.3e-8s dt_cfl plateau through a couple of the usual single-cycle recoveries (cycle 18531, 18535, 18540, 18546 — all recovered fine) and then failed to recover at cycle ~18548, pinning at the 1ns floor for the last 17+ cycles straight. This is the same failure mode as the earlier ~4600-cycle stall (cycle 11576-16135), but a DIFFERENT location: rank 60, cell 24319, region 0 (the main chamber, not region 3), AMR level 11 (finer than the level-8 cell from before), location <0.0062, 0.0029, 0.0011> — much closer to the injector plane than the earlier stall's site. No FATAL_ERROR. Given the last episode resolved on its own after ~2 hours without any FATAL_ERROR or physical consequence, treating this the same way: watching, not alarmed yet. 17:37:20 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "no new dt recoveries since the stall cleared last poll — dt holding steady at ~2.23e-8s, normal pace fully restored",
-          "level": "good"
+          "txt": "NEW dt-floor stall, ~17 cycles in as of this poll (started cycle ~18548, t=389.7µs) — same failure mode as the earlier one but a different spot: rank 60, region 0, AMR level 11, near the injector plane",
+          "level": "warn"
         },
         {
-          "txt": "post000038 (t=370µs) written at the normal ~30-40min cadence, confirming steady progress",
-          "level": "good"
+          "txt": "the earlier stall (cycle 11576-16135, ~4600 cycles / ~2hrs) resolved on its own with zero FATAL_ERROR and no physical consequence — this one is being watched the same way, not treated as urgent yet",
+          "level": "info"
         },
         {
-          "txt": "domain-max p/T unchanged from recent polls (11.3 bar / 2656 K) — case is stable, 9% of the way to the 4.0ms target",
+          "txt": "still zero FATAL_ERROR",
           "level": "info"
         }
       ]
