@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T01:28:21-04:00",
-  "next_poll": "2026-08-03T01:58:21-04:00",
+  "polled_at": "2026-08-03T01:56:15-04:00",
+  "next_poll": "2026-08-03T02:26:15-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,12 +19,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "cycle 2379 · ignition transient, dt recovering",
-      "elapsed": "2:04:42",
+      "status": "good",
+      "state_note": "cycle 2713 · post-ignition, dt recovered to normal dt_cfl plateau (~1.44e-8s) — detonation transient successfully weathered",
+      "elapsed": "2:32:25",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "106.30 µs",
+      "sim_now": "110.52 µs",
       "sim_target": "4000 µs",
       "sim_pct": 2,
       "monitors": [
