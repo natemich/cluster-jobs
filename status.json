@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T02:00:30-04:00",
-  "next_poll": "2026-08-03T02:30:30-04:00",
+  "polled_at": "2026-08-03T02:28:15-04:00",
+  "next_poll": "2026-08-03T02:58:15-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,12 +19,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "cycle 2743 · post-ignition, pressure decaying (not oscillating)",
-      "elapsed": "2:36:51",
+      "status": "good",
+      "state_note": "sim_time 115.5us · monitor_cloud_1_mass_avg.out shows ALL 8+ checked monitor points elevated (8-38 bar, 2460-3270K) - reaction has spread beyond the original kernel point, not a single dying burst",
+      "elapsed": "3:04:36",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "110.91 µs",
+      "sim_now": "115.51 µs",
       "sim_target": "4000 µs",
       "sim_pct": 2,
       "monitors": [
