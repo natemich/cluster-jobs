@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-02T23:26:15-04:00",
-  "next_poll": "2026-08-02T23:56:15-04:00",
+  "polled_at": "2026-08-02T23:31:57-04:00",
+  "next_poll": "2026-08-03T00:01:57-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,107 +20,609 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "running on n0367, 64 ranks, license checked out cleanly, 64+ cycles completed",
-      "elapsed": "00:03",
-      "limit": "72:00",
-      "pct": 0.07,
-      "sim_now": 2.995559591e-06,
-      "sim_target": 0.004,
-      "sim_pct": 0.075,
+      "state_note": "cycle 139 · pre-ignition (source_start_time=1e-4s)",
+      "elapsed": "0:08:18",
+      "limit": "72:00:00",
+      "pct": 0,
+      "sim_now": "7.61 µs",
+      "sim_target": "4000 µs",
+      "sim_pct": 0,
       "monitors": [
         {
+          "key": "p_max",
+          "label": "p_max",
+          "now": "7.19 bar",
+          "desc": "peak cell pressure — still near ambient, ignition not yet triggered",
+          "history": [
+            [
+              1,
+              7
+            ],
+            [
+              7,
+              7.067
+            ],
+            [
+              13,
+              7.128
+            ],
+            [
+              19,
+              7.152
+            ],
+            [
+              25,
+              7.164
+            ],
+            [
+              31,
+              7.173
+            ],
+            [
+              37,
+              7.177
+            ],
+            [
+              43,
+              7.177
+            ],
+            [
+              49,
+              7.18
+            ],
+            [
+              55,
+              7.184
+            ],
+            [
+              61,
+              7.185
+            ],
+            [
+              67,
+              7.185
+            ],
+            [
+              73,
+              7.183
+            ],
+            [
+              79,
+              7.181
+            ],
+            [
+              85,
+              7.179
+            ],
+            [
+              91,
+              7.172
+            ],
+            [
+              97,
+              7.177
+            ],
+            [
+              103,
+              7.182
+            ],
+            [
+              109,
+              7.186
+            ],
+            [
+              115,
+              7.19
+            ],
+            [
+              121,
+              7.193
+            ],
+            [
+              127,
+              7.194
+            ],
+            [
+              133,
+              7.193
+            ],
+            [
+              139,
+              7.191
+            ]
+          ]
+        },
+        {
+          "key": "t_max",
+          "label": "T_max",
+          "now": "328.4 K",
+          "desc": "peak temperature — pre-ignition, tracking initial conditions",
+          "history": [
+            [
+              1,
+              300
+            ],
+            [
+              7,
+              343.5
+            ],
+            [
+              13,
+              356.3
+            ],
+            [
+              19,
+              361.3
+            ],
+            [
+              25,
+              357.7
+            ],
+            [
+              31,
+              354.4
+            ],
+            [
+              37,
+              359.8
+            ],
+            [
+              43,
+              357.4
+            ],
+            [
+              49,
+              352.8
+            ],
+            [
+              55,
+              346.7
+            ],
+            [
+              61,
+              351
+            ],
+            [
+              67,
+              352.7
+            ],
+            [
+              73,
+              351.5
+            ],
+            [
+              79,
+              349.6
+            ],
+            [
+              85,
+              346.5
+            ],
+            [
+              91,
+              342.9
+            ],
+            [
+              97,
+              340.1
+            ],
+            [
+              103,
+              336.6
+            ],
+            [
+              109,
+              333.9
+            ],
+            [
+              115,
+              331.9
+            ],
+            [
+              121,
+              331.2
+            ],
+            [
+              127,
+              329.8
+            ],
+            [
+              133,
+              329.9
+            ],
+            [
+              139,
+              328.4
+            ]
+          ]
+        },
+        {
           "key": "dt",
-          "label": "Timestep (dt)",
-          "now": 5.7367e-08,
-          "desc": "growing steadily (5.698e-8 -> 5.737e-8 over last 10 cycles) - healthy, not collapsing",
-          "history": [[55, 5.698205667e-08], [56, 5.696791742e-08], [57, 5.704429278e-08], [58, 5.704323082e-08], [59, 5.704874334e-08], [60, 5.707131527e-08], [61, 5.711803247e-08], [62, 5.723231393e-08], [63, 5.728161944e-08], [64, 5.736674200e-08]]
+          "label": "dt",
+          "now": "6.093e-8 s",
+          "desc": "timestep — grew from ~1e-9s at startup, now plateaued around 6e-8s (CFL-limited)",
+          "history": [
+            [
+              1,
+              1e-9
+            ],
+            [
+              7,
+              3.815e-9
+            ],
+            [
+              13,
+              1.455e-8
+            ],
+            [
+              19,
+              5.551e-8
+            ],
+            [
+              25,
+              6.667e-8
+            ],
+            [
+              31,
+              6.464e-8
+            ],
+            [
+              37,
+              5.778e-8
+            ],
+            [
+              43,
+              6.091e-8
+            ],
+            [
+              49,
+              5.642e-8
+            ],
+            [
+              55,
+              5.698e-8
+            ],
+            [
+              61,
+              5.712e-8
+            ],
+            [
+              67,
+              5.731e-8
+            ],
+            [
+              73,
+              5.866e-8
+            ],
+            [
+              79,
+              5.915e-8
+            ],
+            [
+              85,
+              5.971e-8
+            ],
+            [
+              91,
+              6.056e-8
+            ],
+            [
+              97,
+              6.096e-8
+            ],
+            [
+              103,
+              6.13e-8
+            ],
+            [
+              109,
+              6.209e-8
+            ],
+            [
+              115,
+              6.232e-8
+            ],
+            [
+              121,
+              6.22e-8
+            ],
+            [
+              127,
+              6.176e-8
+            ],
+            [
+              133,
+              6.162e-8
+            ],
+            [
+              139,
+              6.093e-8
+            ]
+          ]
         },
         {
           "key": "s_per_cycle",
-          "label": "Wall time / cycle",
-          "now": 2.7,
-          "desc": "~2.4-3.0 s real time per cycle on 64 ranks; ~70k cycles remain to reach end_time=0.004s at current dt",
-          "history": [[59, 2.972], [60, 3.021], [61, 2.413], [62, 2.982], [63, 2.439], [64, 2.987]]
+          "label": "s/cycle",
+          "now": "2.66 s",
+          "desc": "wall time per cycle, averaged since start",
+          "history": [
+            [
+              7,
+              1.39
+            ],
+            [
+              13,
+              1.42
+            ],
+            [
+              19,
+              1.86
+            ],
+            [
+              25,
+              2.33
+            ],
+            [
+              31,
+              2.49
+            ],
+            [
+              37,
+              2.65
+            ],
+            [
+              43,
+              2.87
+            ],
+            [
+              49,
+              2.89
+            ],
+            [
+              55,
+              2.92
+            ],
+            [
+              61,
+              2.82
+            ],
+            [
+              67,
+              2.85
+            ],
+            [
+              73,
+              2.83
+            ],
+            [
+              79,
+              2.73
+            ],
+            [
+              85,
+              2.75
+            ],
+            [
+              91,
+              2.8
+            ],
+            [
+              97,
+              2.7
+            ],
+            [
+              103,
+              2.93
+            ],
+            [
+              109,
+              2.93
+            ],
+            [
+              115,
+              2.9
+            ],
+            [
+              121,
+              2.9
+            ],
+            [
+              127,
+              2.93
+            ],
+            [
+              133,
+              2.91
+            ],
+            [
+              139,
+              2.96
+            ]
+          ]
+        },
+        {
+          "key": "mass",
+          "label": "mass",
+          "now": "3.014e-4 kg",
+          "desc": "total mass in domain — conserved so far",
+          "history": [
+            [
+              1,
+              0.0003017
+            ],
+            [
+              7,
+              0.0003017
+            ],
+            [
+              13,
+              0.0003017
+            ],
+            [
+              19,
+              0.0003017
+            ],
+            [
+              25,
+              0.0003017
+            ],
+            [
+              31,
+              0.0003017
+            ],
+            [
+              37,
+              0.0003017
+            ],
+            [
+              43,
+              0.0003017
+            ],
+            [
+              49,
+              0.0003017
+            ],
+            [
+              55,
+              0.0003017
+            ],
+            [
+              61,
+              0.0003017
+            ],
+            [
+              67,
+              0.0003017
+            ],
+            [
+              73,
+              0.0003016
+            ],
+            [
+              79,
+              0.0003016
+            ],
+            [
+              85,
+              0.0003016
+            ],
+            [
+              91,
+              0.0003016
+            ],
+            [
+              97,
+              0.0003016
+            ],
+            [
+              103,
+              0.0003015
+            ],
+            [
+              109,
+              0.0003015
+            ],
+            [
+              115,
+              0.0003015
+            ],
+            [
+              121,
+              0.0003015
+            ],
+            [
+              127,
+              0.0003014
+            ],
+            [
+              133,
+              0.0003014
+            ],
+            [
+              139,
+              0.0003014
+            ]
+          ]
         }
       ],
       "ranks": 64,
-      "rss": null,
-      "s_per_step": 2.7,
-      "node": "n0367",
+      "rss": "43.9G",
+      "s_per_step": 2.66,
+      "node": "n0367 · 1×64",
       "restarts": 0,
-      "posts": 0,
+      "posts": 1,
       "frames": 0,
-      "newest": "converge.log · just now (actively writing)",
+      "newest": "post000001_+0.00000e+00.h5 · 8m ago",
       "submitted": "2026-08-02T23:23:39-04:00",
       "cmd": "bsub < RunConverge.sh  # queue braun, 64 ranks, 72:00 wall",
-      "log_name": "outputs_original/converge.log",
+      "log_name": "stdout.964426",
       "log_path": "triangleRDE",
-      "log_size": "868 KB (growing)",
+      "log_size": "79.2 KB",
       "log_tail": [
-        "                N2 converged, error= 8.441740e-03",
-        "2 species solved using 4 iterations",
-        "   sie iteration= 1, residual= 3.239390e-07, jac= 0",
-        "   sie iteration= 2, residual= 9.944944e-09, jac= 0",
-        "sie     solved: iterations= 2 error= 4.6526e-03 jac= 0",
-        "Initial L2 norm of rhs: 3.464939e+03, initial residual: 1.000000e+00 and the normalized abs_tol 2.886054e-12",
-        "---------------------------------------------------",
-        "Iteration No \tResidual \tRelative Residual",
-        "     1 \t\t1.275528e-04 \t1.000000e+00",
-        "     2 \t\t7.036392e-08 \t5.516456e-04",
-        "pstar   converged: iterations= 2 error= 1.3207e-03",
-        "In streams [0]: piso loop   5 the max error= 3.0195e-03",
-        "***************************************starting piso loop   6*************************",
-        "   density iteration= 1, residual= 9.782880e-08, jac= 0",
-        "   density iteration= 2, residual= 2.191834e-09, jac= 0",
-        "density solved: iterations= 2 error= 1.4046e-03 jac= 0",
-        "                O2 max mass fraction= 1.000000e+00",
-        "                       O2 iteration=    1, residual= 6.207468e-10, jac=    0",
-        "                       O2 iteration=    2, residual= 1.422415e-11, jac=    0",
-        "                N2 max mass fraction= 7.675520e-01",
-        "                       N2 iteration=    1, residual= 7.257047e-10, jac=    0",
-        "                       N2 iteration=    2, residual= 1.668211e-11, jac=    0",
-        "                O2 converged, error= 1.538986e-05",
-        "                N2 converged, error= 1.538986e-05",
-        "2 species solved using 4 iterations",
-        "   sie iteration= 1, residual= 7.250709e-08, jac= 0",
-        "   sie iteration= 2, residual= 2.153357e-09, jac= 0",
-        "sie     solved: iterations= 2 error= 9.2254e-04 jac= 0",
-        "Initial L2 norm of rhs: 8.003815e+02, initial residual: 1.000000e+00 and the normalized abs_tol 1.249404e-11",
-        "---------------------------------------------------",
-        "Iteration No \tResidual \tRelative Residual",
-        "     1 \t\t1.218241e-04 \t1.000000e+00",
-        "     2 \t\t8.092566e-08 \t6.642828e-04",
-        "pstar   converged: iterations= 2 error= 2.2552e-04",
-        "In streams [0]: piso loop   6 the max error= 1.4046e-03",
-        "***************************************starting piso loop   7*************************",
-        "   density iteration= 1, residual= 3.632282e-09, jac= 0",
-        "   density iteration= 2, residual= 1.380495e-10, jac= 0",
-        "density solved: iterations= 2 error= 2.5036e-05 jac= 0",
-        "   sie iteration= 1, residual= 5.739782e-09, jac= 0",
-        "   sie iteration= 2, residual= 2.360127e-10, jac= 0",
-        "sie     solved: iterations= 2 error= 6.8517e-05 jac= 0",
-        "Initial L2 norm of rhs: 2.097110e+02, initial residual: 1.000000e+00 and the normalized abs_tol 4.768467e-11",
-        "---------------------------------------------------",
-        "Iteration No \tResidual \tRelative Residual",
-        "     1 \t\t1.241625e-04 \t1.000000e+00",
-        "     2 \t\t8.387515e-08 \t6.755274e-04",
-        "pstar   converged: iterations= 2 error= 6.2584e-05",
-        "In streams [0]: piso loop   7 the max error= 2.5036e-05",
-        "***************************************starting piso loop   8*************************"
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.21%] ncyc      155;  Time    8.513200557e-06 (sec); dt=    6.013722288e-08 (dt_cfl) ",
+        "[  0.21%] ncyc      156;  Time    8.573348946e-06 (sec); dt=    6.014838947e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      157;  Time    8.633511361e-06 (sec); dt=    6.016241474e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      158;  Time    8.693698738e-06 (sec); dt=    6.018737700e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      159;  Time    8.753991472e-06 (sec); dt=    6.029273383e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      160;  Time    8.814359509e-06 (sec); dt=    6.036803726e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      161;  Time    8.874788888e-06 (sec); dt=    6.042937924e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      162;  Time    8.935263218e-06 (sec); dt=    6.047433029e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      163;  Time    8.995854328e-06 (sec); dt=    6.059111007e-08 (dt_cfl) ",
+        "Executing ParaView Catalyst scripts:",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/EquivMetricSurf.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.23%] ncyc      164;  Time    9.056527089e-06 (sec); dt=    6.067276084e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      165;  Time    9.117266309e-06 (sec); dt=    6.073922015e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      166;  Time    9.178054564e-06 (sec); dt=    6.078825420e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      167;  Time    9.238896695e-06 (sec); dt=    6.084213108e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      168;  Time    9.299874799e-06 (sec); dt=    6.097810437e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      169;  Time    9.360946914e-06 (sec); dt=    6.107211522e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      170;  Time    9.422093052e-06 (sec); dt=    6.114613737e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      171;  Time    9.483280641e-06 (sec); dt=    6.118758922e-08 (dt_cfl) ",
+        "Executing ParaView Catalyst scripts:",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/EquivMetricSurf.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.24%] ncyc      172;  Time    9.544507070e-06 (sec); dt=    6.122642899e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      173;  Time    9.605851882e-06 (sec); dt=    6.134481243e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      174;  Time    9.667257980e-06 (sec); dt=    6.140609814e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      175;  Time    9.728704374e-06 (sec); dt=    6.144639337e-08 (dt_cfl) "
       ],
-      "summary": "The full 72-hour production run (job 964426) is actually running on n0367 with 64 ranks. License checked out cleanly, all inputs parsed, and it's now well into real timestepping — 64+ cycles completed, simulation time at 2.996e-6 s toward the 0.004 s end_time (about 0.075% through the physics). Timestep (dt) is growing smoothly cycle-over-cycle (no collapse), which is a healthy sign this early. At ~2.7 s of wall time per cycle, the case is nowhere near the ignition kernel's trigger time yet (source_start_time 1e-4 s) — this early period is just the cold flow establishing before detonation initiation.",
+      "summary": "The full production run is actually going: job 964426 started at 23:23:39 on node n0367 (64 ranks), and is now at cycle 139, t=7.61 µs of the 4000 µs (4.0 ms) target — still well before the source ignition trigger at 100 µs, so pressure (~7.2 bar) and temperature (~328 K) are both tracking near their initial values rather than showing combustion yet. dt climbed from ~1ns to ~6×10⁻⁸s and has now plateaued under CFL control, one initial post file has been written, and mass is conserved so far. At ~2.7 s/cycle it's only 7-8 minutes into a 72-hour wall limit, so there's no time pressure yet — but it's too early (pre-ignition, dt still settling) to project a reliable ETA to 4.0 ms.",
       "notes": [
         {
-          "txt": "Running for real: license, modules, and RunConverge submission are all confirmed working end-to-end",
+          "txt": "job 964426 confirmed running for real — not another smoke test; 64 ranks on n0367, 139 cycles in",
           "level": "good"
         },
         {
-          "txt": "dt growing steadily cycle-to-cycle, no sign of instability this early",
-          "level": "good"
-        },
-        {
-          "txt": "No post/restart/Catalyst files yet — twrite_post/twrite_restart are 1e-5s and sim is only at 3e-6s, so these will appear within the next several thousand cycles",
+          "txt": "still pre-ignition (t < source_start_time=100µs) — p_max/T_max near-ambient is expected, not a sign of trouble",
           "level": "info"
+        },
+        {
+          "txt": "~2.7 s/cycle so far — too early post-ignition dynamics to project total wall time to 4.0ms",
+          "level": "warn"
         }
       ]
     }
