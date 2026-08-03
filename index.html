@@ -99,8 +99,8 @@ svg{display:block;width:100%}
 <body>
 <div id="app"></div>
 <script id="status" type="application/json">{
-  "polled_at": "2026-08-02T22:20:53-04:00",
-  "next_poll": "2026-08-02T22:50:53-04:00",
+  "polled_at": "2026-08-02T23:31:57-04:00",
+  "next_poll": "2026-08-03T00:01:57-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -111,99 +111,617 @@ svg{display:block;width:100%}
   ],
   "jobs": [
     {
-      "id": null,
+      "id": "964426",
       "label": "TriangleRDE",
       "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\triangleRDE",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "IDLE",
-      "status": "idle",
-      "state_note": "last run 964425 killed by owner after 72s (intentional smoke test)",
-      "elapsed": null,
-      "limit": null,
-      "pct": null,
-      "sim_now": null,
-      "sim_target": null,
-      "sim_pct": null,
-      "monitors": [],
-      "ranks": null,
-      "rss": null,
-      "s_per_step": null,
-      "node": null,
-      "restarts": 0,
-      "posts": 0,
-      "frames": 0,
-      "newest": "converge.log · 43m ago",
-      "submitted": null,
-      "cmd": "bsub < RunConverge.sh  # queue braun, 64 ranks, 72:00 wall",
-      "log_name": "stdout.964425",
-      "log_path": "triangleRDE",
-      "log_size": "23.1 KB",
-      "log_tail": [
-        "        TIME=$(date +\"%Y-%m-%d_%H:%M:%S\")",
-        "        sed -i \"/^${LSB_JOBID}/s/--_::/${TIME}/\" $CONVERGElog",
-        "}",
-        "trap cleanup EXIT",
-        "",
-        "# Enable tracking of entropy (temporary fix)",
-        "sed -i 's/entropy_info_output_flag: 0/entropy_info_output_flag: 1/' inputs.in",
-        "",
-        "# module load PrgEnv-intel",
-        "module load $CONVERGEmodule",
-        "module load paraview/INTEL/5.11.0",
-        "",
-        "# UDF linking",
-        "export LD_LIBRARY_PATH=$CONVERGErepo/udf/build:$LD_LIBRARY_PATH",
-        "",
-        "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #",
-        "restartCVG .",
-        "",
-        "# Run the Case",
-        "mpirun converge-intel --license super",
-        "",
-        "# Closes the entry in the log",
-        "cleanup",
-        "",
-        "------------------------------------------------------------",
-        "",
-        "TERM_OWNER: job killed by owner.",
-        "Exited with signal termination: 9.",
-        "",
-        "Resource usage summary:",
-        "",
-        "    CPU time :                                   243.00 sec.",
-        "    Max Memory :                                 26 GB",
-        "    Average Memory :                             20.80 GB",
-        "    Total Requested Memory :                     8.00 GB",
-        "    Delta Memory :                               -18.00 GB",
-        "    Max Swap :                                   -",
-        "    Max Processes :                              12",
-        "    Max Threads :                                19",
-        "    Run time :                                   72 sec.",
-        "    Turnaround time :                            67 sec.",
-        "",
-        "The output (if any) is above this job summary.",
-        "",
-        "",
-        "",
-        "PS:",
-        "",
-        "Read file <stderr.964425> for stderr output of this job."
+      "state": "RUN",
+      "status": "good",
+      "state_note": "cycle 139 · pre-ignition (source_start_time=1e-4s)",
+      "elapsed": "0:08:18",
+      "limit": "72:00:00",
+      "pct": 0,
+      "sim_now": "7.61 µs",
+      "sim_target": "4000 µs",
+      "sim_pct": 0,
+      "monitors": [
+        {
+          "key": "p_max",
+          "label": "p_max",
+          "now": "7.19 bar",
+          "desc": "peak cell pressure — still near ambient, ignition not yet triggered",
+          "history": [
+            [
+              1,
+              7
+            ],
+            [
+              7,
+              7.067
+            ],
+            [
+              13,
+              7.128
+            ],
+            [
+              19,
+              7.152
+            ],
+            [
+              25,
+              7.164
+            ],
+            [
+              31,
+              7.173
+            ],
+            [
+              37,
+              7.177
+            ],
+            [
+              43,
+              7.177
+            ],
+            [
+              49,
+              7.18
+            ],
+            [
+              55,
+              7.184
+            ],
+            [
+              61,
+              7.185
+            ],
+            [
+              67,
+              7.185
+            ],
+            [
+              73,
+              7.183
+            ],
+            [
+              79,
+              7.181
+            ],
+            [
+              85,
+              7.179
+            ],
+            [
+              91,
+              7.172
+            ],
+            [
+              97,
+              7.177
+            ],
+            [
+              103,
+              7.182
+            ],
+            [
+              109,
+              7.186
+            ],
+            [
+              115,
+              7.19
+            ],
+            [
+              121,
+              7.193
+            ],
+            [
+              127,
+              7.194
+            ],
+            [
+              133,
+              7.193
+            ],
+            [
+              139,
+              7.191
+            ]
+          ]
+        },
+        {
+          "key": "t_max",
+          "label": "T_max",
+          "now": "328.4 K",
+          "desc": "peak temperature — pre-ignition, tracking initial conditions",
+          "history": [
+            [
+              1,
+              300
+            ],
+            [
+              7,
+              343.5
+            ],
+            [
+              13,
+              356.3
+            ],
+            [
+              19,
+              361.3
+            ],
+            [
+              25,
+              357.7
+            ],
+            [
+              31,
+              354.4
+            ],
+            [
+              37,
+              359.8
+            ],
+            [
+              43,
+              357.4
+            ],
+            [
+              49,
+              352.8
+            ],
+            [
+              55,
+              346.7
+            ],
+            [
+              61,
+              351
+            ],
+            [
+              67,
+              352.7
+            ],
+            [
+              73,
+              351.5
+            ],
+            [
+              79,
+              349.6
+            ],
+            [
+              85,
+              346.5
+            ],
+            [
+              91,
+              342.9
+            ],
+            [
+              97,
+              340.1
+            ],
+            [
+              103,
+              336.6
+            ],
+            [
+              109,
+              333.9
+            ],
+            [
+              115,
+              331.9
+            ],
+            [
+              121,
+              331.2
+            ],
+            [
+              127,
+              329.8
+            ],
+            [
+              133,
+              329.9
+            ],
+            [
+              139,
+              328.4
+            ]
+          ]
+        },
+        {
+          "key": "dt",
+          "label": "dt",
+          "now": "6.093e-8 s",
+          "desc": "timestep — grew from ~1e-9s at startup, now plateaued around 6e-8s (CFL-limited)",
+          "history": [
+            [
+              1,
+              1e-9
+            ],
+            [
+              7,
+              3.815e-9
+            ],
+            [
+              13,
+              1.455e-8
+            ],
+            [
+              19,
+              5.551e-8
+            ],
+            [
+              25,
+              6.667e-8
+            ],
+            [
+              31,
+              6.464e-8
+            ],
+            [
+              37,
+              5.778e-8
+            ],
+            [
+              43,
+              6.091e-8
+            ],
+            [
+              49,
+              5.642e-8
+            ],
+            [
+              55,
+              5.698e-8
+            ],
+            [
+              61,
+              5.712e-8
+            ],
+            [
+              67,
+              5.731e-8
+            ],
+            [
+              73,
+              5.866e-8
+            ],
+            [
+              79,
+              5.915e-8
+            ],
+            [
+              85,
+              5.971e-8
+            ],
+            [
+              91,
+              6.056e-8
+            ],
+            [
+              97,
+              6.096e-8
+            ],
+            [
+              103,
+              6.13e-8
+            ],
+            [
+              109,
+              6.209e-8
+            ],
+            [
+              115,
+              6.232e-8
+            ],
+            [
+              121,
+              6.22e-8
+            ],
+            [
+              127,
+              6.176e-8
+            ],
+            [
+              133,
+              6.162e-8
+            ],
+            [
+              139,
+              6.093e-8
+            ]
+          ]
+        },
+        {
+          "key": "s_per_cycle",
+          "label": "s/cycle",
+          "now": "2.66 s",
+          "desc": "wall time per cycle, averaged since start",
+          "history": [
+            [
+              7,
+              1.39
+            ],
+            [
+              13,
+              1.42
+            ],
+            [
+              19,
+              1.86
+            ],
+            [
+              25,
+              2.33
+            ],
+            [
+              31,
+              2.49
+            ],
+            [
+              37,
+              2.65
+            ],
+            [
+              43,
+              2.87
+            ],
+            [
+              49,
+              2.89
+            ],
+            [
+              55,
+              2.92
+            ],
+            [
+              61,
+              2.82
+            ],
+            [
+              67,
+              2.85
+            ],
+            [
+              73,
+              2.83
+            ],
+            [
+              79,
+              2.73
+            ],
+            [
+              85,
+              2.75
+            ],
+            [
+              91,
+              2.8
+            ],
+            [
+              97,
+              2.7
+            ],
+            [
+              103,
+              2.93
+            ],
+            [
+              109,
+              2.93
+            ],
+            [
+              115,
+              2.9
+            ],
+            [
+              121,
+              2.9
+            ],
+            [
+              127,
+              2.93
+            ],
+            [
+              133,
+              2.91
+            ],
+            [
+              139,
+              2.96
+            ]
+          ]
+        },
+        {
+          "key": "mass",
+          "label": "mass",
+          "now": "3.014e-4 kg",
+          "desc": "total mass in domain — conserved so far",
+          "history": [
+            [
+              1,
+              0.0003017
+            ],
+            [
+              7,
+              0.0003017
+            ],
+            [
+              13,
+              0.0003017
+            ],
+            [
+              19,
+              0.0003017
+            ],
+            [
+              25,
+              0.0003017
+            ],
+            [
+              31,
+              0.0003017
+            ],
+            [
+              37,
+              0.0003017
+            ],
+            [
+              43,
+              0.0003017
+            ],
+            [
+              49,
+              0.0003017
+            ],
+            [
+              55,
+              0.0003017
+            ],
+            [
+              61,
+              0.0003017
+            ],
+            [
+              67,
+              0.0003017
+            ],
+            [
+              73,
+              0.0003016
+            ],
+            [
+              79,
+              0.0003016
+            ],
+            [
+              85,
+              0.0003016
+            ],
+            [
+              91,
+              0.0003016
+            ],
+            [
+              97,
+              0.0003016
+            ],
+            [
+              103,
+              0.0003015
+            ],
+            [
+              109,
+              0.0003015
+            ],
+            [
+              115,
+              0.0003015
+            ],
+            [
+              121,
+              0.0003015
+            ],
+            [
+              127,
+              0.0003014
+            ],
+            [
+              133,
+              0.0003014
+            ],
+            [
+              139,
+              0.0003014
+            ]
+          ]
+        }
       ],
-      "summary": "No simulation data yet — this case has never completed a cycle. The last activity was an intentional 72-second smoke test (job 964425): it checked out the CONVERGE 4.1.2 license, loaded modules, parsed inputs.in/boundary.in, and got through mesh/event setup on 64 ranks before the owner killed it on purpose, exactly as planned for a smoke test. converge.log and time.out both confirm zero completed cycles — there is nothing to show on p_max, dt, or any other monitor yet. This host has no way to query bjobs, so whether the full 72hr production run mentioned in the tracking notes is actually queued on braun right now cannot be confirmed from the files alone.",
+      "ranks": 64,
+      "rss": "43.9G",
+      "s_per_step": 2.66,
+      "node": "n0367 · 1×64",
+      "restarts": 0,
+      "posts": 1,
+      "frames": 0,
+      "newest": "post000001_+0.00000e+00.h5 · 8m ago",
+      "submitted": "2026-08-02T23:23:39-04:00",
+      "cmd": "bsub < RunConverge.sh  # queue braun, 64 ranks, 72:00 wall",
+      "log_name": "stdout.964426",
+      "log_path": "triangleRDE",
+      "log_size": "79.2 KB",
+      "log_tail": [
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.21%] ncyc      155;  Time    8.513200557e-06 (sec); dt=    6.013722288e-08 (dt_cfl) ",
+        "[  0.21%] ncyc      156;  Time    8.573348946e-06 (sec); dt=    6.014838947e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      157;  Time    8.633511361e-06 (sec); dt=    6.016241474e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      158;  Time    8.693698738e-06 (sec); dt=    6.018737700e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      159;  Time    8.753991472e-06 (sec); dt=    6.029273383e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      160;  Time    8.814359509e-06 (sec); dt=    6.036803726e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      161;  Time    8.874788888e-06 (sec); dt=    6.042937924e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      162;  Time    8.935263218e-06 (sec); dt=    6.047433029e-08 (dt_cfl) ",
+        "[  0.22%] ncyc      163;  Time    8.995854328e-06 (sec); dt=    6.059111007e-08 (dt_cfl) ",
+        "Executing ParaView Catalyst scripts:",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/EquivMetricSurf.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.23%] ncyc      164;  Time    9.056527089e-06 (sec); dt=    6.067276084e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      165;  Time    9.117266309e-06 (sec); dt=    6.073922015e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      166;  Time    9.178054564e-06 (sec); dt=    6.078825420e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      167;  Time    9.238896695e-06 (sec); dt=    6.084213108e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      168;  Time    9.299874799e-06 (sec); dt=    6.097810437e-08 (dt_cfl) ",
+        "[  0.23%] ncyc      169;  Time    9.360946914e-06 (sec); dt=    6.107211522e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      170;  Time    9.422093052e-06 (sec); dt=    6.114613737e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      171;  Time    9.483280641e-06 (sec); dt=    6.118758922e-08 (dt_cfl) ",
+        "Executing ParaView Catalyst scripts:",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/EquivMetricSurf.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  0.24%] ncyc      172;  Time    9.544507070e-06 (sec); dt=    6.122642899e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      173;  Time    9.605851882e-06 (sec); dt=    6.134481243e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      174;  Time    9.667257980e-06 (sec); dt=    6.140609814e-08 (dt_cfl) ",
+        "[  0.24%] ncyc      175;  Time    9.728704374e-06 (sec); dt=    6.144639337e-08 (dt_cfl) "
+      ],
+      "summary": "The full production run is actually going: job 964426 started at 23:23:39 on node n0367 (64 ranks), and is now at cycle 139, t=7.61 µs of the 4000 µs (4.0 ms) target — still well before the source ignition trigger at 100 µs, so pressure (~7.2 bar) and temperature (~328 K) are both tracking near their initial values rather than showing combustion yet. dt climbed from ~1ns to ~6×10⁻⁸s and has now plateaued under CFL control, one initial post file has been written, and mass is conserved so far. At ~2.7 s/cycle it's only 7-8 minutes into a 72-hour wall limit, so there's no time pressure yet — but it's too early (pre-ignition, dt still settling) to project a reliable ETA to 4.0 ms.",
       "notes": [
         {
-          "txt": "964425 was killed by the owner after 72s — intentional, not a failure; license, modules, and input parsing all completed cleanly first",
+          "txt": "job 964426 confirmed running for real — not another smoke test; 64 ranks on n0367, 139 cycles in",
           "level": "good"
         },
         {
-          "txt": "zero CYCLE lines in converge.log or time.out — the smoke test never reached the first timestep, so no monitor history exists yet",
+          "txt": "still pre-ignition (t < source_start_time=100µs) — p_max/T_max near-ambient is expected, not a sign of trouble",
           "level": "info"
         },
         {
-          "txt": "no bjobs/scheduler access from this host — cannot confirm whether a production job is currently queued or running on braun",
+          "txt": "~2.7 s/cycle so far — too early post-ignition dynamics to project total wall time to 4.0ms",
           "level": "warn"
         }
       ]
