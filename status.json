@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T11:28:58-04:00",
-  "next_poll": "2026-08-03T11:58:58-04:00",
+  "polled_at": "2026-08-03T11:55:56-04:00",
+  "next_poll": "2026-08-03T12:25:56-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 11590 · STUCK at dt floor — same cell (43515) repeating, not crashed",
-      "elapsed": "12:05:19",
+      "state_note": "cycle 12226 · still stuck at dt floor (~700 cycles now); hot cell has drifted from 43515 to 43796 (same rank/region, adjacent mesh cells) — not crashed",
+      "elapsed": "12:32:17",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "316.401 µs",
+      "sim_now": "318.29 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
