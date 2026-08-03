@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T14:27:33-04:00",
-  "next_poll": "2026-08-03T14:57:33-04:00",
+  "polled_at": "2026-08-03T14:55:58-04:00",
+  "next_poll": "2026-08-03T15:25:58-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 15499 · still stuck at dt floor (~3923 cycles), drifting through mesh, no FATAL_ERROR",
-      "elapsed": "15:03:54",
+      "state_note": "cycle 16150 · dt-floor stall CLEARED — back to normal CFL-limited growth (dt=2.23e-8s) for 20+ straight cycles; the rank-10/cell-43xxx WARNING still repeats but no longer throttling the timestep, no FATAL_ERROR",
+      "elapsed": "15:32:19",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "327.904 µs",
+      "sim_now": "333.48 µs",
       "sim_target": "4000 µs",
       "sim_pct": 8,
       "monitors": [
@@ -287,8 +287,8 @@
         {
           "key": "dt",
           "label": "dt",
-          "now": "1.000e-9 s",
-          "desc": "still pinned at the 1ns floor, ~3923 cycles now, sim time barely advancing",
+          "now": "2.233e-8 s",
+          "desc": "recovered — 20+ clean dt_cfl cycles after the ~4600-cycle floor stall (cycle 11576-16135)",
           "history": [
             [
               1,
@@ -722,26 +722,25 @@
         "[  8.20%] ncyc    15528;  Time    3.280128602e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
         "[  8.20%] ncyc    15529;  Time    3.280141102e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "[  8.20%] ncyc    15530;  Time    3.280156727e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  8.20%] ncyc    15531;  Time    3.280166727e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  8.20%] ncyc    15532;  Time    3.280179227e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
-        "[  8.20%] ncyc    15533;  Time    3.280194852e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
-        "[  8.20%] ncyc    15534;  Time    3.280214383e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[  8.33%] ncyc    16142;  Time    3.333029635e-04 (sec); dt=    2.227771558e-08 (dt_cfl) ",
+        "[  8.33%] ncyc    16145;  Time    3.333698262e-04 (sec); dt=    2.229309472e-08 (dt_cfl) ",
+        "[  8.33%] ncyc    16146;  Time    3.333921270e-04 (sec); dt=    2.230081767e-08 (dt_cfl) ",
+        "[  8.34%] ncyc    16147;  Time    3.334144339e-04 (sec); dt=    2.230695925e-08 (dt_cfl) ",
+        "[  8.34%] ncyc    16148;  Time    3.334367510e-04 (sec); dt=    2.231703875e-08 (dt_cfl) ",
+        "[  8.34%] ncyc    16150;  Time    3.334814073e-04 (sec); dt=    2.233133604e-08 (dt_cfl) "
       ],
-      "summary": "Still stuck at the dt floor, now ~3923 cycles in (cycle 15499, t=327.90µs, started around cycle 11576/t=316.4µs) — sim time has crept forward slowly, but it IS progressing: post000033 (t=320.0µs) was written at 12:41, so the stall is very slow, not full paralysis. The problem location keeps drifting through the mesh — now 49 distinct cells hit so far, all rank 10/region 3/AMR level 8, up from 47 last poll — consistent with a real feature moving through the domain rather than one fixed bad cell. 2114 timestep recoveries overall, still zero FATAL_ERROR. Domain-max pressure/temperature remain unremarkable through all of this (10.0 bar / 2942 K, same band as before the stall started), confirming this is a localized numerical issue, not a new combustion event. 15:03:54 into the 72-hour wall limit, 33 post files, ~60.1G memory across 64 ranks. Still watching for either a clean recovery or a FATAL_ERROR.",
+      "summary": "The dt-floor stall has cleared. Between the last poll (cycle 15499, t=327.9µs) and now (cycle 16150, t=333.5µs), dt climbed cleanly off the 1ns floor through dt_grow back to the normal dt_cfl plateau (~2.23e-8s) and has held there for 20+ straight cycles with no further dt_recover — the ~4600-cycle stall that started around cycle 11576 (t=316.4µs) is over. The rank-10/region-3/level-8 WARNING [3467] location is still firing every stderr line (now cell 43799) but it's no longer throttling the global timestep, so it looks like a persistent-but-harmless diagnostic rather than something that needs action. Still zero FATAL_ERROR throughout. Domain-max pressure/temperature stayed unremarkable the whole time (~10 bar / ~2950K band), confirming this was a numerical/AMR issue, not a combustion event. 15:32:19 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "still stuck at the 1ns dt floor, ~3923 cycles now since it began around cycle 11576, but progress hasn't fully stopped — post000033 (t=320µs) did get written",
-          "level": "warn"
+          "txt": "dt-floor stall CLEARED — 20+ consecutive dt_cfl cycles at the normal ~2.23e-8s growth rate, no dt_recover since cycle ~16135; the ~4600-cycle stall (cycle 11576→~16135) is resolved",
+          "level": "good"
         },
         {
-          "txt": "the problem location keeps drifting — 49 distinct cells now (all rank 10/region 3/level 8), up from 47 last poll — confirms a real feature moving through the mesh, not one fixed bad cell",
+          "txt": "the WARNING [3467] at rank 10/region 3/level 8 is still repeating every line (drifted to cell 43799) but is no longer collapsing the timestep — treat as background noise unless it starts stalling dt again",
           "level": "info"
         },
         {
-          "txt": "still zero FATAL_ERROR and domain-max p/T unchanged from before the stall — not a new combustion event, just a numerical struggle; watching for either a clean recovery or a crash",
+          "txt": "zero FATAL_ERROR for the entire ~2hr stall and after — domain-max p/T never left the ~10 bar/~2950K band, so this was never a combustion event",
           "level": "info"
         }
       ]
