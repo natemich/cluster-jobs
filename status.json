@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-03T14:59:30-04:00",
-  "next_poll": "2026-08-03T15:29:30-04:00",
+  "polled_at": "2026-08-03T15:25:58-04:00",
+  "next_poll": "2026-08-03T15:55:58-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "cycle 16209 · dt stall resolved, back to normal dt_cfl pace",
-      "elapsed": "15:35:51",
+      "state_note": "cycle 16754 · steady since the stall resolved, dt holding CFL-limited, no FATAL_ERROR",
+      "elapsed": "16:02:19",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "333.703 µs",
+      "sim_now": "345.79 µs",
       "sim_target": "4000 µs",
       "sim_pct": 8,
       "monitors": [
