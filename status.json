@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T10:57:37-04:00",
-  "next_poll": "2026-08-04T11:27:37-04:00",
+  "polled_at": "2026-08-04T11:26:01-04:00",
+  "next_poll": "2026-08-04T11:56:01-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 11651 · dt-floor stall at steady-state rate (region 3), CVODE resolved",
-      "elapsed": "10:51:40",
+      "state_note": "cycle 12263 · dt-floor stall still ongoing, no FATAL_ERROR",
+      "elapsed": "11:20:04",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "339.600 µs",
+      "pct": 16,
+      "sim_now": "341.93 µs",
       "sim_target": "4000 µs",
       "sim_pct": 8,
       "monitors": [
