@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T05:28:06-04:00",
-  "next_poll": "2026-08-04T05:58:06-04:00",
+  "polled_at": "2026-08-04T05:30:10-04:00",
+  "next_poll": "2026-08-04T06:00:10-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 6429 · ignition fired at t=300µs, relaxing",
-      "elapsed": "5:22:09",
+      "state_note": "cycle 6456 · post-ignition, dt smooth on dt_cfl (no recover), no FATAL_ERROR",
+      "elapsed": "5:24:13",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "302.911 µs",
+      "pct": 8,
+      "sim_now": "303.32 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
