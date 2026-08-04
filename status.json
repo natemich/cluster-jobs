@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T08:27:30-04:00",
-  "next_poll": "2026-08-04T08:57:30-04:00",
+  "polled_at": "2026-08-04T08:56:04-04:00",
+  "next_poll": "2026-08-04T09:26:04-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 8821 · dt-floor stall growing/spreading (region 3), CVODE errors resolved",
-      "elapsed": "8:21:33",
+      "state_note": "cycle 9305 · mid-recovery from another brief dt dip (dt_grow climbing back), CVODE errors low, no FATAL_ERROR",
+      "elapsed": "8:50:07",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "327.706 µs",
+      "pct": 12,
+      "sim_now": "331.86 µs",
       "sim_target": "4000 µs",
       "sim_pct": 8,
       "monitors": [
