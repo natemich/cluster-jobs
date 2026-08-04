@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T06:57:53-04:00",
-  "next_poll": "2026-08-04T07:27:53-04:00",
+  "polled_at": "2026-08-04T07:26:04-04:00",
+  "next_poll": "2026-08-04T07:56:04-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 7522 · post-ignition oscillating, CVODE errors ongoing, no FATAL_ERROR",
-      "elapsed": "6:51:56",
+      "state_note": "cycle 7859 · post-ignition oscillating, CVODE errors now also on rank 12 (spreading), dt growing normally, no FATAL_ERROR",
+      "elapsed": "7:20:07",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "314.701 µs",
+      "pct": 10,
+      "sim_now": "319.29 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
