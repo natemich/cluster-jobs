@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T16:27:30-04:00",
-  "next_poll": "2026-08-04T16:57:30-04:00",
+  "polled_at": "2026-08-04T16:56:09-04:00",
+  "next_poll": "2026-08-04T17:26:09-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 18666 · sim-time progress fastest yet, stall relocated to rank 3 (region 3), CVODE resolved",
-      "elapsed": "16:21:33",
+      "state_note": "cycle 19274 · the brief clearing didn't hold, stall relocated and still ongoing, no FATAL_ERROR",
+      "elapsed": "16:50:12",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "358.406 µs",
+      "pct": 23,
+      "sim_now": "359.48 µs",
       "sim_target": "4000 µs",
       "sim_pct": 8,
       "monitors": [
