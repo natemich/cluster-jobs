@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T05:30:10-04:00",
-  "next_poll": "2026-08-04T06:00:10-04:00",
+  "polled_at": "2026-08-04T05:56:38-04:00",
+  "next_poll": "2026-08-04T06:26:38-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 6456 · post-ignition, dt smooth on dt_cfl (no recover), no FATAL_ERROR",
-      "elapsed": "5:24:13",
+      "state_note": "cycle 6744 · chemistry ODE solver (CVODE) hitting massive repeated recoverable errors at rank 2 post-ignition; cycles still advancing on dt_cfl, no FATAL_ERROR, but throughput has slowed sharply",
+      "elapsed": "5:50:41",
       "limit": "72:00:00",
       "pct": 8,
-      "sim_now": "303.32 µs",
+      "sim_now": "307.04 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
@@ -718,30 +718,27 @@
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_300us_Y10mm/TemperatureSurf_XY_Y036.py",
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_300us_Y10mm/TemperatureSurf_YZ.py",
         "Finished ParaView Catalyst execute",
-        "[  7.58%] ncyc     6432;  Time    3.030045393e-04 (sec); dt=    1.316695251e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6433;  Time    3.030179478e-04 (sec); dt=    1.340845993e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6434;  Time    3.030315781e-04 (sec); dt=    1.363037993e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6435;  Time    3.030453836e-04 (sec); dt=    1.380549395e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6436;  Time    3.030592960e-04 (sec); dt=    1.391240422e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6437;  Time    3.030732383e-04 (sec); dt=    1.394228462e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6438;  Time    3.030871372e-04 (sec); dt=    1.389890232e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6439;  Time    3.031009703e-04 (sec); dt=    1.383305936e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6440;  Time    3.031147246e-04 (sec); dt=    1.375432183e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6441;  Time    3.031283428e-04 (sec); dt=    1.361823040e-08 (dt_cfl) ",
-        "[  7.58%] ncyc     6442;  Time    3.031418067e-04 (sec); dt=    1.346391097e-08 (dt_cfl) "
+        "[  7.67%] ncyc     6740;  Time    3.069858142e-04 (sec); dt=    1.245764164e-08 (dt_cfl) ",
+        "(Rank 2) WARNING: ncyc 6741, CVode error- 10, CV_REPTD_RHSFUNC_ERR, The right-hand side function had repeated recoverable errors",
+        "[  7.67%] ncyc     6741;  Time    3.069987087e-04 (sec); dt=    1.289451989e-08 (dt_cfl) ",
+        "[  7.68%] ncyc     6742;  Time    3.070111264e-04 (sec); dt=    1.241771953e-08 (dt_cfl) ",
+        "[  7.68%] ncyc     6743;  Time    3.070240026e-04 (sec); dt=    1.287621376e-08 (dt_cfl) ",
+        "[CVODES ERROR]  CVode / The right-hand side routine failed at the first call.",
+        "(Rank 2) WARNING: ncyc 6744, CVode error -9, CV_FIRST_RHSFUNC_ERR, The right-hand side function failed at the first call",
+        "[  7.68%] ncyc     6744;  Time    3.070371191e-04 (sec); dt=    1.311647608e-08 (dt_cfl) "
       ],
-      "summary": "Ignition fired right on schedule at t=300.0µs (post000031 landed at that exact instant too). Unlike v1, this kernel was placed where real propellant actually is, and it shows: domain-max jumped from the ~320K/0.76 bar cold-flow baseline to a peak of 379.8 bar / 6654 K within ~3µs, and is already relaxing (currently 360.2 bar / 6654 K at cycle 6429). Only 1 timestep recovery so far and zero FATAL_ERROR — nothing like the hours-long stalls from v1. As predicted by the mass-asymptote fit, the domain was not at steady state when this fired (mass ~1.25e-4 kg vs. the ~8.4e-5 kg asymptote) , so this ignition is happening on top of a still-developing cold flow rather than a converged one — worth keeping in mind when interpreting what follows. 5:22:09 into the 72-hour wall limit, 31 post files, ~52.1G memory across 64 ranks.",
+      "summary": "New failure mode since the last poll: starting around cycle 6741 (t≈307.0µs), rank 2's chemistry ODE solver (CVODE, used for the detailed C2H4/O2 kinetics) began throwing massive numbers of repeated errors — CV_REPTD_RHSFUNC_ERR and CV_FIRST_RHSFUNC_ERR, meaning the stiff chemistry integrator's right-hand-side evaluation is failing at that cell's post-ignition composition/temperature state. stderr has ballooned to 46.6MB (from under 1KB pre-ignition) almost entirely from this one error spamming. The outer solver is still advancing — dt is still cycling smoothly on dt_cfl around 1.2-1.3e-8s, no dt_recover, zero FATAL_ERROR — but cycle throughput has slowed sharply (only ~290 cycles this poll vs. 500-700+ typical). This looks like the reacting chemistry right at/near the kernel has moved into a regime the ODE integrator struggles with (extreme local gradients right after ignition), not a crash yet, but a real risk signal worth close attention next poll: either it self-resolves as the hot spot relaxes, or it could eventually escalate to a FATAL_ERROR. 5:50:41 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "ignition fired exactly on schedule at t=300µs — peak 379.8 bar / 6654 K, already relaxing, only 1 dt recovery and zero FATAL_ERROR so far",
-          "level": "good"
-        },
-        {
-          "txt": "as predicted, the domain was not at steady state when it fired (mass still ~48% above the fitted asymptote) — this run's ignition is happening on a developing, not converged, cold flow",
+          "txt": "NEW: rank 2's chemistry ODE solver (CVODE) is throwing CV_REPTD_RHSFUNC_ERR / CV_FIRST_RHSFUNC_ERR repeatedly since cycle ~6741 — stderr grew to 46.6MB almost entirely from this, a failure type never seen in v1 or earlier in v2",
           "level": "warn"
         },
         {
-          "txt": "post000031 landed at exactly t=300.0µs — the same instant as ignition, a useful marker for later comparison",
+          "txt": "cycles are still advancing on smooth dt_cfl (~1.2-1.3e-8s, no dt_recover) and there's still zero FATAL_ERROR, but throughput has dropped sharply — likely the extra cost of the failing/retrying chemistry solve",
+          "level": "warn"
+        },
+        {
+          "txt": "best read: local chemistry state near the kernel post-ignition is stiff enough to trip the ODE integrator — watch next poll for whether it clears (hot spot relaxing) or escalates",
           "level": "info"
         }
       ]
