@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T06:00:07-04:00",
-  "next_poll": "2026-08-04T06:30:07-04:00",
+  "polled_at": "2026-08-04T06:26:04-04:00",
+  "next_poll": "2026-08-04T06:56:04-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 6770 · CVODE chemistry solver struggling near hot spot, no FATAL_ERROR",
-      "elapsed": "5:54:10",
+      "state_note": "cycle 7097 · CVODE chemistry solver still struggling near hot spot (same magnitude as last poll), no FATAL_ERROR",
+      "elapsed": "6:20:07",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "307.301 µs",
+      "pct": 9,
+      "sim_now": "310.75 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
