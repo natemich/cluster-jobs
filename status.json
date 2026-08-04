@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T04:57:39-04:00",
-  "next_poll": "2026-08-04T05:27:39-04:00",
+  "polled_at": "2026-08-04T05:26:10-04:00",
+  "next_poll": "2026-08-04T05:56:10-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,20 +19,20 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "cycle 5935 · clean cold flow",
-      "elapsed": "4:51:42",
+      "status": "warn",
+      "state_note": "cycle 6420 · IGNITION KERNEL FIRED at t≈300µs as designed — local spike ~31.8 bar/3400K at the kernel monitor point, dt dipping (dt_piso) but not collapsing, no FATAL_ERROR",
+      "elapsed": "5:20:13",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "285.117 µs",
+      "pct": 7,
+      "sim_now": "302.83 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "p_max",
           "label": "p_max",
-          "now": "7.63 bar",
-          "desc": "at ambient baseline, pre-ignition as expected",
+          "now": "31.8 bar",
+          "desc": "IGNITION at t≈300µs — kernel monitor point spiked from ~7.6 bar baseline",
           "history": [
             [
               1,
@@ -159,8 +159,8 @@
         {
           "key": "t_max",
           "label": "T_max",
-          "now": "319.1 K",
-          "desc": "at ambient baseline, pre-ignition as expected",
+          "now": "3400 K",
+          "desc": "IGNITION at t≈300µs — kernel monitor point spiked from ~319K baseline",
           "history": [
             [
               1,
@@ -287,8 +287,8 @@
         {
           "key": "dt",
           "label": "dt",
-          "now": "4.444e-8 s",
-          "desc": "stable dt_cfl growth, no recoveries yet",
+          "now": "1.437e-8 s",
+          "desc": "dipping since ignition (dt_piso appearing), not collapsed to the floor — milder than v1's kernel event",
           "history": [
             [
               1,
@@ -721,28 +721,28 @@
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_300us_Y10mm/TemperatureSurf_XY_Y036.py",
         "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_300us_Y10mm/TemperatureSurf_YZ.py",
         "Finished ParaView Catalyst execute",
-        "[  7.16%] ncyc     5967;  Time    2.865254081e-04 (sec); dt=    4.413827925e-08 (dt_cfl) ",
-        "[  7.16%] ncyc     5968;  Time    2.865694231e-04 (sec); dt=    4.401497991e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5969;  Time    2.866134348e-04 (sec); dt=    4.401166234e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5970;  Time    2.866575116e-04 (sec); dt=    4.407681795e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5971;  Time    2.867016000e-04 (sec); dt=    4.408836329e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5972;  Time    2.867457504e-04 (sec); dt=    4.415047538e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5973;  Time    2.867898890e-04 (sec); dt=    4.413853437e-08 (dt_cfl) ",
-        "[  7.17%] ncyc     5974;  Time    2.868341671e-04 (sec); dt=    4.427812585e-08 (dt_cfl) "
+        "[  7.56%] ncyc     6405;  Time    3.025781335e-04 (sec); dt=    1.944499274e-08 (dt_cfl) ",
+        "[  7.56%] ncyc     6406;  Time    3.025936894e-04 (sec); dt=    1.555599419e-08 (dt_piso) ",
+        "[  7.57%] ncyc     6407;  Time    3.026125481e-04 (sec); dt=    1.885865224e-08 (dt_cfl) ",
+        "[  7.57%] ncyc     6408;  Time    3.026276350e-04 (sec); dt=    1.508692179e-08 (dt_piso) ",
+        "[  7.57%] ncyc     6409;  Time    3.026397046e-04 (sec); dt=    1.206953743e-08 (dt_piso) ",
+        "[  7.57%] ncyc     6418;  Time    3.027941696e-04 (sec); dt=    1.820266870e-08 (dt_cfl) ",
+        "[  7.57%] ncyc     6419;  Time    3.028121387e-04 (sec); dt=    1.796912010e-08 (dt_cfl) ",
+        "[  7.57%] ncyc     6420;  Time    3.028265140e-04 (sec); dt=    1.437529608e-08 (dt_piso) "
       ],
-      "summary": "Clean cold flow so far, 4:51:42 in. Cycle 5935, t=285.12µs, dt_cfl holding steady at ~5.1e-8s, domain-max 7.63 bar / 319.1 K — both essentially at the ambient baseline, as expected this early. 29 post files, restart files writing normally. Only the two standard startup warnings (single-node network latency note, sgs_ke clip reset) in stderr — nothing to flag. 95% of the way to the 300µs ignition point (14.9µs left) — should fire within the next poll or two.",
+      "summary": "IGNITION: the kernel fired right at its designed t=300µs. By cycle 6420 (t=302.8µs) the kernel's own monitor point has jumped from the ~7.6 bar/319K cold-flow baseline to ~31.8 bar/3400K — a real, sharp local event. dt has dipped from the ~4.4e-8s dt_cfl plateau down to ~1.2-1.9e-8s and a new limiter type, dt_piso, has started appearing alongside dt_cfl — but critically it has NOT collapsed to the 1ns floor the way v1's kernel event (and both of v1's later dt-floor stalls) did. Still zero FATAL_ERROR. This is the moment the v2 changes (kernel moved to Y=10mm, ignition delayed to 300µs) were meant to set up — early signs are a real, contained ignition rather than a numerical stall. Next poll should show whether it develops into a sustained/propagating burn like v1's second event did, or decays.",
       "notes": [
         {
-          "txt": "cold flow developing cleanly — dt_cfl stable, no warnings beyond the two standard startup ones, no FATAL_ERROR",
+          "txt": "IGNITION KERNEL FIRED at t≈300µs as designed — kernel monitor point spiked ~7.6 bar→31.8 bar, ~319K→3400K",
           "level": "good"
         },
         {
-          "txt": "29 post files written so far, right on the normal cadence — 10 restart files (rolling window, capped at num_restart_files=10)",
-          "level": "info"
+          "txt": "dt dipped to ~1.2-1.9e-8s with dt_piso appearing, but did NOT collapse to the 1ns floor like every dt-stall episode in v1 — a meaningfully milder transient so far",
+          "level": "good"
         },
         {
-          "txt": "mass-asymptote fit (exponential, tau≈139µs from the t=200-284µs window): steady-state mass ≈ 8.4e-5 kg, but at t=300µs ignition the domain will still be ~48% above that — confirmed not steady by the time this kernel fires",
-          "level": "warn"
+          "txt": "still zero FATAL_ERROR; watch next poll for whether the burn propagates/sustains (the actual RDE goal) or decays like v1's first kernel event did",
+          "level": "info"
         }
       ]
     }
