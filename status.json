@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T07:28:05-04:00",
-  "next_poll": "2026-08-04T07:58:05-04:00",
+  "polled_at": "2026-08-04T07:56:13-04:00",
+  "next_poll": "2026-08-04T08:26:13-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 7871 · post-ignition oscillating, CVODE errors ongoing, no FATAL_ERROR",
-      "elapsed": "7:22:08",
+      "state_note": "cycle 8262 · dt now ALSO collapsed to the 1ns floor (dt_recover/dt_grow) — same region-3/level-8 WARNING [3467] signature as v1's stalls, plus ongoing CVODE errors; no FATAL_ERROR",
+      "elapsed": "7:50:16",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "319.411 µs",
+      "pct": 11,
+      "sim_now": "324.81 µs",
       "sim_target": "4000 µs",
       "sim_pct": 7,
       "monitors": [
@@ -287,8 +287,8 @@
         {
           "key": "dt",
           "label": "dt",
-          "now": "1.514e-8 s",
-          "desc": "smooth dt_cfl throughout, unaffected by the chemistry-solver struggle",
+          "now": "1.000e-9 s",
+          "desc": "NEW: collapsed to the 1ns floor (dt_recover/dt_grow) — same failure mode as v1's dt-floor stalls, now on top of the ongoing CVODE chemistry errors",
           "history": [
             [
               1,
@@ -726,22 +726,26 @@
         "[  7.99%] ncyc     7886;  Time    3.197035793e-04 (sec); dt=    1.563542604e-08 (dt_cfl) ",
         "[  7.99%] ncyc     7887;  Time    3.197193271e-04 (sec); dt=    1.574774449e-08 (dt_cfl) ",
         "[  7.99%] ncyc     7888;  Time    3.197351014e-04 (sec); dt=    1.577431637e-08 (dt_cfl) ",
-        "[  7.99%] ncyc     7889;  Time    3.197509637e-04 (sec); dt=    1.586235506e-08 (dt_cfl) ",
-        "[  7.99%] ncyc     7890;  Time    3.197667992e-04 (sec); dt=    1.583541671e-08 (dt_cfl) ",
-        "[  7.99%] ncyc     7891;  Time    3.197828687e-04 (sec); dt=    1.606951764e-08 (dt_cfl) "
+        "[  8.12%] ncyc     8257;  Time    3.248077632e-04 (sec); dt=    4.890934839e-09 (dt_recover) ",
+        "[  8.12%] ncyc     8258;  Time    3.248087632e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  8.12%] ncyc     8259;  Time    3.248100132e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  8.12%] ncyc     8260;  Time    3.248110132e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  8.12%] ncyc     8261;  Time    3.248120132e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  8.12%] ncyc     8262;  Time    3.248132632e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "(Rank 54) WARNING: [3467] Temperature extrapolation error found at rank 54 located at cell 20044, located at < -0.0125, 0.04575, 0.0075>, in region 3, whose level=8, ii=371, jj=402, kk=391"
       ],
-      "summary": "Still oscillating: domain-max pressure/temperature are oscillating, not decaying. Since the initial 994.9 bar / 11084 K peak at t=305.7µs, the trace has swung between roughly 150-580 bar and 5,500-9,900K several times over the last 14µs (t=305-319µs) rather than settling toward the pre-ignition baseline — currently 175.6 bar / 7801 K at cycle 7871, t=319.41µs, mid-swing rather than a clean endpoint. The CVODE chemistry-solver errors are still accumulating (495,670 total, +69,545 this poll, a similar growth rate to before) but the flow solver remains smooth (dt_cfl ~1.4e-8s, zero FATAL_ERROR). This sustained oscillation — rather than a one-off burst dying out — is a more encouraging sign for the kind of self-sustaining behavior this case is meant to produce than anything seen in v1, though it is still too early to call it a locked-in mode. 7:22:08 into the 72-hour wall limit, 32 post files, ~58.0G memory.",
+      "summary": "New development: dt has now ALSO collapsed to the 1ns floor (dt_recover/dt_grow bouncing), on top of the ongoing CVODE chemistry-solver errors. This is the same failure signature that produced v1's hours-long stalls — same WARNING [3467] temperature-extrapolation message, same region 3 / AMR level 8 combination (rank 54, cell 20044 this time). So the v2 run has now converged onto v1's dt-floor stall pattern, just arriving via a reacting/oscillating post-ignition state instead of v1's route. Still zero FATAL_ERROR. Domain-max p/T were still oscillating (not decaying) right before this — 175.6 bar / 7801 K last full reading — so the reaction is genuinely active, and the dt floor may simply reflect the flow solver catching up to a chemically stiff, still-evolving hot zone. 7:50:16 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "domain-max p/T are oscillating (150-580 bar, 5,500-9,900K) since the initial spike, not decaying to baseline — correcting the \"relaxing\" read from the last two polls",
+          "txt": "dt has collapsed to the 1ns floor (dt_recover/dt_grow) for the first time in v2 — matches v1's dt-floor stall signature exactly (WARNING [3467], region 3, AMR level 8)",
           "level": "warn"
         },
         {
-          "txt": "CVODE chemistry errors still accumulating (495,670 total) but growth rate slowed a bit this poll; flow solver still smooth, zero FATAL_ERROR",
-          "level": "info"
+          "txt": "CVODE chemistry-solver errors are still ongoing on top of this — two concurrent numerical struggles now, still zero FATAL_ERROR",
+          "level": "warn"
         },
         {
-          "txt": "sustained oscillation rather than a dying burst is a more encouraging sign than anything in v1 — still too early to call it a locked-in mode",
+          "txt": "domain-max p/T were still oscillating (not decaying) just before this — the reaction remains genuinely active; watch next poll for whether the dt floor resolves like v1's first stall did or drags on for hours",
           "level": "info"
         }
       ]
