@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T23:27:30-04:00",
-  "next_poll": "2026-08-04T23:57:30-04:00",
+  "polled_at": "2026-08-04T23:56:04-04:00",
+  "next_poll": "2026-08-05T00:26:04-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 27305 · stall cycling through familiar locations, rate steady (region 3), CVODE resolved",
-      "elapsed": "23:21:33",
+      "state_note": "cycle 27881 · another ~26-cycle clean dt_cfl run then re-dipped, still oscillating, no FATAL_ERROR",
+      "elapsed": "23:50:07",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "376.101 µs",
+      "pct": 33,
+      "sim_now": "377.81 µs",
       "sim_target": "4000 µs",
       "sim_pct": 9,
       "monitors": [
