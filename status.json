@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-04T21:57:30-04:00",
-  "next_poll": "2026-08-04T22:27:30-04:00",
+  "polled_at": "2026-08-04T22:26:04-04:00",
+  "next_poll": "2026-08-04T22:56:04-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,11 +20,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "cycle 25441 · post000038 landed (70µs since ignition), stall relocated to rank 39 (region 3), CVODE resolved",
-      "elapsed": "21:51:33",
+      "state_note": "cycle 26039 · dt climbed back to dt_cfl again (5 clean cycles so far), too early to call cleared, no FATAL_ERROR",
+      "elapsed": "22:20:07",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "370.500 µs",
+      "pct": 31,
+      "sim_now": "373.97 µs",
       "sim_target": "4000 µs",
       "sim_pct": 9,
       "monitors": [
