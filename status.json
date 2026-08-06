@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-05T21:57:31-04:00",
-  "next_poll": "2026-08-05T22:27:31-04:00",
+  "polled_at": "2026-08-05T22:26:31-04:00",
+  "next_poll": "2026-08-05T22:56:31-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,12 +19,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "cycle 54966 · dt now oscillating 3-7ns, never floor-pinned (region 3), CVODE resolved",
-      "elapsed": "45:51:34",
+      "status": "good",
+      "state_note": "cycle 55519 · dt-floor stall CLEARED — 300+ consecutive clean dt_cfl cycles since ~55218, no FATAL_ERROR",
+      "elapsed": "46:20:34",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "431.702 µs",
+      "pct": 64,
+      "sim_now": "440.81 µs",
       "sim_target": "4000 µs",
       "sim_pct": 10,
       "monitors": [
@@ -287,8 +287,8 @@
         {
           "key": "dt",
           "label": "dt",
-          "now": "4.945e-9 s",
-          "desc": "now oscillating in the 3-7ns range, no longer pinned at the 1ns floor",
+          "now": "2.113e-8 s",
+          "desc": "CLEARED — 300+ consecutive clean dt_cfl cycles, back to normal CFL-limited growth",
           "history": [
             [
               1,
@@ -728,17 +728,26 @@
         "[ 10.80%] ncyc    54990;  Time    4.318061858e-04 (sec); dt=    4.090486605e-09 (dt_grow) ",
         "[ 10.80%] ncyc    54991;  Time    4.318112989e-04 (sec); dt=    5.113108257e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 10.80%] ncyc    54992;  Time    4.318144946e-04 (sec); dt=    3.195692661e-09 (dt_recover) "
+        "[ 11.00%] ncyc    55490;  Time    4.401962116e-04 (sec); dt=    2.099429716e-08 (dt_cfl) ",
+        "[ 11.01%] ncyc    55500;  Time    4.404059629e-04 (sec); dt=    2.101321559e-08 (dt_cfl) ",
+        "[ 11.02%] ncyc    55512;  Time    4.406589038e-04 (sec); dt=    2.107986965e-08 (dt_cfl) ",
+        "[ 11.02%] ncyc    55515;  Time    4.407221767e-04 (sec); dt=    2.109489368e-08 (dt_cfl) ",
+        "[ 11.02%] ncyc    55518;  Time    4.407855807e-04 (sec); dt=    2.114334631e-08 (dt_cfl) ",
+        "[ 11.02%] ncyc    55519;  Time    4.408067086e-04 (sec); dt=    2.112790175e-08 (dt_cfl) "
       ],
-      "summary": "A notable qualitative shift this poll: dt is now oscillating in the 3-7ns range between recoveries — never dipping all the way to the 1ns floor, unlike almost every prior poll. The stall remains at rank 63 (cell 7202, same neighborhood) and continued at a similar rate: 22567 recoveries total (+277, close to +267 last poll) and 21267 [3467] warnings (+254, close to +234). Sim time advanced +1.70µs this poll (t=431.70µs), a bit faster than the typical recent pace, consistent with the healthier dt behavior. Domain-max p/T remains essentially flat (11.1 bar / 3,282K, close to 10.9 bar / 3,308K last poll), still far below the 994.9 bar / 11,084 K peak. CVODE chemistry errors remain fully resolved (497,089 total, zero new for a seventy-sixth straight poll). Zero FATAL_ERROR. No new post since t=430µs (still 44, next due ≈t=440µs). 45:51:34 into the 72-hour wall limit, ~59.1G memory. Overall trajectory unchanged — a persistent stall with a mildly encouraging shift in its dt behavior this poll; continuing to watch, run stays up per standing instruction.",
+      "summary": "The dt-floor stall has cleared for real this time. Last dt_recover was at cycle ~55215; by cycle 55218 dt had climbed cleanly back through dt_grow to the dt_cfl plateau (~2.1e-8s) and has now held there smoothly for 300+ consecutive cycles (55219-55519+) with zero further recoveries — far longer and steadier than the earlier ~60-cycle stretch that later relapsed. Sim time is moving briskly again: +9.1µs this poll (t=440.81µs) vs the ~1-2µs/poll pace during the stall. Domain-max p/T stayed unremarkable throughout (~11 bar/3,280K band), still far below the 994.9 bar/11,084K peak — confirms the whole episode was numerical (AMR/mesh), never a physical event. CVODE chemistry errors remain fully resolved. Zero FATAL_ERROR throughout the entire multi-hour stall. 46:20:34 into the 72-hour wall limit.",
       "notes": [
         {
-          "txt": "notable qualitative shift: dt now oscillates in the 3-7ns range between recoveries, never dipping all the way to the 1ns floor — a healthier pattern than nearly every prior poll",
+          "txt": "dt-floor stall CLEARED — 300+ consecutive clean dt_cfl cycles (55219 onward), last recovery at cycle ~55215; much longer and more convincing than the earlier false-clear",
           "level": "good"
         },
         {
-          "txt": "stall remains at rank 63 (cell 7202), continuing at a similar rate (+277 recoveries, +254 warnings); CVODE chemistry errors remain fully resolved (zero new for 76th straight poll); zero FATAL_ERROR",
+          "txt": "sim-time pace jumped accordingly: +9.1µs this poll vs the ~1-2µs/poll crawl during the stall — a real throughput recovery, not just a dt reading",
           "level": "good"
+        },
+        {
+          "txt": "domain-max p/T never left the ~11 bar/3,280K band during the whole stall — confirms it was numerical/AMR, not physical; CVODE errors remain fully resolved, zero FATAL_ERROR throughout",
+          "level": "info"
         }
       ]
     }
