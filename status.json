@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-08-07T02:57:54-04:00",
-  "next_poll": "2026-08-07T03:27:54-04:00",
+  "polled_at": "2026-08-07T03:27:57-04:00",
+  "next_poll": "2026-08-07T03:57:57-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,18 +20,18 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "cycle 28592 · 14th straight poll at good, 6 hours stable since recovery",
-      "elapsed": "24:24:46",
+      "state_note": "cycle 29180 · 15th straight poll at good, unchanged healthy pattern",
+      "elapsed": "24:54:49",
       "limit": "72:00:00",
-      "pct": 33.9,
-      "sim_now": "392.300 µs",
+      "pct": 34.6,
+      "sim_now": "393.501 µs",
       "sim_target": "4000 µs",
       "sim_pct": 9,
       "monitors": [
         {
           "key": "p_max",
           "label": "p_max",
-          "now": "9.35 bar",
+          "now": "9.45 bar",
           "desc": "still calm and gently declining, no wave signature",
           "history": [
             [
@@ -39,127 +39,127 @@
               7
             ],
             [
-              987,
+              1007,
               7.2
             ],
             [
-              1973,
+              2013,
               7.2
             ],
             [
-              2959,
+              3020,
               7.2
             ],
             [
-              3945,
+              4026,
               7.36
             ],
             [
-              4930,
+              5032,
               7.41
             ],
             [
-              5916,
+              6038,
               7.41
             ],
             [
-              6902,
+              7044,
               7.43
             ],
             [
-              7888,
-              7.41
-            ],
-            [
-              8874,
+              8050,
               7.4
             ],
             [
-              9860,
+              9057,
+              7.39
+            ],
+            [
+              10063,
               7.37
             ],
             [
-              10846,
+              11069,
               7.36
             ],
             [
-              11832,
-              7.6
+              12075,
+              7.61
             ],
             [
-              12818,
-              7.9
+              13081,
+              7.88
             ],
             [
-              13804,
-              7.97
+              14087,
+              7.98
             ],
             [
-              14789,
-              8.24
+              15094,
+              8.25
             ],
             [
-              15775,
-              8.23
+              16100,
+              8.22
             ],
             [
-              16761,
+              17106,
               8.07
             ],
             [
-              17747,
+              18112,
               7.91
             ],
             [
-              18733,
+              19118,
               7.77
             ],
             [
-              19719,
+              20124,
               7.6
             ],
             [
-              20705,
+              21131,
               7.63
             ],
             [
-              21691,
-              7.62
+              22137,
+              7.64
             ],
             [
-              22677,
-              142.92
+              23143,
+              117.57
             ],
             [
-              23663,
-              22.32
+              24149,
+              20.89
             ],
             [
-              24648,
-              18.38
+              25155,
+              20
             ],
             [
-              25634,
-              11.01
+              26161,
+              11.04
             ],
             [
-              26620,
+              27168,
               10.66
             ],
             [
-              27606,
-              10
+              28174,
+              9.92
             ],
             [
-              28592,
-              9.35
+              29180,
+              9.45
             ]
           ]
         },
         {
           "key": "t_max",
           "label": "T_max",
-          "now": "3377.5 K",
+          "now": "3450.4 K",
           "desc": "still calm and gently declining, no wave signature",
           "history": [
             [
@@ -167,127 +167,127 @@
               300
             ],
             [
-              987,
+              1007,
               323.2
             ],
             [
-              1973,
+              2013,
               322
             ],
             [
-              2959,
+              3020,
               322.5
             ],
             [
-              3945,
-              323.4
-            ],
-            [
-              4930,
-              321.2
-            ],
-            [
-              5916,
-              321.4
-            ],
-            [
-              6902,
-              321.2
-            ],
-            [
-              7888,
-              321.1
-            ],
-            [
-              8874,
-              321.5
-            ],
-            [
-              9860,
-              318
-            ],
-            [
-              10846,
-              319
-            ],
-            [
-              11832,
-              317.8
-            ],
-            [
-              12818,
-              327
-            ],
-            [
-              13804,
-              323.1
-            ],
-            [
-              14789,
-              325.9
-            ],
-            [
-              15775,
-              325.6
-            ],
-            [
-              16761,
+              4026,
               323.3
             ],
             [
-              17747,
-              321.9
+              5032,
+              321.2
             ],
             [
-              18733,
-              320.5
+              6038,
+              321.4
             ],
             [
-              19719,
-              318.4
+              7044,
+              321.3
             ],
             [
-              20705,
-              317.8
+              8050,
+              321.3
             ],
             [
-              21691,
-              320.2
+              9057,
+              321.4
             ],
             [
-              22677,
-              4156.3
+              10063,
+              317.9
             ],
             [
-              23663,
-              4232
+              11069,
+              319.7
             ],
             [
-              24648,
-              3747.1
+              12075,
+              318
             ],
             [
-              25634,
-              3925.7
+              13081,
+              326.2
             ],
             [
-              26620,
-              3555
+              14087,
+              322.4
             ],
             [
-              27606,
-              3494.9
+              15094,
+              326.3
             ],
             [
-              28592,
-              3377.5
+              16100,
+              324.7
+            ],
+            [
+              17106,
+              323.6
+            ],
+            [
+              18112,
+              321.4
+            ],
+            [
+              19118,
+              321.3
+            ],
+            [
+              20124,
+              317.5
+            ],
+            [
+              21131,
+              318.8
+            ],
+            [
+              22137,
+              320.1
+            ],
+            [
+              23143,
+              4353.5
+            ],
+            [
+              24149,
+              4283.2
+            ],
+            [
+              25155,
+              3677.5
+            ],
+            [
+              26161,
+              3948.3
+            ],
+            [
+              27168,
+              3515.7
+            ],
+            [
+              28174,
+              3458.9
+            ],
+            [
+              29180,
+              3450.4
             ]
           ]
         },
         {
           "key": "dt",
           "label": "dt",
-          "now": "1.000e-9 s",
+          "now": "1.562e-9 s",
           "desc": "improved pace confirmed for a 2nd poll — status upgraded back to good",
           "history": [
             [
@@ -295,120 +295,120 @@
               1e-9
             ],
             [
-              987,
-              4.958e-8
+              1007,
+              4.909e-8
             ],
             [
-              1973,
-              4.89e-8
+              2013,
+              4.949e-8
             ],
             [
-              2959,
-              4.816e-8
+              3020,
+              4.793e-8
             ],
             [
-              3945,
-              4.652e-8
+              4026,
+              4.645e-8
             ],
             [
-              4930,
-              4.532e-8
+              5032,
+              4.533e-8
             ],
             [
-              5916,
-              4.43e-8
+              6038,
+              4.393e-8
             ],
             [
-              6902,
-              1.817e-8
-            ],
-            [
-              7888,
-              1.726e-8
-            ],
-            [
-              8874,
-              1.953e-9
-            ],
-            [
-              9860,
+              7044,
               1e-9
             ],
             [
-              10846,
+              8050,
               1.25e-9
             ],
             [
-              11832,
-              1.25e-9
-            ],
-            [
-              12818,
+              9057,
               1e-9
             ],
             [
-              13804,
-              1.25e-9
-            ],
-            [
-              14789,
-              2.099e-8
-            ],
-            [
-              15775,
-              1.25e-9
-            ],
-            [
-              16761,
-              1.25e-9
-            ],
-            [
-              17747,
+              10063,
               1e-9
             ],
             [
-              18733,
+              11069,
+              1.25e-9
+            ],
+            [
+              12075,
               1e-9
             ],
             [
-              19719,
-              3.052e-9
+              13081,
+              1.25e-9
             ],
             [
-              20705,
+              14087,
+              1e-9
+            ],
+            [
+              15094,
+              1e-9
+            ],
+            [
+              16100,
+              1e-9
+            ],
+            [
+              17106,
+              2.441e-9
+            ],
+            [
+              18112,
+              1e-9
+            ],
+            [
+              19118,
+              1.25e-9
+            ],
+            [
+              20124,
+              1.25e-9
+            ],
+            [
+              21131,
               1.562e-9
             ],
             [
-              21691,
-              1.455e-8
+              22137,
+              4.705e-9
             ],
             [
-              22677,
-              1.25e-9
+              23143,
+              2.441e-9
             ],
             [
-              23663,
+              24149,
               1e-9
             ],
             [
-              24648,
+              25155,
               1.25e-9
             ],
             [
-              25634,
-              1.25e-9
-            ],
-            [
-              26620,
-              2.98e-9
-            ],
-            [
-              27606,
-              3.052e-9
-            ],
-            [
-              28592,
+              26161,
               1e-9
+            ],
+            [
+              27168,
+              1e-9
+            ],
+            [
+              28174,
+              1.25e-9
+            ],
+            [
+              29180,
+              1.562e-9
             ]
           ]
         },
@@ -419,127 +419,127 @@
           "desc": "wall time per cycle, averaged since start (still ramping up through mesh refinement)",
           "history": [
             [
-              987,
+              1007,
               3
             ],
             [
-              1973,
+              2013,
               2.88
             ],
             [
-              2959,
+              3020,
               2.89
             ],
             [
-              3945,
+              4026,
               2.9
             ],
             [
-              4930,
-              2.97
+              5032,
+              2.98
             ],
             [
-              5916,
-              3.07
+              6038,
+              3.08
             ],
             [
-              6902,
-              4.25
+              7044,
+              4.46
             ],
             [
-              7888,
-              4.37
+              8050,
+              4.1
             ],
             [
-              8874,
+              9057,
               3.33
             ],
             [
-              9860,
-              3.05
+              10063,
+              3.04
             ],
             [
-              10846,
+              11069,
+              2.93
+            ],
+            [
+              12075,
+              2.92
+            ],
+            [
+              13081,
+              2.85
+            ],
+            [
+              14087,
+              2.83
+            ],
+            [
+              15094,
+              3.29
+            ],
+            [
+              16100,
               2.96
             ],
             [
-              11832,
-              2.94
+              17106,
+              2.83
             ],
             [
-              12818,
+              18112,
               2.87
             ],
             [
-              13804,
-              2.86
+              19118,
+              2.8
             ],
             [
-              14789,
-              3.05
+              20124,
+              2.85
             ],
             [
-              15775,
-              3.17
+              21131,
+              2.98
             ],
             [
-              16761,
-              2.82
+              22137,
+              3.01
             ],
             [
-              17747,
-              2.86
+              23143,
+              3.1
             ],
             [
-              18733,
-              2.84
+              24149,
+              3.06
             ],
             [
-              19719,
-              2.81
+              25155,
+              3.01
             ],
             [
-              20705,
-              2.9
+              26161,
+              3
             ],
             [
-              21691,
-              3.05
+              27168,
+              3.01
             ],
             [
-              22677,
-              3.05
-            ],
-            [
-              23663,
-              3.11
-            ],
-            [
-              24648,
+              28174,
               3.03
             ],
             [
-              25634,
-              2.99
-            ],
-            [
-              26620,
-              3.02
-            ],
-            [
-              27606,
-              3.02
-            ],
-            [
-              28592,
-              3.06
+              29180,
+              3.11
             ]
           ]
         },
         {
           "key": "mass",
           "label": "mass",
-          "now": "8.806e-5 kg",
+          "now": "8.799e-5 kg",
           "desc": "tracked from the start",
           "history": [
             [
@@ -547,126 +547,126 @@
               0.0003017
             ],
             [
-              987,
+              1007,
               0.0003005
             ],
             [
-              1973,
+              2013,
               0.0002967
             ],
             [
-              2959,
-              0.0002907
+              3020,
+              0.0002906
             ],
             [
-              3945,
-              0.0002828
+              4026,
+              0.0002826
             ],
             [
-              4930,
-              0.0002734
+              5032,
+              0.0002733
             ],
             [
-              5916,
-              0.0002629
+              6038,
+              0.0002628
             ],
             [
-              6902,
-              0.0002518
+              7044,
+              0.0002516
             ],
             [
-              7888,
-              0.0002403
+              8050,
+              0.0002399
             ],
             [
-              8874,
-              0.0002285
+              9057,
+              0.0002282
             ],
             [
-              9860,
-              0.0002168
+              10063,
+              0.0002165
             ],
             [
-              10846,
-              0.0002054
+              11069,
+              0.000205
             ],
             [
-              11832,
-              0.0001944
+              12075,
+              0.0001939
             ],
             [
-              12818,
-              0.0001839
+              13081,
+              0.0001835
             ],
             [
-              13804,
-              0.0001744
+              14087,
+              0.000174
             ],
             [
-              14789,
-              0.0001659
+              15094,
+              0.0001655
             ],
             [
-              15775,
-              0.0001583
+              16100,
+              0.0001579
             ],
             [
-              16761,
-              0.0001514
+              17106,
+              0.0001511
             ],
             [
-              17747,
-              0.0001452
+              18112,
+              0.0001449
             ],
             [
-              18733,
-              0.0001395
+              19118,
+              0.0001392
             ],
             [
-              19719,
-              0.0001343
+              20124,
+              0.000134
             ],
             [
-              20705,
-              0.0001297
+              21131,
+              0.0001295
             ],
             [
-              21691,
-              0.0001256
+              22137,
+              0.0001253
             ],
             [
-              22677,
-              0.0001229
+              23143,
+              0.0001226
             ],
             [
-              23663,
-              0.0001194
+              24149,
+              0.0001192
             ],
             [
-              24648,
-              0.0001161
+              25155,
+              0.0001158
             ],
             [
-              25634,
-              0.0001062
+              26161,
+              0.0001046
             ],
             [
-              26620,
-              0.00009249
+              27168,
+              0.00009198
             ],
             [
-              27606,
-              0.00008923
+              28174,
+              0.0000891
             ],
             [
-              28592,
-              0.00008806
+              29180,
+              0.00008799
             ]
           ]
         }
       ],
       "ranks": 64,
-      "rss": "56.8G",
+      "rss": "56.9G",
       "s_per_step": 3.07,
       "node": "n0360 · 1×64",
       "restarts": 0,
@@ -679,61 +679,61 @@
       "log_path": "triangleRDE_weakIgnite",
       "log_size": null,
       "log_tail": [
-        "[  9.81%] ncyc    28564;  Time    3.923058451e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29152;  Time    3.934767370e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28565;  Time    3.923068451e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28566;  Time    3.923080951e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28567;  Time    3.923090951e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28568;  Time    3.923103451e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29153;  Time    3.934777370e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29154;  Time    3.934789870e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28569;  Time    3.923113451e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28570;  Time    3.923125951e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29155;  Time    3.934799870e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29156;  Time    3.934812370e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29157;  Time    3.934827995e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29158;  Time    3.934847526e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28571;  Time    3.923135951e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28572;  Time    3.923148451e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28573;  Time    3.923158451e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28574;  Time    3.923170951e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29159;  Time    3.934857526e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29160;  Time    3.934870026e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28575;  Time    3.923180951e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28576;  Time    3.923193451e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29161;  Time    3.934880026e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29162;  Time    3.934892526e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29163;  Time    3.934908151e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29164;  Time    3.934927682e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28577;  Time    3.923203451e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28578;  Time    3.923215951e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29165;  Time    3.934939889e-04 (sec); dt=    1.220703125e-09 (dt_recover) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28579;  Time    3.923225951e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28580;  Time    3.923238451e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29166;  Time    3.934949889e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29167;  Time    3.934962389e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29168;  Time    3.934978014e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29169;  Time    3.934997546e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28581;  Time    3.923248451e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28582;  Time    3.923260951e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
-        "[  9.81%] ncyc    28583;  Time    3.923276576e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28584;  Time    3.923286576e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28585;  Time    3.923299076e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "Executing ParaView Catalyst scripts:",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/EquivMetricSurf.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_weakIgnite/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[  9.84%] ncyc    29170;  Time    3.935007546e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29171;  Time    3.935020046e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28586;  Time    3.923309076e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28587;  Time    3.923321576e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29172;  Time    3.935030046e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29173;  Time    3.935042546e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29174;  Time    3.935058171e-04 (sec); dt=    1.562500000e-09 (dt_grow) ",
+        "[  9.84%] ncyc    29175;  Time    3.935077702e-04 (sec); dt=    1.953125000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28588;  Time    3.923331576e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28589;  Time    3.923344076e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28590;  Time    3.923354076e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28591;  Time    3.923366576e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28592;  Time    3.923376576e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28593;  Time    3.923389076e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28594;  Time    3.923399076e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28595;  Time    3.923411576e-04 (sec); dt=    1.250000000e-09 (dt_grow) ",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[  9.81%] ncyc    28596;  Time    3.923421576e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
-        "[  9.81%] ncyc    28597;  Time    3.923434076e-04 (sec); dt=    1.250000000e-09 (dt_grow) "
+        "[  9.84%] ncyc    29176;  Time    3.935087702e-04 (sec); dt=    1.000000000e-09 (dt_recover) ",
+        "[  9.84%] ncyc    29177;  Time    3.935100202e-04 (sec); dt=    1.250000000e-09 (dt_grow) "
       ],
-      "summary": "Fourteenth straight poll at good — this run has now been stable/healthy for 6 hours straight since the earlier dt-floor episode resolved. Sim time advanced +1.04µs this poll (t=392.300µs); recoveries/warnings grew at a similar clip (9,968, +268; 10,496, +243). The hotspot is in one cell — same broader downstream region, background-level. Original pinned cell (rank 63) remains flat at 52. Domain-max/temperature (9.35 bar / 3377.5 K) remain essentially flat, and the azimuthal probes (≈1.8/2.0/2.0 bar) remain calm and quiet, no wave signature. CVODE flat for a 35th straight poll (62,150, +0); zero FATAL_ERROR. Holding at good.",
+      "summary": "Fifteenth straight poll at good. Sim time advanced +1.21µs this poll (t=393.501µs); recoveries/warnings grew at a similar clip (10,237, +269; 10,746, +250). The hotspot is in one cell — same broader downstream region, background-level. Original pinned cell (rank 63) remains flat at 52. Domain-max/temperature (9.45 bar / 3450.4 K) remain essentially flat, and the azimuthal probes (≈1.8/1.9/2.0 bar) remain calm and quiet, no wave signature. CVODE flat for a 36th straight poll (62,150, +0); zero FATAL_ERROR. Holding at good.",
       "notes": [
         {
-          "txt": "fourteenth straight poll at good — 6 hours stable since the dt-floor episode resolved, pace +1.04µs, growth similar to recent polls",
+          "txt": "fifteenth straight poll at good — pace +1.21µs, growth similar to recent polls, nothing new to report",
           "level": "good"
         },
         {
@@ -741,7 +741,7 @@
           "level": "info"
         },
         {
-          "txt": "CVODE flat for a 35th straight poll (62,150); zero FATAL_ERROR; domain-max/azimuthal probes calm and quiet",
+          "txt": "CVODE flat for a 36th straight poll (62,150); zero FATAL_ERROR; domain-max/azimuthal probes calm and quiet",
           "level": "good"
         }
       ]
