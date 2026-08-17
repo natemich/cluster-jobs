@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T13:43:37-04:00",
+  "polled_at": "2026-08-17T14:13:37-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "dt-floor issue still intermittent but zero FATAL_ERROR. Mass flow plateau held for about 2us then resumed a very gentle rise -- much smaller amplitude than the earlier oscillation, consistent with a nearly-converged state with minor residual drift rather than a fully flat steady value.",
-      "elapsed": "13:34:46",
+      "state_note": "Currently in a healthy dt_cfl patch (dt-floor issue remains intermittent overall, recovering count up to 4095, zero FATAL_ERROR). Net mass flow rate continuing the same small, slow drift seen last poll.",
+      "elapsed": "14:04:46",
       "limit": "72:00:00",
-      "pct": 19,
-      "sim_now": "550.17 µs",
+      "pct": 20,
+      "sim_now": "555.36 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 55,
+      "sim_pct": 56,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0577 kg/s",
-          "desc": "Held flat briefly then resumed a very gentle rise -- amplitude now roughly 100x smaller than the original swings, consistent with nearly converged plus small residual drift rather than a hard flat value.",
+          "now": "-0.0567 kg/s",
+          "desc": "Continuing the same small, slow upward drift as last poll -- consistent small-amplitude residual approach, not a new large swing. Still not perfectly flat.",
           "history": [
             [
               0,
@@ -1583,16 +1583,16 @@
               -0.0586
             ],
             [
-              546.72,
-              -0.0583
-            ],
-            [
-              548.44,
-              -0.058
-            ],
-            [
-              550.2,
+              550.1,
               -0.0577
+            ],
+            [
+              552.1,
+              -0.0572
+            ],
+            [
+              554.5,
+              -0.0567
             ]
           ]
         }
@@ -1611,17 +1611,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 55.02%] ncyc    19440;  Time    5.501624331e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 55.02%] ncyc    19441;  Time    5.501636831e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 55.02%] ncyc    19442;  Time    5.501652456e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "[ 55.02%] ncyc    19443;  Time    5.501671987e-04 (sec); dt=    1.953125000e-09 (dt_grow)",
-        "[ 55.02%] ncyc    19444;  Time    5.501696401e-04 (sec); dt=    2.441406250e-09 (dt_grow)"
+        "[ 55.52%] ncyc    20356;  Time    5.551504350e-04 (sec); dt=    4.289701489e-08 (dt_cfl)",
+        "[ 55.52%] ncyc    20357;  Time    5.551931454e-04 (sec); dt=    4.271042931e-08 (dt_cfl)",
+        "[ 55.52%] ncyc    20358;  Time    5.552360568e-04 (sec); dt=    4.291130936e-08 (dt_cfl)",
+        "[ 55.53%] ncyc    20359;  Time    5.552789444e-04 (sec); dt=    4.288760993e-08 (dt_cfl)",
+        "[ 55.53%] ncyc    20360;  Time    5.553215882e-04 (sec); dt=    4.264378759e-08 (dt_cfl)",
+        "[ 55.54%] ncyc    20361;  Time    5.553638280e-04 (sec); dt=    4.223989692e-08 (dt_cfl)"
       ],
-      "summary": "13h34m46s in, cycle 19444 at t=550.17µs of the 1000µs cold-flow target (~55.0%). dt-floor issue still intermittent, zero FATAL_ERROR. Net mass flow rate held flat at -0.0586 kg/s for about 2us then resumed a very gentle rise, now -0.0577 kg/s -- the amplitude of this movement (0.0009 kg/s over 8us) is roughly two orders of magnitude smaller than the original oscillation swings, so this reads as a nearly-converged state with small residual drift rather than a hard plateau. Still a reasonable restart-point neighborhood, but true flatness has not fully arrived.",
+      "summary": "14h04m46s in, cycle 20361 at t=555.36µs of the 1000µs cold-flow target (~55.5%). Currently a healthy dt_cfl patch (dt-floor issue still intermittent overall, zero FATAL_ERROR). Net mass flow rate continuing the same small, slow upward drift seen last poll (-0.0567 kg/s now, was -0.0577), at a similarly tiny rate -- looks like a slow residual approach rather than a new large swing. Not perfectly flat, but the amplitude of movement has stayed small and consistent for two polls running.",
       "notes": [
         {
-          "txt": "Net mass flow rate near-converged: held flat briefly then resumed a very gentle rise, but at roughly 100x smaller amplitude than the original oscillation -- close to steady, not perfectly flat yet.",
+          "txt": "Net mass flow rate continuing a small, slow upward drift for a second poll running -- consistent small amplitude, not a new large swing. Close to steady but not perfectly flat.",
           "level": "info"
         },
         {
@@ -1637,7 +1637,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T13:43:37-04:00"
+      "polled_at": "2026-08-17T14:13:37-04:00"
     }
   ]
 }
