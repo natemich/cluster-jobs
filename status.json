@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T03:13:39-04:00",
+  "polled_at": "2026-08-17T03:43:33-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "03:04:48",
+      "elapsed": "03:34:42",
       "limit": "72:00:00",
-      "pct": 4,
-      "sim_now": "189.21 µs",
+      "pct": 5,
+      "sim_now": "217.22 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 19,
+      "sim_pct": 22,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.675 kg/s",
-          "desc": "Still falling from the 0.869 kg/s peak, and the fall rate has roughly doubled versus the last poll (accelerating, not damping). Not a settling pattern right now -- watch closely, do not assume this is near steady.",
+          "now": "0.534 kg/s",
+          "desc": "Still falling steadily from the 0.869 kg/s peak; the decline rate has stopped accelerating (similar to last poll) but has not started damping toward a flat value either. Not steady.",
           "history": [
             [
               0,
@@ -1563,10 +1563,6 @@
               0.8182
             ],
             [
-              100.61,
-              0.8551
-            ],
-            [
               109.01,
               0.8654
             ],
@@ -1575,40 +1571,40 @@
               0.869
             ],
             [
-              128.04,
-              0.865
-            ],
-            [
               138.02,
               0.8537
-            ],
-            [
-              148.15,
-              0.8356
             ],
             [
               159.03,
               0.808
             ],
             [
-              165.01,
-              0.788
-            ],
-            [
-              171.11,
-              0.7632
-            ],
-            [
               177.14,
               0.7341
             ],
             [
-              181.73,
-              0.7094
+              187.01,
+              0.6793
             ],
             [
-              187.81,
-              0.6747
+              193.23,
+              0.6439
+            ],
+            [
+              199.43,
+              0.6109
+            ],
+            [
+              205.61,
+              0.5808
+            ],
+            [
+              211.83,
+              0.5532
+            ],
+            [
+              216.54,
+              0.5335
             ]
           ]
         }
@@ -1617,10 +1613,10 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 19,
-      "posts": 19,
+      "restarts": 22,
+      "posts": 22,
       "frames": 0,
-      "newest": "restart0019.rst",
+      "newest": "restart0022.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
@@ -1628,16 +1624,16 @@
       "log_size": null,
       "log_tail": [
         "Finished ParaView Catalyst execute",
-        "[ 18.90%] ncyc     3827;  Time    1.890267866e-04 (sec); dt=    4.666756963e-08 (dt_cfl)",
-        "[ 18.91%] ncyc     3828;  Time    1.890735102e-04 (sec); dt=    4.672366466e-08 (dt_cfl)",
-        "[ 18.91%] ncyc     3829;  Time    1.891202174e-04 (sec); dt=    4.670714446e-08 (dt_cfl)",
-        "[ 18.92%] ncyc     3830;  Time    1.891669748e-04 (sec); dt=    4.675746557e-08 (dt_cfl)",
-        "[ 18.92%] ncyc     3831;  Time    1.892137173e-04 (sec); dt=    4.674245178e-08 (dt_cfl)"
+        "[ 21.70%] ncyc     4434;  Time    2.170409237e-04 (sec); dt=    4.542237016e-08 (dt_cfl)",
+        "[ 21.71%] ncyc     4435;  Time    2.170863377e-04 (sec); dt=    4.541401430e-08 (dt_cfl)",
+        "[ 21.71%] ncyc     4436;  Time    2.171317441e-04 (sec); dt=    4.540645951e-08 (dt_cfl)",
+        "[ 21.72%] ncyc     4437;  Time    2.171771397e-04 (sec); dt=    4.539555712e-08 (dt_cfl)",
+        "[ 21.72%] ncyc     4438;  Time    2.172225252e-04 (sec); dt=    4.538547377e-08 (dt_cfl)"
       ],
-      "summary": "3h04m48s in, cycle 3831 at t=189.21µs of the 1000µs cold-flow target (~18.9%). dt steady at dt_cfl (~4.67e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate continues falling from its 0.869 kg/s peak, now at 0.675 kg/s -- and the decline rate has roughly doubled versus the previous poll interval (0.0046 kg/s per us now vs 0.0019 kg/s per us before), i.e. accelerating downward rather than damping out. Flagging this plainly rather than guessing why: this looks less like settling and more like an active transient still developing. Not steady, not close to it.",
+      "summary": "3h34m42s in, cycle 4438 at t=217.22µs of the 1000µs cold-flow target (~21.7%). dt steady at dt_cfl (~4.54e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate continues falling, now 0.534 kg/s -- the decline rate has stopped accelerating and looks similar to the last interval (~0.0049 kg/s per us now vs ~0.0046 before), so it may be settling into a steady rate of decrease rather than accelerating further, but it is still falling steadily with no flattening or reversal yet.",
       "notes": [
         {
-          "txt": "Net mass flow rate decline is accelerating (roughly doubled rate this poll vs last) rather than damping out -- looks like an active transient, not settling. Worth a closer look if this continues, before assuming any restart file nearby is usable.",
+          "txt": "Net mass flow rate still falling (0.534 kg/s), decline rate no longer accelerating but not damping out either -- still an active transient, still not a valid restart point.",
           "level": "warn"
         },
         {
@@ -1649,7 +1645,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T03:13:39-04:00"
+      "polled_at": "2026-08-17T03:43:33-04:00"
     }
   ]
 }
