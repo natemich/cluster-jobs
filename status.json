@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T13:13:38-04:00",
+  "polled_at": "2026-08-17T13:43:37-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "dt-floor issue still intermittent but zero FATAL_ERROR throughout. Main story: the net mass flow rate plateau flagged last poll HOLDS -- confirmed flat across two consecutive polls now.",
-      "elapsed": "13:04:47",
+      "state_note": "dt-floor issue still intermittent but zero FATAL_ERROR. Mass flow plateau held for about 2us then resumed a very gentle rise -- much smaller amplitude than the earlier oscillation, consistent with a nearly-converged state with minor residual drift rather than a fully flat steady value.",
+      "elapsed": "13:34:46",
       "limit": "72:00:00",
-      "pct": 18,
-      "sim_now": "543.52 µs",
+      "pct": 19,
+      "sim_now": "550.17 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 54,
+      "sim_pct": 55,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0586 kg/s",
-          "desc": "Flat and holding for two consecutive polls now (t=537-543us, within a ~0.0004 kg/s band) -- solid steady-state candidate. restart0055.rst or nearby looks like a reasonable branch point for the ignition sweep.",
+          "now": "-0.0577 kg/s",
+          "desc": "Held flat briefly then resumed a very gentle rise -- amplitude now roughly 100x smaller than the original swings, consistent with nearly converged plus small residual drift rather than a hard flat value.",
           "history": [
             [
               0,
@@ -1575,24 +1575,24 @@
               -0.0735
             ],
             [
-              521.11,
-              -0.0609
-            ],
-            [
               534.21,
               -0.0581
             ],
             [
-              538.1,
+              543.71,
+              -0.0586
+            ],
+            [
+              546.72,
               -0.0583
             ],
             [
-              540.73,
-              -0.0585
+              548.44,
+              -0.058
             ],
             [
-              543.42,
-              -0.0586
+              550.2,
+              -0.0577
             ]
           ]
         }
@@ -1601,30 +1601,28 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 55,
-      "posts": 55,
+      "restarts": 56,
+      "posts": 56,
       "frames": 0,
-      "newest": "restart0055.rst",
+      "newest": "restart0056.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 54.35%] ncyc    18560;  Time    5.435084636e-04 (sec); dt=    1.862645149e-09 (dt_grow)",
-        "[ 54.35%] ncyc    18561;  Time    5.435107919e-04 (sec); dt=    2.328306437e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 54.35%] ncyc    18562;  Time    5.435122471e-04 (sec); dt=    1.455191523e-09 (dt_recover)",
-        "[ 54.35%] ncyc    18563;  Time    5.435140661e-04 (sec); dt=    1.818989404e-09 (dt_grow)",
-        "[ 54.35%] ncyc    18564;  Time    5.435163398e-04 (sec); dt=    2.273736754e-09 (dt_grow)",
-        "[ 54.35%] ncyc    18565;  Time    5.435191820e-04 (sec); dt=    2.842170943e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 55.02%] ncyc    19440;  Time    5.501624331e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 55.02%] ncyc    19441;  Time    5.501636831e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 55.02%] ncyc    19442;  Time    5.501652456e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 55.02%] ncyc    19443;  Time    5.501671987e-04 (sec); dt=    1.953125000e-09 (dt_grow)",
+        "[ 55.02%] ncyc    19444;  Time    5.501696401e-04 (sec); dt=    2.441406250e-09 (dt_grow)"
       ],
-      "summary": "13h04m47s in, cycle 18565 at t=543.52µs of the 1000µs cold-flow target (~54.4%). dt-floor issue still intermittent, zero FATAL_ERROR. Good confirmation this poll: net mass flow rate has held flat (-0.0582 to -0.0586 kg/s, a ~0.0004 kg/s band) across two consecutive polls spanning t=537-543us -- this is now a solid steady-state candidate rather than a brief inflection. restart0055.rst (t~543-550us) is a reasonable pick for branching the ignition sweep if the user wants to proceed, though worth letting it hold a little longer or confirming with a temperature/species check before committing.",
+      "summary": "13h34m46s in, cycle 19444 at t=550.17µs of the 1000µs cold-flow target (~55.0%). dt-floor issue still intermittent, zero FATAL_ERROR. Net mass flow rate held flat at -0.0586 kg/s for about 2us then resumed a very gentle rise, now -0.0577 kg/s -- the amplitude of this movement (0.0009 kg/s over 8us) is roughly two orders of magnitude smaller than the original oscillation swings, so this reads as a nearly-converged state with small residual drift rather than a hard plateau. Still a reasonable restart-point neighborhood, but true flatness has not fully arrived.",
       "notes": [
         {
-          "txt": "Net mass flow rate confirmed flat across two consecutive polls (-0.0582 to -0.0586 kg/s) -- solid steady-state candidate now, restart0055.rst (t~543-550us) is a reasonable branch point for the sweep.",
-          "level": "good"
+          "txt": "Net mass flow rate near-converged: held flat briefly then resumed a very gentle rise, but at roughly 100x smaller amplitude than the original oscillation -- close to steady, not perfectly flat yet.",
+          "level": "info"
         },
         {
           "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout.",
@@ -1639,7 +1637,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T13:13:38-04:00"
+      "polled_at": "2026-08-17T13:43:37-04:00"
     }
   ]
 }
