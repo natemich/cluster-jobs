@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T10:43:42-04:00",
+  "polled_at": "2026-08-17T11:13:41-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,14 +1491,14 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "dt-floor stall has cleared: dt ramped back up cleanly to dt_cfl (~4.38e-8s) with no new recovering messages since the last check (still 1449 total, unchanged) -- back to healthy stepping. Also confirmed: the net-mass-flow oscillation bottomed out at -0.0735 kg/s around t=485us and is now rising back toward zero, exactly the reversal expected from a damped oscillation.",
-      "elapsed": "10:34:51",
+      "status": "warn",
+      "state_note": "The dt-floor stall is back -- it briefly cleared to healthy dt_cfl right at the last poll, but has since dipped back into the recover/grow loop (\"recovering\" count 1449->1835, dt back down near 1e-9-1.5e-9s). Reading this as intermittent/recurring rather than a single one-time hiccup: it clears, runs healthy for a stretch, then re-enters recovery. Zero FATAL_ERROR throughout either way.",
+      "elapsed": "11:04:50",
       "limit": "72:00:00",
       "pct": 15,
-      "sim_now": "513.05 µs",
+      "sim_now": "519.78 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 51,
+      "sim_pct": 52,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.066 kg/s",
-          "desc": "Bottomed out at -0.0735 kg/s (t=485us) and is now rising back toward zero, confirming a damped oscillation (peak +0.869 at t=118us, trough -0.0735 at t=485us). Watch for the next zero-crossing and whether the swing amplitude keeps shrinking (true damping) or holds steady (a sustained limit cycle) -- either tells us something different about when/whether this settles into a valid restart point.",
+          "now": "~-0.06 kg/s (not resampled this poll -- limited new sim time during the renewed stall)",
+          "desc": "Sampling paused again during this recurrence of the dt-floor issue; last confirmed reading was -0.066 kg/s and rising back toward zero.",
           "history": [
             [
               0,
@@ -1579,16 +1579,8 @@
               -0.0438
             ],
             [
-              472.94,
-              -0.0699
-            ],
-            [
               485.23,
               -0.0735
-            ],
-            [
-              497.91,
-              -0.0718
             ],
             [
               507.01,
@@ -1615,24 +1607,18 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_YZ.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y010.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y022.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y036.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_YZ.py",
-        "Finished ParaView Catalyst execute",
-        "[ 51.30%] ncyc    14109;  Time    5.130051068e-04 (sec); dt=    4.364552208e-08 (dt_cfl)",
-        "[ 51.30%] ncyc    14110;  Time    5.130488987e-04 (sec); dt=    4.379184005e-08 (dt_cfl)"
+        "[ 51.98%] ncyc    14964;  Time    5.197762207e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 51.98%] ncyc    14965;  Time    5.197772207e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 51.98%] ncyc    14966;  Time    5.197784707e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 51.98%] ncyc    14967;  Time    5.197794707e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "10h34m51s in, cycle 14110 at t=513.05µs of the 1000µs cold-flow target (~51.3%). Good news: the dt-floor stall that spanned the last 3 polls has cleared on its own -- dt is back to healthy dt_cfl (~4.38e-8s), matching the historical pattern from 965850/970574. Also confirmed: net mass flow rate bottomed out at -0.0735 kg/s around t=485us and is now rising back toward zero (-0.066 kg/s currently), exactly the reversal expected from a damped oscillation around true mass balance. Zero FATAL_ERROR throughout.",
+      "summary": "11h04m50s in, cycle 14967 at t=519.78µs of the 1000µs cold-flow target (~52.0%). The dt-floor issue has come back after briefly clearing at the last poll -- \"recovering\" count now 1835 (was 1449), dt back down near the floor. This now looks like an intermittent, recurring numerical difficulty (clears, runs clean for a stretch, re-enters recovery) rather than a single transient event. Still zero FATAL_ERROR and still making some forward progress each interval, just slower and less predictable than before t=490us.",
       "notes": [
         {
-          "txt": "dt-floor stall cleared on its own after 3 polls -- back to healthy dt_cfl, no FATAL_ERROR at any point during it.",
-          "level": "good"
-        },
-        {
-          "txt": "Net mass flow rate bottomed out (-0.0735 kg/s, t=485us) and is now swinging back up -- confirms damped-oscillation behavior; watch whether the swing amplitude keeps shrinking toward zero.",
-          "level": "info"
+          "txt": "dt-floor issue recurred after briefly clearing -- looks intermittent (clears, runs clean, re-enters recovery) rather than one-time. No FATAL_ERROR, progress continuing but slower/less predictable since ~t=490us.",
+          "level": "warn"
         },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
@@ -1643,7 +1629,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T10:43:42-04:00"
+      "polled_at": "2026-08-17T11:13:41-04:00"
     }
   ]
 }
