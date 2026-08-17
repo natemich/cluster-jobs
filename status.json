@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T01:43:30-04:00",
+  "polled_at": "2026-08-17T02:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "01:34:39",
+      "elapsed": "02:04:41",
       "limit": "72:00:00",
-      "pct": 2,
-      "sim_now": "98.50 µs",
+      "pct": 3,
+      "sim_now": "129.01 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 10,
+      "sim_pct": 13,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,104 +1543,80 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.850 kg/s",
-          "desc": "Still rising but decelerating -- increments shrinking each poll (0.808->0.850 kg/s this interval vs 0.708->0.808 previous interval). Not flat yet, do not pick a restart file yet.",
+          "now": "0.864 kg/s",
+          "desc": "Peaked at 0.869 kg/s around t=118us and has eased back to 0.864us since -- first sign of settling rather than an open-ended climb, but too early to call it steady. Watching for this to damp out into a flat value.",
           "history": [
             [
               0,
               -0.02
             ],
             [
-              4.23,
-              0.0471
+              14.33,
+              0.1974
             ],
             [
-              8.45,
-              0.1117
+              28.61,
+              0.3873
             ],
             [
-              12.71,
-              0.1742
+              42.9,
+              0.5439
             ],
             [
-              16.95,
-              0.2347
+              57.2,
+              0.6666
             ],
             [
-              21.22,
-              0.2936
+              71.55,
+              0.7571
             ],
             [
-              25.4,
-              0.3479
+              85.82,
+              0.8182
             ],
             [
-              29.7,
-              0.4005
+              95.01,
+              0.8441
             ],
             [
-              33.94,
-              0.4497
+              100.61,
+              0.8551
             ],
             [
-              38.24,
-              0.4969
+              104.81,
+              0.8612
             ],
             [
-              42.41,
-              0.5391
+              109.01,
+              0.8654
             ],
             [
-              46.72,
-              0.5795
+              113.31,
+              0.868
             ],
             [
-              50.94,
-              0.6166
+              116.14,
+              0.8688
             ],
             [
-              55.23,
-              0.6516
+              118.24,
+              0.869
             ],
             [
-              59.43,
-              0.6826
+              120.33,
+              0.8688
             ],
             [
-              63.73,
-              0.7112
+              123.13,
+              0.868
             ],
             [
-              67.92,
-              0.7368
+              125.93,
+              0.8665
             ],
             [
-              72.24,
-              0.7607
-            ],
-            [
-              76.41,
-              0.781
-            ],
-            [
-              80.7,
-              0.7993
-            ],
-            [
-              84.93,
-              0.8151
-            ],
-            [
-              89.22,
-              0.829
-            ],
-            [
-              93.42,
-              0.8404
-            ],
-            [
-              97.71,
-              0.8498
+              128.82,
+              0.8644
             ]
           ]
         }
@@ -1649,43 +1625,43 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 10,
-      "posts": 10,
+      "restarts": 13,
+      "posts": 13,
       "frames": 0,
-      "newest": "restart0010.rst",
+      "newest": "restart0013.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[  9.81%] ncyc     1933;  Time    9.805506258e-05 (sec); dt=    4.893418201e-08 (dt_cfl)",
-        "[  9.81%] ncyc     1934;  Time    9.810398769e-05 (sec); dt=    4.892510776e-08 (dt_cfl)",
-        "[  9.82%] ncyc     1935;  Time    9.815293016e-05 (sec); dt=    4.894247180e-08 (dt_cfl)",
-        "[  9.82%] ncyc     1936;  Time    9.820191973e-05 (sec); dt=    4.898956256e-08 (dt_cfl)",
-        "[  9.83%] ncyc     1937;  Time    9.825094614e-05 (sec); dt=    4.902641956e-08 (dt_cfl)",
-        "[  9.83%] ncyc     1938;  Time    9.830008445e-05 (sec); dt=    4.913830048e-08 (dt_cfl)",
-        "[  9.83%] ncyc     1939;  Time    9.834928623e-05 (sec); dt=    4.920178766e-08 (dt_cfl)",
-        "[  9.84%] ncyc     1940;  Time    9.839852837e-05 (sec); dt=    4.924213244e-08 (dt_cfl)",
-        "[  9.84%] ncyc     1941;  Time    9.844778248e-05 (sec); dt=    4.925411122e-08 (dt_cfl)",
-        "[  9.85%] ncyc     1942;  Time    9.849702859e-05 (sec); dt=    4.924611641e-08 (dt_cfl)"
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_YZ.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[ 12.90%] ncyc     2569;  Time    1.290108352e-04 (sec); dt=    4.820969074e-08 (dt_cfl)"
       ],
-      "summary": "1h34m39s in, cycle 1942 at t=98.50µs of the 1000µs cold-flow target (~9.9%). dt steady at dt_cfl (~4.92e-8s), zero FATAL_ERROR, pace holding at roughly 1.04µs sim time per wall-clock minute (still ~16h rough ETA). Net mass flow rate now 0.850 kg/s, up from 0.808 last poll -- still rising but the increments keep shrinking (roughly 0.042 kg/s gained over this ~15µs stretch vs 0.10 kg/s over the prior ~30µs stretch), consistent with curving toward a plateau rather than having reached one.",
+      "summary": "2h04m41s in, cycle 2569 at t=129.01µs of the 1000µs cold-flow target (~12.9%). dt steady at dt_cfl (~4.82e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Notable development: net mass flow rate stopped climbing -- it peaked at 0.869 kg/s around t=118µs and has since eased back down to 0.864 kg/s. First sign this may be a real overshoot-and-settle rather than a still-open-ended blowdown, but one small downturn is not enough to call it steady yet -- needs to keep flattening or damp out an oscillation before picking a restart point.",
       "notes": [
+        {
+          "txt": "Net mass flow rate peaked around t=118us (0.869 kg/s) and has started easing down (0.864 kg/s now) -- first sign of settling, not yet confirmed steady.",
+          "level": "info"
+        },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
           "level": "warn"
-        },
-        {
-          "txt": "Net mass flow rate is decelerating but has not flattened -- not yet a valid restart point for the ignition sweep.",
-          "level": "info"
         },
         {
           "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected.",
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T01:43:30-04:00"
+      "polled_at": "2026-08-17T02:13:32-04:00"
     }
   ]
 }
