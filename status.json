@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T03:43:33-04:00",
+  "polled_at": "2026-08-17T04:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "03:34:42",
+      "elapsed": "04:04:41",
       "limit": "72:00:00",
-      "pct": 5,
-      "sim_now": "217.22 µs",
+      "pct": 6,
+      "sim_now": "244.46 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 22,
+      "sim_pct": 24,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,24 +1543,16 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.534 kg/s",
-          "desc": "Still falling steadily from the 0.869 kg/s peak; the decline rate has stopped accelerating (similar to last poll) but has not started damping toward a flat value either. Not steady.",
+          "now": "0.437 kg/s",
+          "desc": "Falling, but decline rate slowed again this poll after speeding up last time -- pattern now looks like a damped oscillation (peak at t=118us, now approaching a possible trough) rather than a runaway decline. Still not flat, do not pick a restart file yet.",
           "history": [
             [
               0,
               -0.02
             ],
             [
-              28.61,
-              0.3873
-            ],
-            [
               57.2,
               0.6666
-            ],
-            [
-              85.82,
-              0.8182
             ],
             [
               109.01,
@@ -1571,40 +1563,36 @@
               0.869
             ],
             [
-              138.02,
-              0.8537
-            ],
-            [
               159.03,
               0.808
-            ],
-            [
-              177.14,
-              0.7341
             ],
             [
               187.01,
               0.6793
             ],
             [
-              193.23,
-              0.6439
-            ],
-            [
-              199.43,
-              0.6109
-            ],
-            [
-              205.61,
-              0.5808
-            ],
-            [
-              211.83,
-              0.5532
-            ],
-            [
               216.54,
               0.5335
+            ],
+            [
+              225.75,
+              0.4967
+            ],
+            [
+              230.33,
+              0.4794
+            ],
+            [
+              234.94,
+              0.4634
+            ],
+            [
+              239.52,
+              0.4494
+            ],
+            [
+              244.14,
+              0.4373
             ]
           ]
         }
@@ -1613,28 +1601,28 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 22,
-      "posts": 22,
+      "restarts": 25,
+      "posts": 25,
       "frames": 0,
-      "newest": "restart0022.rst",
+      "newest": "restart0025.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "Finished ParaView Catalyst execute",
-        "[ 21.70%] ncyc     4434;  Time    2.170409237e-04 (sec); dt=    4.542237016e-08 (dt_cfl)",
-        "[ 21.71%] ncyc     4435;  Time    2.170863377e-04 (sec); dt=    4.541401430e-08 (dt_cfl)",
-        "[ 21.71%] ncyc     4436;  Time    2.171317441e-04 (sec); dt=    4.540645951e-08 (dt_cfl)",
-        "[ 21.72%] ncyc     4437;  Time    2.171771397e-04 (sec); dt=    4.539555712e-08 (dt_cfl)",
-        "[ 21.72%] ncyc     4438;  Time    2.172225252e-04 (sec); dt=    4.538547377e-08 (dt_cfl)"
+        "[ 24.42%] ncyc     5032;  Time    2.442338823e-04 (sec); dt=    4.519470306e-08 (dt_cfl)",
+        "[ 24.43%] ncyc     5033;  Time    2.442790208e-04 (sec); dt=    4.513854854e-08 (dt_cfl)",
+        "[ 24.43%] ncyc     5034;  Time    2.443241000e-04 (sec); dt=    4.507920972e-08 (dt_cfl)",
+        "[ 24.44%] ncyc     5035;  Time    2.443691413e-04 (sec); dt=    4.504125732e-08 (dt_cfl)",
+        "[ 24.44%] ncyc     5036;  Time    2.444141600e-04 (sec); dt=    4.501870466e-08 (dt_cfl)",
+        "[ 24.45%] ncyc     5037;  Time    2.444591759e-04 (sec); dt=    4.501590236e-08 (dt_cfl)"
       ],
-      "summary": "3h34m42s in, cycle 4438 at t=217.22µs of the 1000µs cold-flow target (~21.7%). dt steady at dt_cfl (~4.54e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate continues falling, now 0.534 kg/s -- the decline rate has stopped accelerating and looks similar to the last interval (~0.0049 kg/s per us now vs ~0.0046 before), so it may be settling into a steady rate of decrease rather than accelerating further, but it is still falling steadily with no flattening or reversal yet.",
+      "summary": "4h04m41s in, cycle 5037 at t=244.46µs of the 1000µs cold-flow target (~24.4%). dt steady at dt_cfl (~4.50e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate continues falling, now 0.437 kg/s, but the decline rate has slowed again this interval (~0.0035 kg/s per us vs ~0.0049 previously) after speeding up last poll -- consistent with a damped oscillation (rise, overshoot, fast fall, now decelerating, possibly approaching a trough before swinging back), but still not flat and still not confirmed.",
       "notes": [
         {
-          "txt": "Net mass flow rate still falling (0.534 kg/s), decline rate no longer accelerating but not damping out either -- still an active transient, still not a valid restart point.",
-          "level": "warn"
+          "txt": "Net mass flow rate decline is decelerating again (0.437 kg/s) after briefly speeding up -- pattern consistent with a damped oscillation nearing a trough, but not confirmed flat yet.",
+          "level": "info"
         },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
@@ -1645,7 +1633,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T03:43:33-04:00"
+      "polled_at": "2026-08-17T04:13:32-04:00"
     }
   ]
 }
