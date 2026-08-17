@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T07:13:34-04:00",
+  "polled_at": "2026-08-17T07:43:40-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "07:04:43",
+      "elapsed": "07:34:49",
       "limit": "72:00:00",
-      "pct": 10,
-      "sim_now": "403.46 µs",
+      "pct": 11,
+      "sim_now": "430.76 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 40,
+      "sim_pct": 43,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.116 kg/s",
-          "desc": "Decline rate sped back up this poll (similar to a brief speed-up seen once before near t=190us) -- still monotonically falling, no reversal, but the rate keeps fluctuating rather than settling into a flat trend. Not confirmed steady.",
+          "now": "0.027 kg/s",
+          "desc": "Dropped sharply, now closing in on zero (true mass-in/mass-out balance) for the first time. Decline still accelerating, not yet confirmed where it settles -- watch next poll for a zero-crossing or a level-off.",
           "history": [
             [
               0,
@@ -1571,20 +1571,24 @@
               0.1767
             ],
             [
-              385.7,
-              0.1575
+              401,
+              0.1185
             ],
             [
-              393.02,
-              0.1398
+              413,
+              0.0794
             ],
             [
-              398.93,
-              0.1243
+              420.62,
+              0.054
             ],
             [
-              401.91,
-              0.1159
+              426.64,
+              0.0361
+            ],
+            [
+              429.73,
+              0.0271
             ]
           ]
         }
@@ -1593,27 +1597,27 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 41,
-      "posts": 41,
+      "restarts": 44,
+      "posts": 44,
       "frames": 0,
-      "newest": "restart0041.rst",
+      "newest": "restart0044.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 40.32%] ncyc     8658;  Time    4.032402474e-04 (sec); dt=    4.329502591e-08 (dt_cfl)",
-        "[ 40.33%] ncyc     8659;  Time    4.032835360e-04 (sec); dt=    4.328865229e-08 (dt_cfl)",
-        "[ 40.33%] ncyc     8660;  Time    4.033268098e-04 (sec); dt=    4.327381074e-08 (dt_cfl)",
-        "[ 40.34%] ncyc     8661;  Time    4.033700826e-04 (sec); dt=    4.327276133e-08 (dt_cfl)",
-        "[ 40.34%] ncyc     8662;  Time    4.034131508e-04 (sec); dt=    4.306823413e-08 (dt_cfl)",
-        "[ 40.35%] ncyc     8663;  Time    4.034562998e-04 (sec); dt=    4.314900831e-08 (dt_cfl)"
+        "[ 43.05%] ncyc     9299;  Time    4.305430734e-04 (sec); dt=    4.257425763e-08 (dt_cfl)",
+        "[ 43.06%] ncyc     9300;  Time    4.305857968e-04 (sec); dt=    4.272337199e-08 (dt_cfl)",
+        "[ 43.06%] ncyc     9301;  Time    4.306285185e-04 (sec); dt=    4.272172567e-08 (dt_cfl)",
+        "[ 43.07%] ncyc     9302;  Time    4.306712475e-04 (sec); dt=    4.272899603e-08 (dt_cfl)",
+        "[ 43.07%] ncyc     9303;  Time    4.307140592e-04 (sec); dt=    4.281170641e-08 (dt_cfl)",
+        "[ 43.08%] ncyc     9304;  Time    4.307568883e-04 (sec); dt=    4.282909328e-08 (dt_cfl)"
       ],
-      "summary": "7h04m43s in, cycle 8663 at t=403.46µs of the 1000µs cold-flow target (~40.3%). dt steady at dt_cfl (~4.31e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate down to 0.116 kg/s -- the decline rate nearly doubled again this poll (~0.0023 kg/s per us vs ~0.0013 last poll), similar to the brief speed-up seen once before around t=190us. Still monotonically declining overall, no reversal, but the rate keeps fluctuating rather than settling -- likely still a few more polls before this is confirmed steady either way.",
+      "summary": "7h34m49s in, cycle 9304 at t=430.76µs of the 1000µs cold-flow target (~43.1%). dt steady at dt_cfl (~4.28e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate has dropped sharply to 0.027 kg/s -- decline accelerated again (~0.0032 kg/s per us vs ~0.0023 last poll) and is now closing in on zero (true in/out mass balance) for the first time since the initial fill transient began. Worth watching closely next poll: does it cross zero and start oscillating around it, or level out right at/near zero?",
       "notes": [
         {
-          "txt": "Net mass flow rate decline sped back up this poll after slowing for two polls -- still falling, no reversal, but not settling into a flat trend yet.",
+          "txt": "Net mass flow rate has dropped sharply and is closing in on zero for the first time since the initial fill transient began -- watch closely next poll for a zero-crossing or level-off.",
           "level": "info"
         },
         {
@@ -1625,7 +1629,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T07:13:34-04:00"
+      "polled_at": "2026-08-17T07:43:40-04:00"
     }
   ]
 }
