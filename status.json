@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T09:43:37-04:00",
+  "polled_at": "2026-08-17T10:13:42-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Still in the dt-floor stall from last poll -- dt still bouncing between ~1e-9s and ~1.5e-9s (dt_recover/dt_grow), \"recovering\" count grew from 416 to 702. Not stuck in place though: sim time did advance ~9.6us over this ~30 minute interval (vs ~30-36us in a healthy 30-minute interval before the stall), so it is creeping forward at roughly 1/3-1/4 the pre-stall pace, not fully frozen. Zero FATAL_ERROR. This matches the dt-floor-stall pattern seen in the historical reacting runs (965850/970574), which eventually resolved on their own without crashing -- watching for the same here.",
-      "elapsed": "09:34:46",
+      "state_note": "dt-floor stall persisting into a third consecutive poll -- dt still capped near 1e-9-1.5e-9s, \"recovering\" count up to 1038 (from 702). Still creeping forward (~8us this interval, similar to the last interval, roughly 1/3-1/4 pre-stall pace). Zero FATAL_ERROR. No sign yet of clearing, but also no sign of getting worse -- holding at this reduced pace rather than degrading further.",
+      "elapsed": "10:04:51",
       "limit": "72:00:00",
-      "pct": 13,
-      "sim_now": "499.45 µs",
+      "pct": 14,
+      "sim_now": "507.46 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 50,
+      "sim_pct": 51,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "~-0.07 kg/s (not re-sampled this poll -- sim-time advance was too small since the last mass_balance.out read to be worth a fresh pull; will resample once the stall clears)",
-          "desc": "Paused sampling this monitor while the dt-floor stall is active -- oscillation was mid-trough near -0.073 kg/s last confirmed reading and progress since has been minimal.",
+          "now": "~-0.07 kg/s (still not resampled -- sim-time advance remains too small during the stall to be worth a fresh pull)",
+          "desc": "Sampling paused during the dt-floor stall; will resume once progress speeds back up.",
           "history": [
             [
               0,
@@ -1593,30 +1593,31 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 50,
-      "posts": 50,
+      "restarts": 51,
+      "posts": 51,
       "frames": 0,
-      "newest": "restart0050.rst",
+      "newest": "restart0051.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 49.94%] ncyc    12309;  Time    4.994474997e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 49.94%] ncyc    12310;  Time    4.994487497e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 49.94%] ncyc    12311;  Time    4.994497497e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 49.95%] ncyc    12312;  Time    4.994509997e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 49.95%] ncyc    12313;  Time    4.994525622e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 50.74%] ncyc    13190;  Time    5.074489409e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 50.75%] ncyc    13191;  Time    5.074501909e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 50.75%] ncyc    13192;  Time    5.074517534e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 49.95%] ncyc    12314;  Time    4.994535622e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 49.95%] ncyc    12315;  Time    4.994548122e-04 (sec); dt=    1.250000000e-09 (dt_grow)"
+        "[ 50.75%] ncyc    13193;  Time    5.074527534e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 50.75%] ncyc    13194;  Time    5.074537534e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 50.75%] ncyc    13195;  Time    5.074550034e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 50.75%] ncyc    13196;  Time    5.074565659e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
       ],
-      "summary": "9h34m46s in, cycle 12315 at t=499.45µs of the 1000µs cold-flow target (~50.0%, exactly the halfway point). Still in the dt-floor stall flagged last poll -- dt still capped near 1e-9s, \"recovering\" messages up to 702 -- but progress has not fully stopped: ~9.6us advanced this interval, roughly 1/3-1/4 the pre-stall pace. Zero FATAL_ERROR. This mirrors the dt-floor stalls seen in the historical reacting runs, which resolved on their own -- watching for the same pattern here; ETA is now uncertain until it clears.",
+      "summary": "10h04m51s in, cycle 13196 at t=507.46µs of the 1000µs cold-flow target (~50.7%). dt-floor stall now in its third consecutive poll -- \"recovering\" count at 1038, dt still stuck near 1e-9s -- but still making slow forward progress (~8us this interval, consistent with the last interval), not getting worse, not resolving either. Zero FATAL_ERROR throughout.",
       "notes": [
         {
-          "txt": "dt-floor stall persists (702 recovering messages, dt still ~1e-9s) but progress has not fully stopped -- ~1/3-1/4 pace, no FATAL_ERROR. Matches the historical pattern from 965850/970574, which resolved on their own.",
+          "txt": "dt-floor stall now spanning 3 consecutive polls (1038 recovering messages) -- steady but slow progress continues, not worsening, no FATAL_ERROR. Still matches the historical pattern from 965850/970574.",
           "level": "warn"
         },
         {
@@ -1628,7 +1629,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T09:43:37-04:00"
+      "polled_at": "2026-08-17T10:13:42-04:00"
     }
   ]
 }
