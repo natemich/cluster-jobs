@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T16:13:38-04:00",
+  "polled_at": "2026-08-17T16:43:37-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,14 +1491,14 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "dt climbing back toward dt_cfl (currently ~4.24e-8s, ramping from a stall), recovering count up to 5790 from 5338 (issue remains intermittent overall). Zero FATAL_ERROR. Net mass flow rate continuing the same small, steady drift for a sixth consecutive poll.",
-      "elapsed": "16:04:47",
+      "status": "warn",
+      "state_note": "dt-floor issue active again this poll (dt ~1e-9-1.25e-9s, recovering count up to 6236 from 5790), zero FATAL_ERROR. Net mass flow rate continuing the same small, steady drift for a seventh consecutive poll.",
+      "elapsed": "16:34:46",
       "limit": "72:00:00",
-      "pct": 22,
-      "sim_now": "571.39 µs",
+      "pct": 23,
+      "sim_now": "575.98 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 57,
+      "sim_pct": 58,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0538 kg/s",
-          "desc": "Sixth consecutive poll at the same small, steady drift rate -- extremely consistent slow asymptotic approach, currently around -0.054 kg/s and still very gradually rising.",
+          "now": "-0.0533 kg/s",
+          "desc": "Seventh consecutive poll at the same small, steady drift rate -- remarkably consistent, slowly closing toward a steady value somewhere above -0.05.",
           "history": [
             [
               0,
@@ -1583,24 +1583,24 @@
               -0.0577
             ],
             [
-              559.32,
-              -0.0558
-            ],
-            [
               563.2,
               -0.0551
-            ],
-            [
-              567,
-              -0.0546
             ],
             [
               569.4,
               -0.0542
             ],
             [
-              571.39,
-              -0.0538
+              572.5,
+              -0.0537
+            ],
+            [
+              574.61,
+              -0.0534
+            ],
+            [
+              575.92,
+              -0.0533
             ]
           ]
         }
@@ -1619,17 +1619,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 57.13%] ncyc    24055;  Time    5.712500083e-04 (sec); dt=    1.387778781e-08 (dt_recover)",
-        "[ 57.13%] ncyc    24056;  Time    5.712673555e-04 (sec); dt=    1.734723476e-08 (dt_grow)",
-        "[ 57.13%] ncyc    24057;  Time    5.712890396e-04 (sec); dt=    2.168404345e-08 (dt_grow)",
-        "[ 57.13%] ncyc    24058;  Time    5.713161446e-04 (sec); dt=    2.710505431e-08 (dt_grow)",
-        "[ 57.14%] ncyc    24059;  Time    5.713500259e-04 (sec); dt=    3.388131789e-08 (dt_grow)",
-        "[ 57.14%] ncyc    24060;  Time    5.713923776e-04 (sec); dt=    4.235164736e-08 (dt_grow)"
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 57.60%] ncyc    24981;  Time    5.759824448e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 57.60%] ncyc    24982;  Time    5.759836948e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 57.60%] ncyc    24983;  Time    5.759846948e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "recovering .... because transport equations did not converge or energy extrapolations"
       ],
-      "summary": "16h04m47s in, cycle 24060 at t=571.39µs of the 1000µs cold-flow target (~57.1%). dt climbing back toward dt_cfl, zero FATAL_ERROR throughout (issue remains intermittent overall, 5790 recovering messages). Net mass flow rate continuing the exact same small, steady upward drift for a sixth consecutive poll (-0.0538 kg/s now, was -0.0544) -- rate has now been essentially constant across six straight polls, a very well-established slow asymptotic approach.",
+      "summary": "16h34m46s in, cycle 24983 at t=575.98µs of the 1000µs cold-flow target (~57.6%). dt-floor issue active again this poll, zero FATAL_ERROR throughout. Net mass flow rate continuing the exact same small, steady upward drift for a seventh consecutive poll (-0.0533 kg/s now, was -0.0538) -- the drift rate has been remarkably consistent for seven straight polls, still slowly closing on some steady value.",
       "notes": [
         {
-          "txt": "Net mass flow rate drift rate has held essentially constant across six straight polls now -- very well-established slow asymptotic approach, currently around -0.054 kg/s.",
+          "txt": "Net mass flow rate drift rate remarkably consistent across seven straight polls -- slowly closing toward a steady value, currently -0.0533 kg/s.",
           "level": "good"
         },
         {
@@ -1645,7 +1645,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T16:13:38-04:00"
+      "polled_at": "2026-08-17T16:43:37-04:00"
     }
   ]
 }
