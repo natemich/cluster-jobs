@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T08:13:34-04:00",
+  "polled_at": "2026-08-17T08:43:33-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "08:04:43",
+      "elapsed": "08:34:42",
       "limit": "72:00:00",
-      "pct": 11,
-      "sim_now": "456.95 µs",
+      "pct": 12,
+      "sim_now": "479.22 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 46,
+      "sim_pct": 48,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.044 kg/s",
-          "desc": "Crossed zero around t=440us and is now undershooting negative, still falling -- confirms this is a damped oscillation around true mass balance (peak +0.869 at t=118us, now swinging past zero), not a monotonic settle. Expect a bottom and a swing back before this is steady.",
+          "now": "-0.073 kg/s",
+          "desc": "Decline decelerating sharply, likely nearing the bottom of this oscillation swing -- watch next poll for a reversal back toward zero/positive. Still not steady.",
           "history": [
             [
               0,
@@ -1571,32 +1571,28 @@
               0.1767
             ],
             [
-              413,
-              0.0794
-            ],
-            [
               429.01,
               0.0292
-            ],
-            [
-              436.12,
-              0.009
             ],
             [
               439.63,
               -0.0005
             ],
             [
-              446.83,
-              -0.0199
+              456.22,
+              -0.0438
             ],
             [
-              452.73,
-              -0.0352
+              465.22,
+              -0.0628
             ],
             [
-              456.31,
-              -0.0441
+              472.94,
+              -0.0699
+            ],
+            [
+              479.3,
+              -0.0728
             ]
           ]
         }
@@ -1605,27 +1601,27 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 46,
-      "posts": 46,
+      "restarts": 48,
+      "posts": 48,
       "frames": 0,
-      "newest": "restart0046.rst",
+      "newest": "restart0048.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 45.67%] ncyc     9937;  Time    4.567366847e-04 (sec); dt=    4.236500781e-08 (dt_cfl)",
-        "[ 45.68%] ncyc     9938;  Time    4.567790679e-04 (sec); dt=    4.238316928e-08 (dt_cfl)",
-        "[ 45.68%] ncyc     9939;  Time    4.568215768e-04 (sec); dt=    4.250892525e-08 (dt_cfl)",
-        "[ 45.69%] ncyc     9940;  Time    4.568640524e-04 (sec); dt=    4.247558459e-08 (dt_cfl)",
-        "[ 45.69%] ncyc     9941;  Time    4.569068044e-04 (sec); dt=    4.275203100e-08 (dt_cfl)",
-        "[ 45.69%] ncyc     9942;  Time    4.569495428e-04 (sec); dt=    4.273835401e-08 (dt_cfl)"
+        "[ 47.90%] ncyc    10623;  Time    4.790102619e-04 (sec); dt=    4.212277352e-08 (dt_cfl)",
+        "[ 47.91%] ncyc    10624;  Time    4.790522548e-04 (sec); dt=    4.199290681e-08 (dt_cfl)",
+        "[ 47.91%] ncyc    10625;  Time    4.790944954e-04 (sec); dt=    4.224059847e-08 (dt_cfl)",
+        "[ 47.91%] ncyc    10626;  Time    4.791362298e-04 (sec); dt=    4.173446220e-08 (dt_cfl)",
+        "[ 47.92%] ncyc    10627;  Time    4.791777004e-04 (sec); dt=    4.147056093e-08 (dt_cfl)",
+        "[ 47.92%] ncyc    10628;  Time    4.792190653e-04 (sec); dt=    4.136494881e-08 (dt_cfl)"
       ],
-      "summary": "8h04m43s in, cycle 9942 at t=456.95µs of the 1000µs cold-flow target (~45.7%). dt steady at dt_cfl (~4.27e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Confirmed this poll: net mass flow rate crossed zero around t=440us and is now negative (-0.044 kg/s), still falling -- this is a genuine damped oscillation around the true mass-balance point (rise to +0.869 peak, fall through zero, now undershooting negative), not a one-way settle. Expect it to bottom out and swing back before this is actually steady.",
+      "summary": "8h34m42s in, cycle 10628 at t=479.22µs of the 1000µs cold-flow target (~47.9%). dt steady at dt_cfl (~4.14e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate at -0.073 kg/s, but the decline is decelerating sharply within this poll (increments shrinking from -0.0029 down to -0.0004 kg/s per sample) -- looks like it is nearing the bottom of this oscillation cycle and should turn back upward soon.",
       "notes": [
         {
-          "txt": "Net mass flow rate crossed zero (~t=440us) and is now negative (-0.044 kg/s) -- confirms a genuine damped oscillation around true mass balance, not a monotonic settle. Not steady, do not pick a restart file.",
+          "txt": "Net mass flow rate decline is decelerating sharply near -0.073 kg/s -- likely approaching the bottom of this oscillation before swinging back. Still not steady.",
           "level": "info"
         },
         {
@@ -1637,7 +1633,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T08:13:34-04:00"
+      "polled_at": "2026-08-17T08:43:33-04:00"
     }
   ]
 }
