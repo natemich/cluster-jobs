@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T00:51:43-04:00",
+  "polled_at": "2026-08-17T01:21:43-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "00:42:52",
+      "elapsed": "01:12:52",
       "limit": "72:00:00",
-      "pct": 1,
-      "sim_now": "44.98 µs",
+      "pct": 2,
+      "sim_now": "75.86 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 4,
+      "sim_pct": 8,
       "monitors": [
         {
           "key": "sim_time",
@@ -1545,28 +1545,26 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 5,
-      "posts": 5,
+      "restarts": 8,
+      "posts": 8,
       "frames": 0,
-      "newest": "restart0005.rst",
+      "newest": "restart0008.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[  4.45%] ncyc      850;  Time    4.453264740e-05 (sec); dt=    4.952691036e-08 (dt_cfl)",
-        "[  4.46%] ncyc      851;  Time    4.458222903e-05 (sec); dt=    4.958163097e-08 (dt_cfl)",
-        "[  4.46%] ncyc      852;  Time    4.463192217e-05 (sec); dt=    4.969313821e-08 (dt_cfl)",
-        "[  4.47%] ncyc      853;  Time    4.468172200e-05 (sec); dt=    4.979982683e-08 (dt_cfl)",
-        "[  4.47%] ncyc      854;  Time    4.473153576e-05 (sec); dt=    4.981376530e-08 (dt_cfl)",
-        "[  4.48%] ncyc      855;  Time    4.478129602e-05 (sec); dt=    4.976025454e-08 (dt_cfl)",
-        "[  4.48%] ncyc      856;  Time    4.483094769e-05 (sec); dt=    4.965167071e-08 (dt_cfl)",
-        "[  4.49%] ncyc      857;  Time    4.488051252e-05 (sec); dt=    4.956483411e-08 (dt_cfl)",
-        "[  4.49%] ncyc      858;  Time    4.493001099e-05 (sec); dt=    4.949846257e-08 (dt_cfl)",
-        "[  4.50%] ncyc      859;  Time    4.497949003e-05 (sec); dt=    4.947904535e-08 (dt_cfl)"
+        "[  7.55%] ncyc     1476;  Time    7.551708258e-05 (sec); dt=    4.945487270e-08 (dt_cfl)",
+        "[  7.56%] ncyc     1477;  Time    7.556660172e-05 (sec); dt=    4.951914237e-08 (dt_cfl)",
+        "[  7.56%] ncyc     1478;  Time    7.561615446e-05 (sec); dt=    4.955274431e-08 (dt_cfl)",
+        "[  7.57%] ncyc     1479;  Time    7.566571575e-05 (sec); dt=    4.956128776e-08 (dt_cfl)",
+        "[  7.57%] ncyc     1480;  Time    7.571532660e-05 (sec); dt=    4.961084842e-08 (dt_cfl)",
+        "[  7.58%] ncyc     1481;  Time    7.576502020e-05 (sec); dt=    4.969360441e-08 (dt_cfl)",
+        "[  7.58%] ncyc     1482;  Time    7.581486352e-05 (sec); dt=    4.984332015e-08 (dt_cfl)",
+        "[  7.59%] ncyc     1483;  Time    7.586478371e-05 (sec); dt=    4.992018899e-08 (dt_cfl)"
       ],
-      "summary": "42m52s in, cycle 859 at t=44.98µs of the 1000µs cold-flow target (~4.5%). dt steady at dt_cfl (~4.95e-8s), zero FATAL_ERROR. Pace this poll (~1.05µs sim time per wall-clock minute) is consistent with the prior rate (~1.1-1.2µs/min), which would put full completion very roughly around 15-16 hours from submission -- still an early, rough extrapolation, not a firm ETA.",
+      "summary": "1h12m52s in, cycle 1483 at t=75.86µs of the 1000µs cold-flow target (~7.6%). dt steady at dt_cfl (~4.99e-8s), zero FATAL_ERROR, pace holding at roughly 1.04µs sim time per wall-clock minute across the last three polls -- extrapolates to very roughly 16 hours total, though still an early estimate that could shift once the flow field develops further.",
       "notes": [
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
@@ -1577,7 +1575,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T00:51:43-04:00"
+      "polled_at": "2026-08-17T01:21:43-04:00"
     }
   ]
 }
