@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T02:43:30-04:00",
+  "polled_at": "2026-08-17T03:13:39-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "02:34:39",
+      "elapsed": "03:04:48",
       "limit": "72:00:00",
       "pct": 4,
-      "sim_now": "159.80 µs",
+      "sim_now": "189.21 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 16,
+      "sim_pct": 19,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,32 +1543,20 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.805 kg/s",
-          "desc": "Falling steadily since the 0.869 kg/s peak at t=118us -- roughly linear decline so far, no flattening yet. Could be the downslope of a damped oscillation (would rise again) or a slow decay toward a lower plateau -- not enough data yet to tell apart. Still not steady.",
+          "now": "0.675 kg/s",
+          "desc": "Still falling from the 0.869 kg/s peak, and the fall rate has roughly doubled versus the last poll (accelerating, not damping). Not a settling pattern right now -- watch closely, do not assume this is near steady.",
           "history": [
             [
               0,
               -0.02
             ],
             [
-              14.33,
-              0.1974
-            ],
-            [
               28.61,
               0.3873
             ],
             [
-              42.9,
-              0.5439
-            ],
-            [
               57.2,
               0.6666
-            ],
-            [
-              71.55,
-              0.7571
             ],
             [
               85.82,
@@ -1583,48 +1571,44 @@
               0.8654
             ],
             [
-              116.14,
-              0.8688
-            ],
-            [
               118.24,
               0.869
-            ],
-            [
-              123.13,
-              0.868
             ],
             [
               128.04,
               0.865
             ],
             [
-              133.01,
-              0.8602
-            ],
-            [
               138.02,
               0.8537
-            ],
-            [
-              143.11,
-              0.8455
             ],
             [
               148.15,
               0.8356
             ],
             [
-              153.12,
-              0.8242
+              159.03,
+              0.808
             ],
             [
-              156.54,
-              0.8152
+              165.01,
+              0.788
             ],
             [
-              159.95,
-              0.8052
+              171.11,
+              0.7632
+            ],
+            [
+              177.14,
+              0.7341
+            ],
+            [
+              181.73,
+              0.7094
+            ],
+            [
+              187.81,
+              0.6747
             ]
           ]
         }
@@ -1633,28 +1617,28 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 16,
-      "posts": 16,
+      "restarts": 19,
+      "posts": 19,
       "frames": 0,
-      "newest": "restart0016.rst",
+      "newest": "restart0019.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 15.96%] ncyc     3202;  Time    1.595627616e-04 (sec); dt=    4.808589082e-08 (dt_cfl)",
-        "[ 15.96%] ncyc     3203;  Time    1.596108277e-04 (sec); dt=    4.806609714e-08 (dt_cfl)",
-        "[ 15.97%] ncyc     3204;  Time    1.596588637e-04 (sec); dt=    4.803607402e-08 (dt_cfl)",
-        "[ 15.97%] ncyc     3205;  Time    1.597068888e-04 (sec); dt=    4.802502209e-08 (dt_cfl)",
-        "[ 15.98%] ncyc     3206;  Time    1.597548941e-04 (sec); dt=    4.800528729e-08 (dt_cfl)",
-        "[ 15.98%] ncyc     3207;  Time    1.598028941e-04 (sec); dt=    4.800002164e-08 (dt_cfl)"
+        "Finished ParaView Catalyst execute",
+        "[ 18.90%] ncyc     3827;  Time    1.890267866e-04 (sec); dt=    4.666756963e-08 (dt_cfl)",
+        "[ 18.91%] ncyc     3828;  Time    1.890735102e-04 (sec); dt=    4.672366466e-08 (dt_cfl)",
+        "[ 18.91%] ncyc     3829;  Time    1.891202174e-04 (sec); dt=    4.670714446e-08 (dt_cfl)",
+        "[ 18.92%] ncyc     3830;  Time    1.891669748e-04 (sec); dt=    4.675746557e-08 (dt_cfl)",
+        "[ 18.92%] ncyc     3831;  Time    1.892137173e-04 (sec); dt=    4.674245178e-08 (dt_cfl)"
       ],
-      "summary": "2h34m39s in, cycle 3207 at t=159.80µs of the 1000µs cold-flow target (~16.0%). dt steady at dt_cfl (~4.80e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate is now falling steadily from its 0.869 kg/s peak (t=118us) down to 0.805 kg/s -- the decline looks roughly linear so far, no sign yet of flattening into either a plateau or a damped oscillation. Reading so far: rise, overshoot, and now a clean fall -- consistent with an underdamped settling process, but still too early to call where (or whether) it levels out.",
+      "summary": "3h04m48s in, cycle 3831 at t=189.21µs of the 1000µs cold-flow target (~18.9%). dt steady at dt_cfl (~4.67e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate continues falling from its 0.869 kg/s peak, now at 0.675 kg/s -- and the decline rate has roughly doubled versus the previous poll interval (0.0046 kg/s per us now vs 0.0019 kg/s per us before), i.e. accelerating downward rather than damping out. Flagging this plainly rather than guessing why: this looks less like settling and more like an active transient still developing. Not steady, not close to it.",
       "notes": [
         {
-          "txt": "Net mass flow rate turned over at t=118us (peak 0.869 kg/s) and is now falling steadily (0.805 kg/s) -- rise/overshoot/fall pattern so far, not yet flattened. Keep watching before picking a restart file.",
-          "level": "info"
+          "txt": "Net mass flow rate decline is accelerating (roughly doubled rate this poll vs last) rather than damping out -- looks like an active transient, not settling. Worth a closer look if this continues, before assuming any restart file nearby is usable.",
+          "level": "warn"
         },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
@@ -1665,7 +1649,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T02:43:30-04:00"
+      "polled_at": "2026-08-17T03:13:39-04:00"
     }
   ]
 }
