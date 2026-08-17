@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-09T22:27:34-04:00",
+  "polled_at": "2026-08-17T00:11:08-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1481,6 +1481,105 @@
           "level": "info"
         }
       ]
+    },
+    {
+      "id": "15689",
+      "label": "TriangleRDE coldflow",
+      "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\triangleRDE_coldflow",
+      "kind": "converge",
+      "cluster": "hazel",
+      "sched": "lsf",
+      "queue": "braun",
+      "state": "RUN",
+      "status": "good",
+      "state_note": "Just started, healthy. Combustion off by design (this is a cold-flow-only prep run) -- no SAGE/CVODE chemistry means this should progress much faster than the reacting runs.",
+      "elapsed": "00:02:17",
+      "limit": "72:00:00",
+      "pct": 0,
+      "sim_now": "1.439 µs",
+      "sim_target": "1000 µs",
+      "sim_pct": 0,
+      "monitors": [
+        {
+          "key": "sim_time",
+          "label": "Sim time",
+          "now": "1.439 µs",
+          "desc": "Just started (ncyc 37) -- dt at dt_cfl (~6.5e-8s), healthy startup ramp, nothing to assess yet.",
+          "history": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.000001439
+            ]
+          ]
+        },
+        {
+          "key": "total_mem",
+          "label": "Total memory",
+          "now": "41.8 GB",
+          "desc": "64 ranks, ~650MB/rank average -- normal for this mesh size, no growth signal yet this early.",
+          "history": [
+            [
+              0,
+              41785.566
+            ]
+          ]
+        },
+        {
+          "key": "cell_count",
+          "label": "Total cells",
+          "now": "2,752,453",
+          "desc": "Matches the ~3.1M seen mid-run in prior reacting cases (AMR grows cell count once things get hot); reasonable for a fresh cold start.",
+          "history": [
+            [
+              0,
+              2752453
+            ]
+          ]
+        }
+      ],
+      "ranks": 64,
+      "rss": "41.8G",
+      "s_per_step": null,
+      "node": "n0356 · 1×64",
+      "restarts": 1,
+      "posts": 1,
+      "frames": 0,
+      "newest": "restart0001.rst",
+      "submitted": "2026-08-17T00:11:08-04:00",
+      "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
+      "log_name": "stdout.15689",
+      "log_path": "triangleRDE_coldflow",
+      "log_size": null,
+      "log_tail": [
+        "[  0.10%] ncyc       30;  Time    1.000410691e-06 (sec); dt=    6.514957773e-08 (dt_cfl)",
+        "[  0.11%] ncyc       31;  Time    1.065055141e-06 (sec); dt=    6.464444961e-08 (dt_cfl)",
+        "[  0.11%] ncyc       32;  Time    1.129174548e-06 (sec); dt=    6.411940694e-08 (dt_cfl)",
+        "[  0.12%] ncyc       33;  Time    1.192823178e-06 (sec); dt=    6.364863007e-08 (dt_cfl)",
+        "[  0.13%] ncyc       34;  Time    1.256080412e-06 (sec); dt=    6.325723420e-08 (dt_cfl)",
+        "[  0.13%] ncyc       35;  Time    1.319013039e-06 (sec); dt=    6.293262742e-08 (dt_cfl)",
+        "[  0.14%] ncyc       36;  Time    1.381641936e-06 (sec); dt=    6.262889651e-08 (dt_cfl)",
+        "[  0.14%] ncyc       37;  Time    1.439417807e-06 (sec); dt=    5.777587098e-08 (dt_cfl)"
+      ],
+      "summary": "Just submitted (2026-08-17 00:08:51), 2 minutes in, cycle 37 at t=1.44µs of the 1000µs cold-flow target. This is a deliberately non-reacting prep run (combustion_flag=0, source_flag=0) meant to give the upcoming ignition-energy sweep a shared, actually-steady-state initial condition, rather than igniting into a still-filling domain like the last two runs did. Too early to say anything about convergence yet -- dt is healthy at dt_cfl, memory and cell count look normal for a cold start.",
+      "notes": [
+        {
+          "txt": "Catalyst is producing zero output on this run: stdout shows \"failed to open library: libpython3.7m.so.1.0\" and libcatalyst-paraview.so missing on every trigger (128 times already by cycle 37), and no outputs_original/paraview_catalyst directory or PNG exists at all -- a currently-broken cluster environment issue, unrelated to the ignition sweep.",
+          "level": "warn"
+        },
+        {
+          "txt": "No FATAL_ERROR or other warnings beyond the expected single-node network-latency notice and an sgs_ke clip-value reset.",
+          "level": "good"
+        },
+        {
+          "txt": "Combustion/source intentionally disabled for this run -- do not read the absence of any temperature rise as a problem.",
+          "level": "info"
+        }
+      ],
+      "polled_at": "2026-08-17T00:11:08-04:00"
     }
   ]
 }
