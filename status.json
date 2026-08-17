@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T14:43:36-04:00",
+  "polled_at": "2026-08-17T15:13:37-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,12 +1491,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "Back in an active dt-floor stall right now (dt ~1e-9-1.25e-9s, recovering count up to 4529 from 4095), progress slower this interval (~3.6us vs the usual ~5-6us). Zero FATAL_ERROR. Net mass flow rate continuing the same small, slow upward drift for a third consecutive poll.",
-      "elapsed": "14:34:45",
+      "status": "good",
+      "state_note": "dt currently ramping back up out of the last stall (dt_grow climbing toward dt_cfl), recovering count up to 4938 from 4529 (issue remains intermittent overall). Zero FATAL_ERROR. Net mass flow rate continuing the same small, slow, steady drift for a fourth consecutive poll.",
+      "elapsed": "15:04:46",
       "limit": "72:00:00",
-      "pct": 20,
-      "sim_now": "558.94 µs",
+      "pct": 21,
+      "sim_now": "563.24 µs",
       "sim_target": "1000 µs",
       "sim_pct": 56,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0559 kg/s",
-          "desc": "Third consecutive poll of the same small, slow, consistent upward drift -- reads as a genuine slow asymptotic approach, much calmer than the original oscillation. Getting closer to a defensible steady value.",
+          "now": "-0.0552 kg/s",
+          "desc": "Fourth consecutive poll of the same small, steady drift rate -- highly consistent, reads as a genuine slow asymptotic approach rather than an oscillation swing. Getting closer to a defensible steady value in the -0.05-ish range.",
           "history": [
             [
               0,
@@ -1579,24 +1579,24 @@
               -0.0581
             ],
             [
-              543.71,
-              -0.0586
-            ],
-            [
               550.1,
               -0.0577
-            ],
-            [
-              554.5,
-              -0.0567
             ],
             [
               556.5,
               -0.0563
             ],
             [
-              558.8,
-              -0.0559
+              559.32,
+              -0.0558
+            ],
+            [
+              561.4,
+              -0.0554
+            ],
+            [
+              563.1,
+              -0.0552
             ]
           ]
         }
@@ -1605,31 +1605,31 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 56,
-      "posts": 56,
+      "restarts": 57,
+      "posts": 57,
       "frames": 0,
-      "newest": "restart0056.rst",
+      "newest": "restart0057.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 55.89%] ncyc    21307;  Time    5.589387270e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 55.89%] ncyc    21308;  Time    5.589399770e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 55.89%] ncyc    21309;  Time    5.589409770e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 56.32%] ncyc    22217;  Time    5.631934161e-04 (sec); dt=    4.768371582e-09 (dt_grow)",
+        "[ 56.32%] ncyc    22218;  Time    5.631993765e-04 (sec); dt=    5.960464478e-09 (dt_grow)",
+        "[ 56.32%] ncyc    22219;  Time    5.632068271e-04 (sec); dt=    7.450580597e-09 (dt_grow)",
+        "[ 56.32%] ncyc    22220;  Time    5.632161403e-04 (sec); dt=    9.313225746e-09 (dt_grow)",
+        "[ 56.32%] ncyc    22221;  Time    5.632277819e-04 (sec); dt=    1.164153218e-08 (dt_grow)",
+        "[ 56.32%] ncyc    22222;  Time    5.632423338e-04 (sec); dt=    1.455191523e-08 (dt_grow)"
       ],
-      "summary": "14h34m45s in, cycle 21309 at t=558.94µs of the 1000µs cold-flow target (~55.9%). Back in an active dt-floor stall this poll (dt near 1e-9s, slower progress this interval), zero FATAL_ERROR. Net mass flow rate continuing the same small, slow, consistent upward drift for a third poll running (-0.0559 kg/s now, was -0.0567) -- same tiny rate as the last two polls, reads as a genuine slow asymptotic approach rather than another large oscillation swing.",
+      "summary": "15h04m46s in, cycle 22222 at t=563.24µs of the 1000µs cold-flow target (~56.3%). dt currently climbing back out of a stall toward dt_cfl, zero FATAL_ERROR throughout (issue remains intermittent overall, 4938 recovering messages). Net mass flow rate continuing the exact same small, slow, steady upward drift for a fourth consecutive poll (-0.0552 kg/s now, was -0.0559) -- highly consistent rate each poll, this looks like a genuine slow asymptotic approach toward some steady value in the -0.05-ish range rather than another large oscillation swing.",
       "notes": [
         {
-          "txt": "Net mass flow rate drift continuing at the same small, steady rate for a third poll -- looks like a genuine slow asymptotic approach, not another large swing.",
-          "level": "info"
+          "txt": "Net mass flow rate drift highly consistent for a fourth poll running -- reads as a genuine slow asymptotic approach, not an oscillation swing.",
+          "level": "good"
         },
         {
-          "txt": "Active dt-floor stall this poll, progress slower than usual interval -- still zero FATAL_ERROR.",
+          "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout.",
           "level": "warn"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T14:43:36-04:00"
+      "polled_at": "2026-08-17T15:13:37-04:00"
     }
   ]
 }
