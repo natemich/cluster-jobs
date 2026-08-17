@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T05:43:33-04:00",
+  "polled_at": "2026-08-17T06:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1493,12 +1493,12 @@
       "state": "RUN",
       "status": "good",
       "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "05:34:42",
+      "elapsed": "06:04:41",
       "limit": "72:00:00",
       "pct": 8,
-      "sim_now": "322.55 µs",
+      "sim_now": "348.75 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 32,
+      "sim_pct": 35,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,7 +1543,7 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.249 kg/s",
+          "now": "0.213 kg/s",
           "desc": "Still falling, decline continuing to decelerate gently each poll. Not flat yet -- do not pick a restart file yet.",
           "history": [
             [
@@ -1559,10 +1559,6 @@
               0.869
             ],
             [
-              159.03,
-              0.808
-            ],
-            [
               216.54,
               0.5335
             ],
@@ -1575,20 +1571,24 @@
               0.2952
             ],
             [
-              304.81,
-              0.2783
+              321.41,
+              0.2491
             ],
             [
-              313.24,
-              0.2623
+              330.44,
+              0.2357
             ],
             [
-              318.83,
-              0.253
+              340.82,
+              0.2218
             ],
             [
-              321.72,
-              0.2486
+              345.34,
+              0.2162
+            ],
+            [
+              348.32,
+              0.2125
             ]
           ]
         }
@@ -1597,27 +1597,27 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 33,
-      "posts": 33,
+      "restarts": 35,
+      "posts": 35,
       "frames": 0,
-      "newest": "restart0033.rst",
+      "newest": "restart0035.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y022.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y036.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_YZ.py",
-        "Finished ParaView Catalyst execute",
-        "[ 32.25%] ncyc     6802;  Time    3.225046761e-04 (sec); dt=    4.379146768e-08 (dt_cfl)",
-        "[ 32.25%] ncyc     6803;  Time    3.225485872e-04 (sec); dt=    4.391109906e-08 (dt_cfl)"
+        "[ 34.85%] ncyc     7395;  Time    3.485383176e-04 (sec); dt=    4.412101659e-08 (dt_cfl)",
+        "[ 34.86%] ncyc     7396;  Time    3.485821270e-04 (sec); dt=    4.380933206e-08 (dt_cfl)",
+        "[ 34.86%] ncyc     7397;  Time    3.486254638e-04 (sec); dt=    4.333679402e-08 (dt_cfl)",
+        "[ 34.87%] ncyc     7398;  Time    3.486686487e-04 (sec); dt=    4.318489524e-08 (dt_cfl)",
+        "[ 34.87%] ncyc     7399;  Time    3.487113833e-04 (sec); dt=    4.273466864e-08 (dt_cfl)",
+        "[ 34.88%] ncyc     7400;  Time    3.487541755e-04 (sec); dt=    4.279220821e-08 (dt_cfl)"
       ],
-      "summary": "5h34m42s in, cycle 6803 at t=322.55µs of the 1000µs cold-flow target (~32.3%). dt steady at dt_cfl (~4.39e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate down to 0.249 kg/s, decline continuing to decelerate gently (~0.0018 kg/s per us vs ~0.0025 last poll) -- same slow-easing trend, still not flat.",
+      "summary": "6h04m41s in, cycle 7400 at t=348.75µs of the 1000µs cold-flow target (~34.9%). dt steady at dt_cfl (~4.28e-8s, drifted down slightly from ~4.4e-8s over this interval), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate down to 0.213 kg/s, decline continuing to decelerate gently (~0.0014 kg/s per us vs ~0.0018 last poll) -- same slow-easing trend, still not flat.",
       "notes": [
         {
-          "txt": "Net mass flow rate decline continuing to decelerate (0.249 kg/s) -- same slow-easing pattern as recent polls, not confirmed flat yet.",
+          "txt": "Net mass flow rate decline continuing to decelerate (0.213 kg/s) -- same slow-easing pattern as recent polls, not confirmed flat yet.",
           "level": "info"
         },
         {
@@ -1629,7 +1629,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T05:43:33-04:00"
+      "polled_at": "2026-08-17T06:13:32-04:00"
     }
   ]
 }
