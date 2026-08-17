@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T00:11:08-04:00",
+  "polled_at": "2026-08-17T00:21:44-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "Just started, healthy. Combustion off by design (this is a cold-flow-only prep run) -- no SAGE/CVODE chemistry means this should progress much faster than the reacting runs.",
-      "elapsed": "00:02:17",
+      "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues since last poll.",
+      "elapsed": "00:12:53",
       "limit": "72:00:00",
       "pct": 0,
-      "sim_now": "1.439 µs",
+      "sim_now": "15.16 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 0,
+      "sim_pct": 2,
       "monitors": [
         {
           "key": "sim_time",
@@ -1545,41 +1545,35 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 1,
-      "posts": 1,
+      "restarts": 2,
+      "posts": 7,
       "frames": 0,
-      "newest": "restart0001.rst",
+      "newest": "restart0002.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[  0.10%] ncyc       30;  Time    1.000410691e-06 (sec); dt=    6.514957773e-08 (dt_cfl)",
-        "[  0.11%] ncyc       31;  Time    1.065055141e-06 (sec); dt=    6.464444961e-08 (dt_cfl)",
-        "[  0.11%] ncyc       32;  Time    1.129174548e-06 (sec); dt=    6.411940694e-08 (dt_cfl)",
-        "[  0.12%] ncyc       33;  Time    1.192823178e-06 (sec); dt=    6.364863007e-08 (dt_cfl)",
-        "[  0.13%] ncyc       34;  Time    1.256080412e-06 (sec); dt=    6.325723420e-08 (dt_cfl)",
-        "[  0.13%] ncyc       35;  Time    1.319013039e-06 (sec); dt=    6.293262742e-08 (dt_cfl)",
-        "[  0.14%] ncyc       36;  Time    1.381641936e-06 (sec); dt=    6.262889651e-08 (dt_cfl)",
-        "[  0.14%] ncyc       37;  Time    1.439417807e-06 (sec); dt=    5.777587098e-08 (dt_cfl)"
+        "[  1.50%] ncyc      264;  Time    1.499774149e-05 (sec); dt=    5.529951684e-08 (dt_cfl)",
+        "Executing ParaView Catalyst scripts: (all 9 registered scripts, as before)",
+        "Finished ParaView Catalyst execute",
+        "[  1.51%] ncyc      265;  Time    1.505307643e-05 (sec); dt=    5.533493730e-08 (dt_cfl)",
+        "[  1.51%] ncyc      266;  Time    1.510836825e-05 (sec); dt=    5.529181859e-08 (dt_cfl)",
+        "[  1.52%] ncyc      267;  Time    1.516365578e-05 (sec); dt=    5.528752698e-08 (dt_cfl)"
       ],
-      "summary": "Just submitted (2026-08-17 00:08:51), 2 minutes in, cycle 37 at t=1.44µs of the 1000µs cold-flow target. This is a deliberately non-reacting prep run (combustion_flag=0, source_flag=0) meant to give the upcoming ignition-energy sweep a shared, actually-steady-state initial condition, rather than igniting into a still-filling domain like the last two runs did. Too early to say anything about convergence yet -- dt is healthy at dt_cfl, memory and cell count look normal for a cold start.",
+      "summary": "12m53s in, cycle 267 at t=15.16µs of the 1000µs cold-flow target (~1.5%). dt healthy and steady at dt_cfl (~5.5e-8s), no FATAL_ERROR, no new issues. At this very early rate (~1.2µs of sim time per wall-clock minute) a full 1000µs would take roughly half a day, but that rate is likely to change once the domain fills and AMR activity increases -- too early in the run to extrapolate with any confidence.",
       "notes": [
         {
-          "txt": "Catalyst is producing zero output on this run: stdout shows \"failed to open library: libpython3.7m.so.1.0\" and libcatalyst-paraview.so missing on every trigger (128 times already by cycle 37), and no outputs_original/paraview_catalyst directory or PNG exists at all -- a currently-broken cluster environment issue, unrelated to the ignition sweep.",
+          "txt": "Catalyst still producing zero output (same \"failed to open library: libpython3.7m.so.1.0\" / libcatalyst-paraview.so failure as last poll, no PNGs, no paraview_catalyst output dir) -- actively being diagnosed with the user via cluster-side module/find commands this session, not yet fixed.",
           "level": "warn"
         },
         {
-          "txt": "No FATAL_ERROR or other warnings beyond the expected single-node network-latency notice and an sgs_ke clip-value reset.",
-          "level": "good"
-        },
-        {
-          "txt": "Combustion/source intentionally disabled for this run -- do not read the absence of any temperature rise as a problem.",
+          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected, not a problem.",
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T00:11:08-04:00"
+      "polled_at": "2026-08-17T00:21:44-04:00"
     }
   ]
 }
