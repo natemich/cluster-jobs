@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T17:43:33-04:00",
+  "polled_at": "2026-08-17T18:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue active again this poll (recovering count up to 7070 from 6649), zero FATAL_ERROR. Net mass flow rate continuing the same slow drift for a ninth consecutive poll.",
-      "elapsed": "17:34:42",
+      "state_note": "dt-floor issue active this poll (recovering count up to 7518 from 7070), zero FATAL_ERROR. Net mass flow rate continuing the same slow drift for a tenth consecutive poll.",
+      "elapsed": "18:04:41",
       "limit": "72:00:00",
-      "pct": 24,
-      "sim_now": "584.49 µs",
+      "pct": 25,
+      "sim_now": "589.28 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 58,
+      "sim_pct": 59,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0520 kg/s",
-          "desc": "Ninth consecutive poll of the same slow, steady drift -- still gradually closing in on a steady value, currently -0.0520 kg/s.",
+          "now": "-0.0509 kg/s",
+          "desc": "Tenth consecutive poll of the same slow, steady drift -- still gradually approaching a settled value, currently -0.0509 kg/s.",
           "history": [
             [
               0,
@@ -1579,10 +1579,6 @@
               -0.0581
             ],
             [
-              550.1,
-              -0.0577
-            ],
-            [
               563.2,
               -0.0551
             ],
@@ -1591,16 +1587,20 @@
               -0.0532
             ],
             [
-              580.1,
-              -0.0527
-            ],
-            [
-              582.6,
+              583,
               -0.0523
             ],
             [
-              584.49,
-              -0.052
+              586.21,
+              -0.0516
+            ],
+            [
+              588.21,
+              -0.0511
+            ],
+            [
+              589.28,
+              -0.0509
             ]
           ]
         }
@@ -1619,17 +1619,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 58.45%] ncyc    26831;  Time    5.844896718e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 58.45%] ncyc    26832;  Time    5.844912343e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 58.45%] ncyc    26833;  Time    5.844922343e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 58.45%] ncyc    26834;  Time    5.844934843e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 58.93%] ncyc    27720;  Time    5.892776125e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 58.93%] ncyc    27721;  Time    5.892788625e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 58.93%] ncyc    27722;  Time    5.892798625e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 58.93%] ncyc    27723;  Time    5.892811125e-04 (sec); dt=    1.250000000e-09 (dt_grow)"
       ],
-      "summary": "17h34m42s in, cycle 26834 at t=584.49µs of the 1000µs cold-flow target (~58.4%). dt-floor issue active again this poll, zero FATAL_ERROR throughout. Net mass flow rate continuing the same slow upward drift for a ninth consecutive poll (-0.0520 kg/s now, was -0.0527) -- pattern remains highly consistent, still gradually closing in on a steady value.",
+      "summary": "18h04m41s in, cycle 27723 at t=589.28µs of the 1000µs cold-flow target (~58.9%). dt-floor issue active this poll, zero FATAL_ERROR throughout. Net mass flow rate continuing the same slow upward drift for a tenth consecutive poll (-0.0509 kg/s now, was -0.0520) -- pattern remains steady and consistent, still gradually approaching a settled value.",
       "notes": [
         {
-          "txt": "Net mass flow rate drift continuing at a consistent slow rate for a ninth poll running, now -0.0520 kg/s.",
+          "txt": "Net mass flow rate drift continuing at a consistent slow rate for a tenth poll running, now -0.0509 kg/s.",
           "level": "info"
         },
         {
@@ -1645,7 +1645,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T17:43:33-04:00"
+      "polled_at": "2026-08-17T18:13:32-04:00"
     }
   ]
 }
