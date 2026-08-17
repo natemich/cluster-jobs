@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T08:43:33-04:00",
+  "polled_at": "2026-08-17T09:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,14 +1491,14 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
-      "elapsed": "08:34:42",
+      "status": "warn",
+      "state_note": "New this poll: dt has collapsed into a repeating recover/grow cycle (\"recovering .... because transport equations did not converge or energy extrapolations\") starting around t=489.75us -- 416 occurrences already and still actively happening as of this poll (confirmed by re-checking 5 seconds apart: sim time only advanced ~0.0001us in that span). dt is stuck bouncing between ~1e-9s and ~1.5e-9s (dt_recover/dt_grow), roughly 30-40x smaller than the steady dt_cfl (~4.2e-8s) seen for the entire run up to this point. No FATAL_ERROR yet, but forward progress has effectively stalled at this instant. This is the classic dt-floor-stall pattern seen in the prior reacting runs (965850/970574) -- surprising to see it here since this run has no combustion/chemistry active, so whatever is causing it is a purely hydrodynamic/numerical issue, not chemistry stiffness.",
+      "elapsed": "09:04:41",
       "limit": "72:00:00",
-      "pct": 12,
-      "sim_now": "479.22 µs",
+      "pct": 13,
+      "sim_now": "489.82 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 48,
+      "sim_pct": 49,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.073 kg/s",
-          "desc": "Decline decelerating sharply, likely nearing the bottom of this oscillation swing -- watch next poll for a reversal back toward zero/positive. Still not steady.",
+          "now": "-0.073 kg/s (unchanged, sim time has not advanced meaningfully since last poll due to the dt stall)",
+          "desc": "Frozen near its last reading -- the dt-floor stall below means barely any new sim time has accumulated since last poll to update this from.",
           "history": [
             [
               0,
@@ -1575,16 +1575,8 @@
               0.0292
             ],
             [
-              439.63,
-              -0.0005
-            ],
-            [
               456.22,
               -0.0438
-            ],
-            [
-              465.22,
-              -0.0628
             ],
             [
               472.94,
@@ -1601,39 +1593,48 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 48,
-      "posts": 48,
+      "restarts": 49,
+      "posts": 49,
       "frames": 0,
-      "newest": "restart0048.rst",
+      "newest": "restart0049.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 47.90%] ncyc    10623;  Time    4.790102619e-04 (sec); dt=    4.212277352e-08 (dt_cfl)",
-        "[ 47.91%] ncyc    10624;  Time    4.790522548e-04 (sec); dt=    4.199290681e-08 (dt_cfl)",
-        "[ 47.91%] ncyc    10625;  Time    4.790944954e-04 (sec); dt=    4.224059847e-08 (dt_cfl)",
-        "[ 47.91%] ncyc    10626;  Time    4.791362298e-04 (sec); dt=    4.173446220e-08 (dt_cfl)",
-        "[ 47.92%] ncyc    10627;  Time    4.791777004e-04 (sec); dt=    4.147056093e-08 (dt_cfl)",
-        "[ 47.92%] ncyc    10628;  Time    4.792190653e-04 (sec); dt=    4.136494881e-08 (dt_cfl)"
+        "[ 48.98%] ncyc    11473;  Time    4.898129559e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 48.98%] ncyc    11474;  Time    4.898145184e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 48.98%] ncyc    11475;  Time    4.898155184e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 48.98%] ncyc    11476;  Time    4.898165184e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 48.98%] ncyc    11477;  Time    4.898177684e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 48.98%] ncyc    11478;  Time    4.898193309e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 48.98%] ncyc    11479;  Time    4.898203309e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 48.98%] ncyc    11480;  Time    4.898215809e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 48.98%] ncyc    11481;  Time    4.898231434e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 48.98%] ncyc    11482;  Time    4.898241434e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "recovering .... because transport equations did not converge or energy extrapolations"
       ],
-      "summary": "8h34m42s in, cycle 10628 at t=479.22µs of the 1000µs cold-flow target (~47.9%). dt steady at dt_cfl (~4.14e-8s), zero FATAL_ERROR, pace unchanged (~16h rough ETA). Net mass flow rate at -0.073 kg/s, but the decline is decelerating sharply within this poll (increments shrinking from -0.0029 down to -0.0004 kg/s per sample) -- looks like it is nearing the bottom of this oscillation cycle and should turn back upward soon.",
+      "summary": "9h04m41s in, cycle 11482 at t=489.82µs of the 1000µs cold-flow target (~49.0%) -- but flagging a new dt-floor stall this poll: dt has collapsed to ~1e-9s (dt_recover) in a repeating recover/grow loop, 416 \"recovering\" messages so far, sim time barely moving (confirmed still stuck on a fresh check). Zero FATAL_ERROR, not crashed, but forward progress has effectively stopped at this instant -- worth watching closely next poll for whether it escapes on its own (as the historical reacting runs eventually did) or keeps stalling.",
       "notes": [
         {
-          "txt": "Net mass flow rate decline is decelerating sharply near -0.073 kg/s -- likely approaching the bottom of this oscillation before swinging back. Still not steady.",
-          "level": "info"
+          "txt": "NEW: dt-floor stall starting ~t=489.75us -- repeating \"recovering .... transport equations did not converge\" loop, dt collapsed ~30-40x below the steady dt_cfl, sim time barely advancing. No FATAL_ERROR, not crashed, but stalled right now. Watch closely.",
+          "level": "warn"
         },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
           "level": "warn"
         },
         {
-          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected.",
+          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected (the new dt stall is unrelated to chemistry since none is active).",
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T08:43:33-04:00"
+      "polled_at": "2026-08-17T09:13:32-04:00"
     }
   ]
 }
