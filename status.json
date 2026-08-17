@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T11:13:41-04:00",
+  "polled_at": "2026-08-17T11:43:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "The dt-floor stall is back -- it briefly cleared to healthy dt_cfl right at the last poll, but has since dipped back into the recover/grow loop (\"recovering\" count 1449->1835, dt back down near 1e-9-1.5e-9s). Reading this as intermittent/recurring rather than a single one-time hiccup: it clears, runs healthy for a stretch, then re-enters recovery. Zero FATAL_ERROR throughout either way.",
-      "elapsed": "11:04:50",
+      "state_note": "Currently in a healthy dt_cfl patch (~4.23e-8s, no recovering messages in the latest lines), but \"recovering\" count grew to 2166 (from 1835) over this interval, meaning more stall activity happened earlier before it cleared again -- confirms the intermittent clear/recur pattern rather than a single resolved event. Zero FATAL_ERROR throughout.",
+      "elapsed": "11:34:41",
       "limit": "72:00:00",
-      "pct": 15,
-      "sim_now": "519.78 µs",
+      "pct": 16,
+      "sim_now": "525.94 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 52,
+      "sim_pct": 53,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,16 +1543,12 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "~-0.06 kg/s (not resampled this poll -- limited new sim time during the renewed stall)",
-          "desc": "Sampling paused again during this recurrence of the dt-floor issue; last confirmed reading was -0.066 kg/s and rising back toward zero.",
+          "now": "-0.060 kg/s",
+          "desc": "Continuing to rise back toward zero from the -0.0735 kg/s trough (t=485us), as expected from the damped oscillation. Watch for the next zero-crossing and whether the swing amplitude is shrinking (true damping toward steady) or holding roughly steady (a sustained limit cycle).",
           "history": [
             [
               0,
               -0.02
-            ],
-            [
-              57.2,
-              0.6666
             ],
             [
               118.24,
@@ -1575,10 +1571,6 @@
               0.0292
             ],
             [
-              456.22,
-              -0.0438
-            ],
-            [
               485.23,
               -0.0735
             ],
@@ -1587,8 +1579,16 @@
               -0.0689
             ],
             [
-              512.5,
-              -0.0661
+              516.24,
+              -0.0637
+            ],
+            [
+              521.11,
+              -0.0609
+            ],
+            [
+              525.3,
+              -0.0595
             ]
           ]
         }
@@ -1597,28 +1597,34 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 52,
-      "posts": 52,
+      "restarts": 53,
+      "posts": 53,
       "frames": 0,
-      "newest": "restart0052.rst",
+      "newest": "restart0053.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 51.98%] ncyc    14964;  Time    5.197762207e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 51.98%] ncyc    14965;  Time    5.197772207e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 51.98%] ncyc    14966;  Time    5.197784707e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 51.98%] ncyc    14967;  Time    5.197794707e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
+        "[ 52.56%] ncyc    15869;  Time    5.256461231e-04 (sec); dt=    4.229734465e-08 (dt_cfl)",
+        "[ 52.57%] ncyc    15870;  Time    5.256884379e-04 (sec); dt=    4.231474119e-08 (dt_cfl)",
+        "[ 52.57%] ncyc    15871;  Time    5.257307488e-04 (sec); dt=    4.231095103e-08 (dt_cfl)",
+        "[ 52.58%] ncyc    15872;  Time    5.257730633e-04 (sec); dt=    4.231450386e-08 (dt_cfl)",
+        "[ 52.58%] ncyc    15873;  Time    5.258154660e-04 (sec); dt=    4.240263869e-08 (dt_cfl)",
+        "[ 52.59%] ncyc    15874;  Time    5.258578404e-04 (sec); dt=    4.237438394e-08 (dt_cfl)",
+        "[ 52.59%] ncyc    15875;  Time    5.259001953e-04 (sec); dt=    4.235498164e-08 (dt_cfl)",
+        "[ 52.59%] ncyc    15876;  Time    5.259425366e-04 (sec); dt=    4.234130516e-08 (dt_cfl)"
       ],
-      "summary": "11h04m50s in, cycle 14967 at t=519.78µs of the 1000µs cold-flow target (~52.0%). The dt-floor issue has come back after briefly clearing at the last poll -- \"recovering\" count now 1835 (was 1449), dt back down near the floor. This now looks like an intermittent, recurring numerical difficulty (clears, runs clean for a stretch, re-enters recovery) rather than a single transient event. Still zero FATAL_ERROR and still making some forward progress each interval, just slower and less predictable than before t=490us.",
+      "summary": "11h34m41s in, cycle 15876 at t=525.94µs of the 1000µs cold-flow target (~52.6%). Currently back in a healthy dt_cfl patch, but the intermittent dt-floor pattern continued earlier this interval (recovering count up to 2166). Net mass flow rate continues rising back toward zero as expected from the damped oscillation (-0.0595 kg/s now, up from -0.066 last poll). Zero FATAL_ERROR throughout.",
       "notes": [
         {
-          "txt": "dt-floor issue recurred after briefly clearing -- looks intermittent (clears, runs clean, re-enters recovery) rather than one-time. No FATAL_ERROR, progress continuing but slower/less predictable since ~t=490us.",
+          "txt": "dt-floor issue confirmed intermittent -- clears, runs healthy, recurs, repeat. No FATAL_ERROR at any point.",
           "level": "warn"
+        },
+        {
+          "txt": "Net mass flow rate continuing to swing back up from its trough as expected -- oscillation behavior holding up so far.",
+          "level": "info"
         },
         {
           "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
@@ -1629,7 +1635,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T11:13:41-04:00"
+      "polled_at": "2026-08-17T11:43:32-04:00"
     }
   ]
 }
