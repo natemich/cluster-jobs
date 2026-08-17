@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T00:21:44-04:00",
+  "polled_at": "2026-08-17T00:51:43-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues since last poll.",
-      "elapsed": "00:12:53",
+      "state_note": "Progressing cleanly, cold-flow only (no combustion/ignition by design). No new issues.",
+      "elapsed": "00:42:52",
       "limit": "72:00:00",
-      "pct": 0,
-      "sim_now": "15.16 µs",
+      "pct": 1,
+      "sim_now": "44.98 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 2,
+      "sim_pct": 4,
       "monitors": [
         {
           "key": "sim_time",
@@ -1545,35 +1545,39 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 2,
-      "posts": 7,
+      "restarts": 5,
+      "posts": 5,
       "frames": 0,
-      "newest": "restart0002.rst",
+      "newest": "restart0005.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[  1.50%] ncyc      264;  Time    1.499774149e-05 (sec); dt=    5.529951684e-08 (dt_cfl)",
-        "Executing ParaView Catalyst scripts: (all 9 registered scripts, as before)",
-        "Finished ParaView Catalyst execute",
-        "[  1.51%] ncyc      265;  Time    1.505307643e-05 (sec); dt=    5.533493730e-08 (dt_cfl)",
-        "[  1.51%] ncyc      266;  Time    1.510836825e-05 (sec); dt=    5.529181859e-08 (dt_cfl)",
-        "[  1.52%] ncyc      267;  Time    1.516365578e-05 (sec); dt=    5.528752698e-08 (dt_cfl)"
+        "[  4.45%] ncyc      850;  Time    4.453264740e-05 (sec); dt=    4.952691036e-08 (dt_cfl)",
+        "[  4.46%] ncyc      851;  Time    4.458222903e-05 (sec); dt=    4.958163097e-08 (dt_cfl)",
+        "[  4.46%] ncyc      852;  Time    4.463192217e-05 (sec); dt=    4.969313821e-08 (dt_cfl)",
+        "[  4.47%] ncyc      853;  Time    4.468172200e-05 (sec); dt=    4.979982683e-08 (dt_cfl)",
+        "[  4.47%] ncyc      854;  Time    4.473153576e-05 (sec); dt=    4.981376530e-08 (dt_cfl)",
+        "[  4.48%] ncyc      855;  Time    4.478129602e-05 (sec); dt=    4.976025454e-08 (dt_cfl)",
+        "[  4.48%] ncyc      856;  Time    4.483094769e-05 (sec); dt=    4.965167071e-08 (dt_cfl)",
+        "[  4.49%] ncyc      857;  Time    4.488051252e-05 (sec); dt=    4.956483411e-08 (dt_cfl)",
+        "[  4.49%] ncyc      858;  Time    4.493001099e-05 (sec); dt=    4.949846257e-08 (dt_cfl)",
+        "[  4.50%] ncyc      859;  Time    4.497949003e-05 (sec); dt=    4.947904535e-08 (dt_cfl)"
       ],
-      "summary": "12m53s in, cycle 267 at t=15.16µs of the 1000µs cold-flow target (~1.5%). dt healthy and steady at dt_cfl (~5.5e-8s), no FATAL_ERROR, no new issues. At this very early rate (~1.2µs of sim time per wall-clock minute) a full 1000µs would take roughly half a day, but that rate is likely to change once the domain fills and AMR activity increases -- too early in the run to extrapolate with any confidence.",
+      "summary": "42m52s in, cycle 859 at t=44.98µs of the 1000µs cold-flow target (~4.5%). dt steady at dt_cfl (~4.95e-8s), zero FATAL_ERROR. Pace this poll (~1.05µs sim time per wall-clock minute) is consistent with the prior rate (~1.1-1.2µs/min), which would put full completion very roughly around 15-16 hours from submission -- still an early, rough extrapolation, not a firm ETA.",
       "notes": [
         {
-          "txt": "Catalyst still producing zero output (same \"failed to open library: libpython3.7m.so.1.0\" / libcatalyst-paraview.so failure as last poll, no PNGs, no paraview_catalyst output dir) -- actively being diagnosed with the user via cluster-side module/find commands this session, not yet fixed.",
+          "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
           "level": "warn"
         },
         {
-          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected, not a problem.",
+          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected.",
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T00:21:44-04:00"
+      "polled_at": "2026-08-17T00:51:43-04:00"
     }
   ]
 }
