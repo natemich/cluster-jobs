@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T12:13:36-04:00",
+  "polled_at": "2026-08-17T12:43:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue still intermittent -- recovering count up to 2515 (from 2166), still cycling in and out of dt_cfl. Zero FATAL_ERROR throughout.",
-      "elapsed": "12:04:45",
+      "state_note": "dt-floor issue still intermittent (recovering count up to 2917 from 2515), zero FATAL_ERROR. But the actual steady-state signal looks promising: net mass flow rate has genuinely flattened.",
+      "elapsed": "12:34:41",
       "limit": "72:00:00",
       "pct": 17,
-      "sim_now": "532.00 µs",
+      "sim_now": "538.19 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 53,
+      "sim_pct": 54,
       "monitors": [
         {
           "key": "sim_time",
@@ -1544,7 +1544,7 @@
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
           "now": "-0.058 kg/s",
-          "desc": "Rise from the trough has slowed sharply -- nearly flat over the last few us. Could be the oscillation envelope narrowing (settling near -0.058, not zero) or another inflection -- not confirmed either way yet.",
+          "desc": "Appears to have genuinely flattened -- holding within a tight ~0.0003 kg/s band for the last ~8us, the first real plateau since the run began. Promising candidate for the sweep restart point if it holds a bit longer.",
           "history": [
             [
               0,
@@ -1583,15 +1583,15 @@
               -0.0609
             ],
             [
-              526.4,
-              -0.0592
+              530.42,
+              -0.0584
             ],
             [
-              529.61,
-              -0.0585
+              534.21,
+              -0.0581
             ],
             [
-              531.6,
+              538.1,
               -0.0583
             ]
           ]
@@ -1611,20 +1611,20 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/PressureSurf_YZ.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y010.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y022.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y036.py",
-        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_YZ.py",
-        "Finished ParaView Catalyst execute",
-        "[ 53.20%] ncyc    16771;  Time    5.320066875e-04 (sec); dt=    4.159192633e-08 (dt_cfl)",
+        "[ 53.82%] ncyc    17653;  Time    5.381909457e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 53.82%] ncyc    17654;  Time    5.381919457e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 53.82%] ncyc    17655;  Time    5.381931957e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 53.82%] ncyc    17656;  Time    5.381941957e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 53.82%] ncyc    17657;  Time    5.381954457e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations"
       ],
-      "summary": "12h04m45s in, cycle 16771 at t=532.00µs of the 1000µs cold-flow target (~53.2%). dt-floor issue remains intermittent, zero FATAL_ERROR. Notable development: the net mass flow rate rise that had been swinging back up from its -0.0735 kg/s trough has slowed sharply, now nearly flat around -0.058 kg/s (only 0.0015 kg/s change over the last ~7.6us, vs a much steeper rise before). Could be the oscillation envelope genuinely narrowing (true damping, settling near -0.058 rather than at zero) or just another inflection point -- next couple of polls should clarify which.",
+      "summary": "12h34m41s in, cycle 17657 at t=538.19µs of the 1000µs cold-flow target (~53.8%). dt-floor issue remains intermittent (still zero FATAL_ERROR). Best news yet on the actual question this run exists to answer: net mass flow rate has genuinely flattened, holding within a ~0.0003 kg/s band around -0.0582 kg/s for the last ~8us of sim time -- the first real plateau since the run began (after peaking at +0.869 near t=118us and troughing at -0.0735 near t=485us). If this holds for another poll or two, it is a strong candidate for where to branch the ignition sweep from, though I would want to confirm it holds rather than call it immediately off two polls of flatness.",
       "notes": [
         {
-          "txt": "Net mass flow rate rise has slowed sharply, nearly flat around -0.058 kg/s -- possibly the oscillation envelope narrowing (settling near here rather than at zero), or another inflection. Not confirmed yet, watch closely.",
-          "level": "info"
+          "txt": "Net mass flow rate appears to have flattened around -0.058 kg/s for the first time this run -- strong candidate for the sweep restart point if it holds another poll or two.",
+          "level": "good"
         },
         {
           "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR.",
@@ -1639,7 +1639,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T12:13:36-04:00"
+      "polled_at": "2026-08-17T12:43:32-04:00"
     }
   ]
 }
