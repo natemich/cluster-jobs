@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-17T01:21:43-04:00",
+  "polled_at": "2026-08-17T01:29:00-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1539,6 +1539,94 @@
               2752453
             ]
           ]
+        },
+        {
+          "key": "net_mass_flow",
+          "label": "Net mass flow rate",
+          "now": "0.808 kg/s",
+          "desc": "Still rising, not flat yet -- this is the actual steady-state signal for picking the sweep restart point, not just dt/cycle health. Started at -0.02 kg/s (just the boundary inflow before any outflow) and has climbed steadily since as the initial chamber fill blows down through the outlet. The per-step increments ARE shrinking each sample (0.067 down to 0.018 kg/s per ~4.4us step), so it looks like it is curving toward some steady value rather than climbing forever, but it has not leveled off yet -- do not pick a restart file yet.",
+          "history": [
+            [
+              0,
+              -0.02
+            ],
+            [
+              4.35,
+              0.049
+            ],
+            [
+              8.75,
+              0.1162
+            ],
+            [
+              13.01,
+              0.1784
+            ],
+            [
+              17.43,
+              0.2415
+            ],
+            [
+              21.83,
+              0.3018
+            ],
+            [
+              26.11,
+              0.3567
+            ],
+            [
+              30.54,
+              0.4104
+            ],
+            [
+              34.92,
+              0.4608
+            ],
+            [
+              39.23,
+              0.5072
+            ],
+            [
+              43.64,
+              0.551
+            ],
+            [
+              47.91,
+              0.5903
+            ],
+            [
+              52.32,
+              0.6282
+            ],
+            [
+              56.71,
+              0.6629
+            ],
+            [
+              61.01,
+              0.6935
+            ],
+            [
+              65.4,
+              0.7217
+            ],
+            [
+              69.81,
+              0.7476
+            ],
+            [
+              74.13,
+              0.7702
+            ],
+            [
+              78.53,
+              0.7904
+            ],
+            [
+              82.92,
+              0.8079
+            ]
+          ]
         }
       ],
       "ranks": 64,
@@ -1575,7 +1663,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-17T01:21:43-04:00"
+      "polled_at": "2026-08-17T01:29:00-04:00"
     }
   ]
 }
