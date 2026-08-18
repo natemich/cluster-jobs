@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T18:43:37-04:00",
+  "polled_at": "2026-08-18T19:13:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 29250 from 28808), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline from the second-swing peak.",
-      "elapsed": "42:34:46",
+      "state_note": "dt-floor issue continuing (recovering count up to 29694 from 29250), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline from the second-swing peak.",
+      "elapsed": "43:04:40",
       "limit": "72:00:00",
-      "pct": 59,
-      "sim_now": "719.81 µs",
+      "pct": 60,
+      "sim_now": "722.05 µs",
       "sim_target": "1000 µs",
       "sim_pct": 72,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0253 kg/s",
-          "desc": "Continuing a steady decline from the second-swing peak, now 0.0253 kg/s.",
+          "now": "0.0234 kg/s",
+          "desc": "Continuing a steady decline from the second-swing peak, now 0.0234 kg/s.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              716.3,
-              0.0282
+              719,
+              0.0259
             ],
             [
-              717.9,
-              0.0269
+              720.3,
+              0.0248
             ],
             [
-              718.9,
-              0.026
+              721.2,
+              0.0241
             ],
             [
-              719.8,
-              0.0253
+              722,
+              0.0234
             ]
           ]
         }
@@ -1605,27 +1605,27 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 76,
-      "posts": 72,
+      "restarts": 77,
+      "posts": 73,
       "frames": 0,
-      "newest": "restart0076.rst",
+      "newest": "restart0077.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 71.98%] ncyc    74617;  Time    7.198041181e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 72.20%] ncyc    75592;  Time    7.220421538e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 72.20%] ncyc    75593;  Time    7.220441070e-04 (sec); dt=    1.953125000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 71.98%] ncyc    74618;  Time    7.198051181e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 71.98%] ncyc    74619;  Time    7.198063681e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 71.98%] ncyc    74620;  Time    7.198073681e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
+        "[ 72.20%] ncyc    75594;  Time    7.220451070e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 72.20%] ncyc    75595;  Time    7.220463570e-04 (sec); dt=    1.250000000e-09 (dt_grow)"
       ],
-      "summary": "42h34m46s in, cycle 74620 at t=719.81µs of the 1000µs cold-flow target (~71.9%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0253 kg/s (was 0.0269), continuing a steady decline from the second-swing peak of 0.0328 kg/s.",
+      "summary": "43h04m40s in, cycle 75595 at t=722.05µs of the 1000µs cold-flow target (~72.2%, roughly 60% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0234 kg/s (was 0.0253), continuing a steady decline from the second-swing peak.",
       "notes": [
         {
-          "txt": "Net mass flow rate continuing a steady decline, now 0.0253 kg/s.",
+          "txt": "Net mass flow rate continuing a steady decline, now 0.0234 kg/s.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T18:43:37-04:00"
+      "polled_at": "2026-08-18T19:13:31-04:00"
     }
   ]
 }
