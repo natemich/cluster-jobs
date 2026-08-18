@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T17:13:33-04:00",
+  "polled_at": "2026-08-18T17:43:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,14 +1491,14 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 27935 from 27513), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline from the second-swing peak, back under 0.03 kg/s.",
-      "elapsed": "41:04:42",
+      "status": "good",
+      "state_note": "dt currently healthy (Catalyst scripts executed cleanly this tail with no recovering lines in the shown window; overall recovering count up to 28343 from 27935), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline from the second-swing peak.",
+      "elapsed": "41:34:40",
       "limit": "72:00:00",
-      "pct": 57,
-      "sim_now": "714.10 µs",
+      "pct": 58,
+      "sim_now": "716.00 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 71,
+      "sim_pct": 72,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0298 kg/s",
-          "desc": "Continuing a steady decline from the second-swing peak, back under 0.03 kg/s.",
+          "now": "0.0285 kg/s",
+          "desc": "Continuing a steady decline from the second-swing peak of 0.0328 kg/s, now 0.0285 kg/s.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              710.5,
-              0.0318
-            ],
-            [
               712.6,
               0.0307
             ],
             [
-              713.5,
-              0.0302
+              714.5,
+              0.0295
             ],
             [
-              714,
-              0.0298
+              715.5,
+              0.0288
+            ],
+            [
+              715.9,
+              0.0285
             ]
           ]
         }
@@ -1615,25 +1615,25 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 71.41%] ncyc    71658;  Time    7.140926922e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 71.41%] ncyc    71659;  Time    7.140936922e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 71.41%] ncyc    71660;  Time    7.140949422e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 71.41%] ncyc    71661;  Time    7.140965047e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y010.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y022.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_XY_Y036.py",
+        "   /rsstu/users/j/jbraun2/yip_afosr/nsmichno/Converge/triangleRDE_coldflow/TemperatureSurf_YZ.py",
+        "Finished ParaView Catalyst execute",
+        "[ 71.60%] ncyc    72660;  Time    7.160015428e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
       ],
-      "summary": "41h04m42s in, cycle 71661 at t=714.10µs of the 1000µs cold-flow target (~71.4%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0298 kg/s (was 0.0310), continuing a steady decline, back under 0.03 kg/s.",
+      "summary": "41h34m40s in, cycle 72660 at t=716.00µs of the 1000µs cold-flow target (~71.6%). Recent tail looks clean (Catalyst triggered normally, no recovering lines shown), zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0285 kg/s (was 0.0298), continuing a steady decline from the second-swing peak (0.0328 kg/s).",
       "notes": [
         {
-          "txt": "Net mass flow rate continuing a steady decline, now 0.0298 kg/s, back under 0.03.",
+          "txt": "Net mass flow rate continuing a steady decline, now 0.0285 kg/s, roughly matching the +0.0292 kg/s reading seen at t=429us on the way up in the first swing.",
           "level": "info"
         },
         {
-          "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout the entire run.",
+          "txt": "dt-floor issue remains intermittent overall, but the most recent tail looks clean, still zero FATAL_ERROR throughout the entire run.",
           "level": "warn"
         },
         {
-          "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
+          "txt": "Catalyst still producing zero PNG output (same underlying lib-load failure as prior polls, though the trigger itself runs) -- diagnosis in progress with the user, not yet fixed.",
           "level": "warn"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T17:13:33-04:00"
+      "polled_at": "2026-08-18T17:43:31-04:00"
     }
   ]
 }
