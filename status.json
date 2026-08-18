@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T13:43:54-04:00",
+  "polled_at": "2026-08-18T14:14:05-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,12 +1491,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 24863 from 24395), zero FATAL_ERROR throughout the entire run. Net mass flow rate climb rate has decelerated this interval, possibly nearing the peak of the second swing.",
-      "elapsed": "37:35:03",
+      "status": "good",
+      "state_note": "dt-floor issue continuing (recovering count up to 25317 from 24863), zero FATAL_ERROR throughout the entire run. Net mass flow rate climb rate continuing to decelerate -- looks like it is nearing the peak of the second oscillation swing.",
+      "elapsed": "38:05:14",
       "limit": "72:00:00",
-      "pct": 52,
-      "sim_now": "700.26 µs",
+      "pct": 53,
+      "sim_now": "702.79 µs",
       "sim_target": "1000 µs",
       "sim_pct": 70,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0304 kg/s",
-          "desc": "Climb rate decelerating this poll -- possibly nearing the peak of the second oscillation swing, currently +0.0304 kg/s.",
+          "now": "0.0320 kg/s",
+          "desc": "Climb rate continuing to decelerate -- looks like it is nearing a peak for the second oscillation swing, somewhere in the 0.032-0.035 range.",
           "history": [
             [
               0,
@@ -1579,24 +1579,24 @@
               0
             ],
             [
-              697,
-              0.0274
+              700,
+              0.0303
             ],
             [
-              698.3,
-              0.0288
+              701,
+              0.031
             ],
             [
-              699.3,
-              0.0297
+              701.9,
+              0.0316
             ],
             [
-              699.9,
-              0.0302
+              702.3,
+              0.0318
             ],
             [
-              700.2,
-              0.0304
+              702.8,
+              0.032
             ]
           ]
         }
@@ -1616,17 +1616,17 @@
       "log_size": null,
       "log_tail": [
         "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 70.28%] ncyc    65760;  Time    7.027885807e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 70.28%] ncyc    65761;  Time    7.027898307e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 70.28%] ncyc    65762;  Time    7.027913932e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 70.03%] ncyc    64807;  Time    7.002537869e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 70.03%] ncyc    64808;  Time    7.002550369e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 70.03%] ncyc    64809;  Time    7.002565994e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "[ 70.03%] ncyc    64810;  Time    7.002585525e-04 (sec); dt=    1.953125000e-09 (dt_grow)"
+        "[ 70.28%] ncyc    65763;  Time    7.027923932e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "37h35m03s in, cycle 64810 at t=700.26µs of the 1000µs cold-flow target (~70.0%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now +0.0304 kg/s (was +0.0282), climb rate has decelerated this interval (~0.0009 kg/s per us vs ~0.0014 last poll) -- possibly approaching the peak of this second, smaller oscillation swing.",
+      "summary": "38h05m14s in, cycle 65763 at t=702.79µs of the 1000µs cold-flow target (~70.3%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now +0.0320 kg/s (was +0.0304), climb rate continuing to decelerate (~0.0006 kg/s per us vs ~0.0009 last poll) -- looks like it is approaching a peak somewhere in the 0.032-0.035 range for this second, much smaller oscillation swing.",
       "notes": [
         {
-          "txt": "Net mass flow rate climb rate decelerating this poll -- possibly approaching a peak for the second oscillation swing, now +0.0304 kg/s.",
-          "level": "info"
+          "txt": "Net mass flow rate climb rate continuing to decelerate -- appears to be nearing a peak for the second oscillation swing, now +0.0320 kg/s.",
+          "level": "good"
         },
         {
           "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout the entire run.",
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T13:43:54-04:00"
+      "polled_at": "2026-08-18T14:14:05-04:00"
     }
   ]
 }
