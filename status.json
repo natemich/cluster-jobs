@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T08:43:48-04:00",
+  "polled_at": "2026-08-18T09:13:48-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1491,12 +1491,12 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "dt-floor issue continuing (recovering count up to 20396 from 20000), zero FATAL_ERROR throughout the entire run. Notable this poll: net mass flow rate has reached its second zero-crossing (0.0000 kg/s at t=675.82us).",
-      "elapsed": "32:34:57",
+      "status": "warn",
+      "state_note": "dt-floor issue continuing (recovering count up to 20851 from 20396), zero FATAL_ERROR throughout the entire run. Net mass flow rate crossed zero cleanly (did not settle there) and has continued into positive territory -- confirms this is a genuine, slowly-damping oscillation rather than a one-time transient settling to zero.",
+      "elapsed": "33:04:57",
       "limit": "72:00:00",
-      "pct": 45,
-      "sim_now": "675.79 µs",
+      "pct": 46,
+      "sim_now": "678.30 µs",
       "sim_target": "1000 µs",
       "sim_pct": 68,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0000 kg/s",
-          "desc": "Reached exact zero (true mass balance) at t=675.82us -- the second zero-crossing after the big overshoot/undershoot cycle. Watch whether it keeps climbing past zero or settles here.",
+          "now": "0.0025 kg/s",
+          "desc": "Crossed zero without settling and continued into positive territory -- confirms a genuine second, much smaller-amplitude oscillation swing rather than a one-time convergence.",
           "history": [
             [
               0,
@@ -1575,28 +1575,24 @@
               -0.0735
             ],
             [
-              563.2,
-              -0.0551
-            ],
-            [
-              673.01,
-              -0.0026
-            ],
-            [
-              674,
-              -0.0017
-            ],
-            [
-              674.9,
-              -0.0009
-            ],
-            [
-              675.5,
-              -0.0003
-            ],
-            [
               675.82,
               0
+            ],
+            [
+              676.6,
+              0.0008
+            ],
+            [
+              677.3,
+              0.0015
+            ],
+            [
+              677.9,
+              0.0022
+            ],
+            [
+              678.3,
+              0.0025
             ]
           ]
         }
@@ -1615,18 +1611,18 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 67.57%] ncyc    55213;  Time    6.756600419e-04 (sec); dt=    2.842170943e-08 (dt_grow)",
-        "[ 67.57%] ncyc    55214;  Time    6.756955690e-04 (sec); dt=    3.552713679e-08 (dt_grow)",
-        "[ 67.57%] ncyc    55215;  Time    6.757386868e-04 (sec); dt=    4.311777212e-08 (dt_cfl)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 67.58%] ncyc    55216;  Time    6.757604138e-04 (sec); dt=    2.172695789e-08 (dt_recover)",
-        "[ 67.58%] ncyc    55217;  Time    6.757875725e-04 (sec); dt=    2.715869736e-08 (dt_grow)"
+        "[ 67.83%] ncyc    56192;  Time    6.782971802e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 67.83%] ncyc    56193;  Time    6.782984302e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 67.83%] ncyc    56194;  Time    6.782999927e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 67.83%] ncyc    56195;  Time    6.783009927e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "32h34m57s in, cycle 55217 at t=675.79µs of the 1000µs cold-flow target (~67.6%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Milestone this poll: net mass flow rate has reached exactly 0.0000 kg/s (true mass-in/mass-out balance) at t=675.82us -- the second time it has crossed zero, following the big overshoot/undershoot cycle (peak +0.869 at t=118us, trough -0.0735 at t=485us). Whether it keeps climbing past zero again or finally settles here is the next thing to watch.",
+      "summary": "33h04m57s in, cycle 56195 at t=678.30µs of the 1000µs cold-flow target (~67.8%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now +0.0025 kg/s -- crossed zero at t=675.82us without settling there and has kept climbing into positive territory, confirming this is a real (if much smaller-amplitude) second oscillation swing rather than a one-time convergence to zero. Amplitude is far smaller than the original swing (peak 0.869, trough -0.0735) but the underlying dynamic still has not fully damped out.",
       "notes": [
         {
-          "txt": "Net mass flow rate reached exact zero (true mass balance) at t=675.82us -- the second zero-crossing. Watch whether it settles here or keeps climbing.",
-          "level": "good"
+          "txt": "Net mass flow rate crossed zero and kept climbing (+0.0025 kg/s) -- confirms a genuine second oscillation swing, much smaller amplitude than the original, but not yet fully damped.",
+          "level": "info"
         },
         {
           "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout the entire run.",
@@ -1641,7 +1637,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T08:43:48-04:00"
+      "polled_at": "2026-08-18T09:13:48-04:00"
     }
   ]
 }
