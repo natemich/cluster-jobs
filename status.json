@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T14:43:43-04:00",
+  "polled_at": "2026-08-18T15:13:49-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "dt-floor issue continuing (recovering count up to 25738 from 25317), zero FATAL_ERROR throughout the entire run. Net mass flow rate has nearly flattened at the top of the second oscillation swing -- likely peaking now around 0.0325-0.0326 kg/s.",
-      "elapsed": "38:34:52",
+      "state_note": "dt-floor issue continuing (recovering count up to 26211 from 25738), zero FATAL_ERROR throughout the entire run. Net mass flow rate has confirmed-flattened at +0.0328 kg/s -- the peak of the second, much smaller oscillation swing.",
+      "elapsed": "39:04:58",
       "limit": "72:00:00",
       "pct": 54,
-      "sim_now": "704.86 µs",
+      "sim_now": "706.52 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 70,
+      "sim_pct": 71,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0326 kg/s",
-          "desc": "Nearly flat -- likely at or very near the peak of the second oscillation swing (roughly 27x smaller than the first swing peak of 0.869), consistent with the oscillation damping.",
+          "now": "0.0328 kg/s",
+          "desc": "Confirmed peak of the second oscillation swing, holding flat at +0.0328 kg/s -- roughly 27x smaller than the first swing peak. Expect a decline next, continuing the damping pattern.",
           "history": [
             [
               0,
@@ -1579,24 +1579,20 @@
               0
             ],
             [
-              702,
-              0.0316
-            ],
-            [
-              703,
-              0.0321
-            ],
-            [
-              703.7,
-              0.0324
-            ],
-            [
-              704.2,
+              704,
               0.0325
             ],
             [
-              704.5,
-              0.0326
+              705,
+              0.0327
+            ],
+            [
+              705.6,
+              0.0328
+            ],
+            [
+              706.4,
+              0.0328
             ]
           ]
         }
@@ -1615,17 +1611,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
+        "[ 70.65%] ncyc    67728;  Time    7.065205268e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 70.49%] ncyc    66735;  Time    7.048541377e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 70.49%] ncyc    66736;  Time    7.048553877e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 70.49%] ncyc    66737;  Time    7.048569502e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "[ 70.49%] ncyc    66738;  Time    7.048589033e-04 (sec); dt=    1.953125000e-09 (dt_grow)",
-        "[ 70.49%] ncyc    66739;  Time    7.048613447e-04 (sec); dt=    2.441406250e-09 (dt_grow)"
+        "[ 70.65%] ncyc    67729;  Time    7.065215268e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 70.65%] ncyc    67730;  Time    7.065227768e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 70.65%] ncyc    67731;  Time    7.065237768e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "38h34m52s in, cycle 66739 at t=704.86µs of the 1000µs cold-flow target (~70.5%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate has nearly flattened at +0.0326 kg/s -- likely at or very near the peak of the second oscillation swing (compare: first swing peaked at +0.869, roughly 27x larger, so the oscillation is clearly damping).",
+      "summary": "39h04m58s in, cycle 67731 at t=706.52µs of the 1000µs cold-flow target (~70.7%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate has now confirmed-flattened at +0.0328 kg/s, holding steady across the last ~2us of samples -- the peak of the second oscillation swing, roughly 27x smaller than the first swing (0.869). Next expected phase: a decline back down, presumably smaller and slower than the first descent, continuing the damping pattern.",
       "notes": [
         {
-          "txt": "Net mass flow rate has nearly flattened, likely peaking around +0.0326 kg/s for the second oscillation swing -- roughly 27x smaller than the first swing peak, consistent with the oscillation damping out.",
+          "txt": "Net mass flow rate has confirmed-flattened at +0.0328 kg/s (peak of the second oscillation swing) -- roughly 27x smaller than the first swing, consistent with damping.",
           "level": "good"
         },
         {
@@ -1641,7 +1637,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T14:43:43-04:00"
+      "polled_at": "2026-08-18T15:13:49-04:00"
     }
   ]
 }
