@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T03:13:45-04:00",
+  "polled_at": "2026-08-18T03:43:44-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 15413 from 14989), zero FATAL_ERROR throughout the entire run. Net mass flow rate crossed -0.0200 kg/s at t~644us and kept rising -- no flattening there, confirming that value was not a meaningful attractor, just a coincidental match to the t=0 reading.",
-      "elapsed": "27:04:54",
+      "state_note": "dt-floor issue continuing (recovering count up to 15914 from 15413), zero FATAL_ERROR throughout the entire run. Net mass flow rate drift continuing, twenty-ninth consecutive poll of the same overall pattern.",
+      "elapsed": "27:34:53",
       "limit": "72:00:00",
       "pct": 38,
-      "sim_now": "646.27 µs",
+      "sim_now": "648.91 µs",
       "sim_target": "1000 µs",
       "sim_pct": 65,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0189 kg/s",
-          "desc": "Crossed -0.02 kg/s cleanly and kept rising -- confirms that was coincidental, not a settling point. Still climbing at the same small, steady rate.",
+          "now": "-0.0176 kg/s",
+          "desc": "Twenty-ninth consecutive poll of the same small-amplitude drift -- currently -0.0176 kg/s, no sign of a second large oscillation swing developing.",
           "history": [
             [
               0,
@@ -1579,24 +1579,24 @@
               -0.0551
             ],
             [
-              642,
-              -0.0209
+              646,
+              -0.019
             ],
             [
-              643.63,
-              -0.0201
+              647.3,
+              -0.0184
             ],
             [
-              644.7,
-              -0.0196
+              648,
+              -0.018
             ],
             [
-              645.8,
-              -0.0191
+              648.6,
+              -0.0177
             ],
             [
-              646.27,
-              -0.0189
+              648.91,
+              -0.0176
             ]
           ]
         }
@@ -1616,16 +1616,16 @@
       "log_size": null,
       "log_tail": [
         "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 64.89%] ncyc    45670;  Time    6.489121246e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 64.63%] ncyc    44728;  Time    6.462636461e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 64.63%] ncyc    44729;  Time    6.462648961e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 64.63%] ncyc    44730;  Time    6.462664586e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 64.89%] ncyc    45671;  Time    6.489131246e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 64.89%] ncyc    45672;  Time    6.489143746e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations"
       ],
-      "summary": "27h04m54s in, cycle 44730 at t=646.27µs of the 1000µs cold-flow target (~64.6%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now -0.0189 kg/s (was -0.0203) -- confirmed this poll that it crossed -0.0200 kg/s cleanly and kept climbing without flattening, so that earlier bookend value was coincidental, not a settling point. Twenty-eight consecutive polls of the same overall small-amplitude upward drift now.",
+      "summary": "27h34m53s in, cycle 45672 at t=648.91µs of the 1000µs cold-flow target (~64.9%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now -0.0176 kg/s (was -0.0189), twenty-ninth consecutive poll of the same small-amplitude drift, still climbing gradually with no sign of a second oscillation swing.",
       "notes": [
         {
-          "txt": "Net mass flow rate crossed -0.02 kg/s cleanly without flattening, continuing to climb -- confirms it is not settling at that value.",
+          "txt": "Net mass flow rate drift continuing for a twenty-ninth poll running, now -0.0176 kg/s, no sign of a second oscillation swing.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T03:13:45-04:00"
+      "polled_at": "2026-08-18T03:43:44-04:00"
     }
   ]
 }
