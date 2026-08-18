@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T12:44:14-04:00",
+  "polled_at": "2026-08-18T13:13:46-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 23951 from 23448), zero FATAL_ERROR throughout the entire run. Net mass flow rate still climbing in the second oscillation swing at the same steady rate, no peak yet.",
-      "elapsed": "36:35:23",
+      "state_note": "dt-floor issue continuing (recovering count up to 24395 from 23951), zero FATAL_ERROR throughout the entire run. Net mass flow rate still climbing at the same steady rate, no peak yet.",
+      "elapsed": "37:04:55",
       "limit": "72:00:00",
-      "pct": 51,
-      "sim_now": "695.29 µs",
+      "pct": 52,
+      "sim_now": "697.77 µs",
       "sim_target": "1000 µs",
       "sim_pct": 70,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0250 kg/s",
-          "desc": "Still climbing at the same steady rate, no peak yet -- currently +0.0250 kg/s.",
+          "now": "0.0282 kg/s",
+          "desc": "Still climbing at the same steady rate, no peak yet -- currently +0.0282 kg/s.",
           "history": [
             [
               0,
@@ -1579,24 +1579,24 @@
               0
             ],
             [
-              692,
-              0.021
-            ],
-            [
-              693.3,
-              0.0228
-            ],
-            [
-              694.2,
-              0.024
-            ],
-            [
-              694.8,
-              0.0248
-            ],
-            [
               695,
               0.025
+            ],
+            [
+              696.2,
+              0.0265
+            ],
+            [
+              696.9,
+              0.0273
+            ],
+            [
+              697.3,
+              0.0277
+            ],
+            [
+              697.7,
+              0.0282
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 69.52%] ncyc    62934;  Time    6.952168212e-04 (sec); dt=    2.273736754e-08 (dt_grow)",
-        "[ 69.52%] ncyc    62935;  Time    6.952452429e-04 (sec); dt=    2.842170943e-08 (dt_grow)",
-        "[ 69.53%] ncyc    62936;  Time    6.952807701e-04 (sec); dt=    3.552713679e-08 (dt_grow)",
+        "[ 69.78%] ncyc    63862;  Time    6.977635734e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 69.78%] ncyc    63863;  Time    6.977645734e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 69.78%] ncyc    63864;  Time    6.977658234e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 69.53%] ncyc    62937;  Time    6.952914303e-04 (sec); dt=    1.066023416e-08 (dt_recover)"
+        "[ 69.78%] ncyc    63865;  Time    6.977668234e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "36h35m23s in, cycle 62937 at t=695.29µs of the 1000µs cold-flow target (~69.5%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now +0.0250 kg/s (was +0.0220), still climbing at the same steady rate through the second oscillation swing, no peak yet.",
+      "summary": "37h04m55s in, cycle 63865 at t=697.77µs of the 1000µs cold-flow target (~69.8%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now +0.0282 kg/s (was +0.0250), still climbing at the same steady rate, no peak yet.",
       "notes": [
         {
-          "txt": "Net mass flow rate still climbing at the same steady rate through the second oscillation swing, now +0.0250 kg/s, no peak yet.",
+          "txt": "Net mass flow rate still climbing at the same steady rate, now +0.0282 kg/s, no peak yet.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T12:44:14-04:00"
+      "polled_at": "2026-08-18T13:13:46-04:00"
     }
   ]
 }
