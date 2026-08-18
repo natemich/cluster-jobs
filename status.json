@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T07:43:37-04:00",
+  "polled_at": "2026-08-18T08:13:47-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 19531 from 19105), zero FATAL_ERROR throughout the entire run. Net mass flow rate drift continuing, thirty-seventh consecutive poll of the same overall pattern, very close to a second zero-crossing now.",
-      "elapsed": "31:34:46",
+      "state_note": "dt-floor issue continuing (recovering count reached exactly 20000, from 19531), zero FATAL_ERROR throughout the entire run. Net mass flow rate drift continuing, thirty-eighth consecutive poll of the same overall pattern, right at the threshold of a second zero-crossing.",
+      "elapsed": "32:04:56",
       "limit": "72:00:00",
-      "pct": 44,
-      "sim_now": "670.89 µs",
+      "pct": 45,
+      "sim_now": "673.19 µs",
       "sim_target": "1000 µs",
       "sim_pct": 67,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "-0.0045 kg/s",
-          "desc": "Thirty-seventh consecutive poll of the same small-amplitude drift -- currently -0.0045 kg/s, right on the edge of a second zero-crossing.",
+          "now": "-0.0026 kg/s",
+          "desc": "Thirty-eighth consecutive poll of the same small-amplitude drift -- currently -0.0026 kg/s, right on the verge of a second zero-crossing.",
           "history": [
             [
               0,
@@ -1579,24 +1579,24 @@
               -0.0551
             ],
             [
-              667,
-              -0.0074
+              670.02,
+              -0.0052
             ],
             [
-              668.6,
-              -0.0063
+              671.3,
+              -0.0041
             ],
             [
-              669.8,
-              -0.0053
+              672.01,
+              -0.0035
             ],
             [
-              670.3,
-              -0.0049
+              672.8,
+              -0.0028
             ],
             [
-              670.8,
-              -0.0045
+              673.1,
+              -0.0026
             ]
           ]
         }
@@ -1615,21 +1615,21 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 67.09%] ncyc    53263;  Time    6.708796221e-04 (sec); dt=    2.441406250e-09 (dt_grow)",
-        "[ 67.09%] ncyc    53264;  Time    6.708826738e-04 (sec); dt=    3.051757812e-09 (dt_grow)",
-        "[ 67.09%] ncyc    53265;  Time    6.708864885e-04 (sec); dt=    3.814697266e-09 (dt_grow)",
+        "[ 67.32%] ncyc    54238;  Time    6.731872241e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 67.32%] ncyc    54239;  Time    6.731882241e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 67.32%] ncyc    54240;  Time    6.731894741e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 67.32%] ncyc    54241;  Time    6.731904741e-04 (sec); dt=    1.000000000e-09 (dt_recover)"
       ],
-      "summary": "31h34m46s in, cycle 53265+ at t=670.89µs of the 1000µs cold-flow target (~67.1%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now -0.0045 kg/s (was -0.0068), thirty-seventh consecutive poll of the same small-amplitude drift, right on the edge of a second zero-crossing.",
+      "summary": "32h04m56s in, cycle 54241 at t=673.19µs of the 1000µs cold-flow target (~67.3%). dt-floor issue continuing (recovering count hit exactly 20000), zero FATAL_ERROR throughout the entire run. Net mass flow rate now -0.0026 kg/s (was -0.0045), thirty-eighth consecutive poll of the same small-amplitude drift, right on the verge of a second zero-crossing.",
       "notes": [
         {
-          "txt": "Net mass flow rate drift continuing for a thirty-seventh poll running, right on the edge of a second zero-crossing.",
+          "txt": "Net mass flow rate drift continuing for a thirty-eighth poll running, right on the verge of a second zero-crossing.",
           "level": "info"
         },
         {
-          "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout the entire run.",
+          "txt": "dt-floor issue remains intermittent (recovering count hit 20000), still zero FATAL_ERROR throughout the entire run.",
           "level": "warn"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T07:43:37-04:00"
+      "polled_at": "2026-08-18T08:13:47-04:00"
     }
   ]
 }
