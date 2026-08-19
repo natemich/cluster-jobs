@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T22:43:31-04:00",
+  "polled_at": "2026-08-18T23:13:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 32864 from 32462), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline.",
-      "elapsed": "46:34:40",
+      "state_note": "dt-floor issue continuing (recovering count up to 33323 from 32864), zero FATAL_ERROR throughout the entire run. Net mass flow rate decline rate continuing to decelerate.",
+      "elapsed": "47:04:40",
       "limit": "72:00:00",
       "pct": 65,
-      "sim_now": "735.35 µs",
+      "sim_now": "737.06 µs",
       "sim_target": "1000 µs",
       "sim_pct": 74,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0130 kg/s",
-          "desc": "Continuing a steady decline, now 0.0130 kg/s.",
+          "now": "0.0118 kg/s",
+          "desc": "Decline rate continuing to decelerate -- may settle out before crossing zero again, given the shrinking oscillation amplitude.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              733,
-              0.0145
+              735,
+              0.0131
             ],
             [
-              734,
-              0.0138
+              736,
+              0.0124
             ],
             [
-              734.8,
-              0.0132
+              736.6,
+              0.0121
             ],
             [
-              735.2,
-              0.013
+              737,
+              0.0118
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 73.53%] ncyc    82423;  Time    7.353400912e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 73.53%] ncyc    82424;  Time    7.353416537e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "[ 73.71%] ncyc    83393;  Time    7.370545521e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 73.71%] ncyc    83394;  Time    7.370558021e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 73.71%] ncyc    83395;  Time    7.370573646e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 73.53%] ncyc    82425;  Time    7.353426537e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 73.53%] ncyc    82426;  Time    7.353439037e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 73.53%] ncyc    82427;  Time    7.353454662e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
+        "[ 73.71%] ncyc    83396;  Time    7.370583646e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 73.71%] ncyc    83397;  Time    7.370596146e-04 (sec); dt=    1.250000000e-09 (dt_grow)"
       ],
-      "summary": "46h34m40s in, cycle 82427 at t=735.35µs of the 1000µs cold-flow target (~73.5%, roughly 65% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0130 kg/s (was 0.0141), continuing a steady decline.",
+      "summary": "47h04m40s in, cycle 83397 at t=737.06µs of the 1000µs cold-flow target (~73.7%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0118 kg/s (was 0.0130), decline rate continuing to decelerate -- consistent with this small oscillation swing (peak 0.0328) settling out well before reaching zero again.",
       "notes": [
         {
-          "txt": "Net mass flow rate continuing a steady decline, now 0.0130 kg/s.",
+          "txt": "Net mass flow rate decline rate continuing to decelerate, now 0.0118 kg/s -- may settle before crossing zero again.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T22:43:31-04:00"
+      "polled_at": "2026-08-18T23:13:31-04:00"
     }
   ]
 }
