@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-19T00:43:31-04:00",
+  "polled_at": "2026-08-19T01:13:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1490,13 +1490,13 @@
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "RUN",
-      "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 34636 from 34215), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing a slow, decelerating decline.",
-      "elapsed": "48:34:40",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "TERM_OWNER -- killed by owner (deliberate stop, not a crash) at t=742.81us of the 1000us target, zero FATAL_ERROR for the entire run.",
+      "elapsed": "48:39:41",
       "limit": "72:00:00",
       "pct": 68,
-      "sim_now": "742.59 µs",
+      "sim_now": "742.81 µs",
       "sim_target": "1000 µs",
       "sim_pct": 74,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0086 kg/s",
-          "desc": "Continuing a slow, decelerating decline, not yet flat.",
+          "now": "0.0085 kg/s",
+          "desc": "Run stopped by owner while still in a slow, decelerating decline -- damping out but not fully flat at time of kill.",
           "history": [
             [
               0,
@@ -1597,6 +1597,10 @@
             [
               742.6,
               0.0086
+            ],
+            [
+              742.7,
+              0.0085
             ]
           ]
         }
@@ -1615,33 +1619,37 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 74.26%] ncyc    86337;  Time    7.425789063e-04 (sec); dt=    2.067951531e-09 (dt_grow)",
-        "[ 74.26%] ncyc    86338;  Time    7.425814912e-04 (sec); dt=    2.584939414e-09 (dt_grow)",
-        "[ 74.26%] ncyc    86339;  Time    7.425847224e-04 (sec); dt=    3.231174268e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 74.26%] ncyc    86340;  Time    7.425867419e-04 (sec); dt=    2.019483917e-09 (dt_recover)",
-        "[ 74.26%] ncyc    86341;  Time    7.425892663e-04 (sec); dt=    2.524354897e-09 (dt_grow)"
+        "[ 74.28%] ncyc    86490;  Time    7.428057262e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 74.28%] ncyc    86491;  Time    7.428069762e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 74.28%] ncyc    86492;  Time    7.428079762e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 74.28%] ncyc    86493;  Time    7.428092262e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 74.28%] ncyc    86494;  Time    7.428102262e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "TERM_OWNER: job killed by owner. Exited with signal termination: 9."
       ],
-      "summary": "48h34m40s in, cycle 86341 at t=742.59µs of the 1000µs cold-flow target (~74.3%, roughly 68% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0086 kg/s (was 0.0095), continuing a slow, decelerating decline, not yet flat.",
+      "summary": "Killed by its owner at 48h39m41s in (68% of the 72h limit), at cycle 86494, t=742.81µs of the 1000µs cold-flow target (74.3%). Zero FATAL_ERROR for the entire run -- this was a deliberate stop, not a crash. Net mass flow rate at kill was 0.0085 kg/s, still in the same slow, decelerating decline seen since the second (much smaller) oscillation swing peaked at 0.0328 kg/s around t=706µs -- flow was clearly damping out but had not fully flattened to zero before the run was stopped. restart0081.rst is the newest restart file and the best available candidate to branch the ignition sweep from, though it is not a fully flat steady state.",
       "notes": [
         {
-          "txt": "Net mass flow rate continuing a slow, decelerating decline, now 0.0086 kg/s.",
-          "level": "info"
+          "txt": "Job killed by owner (TERM_OWNER) at t=742.81µs of 1000µs, 74.3% complete -- a deliberate stop, not a crash.",
+          "level": "critical"
         },
         {
-          "txt": "dt-floor issue remains intermittent, still zero FATAL_ERROR throughout the entire run.",
+          "txt": "Net mass flow rate was still slowly decaying toward zero (0.0085 kg/s at kill), not yet fully flat.",
           "level": "warn"
         },
         {
-          "txt": "Catalyst still producing zero output (same lib-load failure as prior polls, no PNGs) -- diagnosis in progress with the user, not yet fixed.",
-          "level": "warn"
+          "txt": "Zero FATAL_ERROR for the entire 48h39m run despite the persistent dt-floor recovering cycles.",
+          "level": "info"
         },
         {
-          "txt": "Combustion/source intentionally disabled for this run -- absence of temperature rise is expected.",
+          "txt": "restart0081.rst is the newest restart file available as an initial condition for the planned ignition-energy sweep.",
           "level": "info"
+        },
+        {
+          "txt": "Catalyst never produced output on this run (same lib-load failure as prior polls) -- unresolved.",
+          "level": "warn"
         }
       ],
-      "polled_at": "2026-08-19T00:43:31-04:00"
+      "polled_at": "2026-08-19T01:13:32-04:00"
     }
   ]
 }
