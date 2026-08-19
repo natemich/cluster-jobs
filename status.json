@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-19T00:13:32-04:00",
+  "polled_at": "2026-08-19T00:43:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 34215 from 33774), zero FATAL_ERROR throughout the entire run. Net mass flow rate decline rate continuing to decelerate further -- may be approaching another small plateau rather than a third zero-crossing, echoing the pattern from the first swing.",
-      "elapsed": "48:04:41",
+      "state_note": "dt-floor issue continuing (recovering count up to 34636 from 34215), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing a slow, decelerating decline.",
+      "elapsed": "48:34:40",
       "limit": "72:00:00",
-      "pct": 67,
-      "sim_now": "740.82 µs",
+      "pct": 68,
+      "sim_now": "742.59 µs",
       "sim_target": "1000 µs",
       "sim_pct": 74,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0095 kg/s",
-          "desc": "Decline rate continuing to decelerate -- may be approaching another small plateau rather than crossing zero a third time.",
+          "now": "0.0086 kg/s",
+          "desc": "Continuing a slow, decelerating decline, not yet flat.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              738,
-              0.0111
-            ],
-            [
-              739.3,
-              0.0104
-            ],
-            [
-              740.1,
+              740,
               0.0099
             ],
             [
-              740.8,
-              0.0095
+              741.2,
+              0.0093
+            ],
+            [
+              742,
+              0.0089
+            ],
+            [
+              742.6,
+              0.0086
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
+        "[ 74.26%] ncyc    86337;  Time    7.425789063e-04 (sec); dt=    2.067951531e-09 (dt_grow)",
+        "[ 74.26%] ncyc    86338;  Time    7.425814912e-04 (sec); dt=    2.584939414e-09 (dt_grow)",
+        "[ 74.26%] ncyc    86339;  Time    7.425847224e-04 (sec); dt=    3.231174268e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 74.08%] ncyc    85353;  Time    7.408161999e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 74.08%] ncyc    85354;  Time    7.408174499e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 74.08%] ncyc    85355;  Time    7.408190124e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 74.26%] ncyc    86340;  Time    7.425867419e-04 (sec); dt=    2.019483917e-09 (dt_recover)",
+        "[ 74.26%] ncyc    86341;  Time    7.425892663e-04 (sec); dt=    2.524354897e-09 (dt_grow)"
       ],
-      "summary": "48h04m41s in, cycle 85355 at t=740.82µs of the 1000µs cold-flow target (~74.1%, roughly 67% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0095 kg/s (was 0.0107), decline rate continuing to decelerate -- may be approaching another small plateau (echoing the pattern seen during the first swing) rather than a third zero-crossing.",
+      "summary": "48h34m40s in, cycle 86341 at t=742.59µs of the 1000µs cold-flow target (~74.3%, roughly 68% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0086 kg/s (was 0.0095), continuing a slow, decelerating decline, not yet flat.",
       "notes": [
         {
-          "txt": "Net mass flow rate decline rate continuing to decelerate, now 0.0095 kg/s -- may be approaching a small plateau rather than a third zero-crossing.",
+          "txt": "Net mass flow rate continuing a slow, decelerating decline, now 0.0086 kg/s.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-19T00:13:32-04:00"
+      "polled_at": "2026-08-19T00:43:31-04:00"
     }
   ]
 }
