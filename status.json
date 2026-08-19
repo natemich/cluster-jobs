@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T20:43:32-04:00",
+  "polled_at": "2026-08-18T21:13:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 31051 from 30602), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline, not yet crossed zero.",
-      "elapsed": "44:34:41",
+      "state_note": "dt-floor issue continuing (recovering count up to 31554 from 31051), zero FATAL_ERROR throughout the entire run. Net mass flow rate still declining but the rate has slowed slightly again -- consistent with the overall damping trend across the run.",
+      "elapsed": "45:04:40",
       "limit": "72:00:00",
-      "pct": 62,
-      "sim_now": "727.61 µs",
+      "pct": 63,
+      "sim_now": "729.69 µs",
       "sim_target": "1000 µs",
       "sim_pct": 73,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0187 kg/s",
-          "desc": "Still declining steadily, not yet crossed zero for the third time.",
+          "now": "0.0171 kg/s",
+          "desc": "Still declining, rate slowing slightly -- consistent with the overall damping pattern across the run (each successive swing roughly an order of magnitude smaller).",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              725,
-              0.0208
-            ],
-            [
-              726.2,
-              0.0198
-            ],
-            [
               727,
               0.0192
             ],
             [
-              727.6,
-              0.0187
+              728.2,
+              0.0182
+            ],
+            [
+              729,
+              0.0175
+            ],
+            [
+              729.6,
+              0.0171
             ]
           ]
         }
@@ -1605,27 +1605,27 @@
       "rss": "41.8G",
       "s_per_step": null,
       "node": "n0356 · 1×64",
-      "restarts": 77,
+      "restarts": 78,
       "posts": 73,
       "frames": 0,
-      "newest": "restart0077.rst",
+      "newest": "restart0078.rst",
       "submitted": "2026-08-17T00:11:08-04:00",
       "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
       "log_name": "stdout.15689",
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
+        "[ 72.97%] ncyc    79472;  Time    7.296761813e-04 (sec); dt=    5.960464478e-09 (dt_grow)",
+        "[ 72.97%] ncyc    79473;  Time    7.296836319e-04 (sec); dt=    7.450580597e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 72.76%] ncyc    78517;  Time    7.276090014e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 72.76%] ncyc    78518;  Time    7.276100014e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 72.76%] ncyc    78519;  Time    7.276112514e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 72.76%] ncyc    78520;  Time    7.276128139e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
+        "[ 72.97%] ncyc    79474;  Time    7.296859602e-04 (sec); dt=    2.328306437e-09 (dt_recover)",
+        "[ 72.97%] ncyc    79475;  Time    7.296888706e-04 (sec); dt=    2.910383046e-09 (dt_grow)"
       ],
-      "summary": "44h34m41s in, cycle 78520 at t=727.61µs of the 1000µs cold-flow target (~72.8%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0187 kg/s (was 0.0203), still declining, not yet crossed zero.",
+      "summary": "45h04m40s in, cycle 79475 at t=729.69µs of the 1000µs cold-flow target (~73.0%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0171 kg/s (was 0.0187), decline rate slowing slightly, consistent with the overall damping seen since the first oscillation swing (peak 0.869 -> trough -0.0735 -> peak 0.0328, each swing roughly an order of magnitude smaller than the last).",
       "notes": [
         {
-          "txt": "Net mass flow rate still declining steadily, now 0.0187 kg/s, not yet crossed zero.",
+          "txt": "Net mass flow rate decline rate slowing slightly again -- consistent with overall damping (each successive oscillation swing roughly an order of magnitude smaller than the last).",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T20:43:32-04:00"
+      "polled_at": "2026-08-18T21:13:31-04:00"
     }
   ]
 }
