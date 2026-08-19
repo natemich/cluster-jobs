@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T19:43:32-04:00",
+  "polled_at": "2026-08-18T20:13:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 30171 from 29694), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline from the second-swing peak.",
-      "elapsed": "43:34:41",
+      "state_note": "dt-floor issue continuing (recovering count up to 30602 from 30171), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline, right at the edge of a third zero-crossing.",
+      "elapsed": "44:04:40",
       "limit": "72:00:00",
       "pct": 61,
-      "sim_now": "724.07 µs",
+      "sim_now": "725.66 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 72,
+      "sim_pct": 73,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0217 kg/s",
-          "desc": "Continuing a steady decline, now 0.0217 kg/s, approaching zero for a possible third crossing.",
+          "now": "0.0203 kg/s",
+          "desc": "Right at the edge of a third zero-crossing, continuing the same decline rate.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              721,
-              0.0242
+              723,
+              0.0225
             ],
             [
-              722.6,
-              0.0228
+              724.4,
+              0.0213
             ],
             [
-              723.4,
-              0.0222
+              725.2,
+              0.0206
             ],
             [
-              724,
-              0.0217
+              725.6,
+              0.0203
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 72.41%] ncyc    76538;  Time    7.240680056e-04 (sec); dt=    2.441406250e-09 (dt_grow)",
-        "[ 72.41%] ncyc    76539;  Time    7.240710573e-04 (sec); dt=    3.051757812e-09 (dt_grow)",
+        "[ 72.57%] ncyc    77540;  Time    7.256545823e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 72.41%] ncyc    76540;  Time    7.240720573e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 72.41%] ncyc    76541;  Time    7.240733073e-04 (sec); dt=    1.250000000e-09 (dt_grow)"
+        "[ 72.57%] ncyc    77541;  Time    7.256555823e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 72.57%] ncyc    77542;  Time    7.256568323e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 72.57%] ncyc    77543;  Time    7.256583948e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
+        "recovering .... because transport equations did not converge or energy extrapolations"
       ],
-      "summary": "43h34m41s in, cycle 76541 at t=724.07µs of the 1000µs cold-flow target (~72.4%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0217 kg/s (was 0.0234), continuing a steady decline from the second-swing peak, approaching zero for a possible third crossing.",
+      "summary": "44h04m40s in, cycle 77543 at t=725.66µs of the 1000µs cold-flow target (~72.6%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0203 kg/s (was 0.0217), right at the edge of a third zero-crossing.",
       "notes": [
         {
-          "txt": "Net mass flow rate continuing a steady decline, now 0.0217 kg/s, approaching zero for a possible third crossing.",
+          "txt": "Net mass flow rate right at the edge of a third zero-crossing -- watch next poll.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T19:43:32-04:00"
+      "polled_at": "2026-08-18T20:13:31-04:00"
     }
   ]
 }
