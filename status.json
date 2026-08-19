@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T20:13:31-04:00",
+  "polled_at": "2026-08-18T20:43:32-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,11 +1492,11 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 30602 from 30171), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline, right at the edge of a third zero-crossing.",
-      "elapsed": "44:04:40",
+      "state_note": "dt-floor issue continuing (recovering count up to 31051 from 30602), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline, not yet crossed zero.",
+      "elapsed": "44:34:41",
       "limit": "72:00:00",
-      "pct": 61,
-      "sim_now": "725.66 µs",
+      "pct": 62,
+      "sim_now": "727.61 µs",
       "sim_target": "1000 µs",
       "sim_pct": 73,
       "monitors": [
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0203 kg/s",
-          "desc": "Right at the edge of a third zero-crossing, continuing the same decline rate.",
+          "now": "0.0187 kg/s",
+          "desc": "Still declining steadily, not yet crossed zero for the third time.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              723,
-              0.0225
+              725,
+              0.0208
             ],
             [
-              724.4,
-              0.0213
+              726.2,
+              0.0198
             ],
             [
-              725.2,
-              0.0206
+              727,
+              0.0192
             ],
             [
-              725.6,
-              0.0203
+              727.6,
+              0.0187
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 72.57%] ncyc    77540;  Time    7.256545823e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 72.57%] ncyc    77541;  Time    7.256555823e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 72.57%] ncyc    77542;  Time    7.256568323e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 72.57%] ncyc    77543;  Time    7.256583948e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 72.76%] ncyc    78517;  Time    7.276090014e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "recovering .... because transport equations did not converge or energy extrapolations",
+        "[ 72.76%] ncyc    78518;  Time    7.276100014e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 72.76%] ncyc    78519;  Time    7.276112514e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 72.76%] ncyc    78520;  Time    7.276128139e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
       ],
-      "summary": "44h04m40s in, cycle 77543 at t=725.66µs of the 1000µs cold-flow target (~72.6%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0203 kg/s (was 0.0217), right at the edge of a third zero-crossing.",
+      "summary": "44h34m41s in, cycle 78520 at t=727.61µs of the 1000µs cold-flow target (~72.8%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0187 kg/s (was 0.0203), still declining, not yet crossed zero.",
       "notes": [
         {
-          "txt": "Net mass flow rate right at the edge of a third zero-crossing -- watch next poll.",
+          "txt": "Net mass flow rate still declining steadily, now 0.0187 kg/s, not yet crossed zero.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T20:13:31-04:00"
+      "polled_at": "2026-08-18T20:43:32-04:00"
     }
   ]
 }
