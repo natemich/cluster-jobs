@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-08-18T22:13:31-04:00",
+  "polled_at": "2026-08-18T22:43:31-04:00",
   "next_poll": "2026-08-09T22:57:34-04:00",
   "poll_interval_min": 30,
   "clusters": [
@@ -1492,13 +1492,13 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "dt-floor issue continuing (recovering count up to 32462 from 32016), zero FATAL_ERROR throughout the entire run. Net mass flow rate decline rate has slowed further -- may be asymptoting toward a small positive value rather than crossing zero a third time, consistent with continued damping.",
-      "elapsed": "46:04:40",
+      "state_note": "dt-floor issue continuing (recovering count up to 32864 from 32462), zero FATAL_ERROR throughout the entire run. Net mass flow rate continuing its steady decline.",
+      "elapsed": "46:34:40",
       "limit": "72:00:00",
-      "pct": 64,
-      "sim_now": "733.66 µs",
+      "pct": 65,
+      "sim_now": "735.35 µs",
       "sim_target": "1000 µs",
-      "sim_pct": 73,
+      "sim_pct": 74,
       "monitors": [
         {
           "key": "sim_time",
@@ -1543,8 +1543,8 @@
         {
           "key": "net_mass_flow",
           "label": "Net mass flow rate",
-          "now": "0.0141 kg/s",
-          "desc": "Decline rate slowing further -- may be asymptoting toward a small positive value rather than crossing zero again, consistent with continued damping.",
+          "now": "0.0130 kg/s",
+          "desc": "Continuing a steady decline, now 0.0130 kg/s.",
           "history": [
             [
               0,
@@ -1583,20 +1583,20 @@
               0.0328
             ],
             [
-              731,
-              0.016
-            ],
-            [
-              732.3,
-              0.015
-            ],
-            [
               733,
               0.0145
             ],
             [
-              733.5,
-              0.0141
+              734,
+              0.0138
+            ],
+            [
+              734.8,
+              0.0132
+            ],
+            [
+              735.2,
+              0.013
             ]
           ]
         }
@@ -1615,17 +1615,17 @@
       "log_path": "triangleRDE_coldflow",
       "log_size": null,
       "log_tail": [
-        "[ 73.37%] ncyc    81423;  Time    7.336599124e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 73.53%] ncyc    82423;  Time    7.353400912e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 73.53%] ncyc    82424;  Time    7.353416537e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
         "recovering .... because transport equations did not converge or energy extrapolations",
-        "[ 73.37%] ncyc    81424;  Time    7.336609124e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
-        "[ 73.37%] ncyc    81425;  Time    7.336621624e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
-        "[ 73.37%] ncyc    81426;  Time    7.336637249e-04 (sec); dt=    1.562500000e-09 (dt_grow)",
-        "recovering .... because transport equations did not converge or energy extrapolations"
+        "[ 73.53%] ncyc    82425;  Time    7.353426537e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 73.53%] ncyc    82426;  Time    7.353439037e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 73.53%] ncyc    82427;  Time    7.353454662e-04 (sec); dt=    1.562500000e-09 (dt_grow)"
       ],
-      "summary": "46h04m40s in, cycle 81426 at t=733.66µs of the 1000µs cold-flow target (~73.4%). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0141 kg/s (was 0.0154), decline rate has slowed further -- possibly asymptoting toward a small positive value rather than a third zero-crossing, consistent with continued damping.",
+      "summary": "46h34m40s in, cycle 82427 at t=735.35µs of the 1000µs cold-flow target (~73.5%, roughly 65% of the 72h wall limit used). dt-floor issue continuing, zero FATAL_ERROR throughout the entire run. Net mass flow rate now 0.0130 kg/s (was 0.0141), continuing a steady decline.",
       "notes": [
         {
-          "txt": "Net mass flow rate decline rate slowing further -- may be asymptoting rather than crossing zero a third time, consistent with continued damping.",
+          "txt": "Net mass flow rate continuing a steady decline, now 0.0130 kg/s.",
           "level": "info"
         },
         {
@@ -1641,7 +1641,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-08-18T22:13:31-04:00"
+      "polled_at": "2026-08-18T22:43:31-04:00"
     }
   ]
 }
