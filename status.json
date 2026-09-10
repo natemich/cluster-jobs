@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T13:05:00-04:00",
-  "next_poll": "2026-09-10T13:10:00-04:00",
+  "polled_at": "2026-09-10T13:10:00-04:00",
+  "next_poll": "2026-09-10T13:15:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,19 +20,19 @@
       "queue": "short",
       "state": "RUN",
       "status": "good",
-      "state_note": "Running cleanly, early time-stepping (cycle 19, t=0.274us of the 4000us target), dt growing normally. BIG NEWS: ParaView Catalyst produced real output for the first time ever on this project -- 9 PNGs now in outputs_original/paraview_catalyst/ (EquivMetricSurf + all 4 PressureSurf + all 4 TemperatureSurf views). XTPlot_Pressure hasn't written its first frame yet (script loaded fine, no error -- likely just needs more accumulated cycles).",
-      "elapsed": "0:10:00",
+      "state_note": "Running cleanly, cycle 27, t=0.802us, dt settled at dt_cfl (healthy). Catalyst still producing surf-view PNGs each trigger (2nd frame set at t=0.54us). XTPlot_Pressure still hasn't written a frame -- no error. Minor benign pvbatch warning ('Argument time already exists') appeared, cosmetic only.",
+      "elapsed": "0:15:00",
       "limit": "2:00:00",
-      "pct": 8.3,
-      "sim_now": "0.274 µs",
+      "pct": 12.5,
+      "sim_now": "0.802 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "5.551e-8 s",
-          "desc": "healthy startup ramp (dt_grow), cycle 19",
+          "now": "6.593e-8 s",
+          "desc": "settled at dt_cfl, healthy",
           "history": [
             [
               1,
@@ -43,16 +43,20 @@
               2.842e-8
             ],
             [
-              17,
-              3.553e-8
-            ],
-            [
-              18,
-              4.441e-8
-            ],
-            [
               19,
               5.551e-8
+            ],
+            [
+              25,
+              6.692e-8
+            ],
+            [
+              26,
+              6.641e-8
+            ],
+            [
+              27,
+              6.593e-8
             ]
           ]
         }
@@ -63,35 +67,30 @@
       "node": null,
       "restarts": 1,
       "posts": 0,
-      "frames": 9,
-      "newest": "triangleRDE_weakIgnite_EquivMetricSurf_0.00000000.png (+ 8 other Catalyst surf views)",
+      "frames": 18,
+      "newest": "triangleRDE_weakIgnite_*_0.00000054.png (2nd Catalyst frame set, t=0.54us)",
       "submitted": "2026-09-10T12:55:00-04:00",
       "cmd": "bsub < RunConverge.sh  # queue short, 8 ranks, 2:00 wall -- 3rd attempt, now loading CONVERGE 5.0.2 successfully",
       "log_name": "converge.log",
       "log_path": "triangleRDE_weakIgnite/outputs_original",
       "log_size": null,
       "log_tail": [
-        "[  0.00%] ncyc       16;  Time    1.381085472e-07 (sec); dt=    2.842170943e-08 (dt_grow)",
-        "[  0.00%] ncyc       17;  Time    1.736356839e-07 (sec); dt=    3.552713679e-08 (dt_grow)",
-        "[  0.01%] ncyc       18;  Time    2.180446049e-07 (sec); dt=    4.440892099e-08 (dt_grow)",
-        "[  0.01%] ncyc       19;  Time    2.735557562e-07 (sec); dt=    5.551115123e-08 (dt_grow)"
+        "[  0.02%] ncyc       25;  Time    6.695181739e-07 (sec); dt=    6.691746708e-08 (dt_cfl)",
+        "[  0.02%] ncyc       26;  Time    7.359296804e-07 (sec); dt=    6.641150657e-08 (dt_cfl)",
+        "[  0.02%] ncyc       27;  Time    8.018588182e-07 (sec); dt=    6.592913774e-08 (dt_cfl)"
       ],
-      "summary": "Running cleanly on CONVERGE 5.0.2 -- cycle 19, t=0.274us (very early, well before the 300us ignition point), dt ramping up normally, zero FATAL_ERROR. The headline development: ParaView Catalyst finally produced real output on this project for the first time ever -- 9 of its 10 registered scripts (EquivMetricSurf, all 4 PressureSurf views, all 4 TemperatureSurf views) wrote PNGs to outputs_original/paraview_catalyst/ at the t=0 trigger. This directly resolves the long-standing libcatalyst-paraview.so/libpython3.7m.so.1.0 load failure seen on every prior run under CONVERGE 4.1.2. XTPlot_Pressure (the x-t wave diagram) hasn't written its first frame yet -- the script itself loaded without error, just hasn't produced output on this trigger.",
+      "summary": "Still running cleanly on CONVERGE 5.0.2 -- cycle 27, t=0.802us, dt now settled at dt_cfl (healthy, past the initial ramp). Zero FATAL_ERROR. Catalyst wrote its 2nd frame set for the 9 working scripts at t=0.54us; XTPlot_Pressure still hasn't produced a frame but shows no error either. One cosmetic pvbatch warning appeared ('Argument time already exists') -- benign.",
       "notes": [
         {
-          "txt": "Catalyst works for the first time ever on this project -- 9/10 registered scripts produced real PNG output at the t=0 trigger under CONVERGE 5.0.2, resolving the library-load failure that blocked every prior run under 4.1.2.",
+          "txt": "Clean, steady progress -- dt settled at dt_cfl, zero FATAL_ERROR.",
           "level": "good"
         },
         {
-          "txt": "XTPlot_Pressure (the x-t diagram) hasn't produced its first frame yet -- no error, just no output so far; watching next few triggers.",
-          "level": "info"
-        },
-        {
-          "txt": "Simulation itself is very early (cycle 19, t=0.274us) with a normal healthy dt ramp -- nothing to assess on ignition/detonation yet.",
+          "txt": "XTPlot_Pressure still silent (no frame, no error) after 2 trigger cycles from the other scripts -- watching.",
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T13:05:00-04:00",
+      "polled_at": "2026-09-10T13:10:00-04:00",
       "xt_plot": {
         "available": false
       }
