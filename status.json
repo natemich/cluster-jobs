@@ -1,7 +1,7 @@
 {
-  "polled_at": "2026-09-10T15:01:00-04:00",
-  "next_poll": "2026-09-10T15:06:00-04:00",
-  "poll_interval_min": 5,
+  "polled_at": "2026-09-10T15:06:00-04:00",
+  "next_poll": "2026-09-10T15:36:00-04:00",
+  "poll_interval_min": 30,
   "clusters": [
     {
       "name": "hazel",
@@ -18,13 +18,13 @@
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "short",
-      "state": "RUN",
-      "status": "warn",
-      "state_note": "Still running past the nominal 2:00 mark (LSF hasn't killed it yet) -- cycle 187, zero FATAL_ERROR, still no XTPlot output. Watching for TERM_RUNLIMIT.",
-      "elapsed": "2:01:00",
+      "state": "EXIT",
+      "status": "done",
+      "state_note": "TERM_RUNLIMIT -- killed by LSF at the 2:00 short-queue wall limit (not a crash). Exit code 140. Final: cycle 188, t=10.54us, zero FATAL_ERROR the entire run. Catalyst confirmed working under CONVERGE 5.0.2 (9/10 scripts produced 22 frames each). XTPlot_Pressure never produced output despite 22 triggers (well past its ~20-call periodic-save threshold) -- ruled out timing as the cause; likely a silent early-return in _extract_ring_arrays (no data -> no exception, no save).",
+      "elapsed": "2:00:05",
       "limit": "2:00:00",
       "pct": 100,
-      "sim_now": "0.802 µs",
+      "sim_now": "10.54 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
@@ -68,7 +68,7 @@
       "restarts": 1,
       "posts": 0,
       "frames": 18,
-      "newest": "triangleRDE_weakIgnite_*_0.00000054.png (2nd Catalyst frame set, t=0.54us)",
+      "newest": "22 Catalyst frames per surf script (t=0 to t=10.54us), no XTPlot output",
       "submitted": "2026-09-10T12:55:00-04:00",
       "cmd": "bsub < RunConverge.sh  # queue short, 8 ranks, 2:00 wall -- 3rd attempt, now loading CONVERGE 5.0.2 successfully",
       "log_name": "converge.log",
@@ -79,18 +79,22 @@
         "[  0.02%] ncyc       26;  Time    7.359296804e-07 (sec); dt=    6.641150657e-08 (dt_cfl)",
         "[  0.02%] ncyc       27;  Time    8.018588182e-07 (sec); dt=    6.592913774e-08 (dt_cfl)"
       ],
-      "summary": "Still running cleanly on CONVERGE 5.0.2 -- cycle 27, t=0.802us, dt now settled at dt_cfl (healthy, past the initial ramp). Zero FATAL_ERROR. Catalyst wrote its 2nd frame set for the 9 working scripts at t=0.54us; XTPlot_Pressure still hasn't produced a frame but shows no error either. One cosmetic pvbatch warning appeared ('Argument time already exists') -- benign.",
+      "summary": "Job 269785 ended via TERM_RUNLIMIT at the 2-hour short-queue wall limit (exit 140, not a crash) -- cycle 188, t=10.54us of the 4000us target, zero FATAL_ERROR for the entire run. Primary goal achieved: ParaView Catalyst is confirmed working under CONVERGE 5.0.2 for the first time ever on this project -- 9 of 10 registered scripts produced 22 real PNG frames apiece. XTPlot_Pressure remains the one holdout: it received the same 22 triggers as every other script (well past the ~20-call threshold that should have forced its first periodic save) but produced zero output and zero errors. This rules out 'just needs more sim time' -- the likely cause is a silent early-return in _extract_ring_arrays (empty resample data -> function returns before ever incrementing the save counter, no exception raised).",
       "notes": [
         {
-          "txt": "Clean, steady progress -- dt settled at dt_cfl, zero FATAL_ERROR.",
+          "txt": "Ended via TERM_RUNLIMIT (2hr wall limit), not a crash -- exit code 140, zero FATAL_ERROR for the full run.",
+          "level": "info"
+        },
+        {
+          "txt": "Catalyst confirmed working under CONVERGE 5.0.2: 9/10 scripts produced 22 frames each, resolving the long-standing 4.1.2 library-load failure.",
           "level": "good"
         },
         {
-          "txt": "XTPlot_Pressure still silent (no frame, no error) after 2 trigger cycles from the other scripts -- watching.",
-          "level": "info"
+          "txt": "XTPlot_Pressure produced zero output despite 22 triggers (past its own periodic-save threshold) and zero errors in the logs -- points to a silent early-return in _extract_ring_arrays, not a timing/pacing issue as earlier assumed. Needs direct debugging of the resample/ring-extraction code.",
+          "level": "warn"
         }
       ],
-      "polled_at": "2026-09-10T15:01:00-04:00",
+      "polled_at": "2026-09-10T15:06:00-04:00",
       "xt_plot": {
         "available": false
       }
