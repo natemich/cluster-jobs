@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T12:58:00-04:00",
-  "next_poll": "2026-09-10T13:02:00-04:00",
+  "polled_at": "2026-09-10T13:05:00-04:00",
+  "next_poll": "2026-09-10T13:10:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,50 +20,78 @@
       "queue": "short",
       "state": "RUN",
       "status": "good",
-      "state_note": "Running cleanly -- past the two earlier module-version failures (269766: CONVERGE 4.1.2 vs 5.0-schema files; 269781: bad $CONVERGEmodule path). Loaded CONVERGE 5.0.2 (INTEL), paraview/5.13.3. Still in mesh/boundary setup, hasn't reached time-stepping yet. Zero FATAL_ERROR.",
-      "elapsed": "0:03:00",
+      "state_note": "Running cleanly, early time-stepping (cycle 19, t=0.274us of the 4000us target), dt growing normally. BIG NEWS: ParaView Catalyst produced real output for the first time ever on this project -- 9 PNGs now in outputs_original/paraview_catalyst/ (EquivMetricSurf + all 4 PressureSurf + all 4 TemperatureSurf views). XTPlot_Pressure hasn't written its first frame yet (script loaded fine, no error -- likely just needs more accumulated cycles).",
+      "elapsed": "0:10:00",
       "limit": "2:00:00",
-      "pct": 2.5,
-      "sim_now": null,
+      "pct": 8.3,
+      "sim_now": "0.274 µs",
       "sim_target": "4000 µs",
-      "sim_pct": null,
-      "monitors": [],
+      "sim_pct": 0,
+      "monitors": [
+        {
+          "key": "dt",
+          "label": "dt",
+          "now": "5.551e-8 s",
+          "desc": "healthy startup ramp (dt_grow), cycle 19",
+          "history": [
+            [
+              1,
+              1e-9
+            ],
+            [
+              16,
+              2.842e-8
+            ],
+            [
+              17,
+              3.553e-8
+            ],
+            [
+              18,
+              4.441e-8
+            ],
+            [
+              19,
+              5.551e-8
+            ]
+          ]
+        }
+      ],
       "ranks": 8,
       "rss": null,
       "s_per_step": null,
       "node": null,
-      "restarts": 0,
+      "restarts": 1,
       "posts": 0,
-      "frames": 0,
-      "newest": null,
+      "frames": 9,
+      "newest": "triangleRDE_weakIgnite_EquivMetricSurf_0.00000000.png (+ 8 other Catalyst surf views)",
       "submitted": "2026-09-10T12:55:00-04:00",
       "cmd": "bsub < RunConverge.sh  # queue short, 8 ranks, 2:00 wall -- 3rd attempt, now loading CONVERGE 5.0.2 successfully",
-      "log_name": "stderr.269785",
-      "log_path": "triangleRDE_weakIgnite",
+      "log_name": "converge.log",
+      "log_path": "triangleRDE_weakIgnite/outputs_original",
       "log_size": null,
       "log_tail": [
-        "Loading /usr/local/usrapps/braun/Convergent_Science/CONVERGE_CFD/5.0.2/environment/x64/modulefiles/CONVERGE/INTEL/5.0.2",
-        "  Loading requirement: mesa/18.3.6 python/3.10.16 paraview/5.13.3 CONVERGE/common/5.0.2",
-        "WARNING: [4010] Network latency is not computed for single-node simulations.",
-        "WARNING: For one-equation or two-equation LES models, resetting sgs_ke clip values from 1.000000e-07 to 1e-20",
-        "(mesh/boundary/event setup in progress in outputs_original/converge.log -- 208 lines so far, zero FATAL_ERROR, not yet at time-stepping)"
+        "[  0.00%] ncyc       16;  Time    1.381085472e-07 (sec); dt=    2.842170943e-08 (dt_grow)",
+        "[  0.00%] ncyc       17;  Time    1.736356839e-07 (sec); dt=    3.552713679e-08 (dt_grow)",
+        "[  0.01%] ncyc       18;  Time    2.180446049e-07 (sec); dt=    4.440892099e-08 (dt_grow)",
+        "[  0.01%] ncyc       19;  Time    2.735557562e-07 (sec); dt=    5.551115123e-08 (dt_grow)"
       ],
-      "summary": "Third submission attempt (job 269785) is running cleanly, past the two earlier failures (4.1.2/5.0-schema version mismatch, then a bad $CONVERGEmodule path). Loaded CONVERGE 5.0.2 and paraview/5.13.3 successfully. Still early -- working through mesh/boundary/disconnect-group setup in converge.log with zero FATAL_ERROR, hasn't reached actual time-stepping or ignition yet. Too early to say anything about Catalyst output.",
+      "summary": "Running cleanly on CONVERGE 5.0.2 -- cycle 19, t=0.274us (very early, well before the 300us ignition point), dt ramping up normally, zero FATAL_ERROR. The headline development: ParaView Catalyst finally produced real output on this project for the first time ever -- 9 of its 10 registered scripts (EquivMetricSurf, all 4 PressureSurf views, all 4 TemperatureSurf views) wrote PNGs to outputs_original/paraview_catalyst/ at the t=0 trigger. This directly resolves the long-standing libcatalyst-paraview.so/libpython3.7m.so.1.0 load failure seen on every prior run under CONVERGE 4.1.2. XTPlot_Pressure (the x-t wave diagram) hasn't written its first frame yet -- the script itself loaded without error, just hasn't produced output on this trigger.",
       "notes": [
         {
-          "txt": "Successfully past both prior failure points -- module loaded cleanly this time (CONVERGE 5.0.2, paraview/5.13.3), zero FATAL_ERROR so far.",
+          "txt": "Catalyst works for the first time ever on this project -- 9/10 registered scripts produced real PNG output at the t=0 trigger under CONVERGE 5.0.2, resolving the library-load failure that blocked every prior run under 4.1.2.",
           "level": "good"
         },
         {
-          "txt": "Still in early mesh/setup phase, not yet time-stepping -- too early to assess Catalyst or ignition.",
+          "txt": "XTPlot_Pressure (the x-t diagram) hasn't produced its first frame yet -- no error, just no output so far; watching next few triggers.",
           "level": "info"
         },
         {
-          "txt": "Resolved to CONVERGE 5.0.2, not 5.1.0 -- worth confirming with the user whether that's intended or if $CONVERGEver/module setup should point at 5.1.0 specifically.",
-          "level": "warn"
+          "txt": "Simulation itself is very early (cycle 19, t=0.274us) with a normal healthy dt ramp -- nothing to assess on ignition/detonation yet.",
+          "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T12:58:00-04:00",
+      "polled_at": "2026-09-10T13:05:00-04:00",
       "xt_plot": {
         "available": false
       }
