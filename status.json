@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T14:36:00-04:00",
-  "next_poll": "2026-09-10T14:41:00-04:00",
+  "polled_at": "2026-09-10T14:41:00-04:00",
+  "next_poll": "2026-09-10T14:46:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,10 +20,10 @@
       "queue": "short",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Running cleanly, cycle 150, zero FATAL_ERROR. Approaching the 2:00 short-queue wall limit -- ~24 min remain. XTPlot still hasn't produced output (never got past cycle 146 / t<10us needed for its first periodic save) and likely won't before TERM_RUNLIMIT hits.",
-      "elapsed": "1:41:00",
+      "state_note": "Running cleanly, cycle 157, zero FATAL_ERROR. Approaching the 2:00 short-queue wall limit -- ~24 min remain. XTPlot still hasn't produced output (never got past cycle 146 / t<10us needed for its first periodic save) and likely won't before TERM_RUNLIMIT hits.",
+      "elapsed": "1:46:00",
       "limit": "2:00:00",
-      "pct": 84.2,
+      "pct": 88.3,
       "sim_now": "0.802 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
@@ -90,7 +90,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T14:36:00-04:00",
+      "polled_at": "2026-09-10T14:41:00-04:00",
       "xt_plot": {
         "available": false
       }
