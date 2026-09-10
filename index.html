@@ -99,8 +99,8 @@ svg{display:block;width:100%}
 <body>
 <div id="app"></div>
 <script id="status" type="application/json">{
-  "polled_at": "2026-08-09T22:27:34-04:00",
-  "next_poll": "2026-08-09T22:57:34-04:00",
+  "polled_at": "2026-09-10T12:40:03-04:00",
+  "next_poll": "2026-09-10T13:10:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -111,740 +111,56 @@ svg{display:block;width:100%}
   ],
   "jobs": [
     {
-      "id": "970574",
+      "id": null,
       "label": "TriangleRDE weakIgnite",
       "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\triangleRDE_weakIgnite",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "lsf",
-      "queue": "braun",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "TERM_RUNLIMIT — killed by scheduler at the 72-hour wall limit, not a crash; never detonated",
-      "elapsed": "72:00:29",
-      "limit": "72:00:00",
-      "pct": 100,
-      "sim_now": "665.301 µs",
+      "queue": "short",
+      "state": "PEND",
+      "status": "pend",
+      "state_note": "queued on 'short' queue (2:00 wall limit) -- fresh resubmission, not yet started. Case rebuilt in CONVERGE 5.1.0 with ignition energy cut to 2,500,000 (was 10,000,000). Supersedes job 970574, which hit TERM_RUNLIMIT on 2026-08-06 without detonating.",
+      "elapsed": null,
+      "limit": "2:00:00",
+      "pct": null,
+      "sim_now": null,
       "sim_target": "4000 µs",
-      "sim_pct": 16,
-      "monitors": [
-        {
-          "key": "p_max",
-          "label": "p_max",
-          "now": "8.38 bar",
-          "desc": "final reading: settled on a slow-declining plateau, never rebuilt after the ignition transient — run ended (wall-clock) without detonating",
-          "history": [
-            [
-              1,
-              7
-            ],
-            [
-              3173,
-              7.22
-            ],
-            [
-              6346,
-              7.28
-            ],
-            [
-              9518,
-              7.38
-            ],
-            [
-              12691,
-              7.41
-            ],
-            [
-              15863,
-              7.38
-            ],
-            [
-              19036,
-              7.36
-            ],
-            [
-              22208,
-              7.57
-            ],
-            [
-              25381,
-              7.93
-            ],
-            [
-              28553,
-              8.27
-            ],
-            [
-              31725,
-              8.07
-            ],
-            [
-              34898,
-              7.85
-            ],
-            [
-              38070,
-              7.57
-            ],
-            [
-              41243,
-              7.63
-            ],
-            [
-              44415,
-              54.47
-            ],
-            [
-              47588,
-              15.39
-            ],
-            [
-              50760,
-              10.75
-            ],
-            [
-              53933,
-              9.56
-            ],
-            [
-              57105,
-              8.83
-            ],
-            [
-              60278,
-              8.78
-            ],
-            [
-              63450,
-              9.23
-            ],
-            [
-              66622,
-              9.07
-            ],
-            [
-              69795,
-              8.81
-            ],
-            [
-              72967,
-              9.34
-            ],
-            [
-              76140,
-              8.9
-            ],
-            [
-              79312,
-              9.23
-            ],
-            [
-              82485,
-              8.44
-            ],
-            [
-              85657,
-              8.95
-            ],
-            [
-              88830,
-              8.58
-            ],
-            [
-              92002,
-              8.38
-            ]
-          ]
-        },
-        {
-          "key": "t_max",
-          "label": "T_max",
-          "now": "1376.2 K",
-          "desc": "final reading; peak 10342 K during the early ignition transient",
-          "history": [
-            [
-              1,
-              300
-            ],
-            [
-              3173,
-              322
-            ],
-            [
-              6346,
-              323.8
-            ],
-            [
-              9518,
-              321
-            ],
-            [
-              12691,
-              321.3
-            ],
-            [
-              15863,
-              320.1
-            ],
-            [
-              19036,
-              317.9
-            ],
-            [
-              22208,
-              321
-            ],
-            [
-              25381,
-              320.7
-            ],
-            [
-              28553,
-              326.1
-            ],
-            [
-              31725,
-              324.4
-            ],
-            [
-              34898,
-              320.7
-            ],
-            [
-              38070,
-              317.5
-            ],
-            [
-              41243,
-              320.3
-            ],
-            [
-              44415,
-              7466
-            ],
-            [
-              47588,
-              3831.9
-            ],
-            [
-              50760,
-              3527.1
-            ],
-            [
-              53933,
-              3379.2
-            ],
-            [
-              57105,
-              3532
-            ],
-            [
-              60278,
-              3361.1
-            ],
-            [
-              63450,
-              3679.1
-            ],
-            [
-              66622,
-              3283
-            ],
-            [
-              69795,
-              3158.9
-            ],
-            [
-              72967,
-              2937.5
-            ],
-            [
-              76140,
-              2509.5
-            ],
-            [
-              79312,
-              2126.7
-            ],
-            [
-              82485,
-              1762.3
-            ],
-            [
-              85657,
-              1551.5
-            ],
-            [
-              88830,
-              1458.2
-            ],
-            [
-              92002,
-              1376.2
-            ]
-          ]
-        },
-        {
-          "key": "dt",
-          "label": "dt",
-          "now": "1.250e-9 s",
-          "desc": "at time of scheduler kill — solver was running cleanly, not stalled",
-          "history": [
-            [
-              1,
-              1e-9
-            ],
-            [
-              3173,
-              4.846e-8
-            ],
-            [
-              6346,
-              2.879e-8
-            ],
-            [
-              9518,
-              1.952e-8
-            ],
-            [
-              12691,
-              1.25e-9
-            ],
-            [
-              15863,
-              1.25e-9
-            ],
-            [
-              19036,
-              1.25e-9
-            ],
-            [
-              22208,
-              1.25e-9
-            ],
-            [
-              25381,
-              1e-9
-            ],
-            [
-              28553,
-              1.25e-9
-            ],
-            [
-              31725,
-              1e-9
-            ],
-            [
-              34898,
-              1.25e-9
-            ],
-            [
-              38070,
-              1.953e-9
-            ],
-            [
-              41243,
-              1e-9
-            ],
-            [
-              44415,
-              1.25e-9
-            ],
-            [
-              47588,
-              1e-9
-            ],
-            [
-              50760,
-              2.225e-8
-            ],
-            [
-              53933,
-              1e-9
-            ],
-            [
-              57105,
-              1.25e-9
-            ],
-            [
-              60278,
-              1e-9
-            ],
-            [
-              63450,
-              1e-9
-            ],
-            [
-              66622,
-              3.052e-9
-            ],
-            [
-              69795,
-              1.25e-9
-            ],
-            [
-              72967,
-              1.25e-9
-            ],
-            [
-              76140,
-              1.25e-9
-            ],
-            [
-              79312,
-              1.562e-9
-            ],
-            [
-              82485,
-              1e-9
-            ],
-            [
-              85657,
-              1.25e-9
-            ],
-            [
-              88830,
-              1.25e-9
-            ],
-            [
-              92002,
-              1.25e-9
-            ]
-          ]
-        },
-        {
-          "key": "s_per_cycle",
-          "label": "s/cycle",
-          "now": "2.82 s",
-          "desc": "wall time per cycle, averaged over the full run",
-          "history": [
-            [
-              3173,
-              2.92
-            ],
-            [
-              6346,
-              3.04
-            ],
-            [
-              9518,
-              3.91
-            ],
-            [
-              12691,
-              2.92
-            ],
-            [
-              15863,
-              3.01
-            ],
-            [
-              19036,
-              2.83
-            ],
-            [
-              22208,
-              2.95
-            ],
-            [
-              25381,
-              3.05
-            ],
-            [
-              28553,
-              3.03
-            ],
-            [
-              31725,
-              3.21
-            ],
-            [
-              34898,
-              3.27
-            ],
-            [
-              38070,
-              3.2
-            ],
-            [
-              41243,
-              3.21
-            ],
-            [
-              44415,
-              3.11
-            ],
-            [
-              47588,
-              3.25
-            ],
-            [
-              50760,
-              3.35
-            ],
-            [
-              53933,
-              3.33
-            ],
-            [
-              57105,
-              2.65
-            ],
-            [
-              60278,
-              2.57
-            ],
-            [
-              63450,
-              2.4
-            ],
-            [
-              66622,
-              2.37
-            ],
-            [
-              69795,
-              2.34
-            ],
-            [
-              72967,
-              2.31
-            ],
-            [
-              76140,
-              2.2
-            ],
-            [
-              79312,
-              2.19
-            ],
-            [
-              82485,
-              2.21
-            ],
-            [
-              85657,
-              2.27
-            ],
-            [
-              88830,
-              2.29
-            ],
-            [
-              92002,
-              2.27
-            ]
-          ]
-        },
-        {
-          "key": "mass",
-          "label": "mass",
-          "now": "9.093e-5 kg",
-          "desc": "final mass reading",
-          "history": [
-            [
-              1,
-              0.0003017
-            ],
-            [
-              3173,
-              0.0002982
-            ],
-            [
-              6346,
-              0.0002877
-            ],
-            [
-              9518,
-              0.0002725
-            ],
-            [
-              12691,
-              0.0002542
-            ],
-            [
-              15863,
-              0.0002346
-            ],
-            [
-              19036,
-              0.0002149
-            ],
-            [
-              22208,
-              0.0001957
-            ],
-            [
-              25381,
-              0.0001784
-            ],
-            [
-              28553,
-              0.0001638
-            ],
-            [
-              31725,
-              0.0001517
-            ],
-            [
-              34898,
-              0.0001414
-            ],
-            [
-              38070,
-              0.0001327
-            ],
-            [
-              41243,
-              0.0001254
-            ],
-            [
-              44415,
-              0.0001203
-            ],
-            [
-              47588,
-              0.0001134
-            ],
-            [
-              50760,
-              0.00009172
-            ],
-            [
-              53933,
-              0.00008821
-            ],
-            [
-              57105,
-              0.00008736
-            ],
-            [
-              60278,
-              0.00008746
-            ],
-            [
-              63450,
-              0.00008801
-            ],
-            [
-              66622,
-              0.00008832
-            ],
-            [
-              69795,
-              0.00008851
-            ],
-            [
-              72967,
-              0.00008873
-            ],
-            [
-              76140,
-              0.00008918
-            ],
-            [
-              79312,
-              0.00008975
-            ],
-            [
-              82485,
-              0.00009015
-            ],
-            [
-              85657,
-              0.00009043
-            ],
-            [
-              88830,
-              0.00009066
-            ],
-            [
-              92002,
-              0.00009093
-            ]
-          ]
-        }
-      ],
+      "sim_pct": null,
+      "monitors": [],
       "ranks": 64,
-      "rss": "58.2G",
-      "s_per_step": 2.82,
-      "node": "n0360 · 1×64",
-      "restarts": 82,
-      "posts": 67,
+      "rss": null,
+      "s_per_step": null,
+      "node": null,
+      "restarts": 0,
+      "posts": 0,
       "frames": 0,
-      "newest": "post000067_+6.60031e-04.h5",
-      "submitted": "2026-08-06T02:33:08-04:00",
-      "cmd": "bsub < RunConverge.sh  # queue braun, 64 ranks, 72:00 wall (weakIgnite: source value 1/4 of original, ignites 300µs) — TERM_RUNLIMIT 2026-08-09 02:57 (exit code 140)",
-      "log_name": "stdout.970574",
+      "newest": null,
+      "submitted": "2026-09-10T12:35:00-04:00",
+      "cmd": "bsub < RunConverge.sh  # queue short, 64 ranks, 2:00 wall -- smoke test: reduced ignition energy + checking whether ParaView Catalyst works under CONVERGE 5.1.0 (every prior run under 4.1.2 failed to load libcatalyst-paraview.so/libpython3.7m.so.1.0)",
+      "log_name": null,
       "log_path": "triangleRDE_weakIgnite",
       "log_size": null,
-      "log_tail": [
-        "        sed -i \"/^${LSB_JOBID}/s/Running/Done/\" $CONVERGElog",
-        "        TIME=$(date +\"%Y-%m-%d_%H:%M:%S\")",
-        "        sed -i \"/^${LSB_JOBID}/s/--_::/${TIME}/\" $CONVERGElog",
-        "}",
-        "trap cleanup EXIT",
-        "",
-        "# Enable tracking of entropy (temporary fix)",
-        "sed -i 's/entropy_info_output_flag: 0/entropy_info_output_flag: 1/' inputs.in",
-        "",
-        "# module load PrgEnv-intel",
-        "module load $CONVERGEmodule",
-        "module load paraview/INTEL/5.11.0",
-        "",
-        "# UDF linking",
-        "export LD_LIBRARY_PATH=$CONVERGErepo/udf/build:$LD_LIBRARY_PATH",
-        "",
-        "# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #",
-        "restartCVG .",
-        "",
-        "# Run the Case",
-        "mpirun converge-intel --license super",
-        "",
-        "# Closes the entry in the log",
-        "cleanup",
-        "",
-        "------------------------------------------------------------",
-        "",
-        "TERM_RUNLIMIT: job killed after reaching LSF run time limit.",
-        "Exited with exit code 140.",
-        "",
-        "Resource usage summary:",
-        "",
-        "    CPU time :                                   16520295.00 sec.",
-        "    Max Memory :                                 64 GB",
-        "    Average Memory :                             59.06 GB",
-        "    Total Requested Memory :                     128.00 GB",
-        "    Delta Memory :                               64.00 GB",
-        "    Max Swap :                                   -",
-        "    Max Processes :                              72",
-        "    Max Threads :                                139",
-        "    Run time :                                   259229 sec.",
-        "    Turnaround time :                            259422 sec.",
-        "",
-        "The output (if any) is above this job summary.",
-        "",
-        "",
-        "",
-        "PS:",
-        "",
-        "Read file <stderr.970574> for stderr output of this job."
-      ],
-      "summary": "TERMINATED BY THE SCHEDULER (TERM_RUNLIMIT, exit code 140) at 2026-08-09 02:57, after hitting the 72-hour LSF wall-clock limit — flagged as approaching since roughly poll 134 (92% used) and tracked closely every poll since. Final state: cycle 92002, t=665.301µs (16% to the 4.0ms target), domain-max 8.38 bar / 1376.2 K — still on the same slow-declining plateau it had been easing down for the last ~50 polls (roughly 1550→1376 K over that stretch), never rebuilding after the early ignition transient peaked at 569.4 bar / 10342 K. Numerically the run was clean the entire time: CVODE flat at 62,150 for the last 59+ consecutive polls, [3467] temperature-extrapolation warnings climbed steadily but stayed confined to background-level cell clusters throughout (ending near 38,000), zero FATAL_ERROR in either stream across the whole run. 72:00:29 of run time logged (100% of the 72-hour wall limit, 259229 sec per the LSF resource summary) before the scheduler killed it. Bottom line: like its predecessor (965850), this weaker-ignition rerun also did not detonate — it ran out of wall time first, on a track that looked like continued settling rather than a wave rebuild.",
+      "log_tail": null,
+      "summary": "Freshly submitted to the 'short' queue (2-hour wall limit) as a quick smoke test -- primarily to check whether ParaView Catalyst finally works under the CONVERGE 5.1.0 upgrade (it never has, on any prior run under 4.1.2, due to a Catalyst library/Python-ABI mismatch). No stdout/stderr or outputs_original/ yet, so the job is still queued (PEND), not running. Ignition energy is reduced to 2,500,000 (1/4 of the original), same reduction used in the terminated 970574 run, still targeting the same 4.0ms end time.",
       "notes": [
         {
-          "txt": "TERM_RUNLIMIT: killed by the LSF scheduler at the 72-hour wall-clock limit (exit code 140) — not a crash; this was flagged as approaching starting around poll 134 and tracked every poll since",
-          "level": "warn"
+          "txt": "PEND -- no stdout.<jobid>/stderr.<jobid> or outputs_original/ present yet, so no LSF job id is confirmed. Will pick it up once the job starts or the user confirms it.",
+          "level": "info"
         },
         {
-          "txt": "never detonated: domain-max pressure/temperature spent the last ~50+ polls on a slow, steady decline (roughly 1550→1376 K), never rebuilding after the early ignition transient (peak 569.4 bar / 10342 K) — same conclusion as the prior run (965850), just via a longer, quieter transient",
-          "level": "warn"
+          "txt": "Primary purpose of this short run: check whether ParaView Catalyst produces output under CONVERGE 5.1.0 -- every prior run (970574, 965850, 15689) under 4.1.2 failed with a libcatalyst-paraview.so/libpython3.7m.so.1.0 load error and never produced Catalyst frames.",
+          "level": "info"
         },
         {
-          "txt": "numerically clean the entire run: CVODE flat at 62,150 for 59+ consecutive polls before the kill, zero FATAL_ERROR in either stream throughout; the run ended on the wall clock, not on a numerical failure",
-          "level": "good"
+          "txt": "2-hour wall limit on the 'short' queue means it will not reach ignition-relevant sim time (target 4.0ms, ignition at 300µs) at the ~2.3-3s/cycle pace seen on prior runs -- this run is about verifying Catalyst and the 5.1.0 case setup, not detonation physics.",
+          "level": "info"
         }
-      ]
+      ],
+      "polled_at": "2026-09-10T12:40:03-04:00",
+      "xt_plot": {
+        "available": false
+      }
     },
     {
       "id": "965850",
@@ -1580,7 +896,177 @@ svg{display:block;width:100%}
           "txt": "superseded by job 970574 (triangleRDE_weakIgnite), submitted fresh with the ignition source value cut to 1/4",
           "level": "info"
         }
-      ]
+      ],
+      "polled_at": "2026-09-10T12:40:03-04:00"
+    },
+    {
+      "id": "15689",
+      "label": "TriangleRDE coldflow",
+      "directory": "Z:\\yip_afosr\\nsmichno\\Converge\\triangleRDE_coldflow",
+      "kind": "converge",
+      "cluster": "hazel",
+      "sched": "lsf",
+      "queue": "braun",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "TERM_OWNER -- killed by owner (deliberate stop, not a crash) at t=742.81us of the 1000us target, zero FATAL_ERROR for the entire run.",
+      "elapsed": "48:39:41",
+      "limit": "72:00:00",
+      "pct": 68,
+      "sim_now": "742.81 µs",
+      "sim_target": "1000 µs",
+      "sim_pct": 74,
+      "monitors": [
+        {
+          "key": "sim_time",
+          "label": "Sim time",
+          "now": "1.439 µs",
+          "desc": "Just started (ncyc 37) -- dt at dt_cfl (~6.5e-8s), healthy startup ramp, nothing to assess yet.",
+          "history": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0.000001439
+            ]
+          ]
+        },
+        {
+          "key": "total_mem",
+          "label": "Total memory",
+          "now": "41.8 GB",
+          "desc": "64 ranks, ~650MB/rank average -- normal for this mesh size, no growth signal yet this early.",
+          "history": [
+            [
+              0,
+              41785.566
+            ]
+          ]
+        },
+        {
+          "key": "cell_count",
+          "label": "Total cells",
+          "now": "2,752,453",
+          "desc": "Matches the ~3.1M seen mid-run in prior reacting cases (AMR grows cell count once things get hot); reasonable for a fresh cold start.",
+          "history": [
+            [
+              0,
+              2752453
+            ]
+          ]
+        },
+        {
+          "key": "net_mass_flow",
+          "label": "Net mass flow rate",
+          "now": "0.0085 kg/s",
+          "desc": "Run stopped by owner while still in a slow, decelerating decline -- damping out but not fully flat at time of kill.",
+          "history": [
+            [
+              0,
+              -0.02
+            ],
+            [
+              118.24,
+              0.869
+            ],
+            [
+              216.54,
+              0.5335
+            ],
+            [
+              296.43,
+              0.2952
+            ],
+            [
+              375.4,
+              0.1767
+            ],
+            [
+              429.01,
+              0.0292
+            ],
+            [
+              485.23,
+              -0.0735
+            ],
+            [
+              675.82,
+              0
+            ],
+            [
+              706.4,
+              0.0328
+            ],
+            [
+              740,
+              0.0099
+            ],
+            [
+              741.2,
+              0.0093
+            ],
+            [
+              742,
+              0.0089
+            ],
+            [
+              742.6,
+              0.0086
+            ],
+            [
+              742.7,
+              0.0085
+            ]
+          ]
+        }
+      ],
+      "ranks": 64,
+      "rss": "41.8G",
+      "s_per_step": null,
+      "node": "n0356 · 1×64",
+      "restarts": 81,
+      "posts": 75,
+      "frames": 0,
+      "newest": "restart0081.rst",
+      "submitted": "2026-08-17T00:11:08-04:00",
+      "cmd": "bsub < SubmitJob.sh  # queue braun, 64 ranks, 72:00 wall (cold-flow-to-steady-state prep, no ignition/combustion: combustion_flag=0, source_flag=0, end_time=0.001)",
+      "log_name": "stdout.15689",
+      "log_path": "triangleRDE_coldflow",
+      "log_size": null,
+      "log_tail": [
+        "[ 74.28%] ncyc    86490;  Time    7.428057262e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 74.28%] ncyc    86491;  Time    7.428069762e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 74.28%] ncyc    86492;  Time    7.428079762e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "[ 74.28%] ncyc    86493;  Time    7.428092262e-04 (sec); dt=    1.250000000e-09 (dt_grow)",
+        "[ 74.28%] ncyc    86494;  Time    7.428102262e-04 (sec); dt=    1.000000000e-09 (dt_recover)",
+        "TERM_OWNER: job killed by owner. Exited with signal termination: 9."
+      ],
+      "summary": "Killed by its owner at 48h39m41s in (68% of the 72h limit), at cycle 86494, t=742.81µs of the 1000µs cold-flow target (74.3%). Zero FATAL_ERROR for the entire run -- this was a deliberate stop, not a crash. Net mass flow rate at kill was 0.0085 kg/s, still in the same slow, decelerating decline seen since the second (much smaller) oscillation swing peaked at 0.0328 kg/s around t=706µs -- flow was clearly damping out but had not fully flattened to zero before the run was stopped. restart0081.rst is the newest restart file and the best available candidate to branch the ignition sweep from, though it is not a fully flat steady state.",
+      "notes": [
+        {
+          "txt": "Job killed by owner (TERM_OWNER) at t=742.81µs of 1000µs, 74.3% complete -- a deliberate stop, not a crash.",
+          "level": "critical"
+        },
+        {
+          "txt": "Net mass flow rate was still slowly decaying toward zero (0.0085 kg/s at kill), not yet fully flat.",
+          "level": "warn"
+        },
+        {
+          "txt": "Zero FATAL_ERROR for the entire 48h39m run despite the persistent dt-floor recovering cycles.",
+          "level": "info"
+        },
+        {
+          "txt": "restart0081.rst is the newest restart file available as an initial condition for the planned ignition-energy sweep.",
+          "level": "info"
+        },
+        {
+          "txt": "Catalyst never produced output on this run (same lib-load failure as prior polls) -- unresolved.",
+          "level": "warn"
+        }
+      ],
+      "polled_at": "2026-09-10T12:40:03-04:00"
     }
   ]
 }</script>
@@ -1691,6 +1177,10 @@ function listView() {
         '<span style="font:700 15px var(--mono);letter-spacing:-.3px;color:var(--accent)">' + esc(m.now) + '</span>' +
         '</div><div style="flex:1">' + chart(m.history, 44) + '</div></div>';
     }
+    if (j.xt_plot && j.xt_plot.available) {
+      h += '<img src="' + esc(j.xt_plot.path) + (j.xt_plot.mtime ? '?v=' + encodeURIComponent(j.xt_plot.mtime) : '') +
+        '" alt="x-t diagram" style="width:100%;border-radius:8px;display:block;background:var(--fill)">';
+    }
     if (j.status === 'pend') {
       h += '<div class="tiles"><div class="tile"><b>' + esc(j.queue_pos || '—') + '</b><span>of ' +
         esc(j.queue_total || '—') + ' in ' + esc(j.queue || 'queue') + '</span></div>' +
@@ -1747,6 +1237,14 @@ function detailView() {
       h += '<div class="bullet"><i style="background:' + c + '"></i><span>' + esc(n.txt) + '</span></div>';
     });
     h += '</div>';
+  }
+
+  if (j.xt_plot && j.xt_plot.available) {
+    h += '<div class="card"><div class="row" style="justify-content:space-between;align-items:baseline">' +
+      '<span class="sect">X-T diagram</span><span class="sub">' +
+      (j.xt_plot.sim_time ? 't=' + esc(j.xt_plot.sim_time) : ago(j.xt_plot.mtime)) + '</span></div>' +
+      '<img src="' + esc(j.xt_plot.path) + (j.xt_plot.mtime ? '?v=' + encodeURIComponent(j.xt_plot.mtime) : '') +
+      '" alt="pressure x-t diagram" style="width:100%;border-radius:10px;display:block;background:var(--fill)"></div>';
   }
 
   if (m) {
