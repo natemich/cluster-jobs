@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T14:56:00-04:00",
-  "next_poll": "2026-09-10T15:01:00-04:00",
+  "polled_at": "2026-09-10T15:01:00-04:00",
+  "next_poll": "2026-09-10T15:06:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Right at the 2:00 wall limit -- cycle 180, t~10.05us, zero FATAL_ERROR, still no XTPlot output as of this poll (right on the edge of its threshold). Watching for TERM_RUNLIMIT.",
+      "state_note": "Still running past the nominal 2:00 mark (LSF hasn't killed it yet) -- cycle 187, zero FATAL_ERROR, still no XTPlot output. Watching for TERM_RUNLIMIT.",
       "elapsed": "2:01:00",
       "limit": "2:00:00",
       "pct": 100,
@@ -90,7 +90,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T14:56:00-04:00",
+      "polled_at": "2026-09-10T15:01:00-04:00",
       "xt_plot": {
         "available": false
       }
