@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T14:25:00-04:00",
-  "next_poll": "2026-09-10T14:30:00-04:00",
+  "polled_at": "2026-09-10T14:31:00-04:00",
+  "next_poll": "2026-09-10T14:36:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -19,11 +19,11 @@
       "sched": "lsf",
       "queue": "short",
       "state": "RUN",
-      "status": "good",
-      "state_note": "Running cleanly, cycle 137, steady pace, zero FATAL_ERROR. XTPlot_Pressure diagnosed: saves every 20 catalyst triggers (SAVE_EVERY_N_CALLS=20, twrite=0.5us) => needs sim t~10us for its first periodic save, or a graceful finalize. At current pace (t~3.2us after ~45min), likely won't hit either before the 2:00 wall limit -- this short smoke test may end without ever producing an XT frame, which is expected given the time budget, not a bug.",
-      "elapsed": "1:30:00",
+      "status": "warn",
+      "state_note": "Running cleanly, cycle 146, zero FATAL_ERROR. Approaching the 2:00 short-queue wall limit -- ~24 min remain. XTPlot still hasn't produced output (never got past cycle 146 / t<10us needed for its first periodic save) and likely won't before TERM_RUNLIMIT hits.",
+      "elapsed": "1:36:00",
       "limit": "2:00:00",
-      "pct": 75,
+      "pct": 80,
       "sim_now": "0.802 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
@@ -90,7 +90,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T14:25:00-04:00",
+      "polled_at": "2026-09-10T14:31:00-04:00",
       "xt_plot": {
         "available": false
       }
