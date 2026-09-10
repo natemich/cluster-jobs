@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T14:51:00-04:00",
-  "next_poll": "2026-09-10T14:56:00-04:00",
+  "polled_at": "2026-09-10T14:56:00-04:00",
+  "next_poll": "2026-09-10T15:01:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,10 +20,10 @@
       "queue": "short",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Running cleanly, cycle 172, t=9.56us -- within ~7 cycles (~5 min) of XTPlot's 10us threshold. Zero FATAL_ERROR. Very close to both the periodic-save threshold and the 2:00 wall limit simultaneously.",
-      "elapsed": "1:56:00",
+      "state_note": "Right at the 2:00 wall limit -- cycle 180, t~10.05us, zero FATAL_ERROR, still no XTPlot output as of this poll (right on the edge of its threshold). Watching for TERM_RUNLIMIT.",
+      "elapsed": "2:01:00",
       "limit": "2:00:00",
-      "pct": 96.7,
+      "pct": 100,
       "sim_now": "0.802 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
@@ -90,7 +90,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T14:51:00-04:00",
+      "polled_at": "2026-09-10T14:56:00-04:00",
       "xt_plot": {
         "available": false
       }
