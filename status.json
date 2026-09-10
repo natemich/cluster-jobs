@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-10T13:15:00-04:00",
-  "next_poll": "2026-09-10T13:20:00-04:00",
+  "polled_at": "2026-09-10T13:20:00-04:00",
+  "next_poll": "2026-09-10T13:25:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,10 +20,10 @@
       "queue": "short",
       "state": "RUN",
       "status": "good",
-      "state_note": "Running cleanly, cycle 35, dt still at dt_cfl (~6.6e-8s). Zero FATAL_ERROR. At this pace (~2 cycles/min), reaching the 300us ignition point would take far longer than the 2:00 short-queue wall limit -- this run will very likely hit TERM_RUNLIMIT well before ignition. That's expected/fine since the point of this run was validating Catalyst under 5.x, which is already confirmed working. XTPlot_Pressure still silent, no error.",
-      "elapsed": "0:20:00",
+      "state_note": "Running cleanly, cycle 42, steady pace, zero FATAL_ERROR. XTPlot_Pressure still silent, no error.",
+      "elapsed": "0:25:00",
       "limit": "2:00:00",
-      "pct": 16.7,
+      "pct": 20.8,
       "sim_now": "0.802 µs",
       "sim_target": "4000 µs",
       "sim_pct": 0,
@@ -90,7 +90,7 @@
           "level": "info"
         }
       ],
-      "polled_at": "2026-09-10T13:15:00-04:00",
+      "polled_at": "2026-09-10T13:20:00-04:00",
       "xt_plot": {
         "available": false
       }
