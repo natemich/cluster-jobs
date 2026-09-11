@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T04:25:00-04:00",
-  "next_poll": "2026-09-11T04:45:00-04:00",
+  "polled_at": "2026-09-11T04:30:00-04:00",
+  "next_poll": "2026-09-11T04:35:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -19,8 +19,8 @@
       "sched": "slurm",
       "queue": "normal",
       "state": "R",
-      "status": "good",
-      "state_note": "Started running ~04:12 after ~12hr 20min pending. Still in mesh/setup phase (no ncyc/Time lines yet in converge.log, no paraview_catalyst/ dir yet). Zero FATAL_ERROR. stderr has repeated HDF5-DIAG 'unable to open file' errors from the Catalyst scripts' CONVERGECFDReader, which is hardcoded to a local Windows path (C:\\Users\\nsmichno\\Documents\\...) baked in by CONVERGE Studio's own trace-export mechanism -- same pattern likely present (unnoticed) in the earlier successful 269785 run too, since that also produced real Catalyst PNGs despite presumably the same reader setup. Probably benign startup-time noise (pipeline construction placeholder, real data fed in later by CONVERGE's co-processing driver), but not yet confirmed for this run specifically -- watching for the first real cycle and first Catalyst PNG to confirm.",
+      "status": "warn",
+      "state_note": "POSSIBLE STALL: converge.log has not grown at all since job start (~04:12) -- still 396 lines, last line mid-way through per-rank cell_count reporting (rank 55). 13+ min with zero file activity is unusual this early. Could be a genuine hang, or just buffered output not yet flushed to the network-mounted log (can't distinguish from file access alone -- no live shell/squeue access). User should check `squeue -j 797043` directly to confirm it's still alive at the SLURM level.",
       "elapsed": "0:13:00",
       "limit": "2:00:00",
       "pct": 10.8,
@@ -64,7 +64,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T04:25:00-04:00"
+      "polled_at": "2026-09-11T04:30:00-04:00"
     },
     {
       "id": "269785",
