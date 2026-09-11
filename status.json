@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T11:50:00-04:00",
-  "next_poll": "2026-09-11T12:20:00-04:00",
+  "polled_at": "2026-09-11T12:20:00-04:00",
+  "next_poll": "2026-09-11T12:50:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "normal",
       "state": "EXIT",
       "status": "critical",
-      "state_note": "Past the 2hr wall limit (~06:12) as of this poll -- job should be terminated now (either from the sustained hang or SLURM's TIMEOUT enforcement), but SLURM writes no completion banner to stdout/stderr the way LSF did, so this can't be confirmed from file content alone. Files frozen at 396-line converge.log / same byte counts as first observed at job start. Needs a manual `sacct -j 797043 --format=JobID,State,ExitCode,Elapsed,NodeList` to get the definitive outcome.",
+      "state_note": "Root cause confirmed via stderr.797043: solver segfaulted ~2.8s after launch (never reached cycle 1 -- converge.log stayed at 396 lines the entire 2hr allocation because it crashed during pipeline setup, before any time-stepping). 12 of 13 Catalyst scripts (all except XTPlot_Pressure.py) had a hardcoded Windows-only absolute path baked in by CONVERGE Studio's trace-export (e.g. CONVERGECFDReader(FileName='C:\\\\Users\\\\nsmichno\\\\Documents\\\\triangleRDE_weakIgnite\\\\outputs_original/output/post000001_+0.00000e+00.h5')) -- that path doesn't exist on the Linux cluster, HDF5 failed to open it, and the unhandled failure segfaulted converge itself on multiple ranks. The job then sat dead until SLURM's epilogue ran mark_job_complete at the wall-limit boundary, which is why it looked like a live hang from file state alone. FIXED 2026-09-11: all 12 affected scripts in this directory now use the same relative-path pattern already proven working in XTPlot_Pressure.py ('outputs_original/output/post000001_+0.00000e+00.h5'). Not yet re-tested -- awaiting resubmission.",
       "elapsed": "2:00+",
       "limit": "2:00:00",
       "pct": 100,
@@ -42,29 +42,29 @@
       "log_path": "TriangleRDE_base",
       "log_size": null,
       "log_tail": [
-        "WARNING: For one-equation or two-equation LES models, resetting sgs_ke clip values from 1.000000e-07 to 1e-20",
-        "HDF5-DIAG: Error detected in HDF5 (1.13.1) thread 0: unable to synchronously open file (repeated many times, from Catalyst scripts' hardcoded local Windows path placeholder)",
-        "(mesh/setup phase in outputs_original/converge.log, 396 lines so far, zero FATAL_ERROR, not yet at first cycle)"
+        "converge: line 109: Segmentation fault (x4, across ranks)",
+        "vtkCONVERGECFDReader.cx:435 ERR| Could not open HDF5 file 'C:\\\\Users\\\\nsmichno\\\\Documents\\\\triangleRDE_weakIgnite\\\\outputs_original/output/post000001_+0.00000e+00.h5'",
+        "+ mark_job_complete 797043 (SLURM epilogue, run at wall-limit boundary)"
       ],
-      "summary": "Started running at last poll after ~12hr 20min pending (PD -> R). Still in early mesh/setup phase -- no cycle/time lines in converge.log yet, no paraview_catalyst/ output directory yet. Zero FATAL_ERROR. stderr shows many repeated HDF5-DIAG 'unable to open file' errors, traced to a hardcoded local Windows path left in the Catalyst scripts' CONVERGECFDReader (an artifact of how CONVERGE Studio exports trace scripts, baking in whatever file was open on the machine that recorded the trace) -- likely benign pipeline-construction noise given the earlier 269785 run's 9 working Catalyst scripts probably had the same issue, but not yet confirmed for this run until real cycle progress and Catalyst output appear.",
+      "summary": "Job 797043 did not hang -- it segfaulted ~2.8s after launch, before ever reaching cycle 1, because 12 of its 13 Catalyst scripts had a hardcoded Windows-only path (a CONVERGE Studio trace-export artifact) that doesn't resolve on the Linux cluster. HDF5's failed open segfaulted the solver outright; the job then sat as a zombie until SLURM enforced the 2hr wall limit and ran its completion epilogue. All 12 affected scripts have now been fixed to use the same relative path already working in XTPlot_Pressure.py. The fix has not yet been tested with a resubmission.",
       "notes": [
         {
-          "txt": "Started running after 12hr 20min in queue -- PD -> R.",
+          "txt": "Root cause confirmed: hardcoded Windows path in 12/13 Catalyst scripts caused an immediate segfault, not a hang. Job never reached cycle 1.",
+          "level": "critical"
+        },
+        {
+          "txt": "Fixed 2026-09-11: all 12 scripts (EquivMetricSurf + 3 XY stations, PressureSurf x3 + PressureWallSurf, TemperatureSurf x3 + TemperatureWallSurf) now use the relative post-file path pattern from XTPlot_Pressure.py.",
           "level": "good"
         },
         {
-          "txt": "Still in setup phase, zero FATAL_ERROR -- no time-stepping yet.",
+          "txt": "Fix is unverified -- needs a resubmission to confirm it actually gets past mesh setup and into time-stepping.",
           "level": "info"
-        },
-        {
-          "txt": "Repeated HDF5-DIAG errors in stderr from a hardcoded local Windows path in the Catalyst scripts' file reader (CONVERGE Studio trace-export artifact) -- probably benign given the prior run's Catalyst scripts worked despite likely the same issue, but watching to confirm on this run specifically.",
-          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T11:50:00-04:00"
+      "polled_at": "2026-09-11T12:20:00-04:00"
     },
     {
       "id": "269785",
