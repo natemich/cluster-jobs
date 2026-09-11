@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T04:35:00-04:00",
-  "next_poll": "2026-09-11T04:40:00-04:00",
+  "polled_at": "2026-09-11T04:40:00-04:00",
+  "next_poll": "2026-09-11T04:45:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "normal",
       "state": "R",
       "status": "warn",
-      "state_note": "STALL PERSISTS: converge.log still unchanged since job start ~04:12 (396 lines, stuck at rank-55 cell_count line), now ~23 min with zero file activity. Still waiting on user to confirm squeue -j 797043 status.",
+      "state_note": "STALL PERSISTS, ~23min zero activity: stdout.797043, stderr.797043, and converge.log are all frozen at identical byte counts since job start ~04:12 -- all three files simultaneously frozen for this long points more toward a genuine MPI hang than buffered/unflushed output. Still no FATAL_ERROR. Awaiting user's squeue -j 797043 check.",
       "elapsed": "0:13:00",
       "limit": "2:00:00",
       "pct": 10.8,
@@ -64,7 +64,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T04:35:00-04:00"
+      "polled_at": "2026-09-11T04:40:00-04:00"
     },
     {
       "id": "269785",
