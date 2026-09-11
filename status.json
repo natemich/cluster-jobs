@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T05:40:00-04:00",
-  "next_poll": "2026-09-11T05:45:00-04:00",
+  "polled_at": "2026-09-11T05:45:00-04:00",
+  "next_poll": "2026-09-11T05:50:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "normal",
       "state": "R",
       "status": "warn",
-      "state_note": "STALL PERSISTS, ~1hr28min zero activity since job start ~04:12. ~32min left before the 2hr wall limit (~06:12). Still awaiting user's squeue -j 797043 check or a scancel decision.",
+      "state_note": "STALL PERSISTS, ~1hr33min zero activity since job start ~04:12. Only ~27min left before the 2hr wall limit (~06:12) -- approaching TERM_RUNLIMIT territory. Still awaiting user's squeue -j 797043 check or a scancel decision.",
       "elapsed": "0:13:00",
       "limit": "2:00:00",
       "pct": 10.8,
@@ -64,7 +64,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T05:40:00-04:00"
+      "polled_at": "2026-09-11T05:45:00-04:00"
     },
     {
       "id": "269785",
