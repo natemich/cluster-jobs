@@ -11,24 +11,24 @@
   ],
   "jobs": [
     {
-      "id": "797043",
+      "id": "pending",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "slurm",
       "queue": "normal",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "Root cause confirmed via stderr.797043: solver segfaulted ~2.8s after launch (never reached cycle 1 -- converge.log stayed at 396 lines the entire 2hr allocation because it crashed during pipeline setup, before any time-stepping). 12 of 13 Catalyst scripts (all except XTPlot_Pressure.py) had a hardcoded Windows-only absolute path baked in by CONVERGE Studio's trace-export (e.g. CONVERGECFDReader(FileName='C:\\\\Users\\\\nsmichno\\\\Documents\\\\triangleRDE_weakIgnite\\\\outputs_original/output/post000001_+0.00000e+00.h5')) -- that path doesn't exist on the Linux cluster, HDF5 failed to open it, and the unhandled failure segfaulted converge itself on multiple ranks. The job then sat dead until SLURM's epilogue ran mark_job_complete at the wall-limit boundary, which is why it looked like a live hang from file state alone. FIXED 2026-09-11: all 12 affected scripts in this directory now use the same relative-path pattern already proven working in XTPlot_Pressure.py ('outputs_original/output/post000001_+0.00000e+00.h5'). Not yet re-tested -- awaiting resubmission.",
-      "elapsed": "2:00+",
-      "limit": "2:00:00",
-      "pct": 100,
+      "state": "PEND",
+      "status": "pend",
+      "state_note": "Resubmitted 2026-09-11 ~11:41 after fixing the hardcoded-Windows-path bug in the 12 Catalyst scripts that segfaulted the previous run (797043) before cycle 1. New config: 3 nodes x 20 cores (60 ranks), 72hr wall limit, queue normal, account braun_cpu, partition compute. No stdout/stderr.<jobid> file yet -- SLURM only creates those once the job actually starts running, so it's still pending in queue as of this poll.",
+      "elapsed": null,
+      "limit": "72:00:00",
+      "pct": null,
       "sim_now": null,
       "sim_target": "4000 µs",
       "sim_pct": null,
       "monitors": [],
-      "ranks": 64,
+      "ranks": 60,
       "rss": null,
       "s_per_step": null,
       "node": null,
@@ -36,28 +36,24 @@
       "posts": 0,
       "frames": 0,
       "newest": null,
-      "submitted": "2026-09-10T15:50:00-04:00",
-      "cmd": "RunConverge slurm 64 2:00:00 normal .  # first working SLURM submission, account=braun_cpu partition=compute",
-      "log_name": "stdout.797043",
-      "log_path": "TriangleRDE_base",
+      "submitted": "2026-09-11T11:41:00-04:00",
+      "cmd": "RunConverge slurm 60 72:00:00 normal .  # resubmission after Catalyst hardcoded-path fix -- 3 nodes x 20 cores, account braun_cpu, partition compute",
+      "log_name": null,
+      "log_path": null,
       "log_size": null,
-      "log_tail": [
-        "converge: line 109: Segmentation fault (x4, across ranks)",
-        "vtkCONVERGECFDReader.cx:435 ERR| Could not open HDF5 file 'C:\\\\Users\\\\nsmichno\\\\Documents\\\\triangleRDE_weakIgnite\\\\outputs_original/output/post000001_+0.00000e+00.h5'",
-        "+ mark_job_complete 797043 (SLURM epilogue, run at wall-limit boundary)"
-      ],
-      "summary": "Job 797043 did not hang -- it segfaulted ~2.8s after launch, before ever reaching cycle 1, because 12 of its 13 Catalyst scripts had a hardcoded Windows-only path (a CONVERGE Studio trace-export artifact) that doesn't resolve on the Linux cluster. HDF5's failed open segfaulted the solver outright; the job then sat as a zombie until SLURM enforced the 2hr wall limit and ran its completion epilogue. All 12 affected scripts have now been fixed to use the same relative path already working in XTPlot_Pressure.py. The fix has not yet been tested with a resubmission.",
+      "log_tail": [],
+      "summary": "Resubmitted with the Catalyst path fix applied, now targeting a full 72-hour run on 3 nodes (60 ranks) under the normal queue. Still pending -- no job ID visible yet since SLURM hasn't started writing output files. Will pick up the real job ID and start tracking cycle progress once it begins running.",
       "notes": [
         {
-          "txt": "Root cause confirmed: hardcoded Windows path in 12/13 Catalyst scripts caused an immediate segfault, not a hang. Job never reached cycle 1.",
-          "level": "critical"
-        },
-        {
-          "txt": "Fixed 2026-09-11: all 12 scripts (EquivMetricSurf + 3 XY stations, PressureSurf x3 + PressureWallSurf, TemperatureSurf x3 + TemperatureWallSurf) now use the relative post-file path pattern from XTPlot_Pressure.py.",
+          "txt": "Resubmitted after the Catalyst hardcoded-path fix -- this run should get past mesh setup where 797043 segfaulted.",
           "level": "good"
         },
         {
-          "txt": "Fix is unverified -- needs a resubmission to confirm it actually gets past mesh setup and into time-stepping.",
+          "txt": "3 nodes x 20 cores (60 ranks), 72hr wall limit, queue normal -- much larger allocation than the previous 2hr short-queue attempts.",
+          "level": "info"
+        },
+        {
+          "txt": "Still pending as of this poll -- job ID not yet known, no output files created.",
           "level": "info"
         }
       ],
