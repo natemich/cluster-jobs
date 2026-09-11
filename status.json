@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T17:48:00-04:00",
-  "next_poll": "2026-09-11T17:53:00-04:00",
+  "polled_at": "2026-09-11T17:53:00-04:00",
+  "next_poll": "2026-09-11T17:58:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,10 +18,10 @@
       "cluster": "hazel",
       "sched": "slurm",
       "queue": "normal",
-      "state": "RUN",
-      "status": "good",
-      "state_note": "Job started running as 805892 at ~17:43 (~6hr wait in the normal queue -- shorter than 797043's 12hr20min). Fresh run from scratch (restartCVGcase found no .rst files, this is not a restart). Currently in mesh/region-connectivity setup, zero FATAL_ERROR, zero segfaults in stderr so far -- this is the critical window since the previous run (797043) segfaulted at ~2.8s / 396 lines during this same setup phase before the Catalyst path fix. No paraview_catalyst/ output directory yet (expected -- hasn't hit first trigger).",
-      "elapsed": "~5min",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "Catalyst path fix WORKED -- no HDF5 error, no segfault this time. But job 805892 died within ~1 minute (killed at 17:44:19, started 17:43) via a NEW failure: rank 0 on node c205n08 was OOM-killed. converge.log reached exactly 396 lines again (same mesh-setup checkpoint as the segfault run) before dying. RunConverge.slurm has no --mem or --mem-per-cpu directive at all -- relying on SLURM's default per-CPU memory allocation, which is likely too small for 20 ranks/node given rank 0 also carries Catalyst/ParaView's in-situ rendering pipeline (13 registered scripts) on top of its normal solver memory. Needs an explicit memory request added to RunConverge.slurm before the next resubmission.",
+      "elapsed": "~1min",
       "limit": "72:00:00",
       "pct": 0,
       "sim_now": null,
@@ -42,29 +42,29 @@
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "CLOSING EVENT: activating triangles in a disconnect group between regions 0 and 2",
-        "OPENING EVENT: deactivating triangles in a disconnect group between regions 0 and 1",
-        "(mesh/region-connectivity setup phase, 214 lines so far, zero FATAL_ERROR, not yet at cycle 1)"
+        "converge: line 109: Killed (OOM)",
+        "[2026-09-11T17:44:19.334] error: Detected 1 oom_kill event in StepId=805892.0. Some of the step tasks have been OOM Killed.",
+        "srun: error: c205n08: task 0: Out Of Memory"
       ],
-      "summary": "Resubmission (805892) is now running after ~6 hours pending. Still in early mesh/region setup, no cycle-1 output yet, zero errors so far. This is the critical verification window for the Catalyst path fix -- watching closely to confirm it gets past the point where the previous attempt segfaulted.",
+      "summary": "The Catalyst path fix is confirmed working -- job 805892 got past the old segfault point cleanly. But it hit a new failure: an out-of-memory kill on rank 0 about 1 minute after starting, at the same ~396-line mesh-setup checkpoint. The submission script requests no explicit memory (--mem/--mem-per-cpu), so it's running on SLURM's default allocation, which appears too tight for 20 ranks/node plus rank 0's added Catalyst/ParaView memory footprint.",
       "notes": [
         {
-          "txt": "Job started running as 805892 after ~6hr in queue -- fresh run, not a restart.",
+          "txt": "Catalyst path fix confirmed working -- no HDF5 error or segfault this run.",
           "level": "good"
         },
         {
-          "txt": "Zero FATAL_ERROR, zero segfaults so far -- past the setup lines where 797043 was still alive, watching for it to clear the crash point.",
-          "level": "info"
+          "txt": "NEW failure: OOM kill on rank 0 (node c205n08) ~1min after start, job auto-marked COMPLETE by SLURM epilogue despite the OOM kill.",
+          "level": "critical"
         },
         {
-          "txt": "No Catalyst output yet -- expected this early, hasn't hit first trigger.",
-          "level": "info"
+          "txt": "RunConverge.slurm has no --mem/--mem-per-cpu directive -- recommend adding one (or --mem=0 for whole-node) before resubmitting.",
+          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T17:48:00-04:00"
+      "polled_at": "2026-09-11T17:53:00-04:00"
     },
     {
       "id": "269785",
