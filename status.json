@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T04:30:00-04:00",
-  "next_poll": "2026-09-11T04:35:00-04:00",
+  "polled_at": "2026-09-11T04:35:00-04:00",
+  "next_poll": "2026-09-11T04:40:00-04:00",
   "poll_interval_min": 5,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "normal",
       "state": "R",
       "status": "warn",
-      "state_note": "POSSIBLE STALL: converge.log has not grown at all since job start (~04:12) -- still 396 lines, last line mid-way through per-rank cell_count reporting (rank 55). 13+ min with zero file activity is unusual this early. Could be a genuine hang, or just buffered output not yet flushed to the network-mounted log (can't distinguish from file access alone -- no live shell/squeue access). User should check `squeue -j 797043` directly to confirm it's still alive at the SLURM level.",
+      "state_note": "STALL PERSISTS: converge.log still unchanged since job start ~04:12 (396 lines, stuck at rank-55 cell_count line), now ~23 min with zero file activity. Still waiting on user to confirm squeue -j 797043 status.",
       "elapsed": "0:13:00",
       "limit": "2:00:00",
       "pct": 10.8,
@@ -64,7 +64,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T04:30:00-04:00"
+      "polled_at": "2026-09-11T04:35:00-04:00"
     },
     {
       "id": "269785",
