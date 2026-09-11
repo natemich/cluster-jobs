@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-11T18:13:00-04:00",
-  "next_poll": "2026-09-11T18:18:00-04:00",
+  "polled_at": "2026-09-11T17:48:00-04:00",
+  "next_poll": "2026-09-11T17:53:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,19 +11,19 @@
   ],
   "jobs": [
     {
-      "id": "pending",
+      "id": "805892",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "slurm",
       "queue": "normal",
-      "state": "PEND",
-      "status": "pend",
-      "state_note": "Resubmitted 2026-09-11 ~11:41 after fixing the hardcoded-Windows-path bug in the 12 Catalyst scripts that segfaulted the previous run (797043) before cycle 1. New config: 3 nodes x 20 cores (60 ranks), 72hr wall limit, queue normal, account braun_cpu, partition compute. No stdout/stderr.<jobid> file yet -- SLURM only creates those once the job actually starts running, so it's still pending in queue as of this poll.",
-      "elapsed": null,
+      "state": "RUN",
+      "status": "good",
+      "state_note": "Job started running as 805892 at ~17:43 (~6hr wait in the normal queue -- shorter than 797043's 12hr20min). Fresh run from scratch (restartCVGcase found no .rst files, this is not a restart). Currently in mesh/region-connectivity setup, zero FATAL_ERROR, zero segfaults in stderr so far -- this is the critical window since the previous run (797043) segfaulted at ~2.8s / 396 lines during this same setup phase before the Catalyst path fix. No paraview_catalyst/ output directory yet (expected -- hasn't hit first trigger).",
+      "elapsed": "~5min",
       "limit": "72:00:00",
-      "pct": null,
+      "pct": 0,
       "sim_now": null,
       "sim_target": "4000 µs",
       "sim_pct": null,
@@ -38,29 +38,33 @@
       "newest": null,
       "submitted": "2026-09-11T11:41:00-04:00",
       "cmd": "RunConverge slurm 60 72:00:00 normal .  # resubmission after Catalyst hardcoded-path fix -- 3 nodes x 20 cores, account braun_cpu, partition compute",
-      "log_name": null,
-      "log_path": null,
+      "log_name": "converge.log",
+      "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
-      "log_tail": [],
-      "summary": "Resubmitted with the Catalyst path fix applied, now targeting a full 72-hour run on 3 nodes (60 ranks) under the normal queue. Still pending -- no job ID visible yet since SLURM hasn't started writing output files. Will pick up the real job ID and start tracking cycle progress once it begins running.",
+      "log_tail": [
+        "CLOSING EVENT: activating triangles in a disconnect group between regions 0 and 2",
+        "OPENING EVENT: deactivating triangles in a disconnect group between regions 0 and 1",
+        "(mesh/region-connectivity setup phase, 214 lines so far, zero FATAL_ERROR, not yet at cycle 1)"
+      ],
+      "summary": "Resubmission (805892) is now running after ~6 hours pending. Still in early mesh/region setup, no cycle-1 output yet, zero errors so far. This is the critical verification window for the Catalyst path fix -- watching closely to confirm it gets past the point where the previous attempt segfaulted.",
       "notes": [
         {
-          "txt": "Resubmitted after the Catalyst hardcoded-path fix -- this run should get past mesh setup where 797043 segfaulted.",
+          "txt": "Job started running as 805892 after ~6hr in queue -- fresh run, not a restart.",
           "level": "good"
         },
         {
-          "txt": "3 nodes x 20 cores (60 ranks), 72hr wall limit, queue normal -- much larger allocation than the previous 2hr short-queue attempts.",
+          "txt": "Zero FATAL_ERROR, zero segfaults so far -- past the setup lines where 797043 was still alive, watching for it to clear the crash point.",
           "level": "info"
         },
         {
-          "txt": "Still pending as of this poll -- job ID not yet known, no output files created.",
+          "txt": "No Catalyst output yet -- expected this early, hasn't hit first trigger.",
           "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T18:13:00-04:00"
+      "polled_at": "2026-09-11T17:48:00-04:00"
     },
     {
       "id": "269785",
