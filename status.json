@@ -1,7 +1,7 @@
 {
-  "polled_at": "2026-09-11T03:45:00-04:00",
-  "next_poll": "2026-09-11T04:15:00-04:00",
-  "poll_interval_min": 30,
+  "polled_at": "2026-09-11T04:25:00-04:00",
+  "next_poll": "2026-09-11T04:45:00-04:00",
+  "poll_interval_min": 5,
   "clusters": [
     {
       "name": "hazel",
@@ -18,12 +18,12 @@
       "cluster": "hazel",
       "sched": "slurm",
       "queue": "normal",
-      "state": "PD",
-      "status": "pend",
-      "state_note": "Queued (Priority) -- 3 nodes requested, --ntasks-per-node=20 (safe min across compute partition's mixed 20/32-core nodes), account braun_cpu, partition compute. First-ever successful SLURM submission for this project after fixing several RunConverge.slurm/function bugs this session (csh-syntax bug, missing partition, a blank -A that was corrupting directive parsing, wrong per-node CPU guesses).",
-      "elapsed": null,
+      "state": "R",
+      "status": "good",
+      "state_note": "Started running ~04:12 after ~12hr 20min pending. Still in mesh/setup phase (no ncyc/Time lines yet in converge.log, no paraview_catalyst/ dir yet). Zero FATAL_ERROR. stderr has repeated HDF5-DIAG 'unable to open file' errors from the Catalyst scripts' CONVERGECFDReader, which is hardcoded to a local Windows path (C:\\Users\\nsmichno\\Documents\\...) baked in by CONVERGE Studio's own trace-export mechanism -- same pattern likely present (unnoticed) in the earlier successful 269785 run too, since that also produced real Catalyst PNGs despite presumably the same reader setup. Probably benign startup-time noise (pipeline construction placeholder, real data fed in later by CONVERGE's co-processing driver), but not yet confirmed for this run specifically -- watching for the first real cycle and first Catalyst PNG to confirm.",
+      "elapsed": "0:13:00",
       "limit": "2:00:00",
-      "pct": null,
+      "pct": 10.8,
       "sim_now": null,
       "sim_target": "4000 µs",
       "sim_pct": null,
@@ -38,25 +38,33 @@
       "newest": null,
       "submitted": "2026-09-10T15:50:00-04:00",
       "cmd": "RunConverge slurm 64 2:00:00 normal .  # first working SLURM submission, account=braun_cpu partition=compute",
-      "log_name": null,
+      "log_name": "stdout.797043",
       "log_path": "TriangleRDE_base",
       "log_size": null,
-      "log_tail": null,
-      "summary": "Freshly queued under SLURM (job 797043) -- the first successful submission via the newly-fixed RunConverge SLURM path. Pending (Priority), 3 nodes requested. No output yet since it hasn't started running.",
+      "log_tail": [
+        "WARNING: For one-equation or two-equation LES models, resetting sgs_ke clip values from 1.000000e-07 to 1e-20",
+        "HDF5-DIAG: Error detected in HDF5 (1.13.1) thread 0: unable to synchronously open file (repeated many times, from Catalyst scripts' hardcoded local Windows path placeholder)",
+        "(mesh/setup phase in outputs_original/converge.log, 396 lines so far, zero FATAL_ERROR, not yet at first cycle)"
+      ],
+      "summary": "Started running at last poll after ~12hr 20min pending (PD -> R). Still in early mesh/setup phase -- no cycle/time lines in converge.log yet, no paraview_catalyst/ output directory yet. Zero FATAL_ERROR. stderr shows many repeated HDF5-DIAG 'unable to open file' errors, traced to a hardcoded local Windows path left in the Catalyst scripts' CONVERGECFDReader (an artifact of how CONVERGE Studio exports trace scripts, baking in whatever file was open on the machine that recorded the trace) -- likely benign pipeline-construction noise given the earlier 269785 run's 9 working Catalyst scripts probably had the same issue, but not yet confirmed for this run until real cycle progress and Catalyst output appear.",
       "notes": [
         {
-          "txt": "PD/Priority -- queued, not yet started. No stdout/stderr yet.",
+          "txt": "Started running after 12hr 20min in queue -- PD -> R.",
+          "level": "good"
+        },
+        {
+          "txt": "Still in setup phase, zero FATAL_ERROR -- no time-stepping yet.",
           "level": "info"
         },
         {
-          "txt": "SLURM doesn't auto-append a resource-usage/exit-code epilogue to stdout the way LSF did -- definitive end-of-run state will need log-activity inference or a manual `sacct -j 797043` check, not a clean termination banner.",
-          "level": "info"
+          "txt": "Repeated HDF5-DIAG errors in stderr from a hardcoded local Windows path in the Catalyst scripts' file reader (CONVERGE Studio trace-export artifact) -- probably benign given the prior run's Catalyst scripts worked despite likely the same issue, but watching to confirm on this run specifically.",
+          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T03:45:00-04:00"
+      "polled_at": "2026-09-11T04:25:00-04:00"
     },
     {
       "id": "269785",
