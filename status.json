@@ -1,7 +1,7 @@
 {
-  "polled_at": "2026-09-11T06:15:00-04:00",
-  "next_poll": "2026-09-11T06:20:00-04:00",
-  "poll_interval_min": 5,
+  "polled_at": "2026-09-11T06:20:00-04:00",
+  "next_poll": "2026-09-11T06:50:00-04:00",
+  "poll_interval_min": 30,
   "clusters": [
     {
       "name": "hazel",
@@ -18,12 +18,12 @@
       "cluster": "hazel",
       "sched": "slurm",
       "queue": "normal",
-      "state": "R",
-      "status": "warn",
-      "state_note": "Right at the 2hr wall limit (~06:12) now -- files still frozen at the exact same sizes as before, no visible change to confirm a kill happened yet (SLURM doesn't append a completion banner the way LSF did, so file content alone can't confirm termination). Still awaiting user's squeue -j 797043 or sacct -j 797043 check.",
-      "elapsed": "0:13:00",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "Past the 2hr wall limit (~06:12) as of this poll -- job should be terminated now (either from the sustained hang or SLURM's TIMEOUT enforcement), but SLURM writes no completion banner to stdout/stderr the way LSF did, so this can't be confirmed from file content alone. Files frozen at 396-line converge.log / same byte counts as first observed at job start. Needs a manual `sacct -j 797043 --format=JobID,State,ExitCode,Elapsed,NodeList` to get the definitive outcome.",
+      "elapsed": "2:00+",
       "limit": "2:00:00",
-      "pct": 10.8,
+      "pct": 100,
       "sim_now": null,
       "sim_target": "4000 µs",
       "sim_pct": null,
@@ -64,7 +64,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-11T06:15:00-04:00"
+      "polled_at": "2026-09-11T06:20:00-04:00"
     },
     {
       "id": "269785",
