@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T16:44:00-04:00",
-  "next_poll": "2026-09-14T16:45:00-04:00",
+  "polled_at": "2026-09-14T16:45:00-04:00",
+  "next_poll": "2026-09-14T16:46:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "RUN",
       "status": "critical",
-      "state_note": "Job 285234 -- converge.log STILL unchanged since 16:39:00, now 6+ minutes frozen at 'Executing ParaView Catalyst scripts' with no ncyc line and no LSF exit summary yet. This closely tracks the timing of 285187's OOM (which died at 392s/~6.5min into the run, also silently during Catalyst init with no cycle logged). Approaching the moment where we'll know definitively -- watching every minute for either the job dying (OOM) or breaking through into iteration.",
+      "state_note": "Job 285234 -- converge.log still unchanged since 16:39:00, now ~7 min frozen at 'Executing ParaView Catalyst scripts', no ncyc line, but ALSO no LSF exit summary yet -- it has now survived longer (wall-clock) than 285187's 392s death point without an explicit OOM kill message, though it also hasn't shown any solver progress. Ambiguous: could be slowly building the Catalyst pipeline (heavier than expected but not fatal) or could be about to die. Watching every minute.",
       "elapsed": 392,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T16:44:00-04:00"
+      "polled_at": "2026-09-14T16:45:00-04:00"
     },
     {
       "id": "269785",
