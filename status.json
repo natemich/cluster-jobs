@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:35:00-04:00",
-  "next_poll": "2026-09-14T12:36:00-04:00",
+  "polled_at": "2026-09-14T12:36:00-04:00",
+  "next_poll": "2026-09-14T12:37:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,9 +18,9 @@
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "Job 284658 (all-10-slices, no wall-surfaces) also externally OOM-killed at 457GB -- the 7th consecutive single-node attempt landing at 455-457GB regardless of script content (13 scripts, 8 scripts, wall-surf fixes, geometry reduction, 10 all-slices). This strongly suggests the ceiling is NOT tied to which Catalyst scripts run at all. All scripts are now disabled (scripts: []) as the definitive diagnostic -- if zero scripts still hits ~457GB, the cause is structural (base solver+mesh+MPI overhead for this 5.7M-cell case on a single node), not Catalyst-content-related. Awaiting resubmission to test.",
+      "state": "PEND",
+      "status": "pend",
+      "state_note": "User resubmitted on the short queue (for faster error-checking turnaround) with all Catalyst scripts disabled (scripts: []) -- this is the definitive diagnostic to isolate whether Catalyst rendering is the OOM/hang cause at all. No new job id visible yet -- likely still pending or hasn't started writing output.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -44,7 +44,7 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "Job 284658 OOM-killed at 457GB, same as every prior attempt regardless of script content -- 7 consecutive single-node attempts all landing at 455-457GB. All Catalyst scripts are now disabled entirely as the definitive test of whether Catalyst is even the cause. Awaiting resubmission.",
+      "summary": "Job resubmitted on the short queue with all Catalyst scripts disabled, for faster turnaround on the no-scripts diagnostic. No job id visible in files yet.",
       "notes": [
         {
           "txt": "284658 OOM-killed at 457GB -- 7th consecutive attempt at the same ceiling regardless of script content.",
@@ -58,7 +58,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:35:00-04:00"
+      "polled_at": "2026-09-14T12:36:00-04:00"
     },
     {
       "id": "269785",
