@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T14:58:00-04:00",
-  "next_poll": "2026-09-14T15:03:00-04:00",
+  "polled_at": "2026-09-14T15:00:00-04:00",
+  "next_poll": "2026-09-14T15:01:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,17 +11,17 @@
   ],
   "jobs": [
     {
-      "id": "284658",
+      "id": "285146",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
-      "sched": "lsf",
-      "queue": "braun",
-      "state": "PEND",
-      "status": "pend",
-      "state_note": "Resubmitted on short queue with scripts:[] ~2.5+ hours ago, still no job id in files -- unusually long for a queue meant for fast turnaround. Flagged to user to check bjobs/squeue on their end if convenient.",
-      "elapsed": "638s",
+      "sched": "LSF",
+      "queue": "short",
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "New job 285146 submitted 14:50:58, dispatched to host n0388 at 14:57:18, but exited in the SAME second: LSF could not open the job's spool file (\"Cannot open your job file: /home/nsmichno/.lsbatch/1789411858.285146\"). stderr is empty. This is an LSF infrastructure/spooling failure, NOT related to the Catalyst/OOM diagnostic -- the solver never started (converge.log still at 403 lines, unchanged). This breaks the no-scripts diagnostic test; the OOM-vs-Catalyst question remains unanswered. Worth a resubmit, and possibly worth flagging to HPC support if it recurs.",
+      "elapsed": 0,
       "limit": "96:00:00",
       "pct": 0,
       "sim_now": null,
@@ -44,21 +44,25 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "Job resubmitted on the short queue with all Catalyst scripts disabled, for faster turnaround on the no-scripts diagnostic. No job id visible in files yet.",
+      "summary": "Job 285146 (all Catalyst scripts disabled diagnostic) was dispatched by LSF but failed immediately with a spool-file read error before CONVERGE ever launched -- an LSF-side infrastructure fault, not a solver/OOM/Catalyst issue. No new evidence on the OOM-ceiling hypothesis from this attempt.",
       "notes": [
         {
-          "txt": "284658 OOM-killed at 457GB -- 7th consecutive attempt at the same ceiling regardless of script content.",
+          "txt": "LSF error: Cannot open your job file: /home/nsmichno/.lsbatch/1789411858.285146 -- job exited same second it started, stderr empty.",
           "level": "critical"
         },
         {
-          "txt": "All scripts now disabled (scripts: []) -- definitive test of whether Catalyst is the cause at all. Awaiting resubmission.",
+          "txt": "converge.log unchanged at 403 lines -- solver never launched, so this run provides no data on the Catalyst-vs-OOM diagnostic question.",
+          "level": "warn"
+        },
+        {
+          "txt": "Recommend resubmitting; if the spool-file error recurs, likely worth flagging to HPC support as a scheduler-side issue.",
           "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T14:58:00-04:00"
+      "polled_at": "2026-09-14T15:00:00-04:00"
     },
     {
       "id": "269785",
