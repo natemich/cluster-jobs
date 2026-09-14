@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:48:00-04:00",
-  "next_poll": "2026-09-14T15:53:00-04:00",
+  "polled_at": "2026-09-14T15:56:00-04:00",
+  "next_poll": "2026-09-14T15:57:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,16 +11,16 @@
   ],
   "jobs": [
     {
-      "id": "285187",
+      "id": null,
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "Since the XTPlot memory fix (v2.0, monitor-cloud based): user moved the XT-plot ring from Y=0.0313942 to Y=0.022 (re-derived by numerically slicing surface.dat at the new station, validated against the known analytic outer-wall circumradius 0.015m). paraview_catalyst.in now registers 8 scripts: TemperatureWallSurf.py, XTPlot_Pressure.py (Y022 ring), EquivMetricSurf_XY_Y022/036.py, PressureSurf_XY_Y022/036.py, TemperatureSurf_XY_Y022/036.py. Awaiting resubmission.",
+      "state": "PEND",
+      "status": "pend",
+      "state_note": "Resubmitted with the full fix+config: XTPlot_Pressure.py v2.0 (native monitor-cloud based, no full-mesh pipeline -- the fix for the 457GB OOM), ring moved to Y=0.022, 8 scripts registered (TemperatureWallSurf, XTPlot_Pressure, EquivMetric/Pressure/Temperature XY at Y022+Y036). Case directory cleaned (unused scripts and old job logs archived to subfolders). Queue-pending, no job id/stdout yet -- watching closely (1-min cadence) for dispatch. This run is the critical test of whether the memory fix worked.",
       "elapsed": 392,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:48:00-04:00"
+      "polled_at": "2026-09-14T15:56:00-04:00"
     },
     {
       "id": "269785",
