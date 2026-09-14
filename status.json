@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:14:00-04:00",
-  "next_poll": "2026-09-14T15:15:00-04:00",
+  "polled_at": "2026-09-14T15:15:00-04:00",
+  "next_poll": "2026-09-14T15:16:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,8 +19,8 @@
       "sched": "LSF",
       "queue": "short",
       "state": "RUN",
-      "status": "warn",
-      "state_note": "Job 285187 -- converge.log AND stdout.285187 both unchanged since 15:10:54/15:10 respectively -- now ~4 min with zero file growth, stuck right after the per-rank cell_count listing (end of load balance, right before Catalyst script init/first trigger). Prior clean run (285009) cleared this same phase in under 3 min. Starting to resemble the historical Catalyst render-deadlock hang pattern, though no OOM/crash/LSF exit summary yet -- job is still nominally RUN per no exit block appearing. Watching very closely; will flag firmly if this extends past ~6-7 min total stall.",
+      "status": "critical",
+      "state_note": "Job 285187 appears HUNG: converge.log and stdout.285187 both completely unchanged for 5+ minutes now (still 15:10:54 / 20637 bytes), frozen right after per-rank cell_count listing at end of load balance, before any Catalyst script trigger or ncyc iteration. This matches the exact historical hang signature from earlier this session (froze right after mesh setup with Catalyst scripts registered, no error, no OOM, job stays nominally RUN in LSF because MPI ranks are alive but deadlocked collectively). The prior clean scripts:[] run (285009) cleared this same stage and was iterating within ~3 min. Suspicious given TemperatureWallSurf.py is the one wall-surface script in this set -- despite the earlier fix (removing the redundant raw-cell Show() call), it may still be implicated, or one of the other 3 scripts has an issue not previously seen. Flagging to user now rather than waiting further.",
       "elapsed": 0,
       "limit": "96:00:00",
       "pct": 0,
@@ -58,7 +58,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:14:00-04:00"
+      "polled_at": "2026-09-14T15:15:00-04:00"
     },
     {
       "id": "269785",
