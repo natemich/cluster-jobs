@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:13:00-04:00",
-  "next_poll": "2026-09-14T15:14:00-04:00",
+  "polled_at": "2026-09-14T15:14:00-04:00",
+  "next_poll": "2026-09-14T15:15:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Job 285187 -- converge.log has not advanced since 15:10:54 (still 20637 bytes, in the middle of multi-pass load balance for the 5.7M-cell embedded grid). ~3 min stall so far. Not yet alarming -- the prior successful run (285009) also took a couple minutes in this same load-balance phase before real ncyc iteration started -- but watching closely since this is the phase where the (now-fixed) wall-surface render bug used to hang jobs.",
+      "state_note": "Job 285187 -- converge.log AND stdout.285187 both unchanged since 15:10:54/15:10 respectively -- now ~4 min with zero file growth, stuck right after the per-rank cell_count listing (end of load balance, right before Catalyst script init/first trigger). Prior clean run (285009) cleared this same phase in under 3 min. Starting to resemble the historical Catalyst render-deadlock hang pattern, though no OOM/crash/LSF exit summary yet -- job is still nominally RUN per no exit block appearing. Watching very closely; will flag firmly if this extends past ~6-7 min total stall.",
       "elapsed": 0,
       "limit": "96:00:00",
       "pct": 0,
@@ -58,7 +58,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:13:00-04:00"
+      "polled_at": "2026-09-14T15:14:00-04:00"
     },
     {
       "id": "269785",
