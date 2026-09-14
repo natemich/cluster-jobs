@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:07:00-04:00",
-  "next_poll": "2026-09-14T12:08:00-04:00",
+  "polled_at": "2026-09-14T12:10:00-04:00",
+  "next_poll": "2026-09-14T12:11:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -19,8 +19,8 @@
       "sched": "lsf",
       "queue": "braun",
       "state": "RUN",
-      "status": "good",
-      "state_note": "Resubmitted with the trimmed 8-script paraview_catalyst.in (dropped EquivMetricSurf_XY_Y036, all 3 PressureSurf_XY_*, TemperatureSurf_XY_Y036) to reduce memory footprint after 3 straight single-node OOM kills at ~455-457GB. Currently in mesh/load-balance setup, no errors yet.",
+      "status": "critical",
+      "state_note": "Job 284517 (8-script Catalyst set) hung for 5+ minutes at the exact same checkpoint as before -- confirmed as the same redundant-Show()/texture-buffer deadlock, this time in PressureWallSurf.py (and likely would have recurred in TemperatureWallSurf.py right after) rather than EquivMetricSurf.py. Both scripts had the identical bug pattern: a second Show() of the full wall mesh colored directly by raw CELLS data, redundant with the safe point-interpolated smooth1Display. Fixed both PressureWallSurf.py and TemperatureWallSurf.py the same way EquivMetricSurf.py was fixed. Job 284517 needs to be killed (bkill 284517) and resubmitted -- it's frozen on the old buggy version of PressureWallSurf.py that was already loaded into that run.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -44,21 +44,25 @@
       "log_tail": [
         "Load balancing / mesh setup phase, zero errors so far, 8-script Catalyst set (down from 13)"
       ],
-      "summary": "Fifth resubmission (284517), same single-node LSF ttc config but now with only 8 Catalyst scripts instead of 13. Still early (mesh setup) -- watching closely to see if the reduced script count keeps memory below the ~457GB ceiling that killed the last three attempts.",
+      "summary": "Job 284517 hung on the exact same deadlock bug, this time in PressureWallSurf.py -- confirming my earlier suspicion that it (and TemperatureWallSurf.py) mirrored EquivMetricSurf.py's original buggy structure. Both fixed now. User needs to kill 284517 and resubmit for the fix to take effect.",
       "notes": [
         {
-          "txt": "Resubmitted with 8 Catalyst scripts (down from 13) to reduce memory footprint.",
+          "txt": "Job 284517 hung 5+ min at the same checkpoint -- confirmed as the same deadlock bug, this time in PressureWallSurf.py.",
+          "level": "critical"
+        },
+        {
+          "txt": "Fixed PressureWallSurf.py and TemperatureWallSurf.py (removed the redundant raw-cell-data Show() in both, same fix as EquivMetricSurf.py).",
           "level": "good"
         },
         {
-          "txt": "Still in early mesh setup, zero errors so far.",
-          "level": "info"
+          "txt": "284517 needs to be killed and resubmitted -- it's running the old buggy script version.",
+          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:07:00-04:00"
+      "polled_at": "2026-09-14T12:10:00-04:00"
     },
     {
       "id": "269785",
