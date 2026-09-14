@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:21:00-04:00",
-  "next_poll": "2026-09-14T12:22:00-04:00",
+  "polled_at": "2026-09-14T12:23:00-04:00",
+  "next_poll": "2026-09-14T12:24:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Prior job 284537 hung again (TERM_OWNER, user-killed, 231s run, 455GB steady-state) despite both wall-surf render-deadlock fixes being in place. Checked all 8 registered scripts for the same redundant-Show()-on-raw-cell-data pattern -- none found; all are clean (only the safe GeometryRepresentation + AnnotateTime displays remain, XTPlot_Pressure.py doesn't use Show() at all). Root cause of 284537's hang is not yet identified. Job 284543 started immediately after, now running with EquivMetricSurf.py trimmed to COMBUSTORWALLS only (NOZZLEWALLS dropped per user request) -- this is a genuinely new test since that geometry reduction landed just before this submission. Watching closely.",
+      "state_note": "Job 284543 stuck at the same freeze point (~294 lines, no progress) for 4+ min despite EquivMetricSurf.py now being COMBUSTORWALLS-only. Consistent with the user's hypothesis that even the safe point-interpolated display is still rendering too large a surface under software (Mesa) rendering. Proposed adding a decimation step to reduce cell count before rendering; awaiting user's go-ahead.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -58,7 +58,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:21:00-04:00"
+      "polled_at": "2026-09-14T12:23:00-04:00"
     },
     {
       "id": "269785",
