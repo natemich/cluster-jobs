@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:15:00-04:00",
-  "next_poll": "2026-09-14T15:16:00-04:00",
+  "polled_at": "2026-09-14T15:16:30-04:00",
+  "next_poll": "2026-09-14T15:21:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,10 +18,10 @@
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "RUN",
+      "state": "EXIT",
       "status": "critical",
-      "state_note": "Job 285187 appears HUNG: converge.log and stdout.285187 both completely unchanged for 5+ minutes now (still 15:10:54 / 20637 bytes), frozen right after per-rank cell_count listing at end of load balance, before any Catalyst script trigger or ncyc iteration. This matches the exact historical hang signature from earlier this session (froze right after mesh setup with Catalyst scripts registered, no error, no OOM, job stays nominally RUN in LSF because MPI ranks are alive but deadlocked collectively). The prior clean scripts:[] run (285009) cleared this same stage and was iterating within ~3 min. Suspicious given TemperatureWallSurf.py is the one wall-surface script in this set -- despite the earlier fix (removing the redundant raw-cell Show() call), it may still be implicated, or one of the other 3 scripts has an issue not previously seen. Flagging to user now rather than waiting further.",
-      "elapsed": 0,
+      "state_note": "Job 285187 (4-script trimmed Catalyst set: TemperatureWallSurf.py, XTPlot_Pressure.py, EquivMetricSurf_XY_Y010/022.py) was OOM-killed (TERM_EXTERNAL_SIGNAL) after 392s, Max Memory 457GB -- the SAME ~455-457GB ceiling as all 7 prior attempts, despite the heavily trimmed script set. converge.log never advanced past the load-balance cell_count listing the whole run -- memory ballooned silently during what looks like Catalyst pipeline INITIALIZATION (likely building VTK mesh structures for TemperatureWallSurf.py's full combustor+nozzle wall geometry), before any solver cycle was logged. This complicates the 'Catalyst content' theory: script count/complexity was cut drastically yet the ceiling reappeared at the identical value, while the scripts:[] run (285009, manually killed) only used 72GB in its 591s runtime. Strongly suggests TemperatureWallSurf.py's geometry pipeline build itself (independent of the render-deadlock bug already fixed) is memory-heavy, OR the two mechanisms (base ceiling + Catalyst init cost) are compounding. Reported to user; awaiting next move (likely: drop TemperatureWallSurf.py and test XTPlot+EquivMetric-only, or investigate wall-surface mesh size specifically).",
+      "elapsed": 392,
       "limit": "96:00:00",
       "pct": 0,
       "sim_now": null,
@@ -44,21 +44,25 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "New job 285187 resubmitted with a trimmed 4-script Catalyst set (fixed TemperatureWallSurf.py + XTPlot_Pressure.py + two EquivMetricSurf XY slices at Y010/Y022) after the prior all-scripts-disabled diagnostic (285009) was manually stopped early with no OOM. All 4 scripts loaded cleanly; job is in mesh-setup/load-balance, not yet iterating.",
+      "summary": "Job 285187 OOM-killed at 457GB after 392s with only 4 Catalyst scripts registered, including one full-3D wall-surface script (TemperatureWallSurf.py). Memory grew silently during Catalyst init before any solver cycle logged. Same ceiling as every prior attempt regardless of script count -- points at the wall-surface geometry pipeline specifically, or an unresolved base-ceiling issue compounded by any Catalyst init overhead.",
       "notes": [
         {
-          "txt": "285009 diagnostic was killed by the user at 591s/72GB (TERM_OWNER) -- not OOM -- so it didn't conclusively test the 455GB ceiling, but ran long enough to satisfy the user that Catalyst content was the real issue.",
-          "level": "info"
+          "txt": "OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 457GB, Run time 392s -- identical ceiling to 7 prior attempts despite trimming to 4 scripts.",
+          "level": "critical"
         },
         {
-          "txt": "285187 (new 4-script set) loaded all Catalyst scripts without error and is progressing through mesh setup -- watching for it to clear into steady iteration.",
-          "level": "good"
+          "txt": "converge.log never progressed past load-balance/cell_count listing -- the memory blowup happened during Catalyst script init, not during solver iteration.",
+          "level": "warn"
+        },
+        {
+          "txt": "TemperatureWallSurf.py (full combustor+nozzle wall surface, ~1.14M cells) is the prime suspect for the init-time memory cost, separate from the render-deadlock bug already fixed in that script.",
+          "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:15:00-04:00"
+      "polled_at": "2026-09-14T15:16:30-04:00"
     },
     {
       "id": "269785",
