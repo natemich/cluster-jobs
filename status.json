@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:27:00-04:00",
-  "next_poll": "2026-09-14T15:32:00-04:00",
+  "polled_at": "2026-09-14T15:38:00-04:00",
+  "next_poll": "2026-09-14T15:43:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "EXIT",
       "status": "critical",
-      "state_note": "Job 285187 OOM'd at 457GB (see prior note). Since then: user hypothesized XTPlot_Pressure.py's full-mesh ParaView pipeline (ExtractBlock/MergeBlocks/CellDatatoPointData/ResampleWithDataset on the full 5.7M-cell domain, 7 variables, every trigger) was the real memory driver. Rewrote it (v2.0) to read from a new native CONVERGE monitor-cloud file instead (cloud_id 2 / ring_cloud.in, 180 points at the same ring location, monitor_cloud_2_mass_avg.out) -- zero VTK/mesh work, just tails a small text file. paraview_catalyst.in still has 4 scripts (TemperatureWallSurf.py, XTPlot_Pressure.py, EquivMetricSurf_XY_Y010/022.py) but XTPlot's memory footprint should now be negligible. Awaiting resubmission with this fix.",
+      "state_note": "Since the XTPlot memory fix (v2.0, monitor-cloud based): user moved the XT-plot ring from Y=0.0313942 to Y=0.022 (re-derived by numerically slicing surface.dat at the new station, validated against the known analytic outer-wall circumradius 0.015m). paraview_catalyst.in now registers 8 scripts: TemperatureWallSurf.py, XTPlot_Pressure.py (Y022 ring), EquivMetricSurf_XY_Y022/036.py, PressureSurf_XY_Y022/036.py, TemperatureSurf_XY_Y022/036.py. Awaiting resubmission.",
       "elapsed": 392,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:27:00-04:00"
+      "polled_at": "2026-09-14T15:38:00-04:00"
     },
     {
       "id": "269785",
