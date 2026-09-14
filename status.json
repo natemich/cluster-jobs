@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T15:10:00-04:00",
-  "next_poll": "2026-09-14T15:11:00-04:00",
+  "polled_at": "2026-09-14T15:11:00-04:00",
+  "next_poll": "2026-09-14T15:12:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,7 +11,7 @@
   ],
   "jobs": [
     {
-      "id": "285009",
+      "id": "285187",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "RUN",
       "status": "good",
-      "state_note": "Job 285009 (scripts:[] diagnostic) still running cleanly on n0373 as of 15:08:50, converge.log actively growing, no errors. User has updated paraview_catalyst.in for the NEXT submission (not this run) to a new 4-script set: TemperatureWallSurf.py (fixed), XTPlot_Pressure.py, EquivMetricSurf_XY_Y010.py, EquivMetricSurf_XY_Y022.py -- will take effect on the next resubmission.",
+      "state_note": "Job 285009 (scripts:[] diagnostic) was manually killed by the user (TERM_OWNER, not OOM) after 591s at Max Memory 72GB -- inconclusive on the OOM-ceiling question since it never reached the ~455GB range, but the user judged the clean startup+iteration sufficient evidence Catalyst content was the real driver of prior failures. Resubmitted as job 285187 (dispatched 15:10:05, host n0373) with a new reduced 4-script Catalyst set: TemperatureWallSurf.py (previously fixed for the render-deadlock bug), XTPlot_Pressure.py, EquivMetricSurf_XY_Y010.py, EquivMetricSurf_XY_Y022.py. Confirmed all 4 scripts loaded without error in stdout. Currently in the load-balance/mesh-setup phase -- the same stage that previously hung with the buggy wall-surface scripts -- now running clean.",
       "elapsed": 0,
       "limit": "96:00:00",
       "pct": 0,
@@ -44,21 +44,21 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "The no-Catalyst-scripts diagnostic run (285009) started cleanly on n0373 at 15:00:10 and is now iterating the solver normally with no errors -- the first clean startup+iteration this session. Too early (ncyc ~62, ~5 min in) to know if it will avoid the ~455GB OOM ceiling seen in every prior attempt, but the early behavior is healthy.",
+      "summary": "New job 285187 resubmitted with a trimmed 4-script Catalyst set (fixed TemperatureWallSurf.py + XTPlot_Pressure.py + two EquivMetricSurf XY slices at Y010/Y022) after the prior all-scripts-disabled diagnostic (285009) was manually stopped early with no OOM. All 4 scripts loaded cleanly; job is in mesh-setup/load-balance, not yet iterating.",
       "notes": [
         {
-          "txt": "Cleared the mesh-setup/load-balance phase and is actively cycling (ncyc 62+) with no errors -- furthest clean progress yet.",
-          "level": "good"
+          "txt": "285009 diagnostic was killed by the user at 591s/72GB (TERM_OWNER) -- not OOM -- so it didn't conclusively test the 455GB ceiling, but ran long enough to satisfy the user that Catalyst content was the real issue.",
+          "level": "info"
         },
         {
-          "txt": "Still very early (sim time 2.9e-6s) -- the ~455-457GB OOM ceiling in prior attempts showed up well into the run, not at startup, so this isn't conclusive yet.",
-          "level": "info"
+          "txt": "285187 (new 4-script set) loaded all Catalyst scripts without error and is progressing through mesh setup -- watching for it to clear into steady iteration.",
+          "level": "good"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T15:10:00-04:00"
+      "polled_at": "2026-09-14T15:11:00-04:00"
     },
     {
       "id": "269785",
