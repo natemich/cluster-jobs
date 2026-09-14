@@ -11,16 +11,16 @@
   ],
   "jobs": [
     {
-      "id": "284517",
+      "id": "284537",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "Job 284517 ended on its own (TERM_EXTERNAL_SIGNAL, not user-killed) after 481s, Max Memory 457GB -- essentially identical to every prior attempt. But it never got past the PressureWallSurf.py deadlock the whole run, so this 457GB figure is steady-state overhead while stuck, not a genuine peak from real Catalyst execution -- the trimmed 8-script set's actual memory impact remains untested. PressureWallSurf.py and TemperatureWallSurf.py are now both fixed (same redundant-Show()-on-raw-cell-data bug as EquivMetricSurf.py). Next resubmission will be the first real test of both the render fix and the trimmed script count together.",
+      "state": "RUN",
+      "status": "good",
+      "state_note": "Resubmitted with PressureWallSurf.py and TemperatureWallSurf.py now fixed (same deadlock bug as EquivMetricSurf.py, removed). This is the first attempt with all three rendering fixes in place plus the trimmed 8-script Catalyst set. Still early mesh setup, no errors.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -36,28 +36,23 @@
       "posts": 0,
       "frames": 0,
       "newest": null,
-      "submitted": "2026-09-14T12:03:22-04:00",
-      "cmd": "RunConverge ttc 64 96:00 braun .  # trimmed to 8 Catalyst scripts (dropped Y036s + all PressureSurf_XY)",
+      "submitted": "2026-09-14T12:14:00-04:00",
+      "cmd": "RunConverge ttc 64 96:00 braun .  # 8-script Catalyst set + fixed PressureWallSurf.py/TemperatureWallSurf.py",
       "log_name": "converge.log",
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "Hung the entire run on PressureWallSurf.py's deadlock bug (same as EquivMetricSurf.py's original bug)",
-        "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 481s"
+        "Mesh setup / load balancing phase, zero errors so far -- first real test of both wall-surf fixes and the trimmed 8-script set"
       ],
-      "summary": "Job 284517 was externally killed after ~8 minutes stuck on PressureWallSurf.py's deadlock bug (now fixed, along with TemperatureWallSurf.py which shares it). Its 457GB memory reading reflects steady-state overhead while hung, not real Catalyst execution, so the trimmed 8-script set's actual memory benefit is still unverified. Awaiting next resubmission.",
+      "summary": "Sixth resubmission (284537), now with all three Catalyst rendering-deadlock fixes in place (EquivMetricSurf, PressureWallSurf, TemperatureWallSurf) plus the trimmed 8-script set. Still in mesh setup -- this is the real test of whether the case can finally get past the historical freeze/OOM point.",
       "notes": [
         {
-          "txt": "Job 284517 ended (external kill, not user) after hanging the whole run on PressureWallSurf.py's deadlock -- same bug as EquivMetricSurf.py, now fixed in both wall-surf scripts.",
-          "level": "critical"
-        },
-        {
-          "txt": "457GB memory reading is steady-state-while-hung, not a real execution peak -- trimmed script set's memory benefit still untested.",
-          "level": "info"
-        },
-        {
-          "txt": "Ready for resubmission with both wall-surf fixes in place.",
+          "txt": "Resubmitted with all 3 wall-surf/render fixes in place -- first real test of the trimmed 8-script set actually executing.",
           "level": "good"
+        },
+        {
+          "txt": "Still in early mesh setup, zero errors so far.",
+          "level": "info"
         }
       ],
       "xt_plot": {
