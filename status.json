@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:23:00-04:00",
-  "next_poll": "2026-09-14T12:24:00-04:00",
+  "polled_at": "2026-09-14T12:24:00-04:00",
+  "next_poll": "2026-09-14T12:25:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "braun",
       "state": "RUN",
       "status": "warn",
-      "state_note": "Job 284543 stuck at the same freeze point (~294 lines, no progress) for 4+ min despite EquivMetricSurf.py now being COMBUSTORWALLS-only. Consistent with the user's hypothesis that even the safe point-interpolated display is still rendering too large a surface under software (Mesa) rendering. Proposed adding a decimation step to reduce cell count before rendering; awaiting user's go-ahead.",
+      "state_note": "User confirmed the hypothesis: even the safe point-data display was still too large under software rendering. Rather than patch further, swapped strategy entirely -- paraview_catalyst.in now registers only the 9 small 2D XY-slice scripts (EquivMetricSurf/Pressure/Temperature x Y010/Y022/Y036) plus XTPlot_Pressure, dropping all 3 heavy full-3D wall-surface scripts (EquivMetricSurf.py, PressureWallSurf.py, TemperatureWallSurf.py) entirely. These slice scripts were confirmed working in job 269785 previously. Job 284543 (running the old script set) still hung at the same point -- needs to be killed and resubmitted to pick up this new registration.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -44,21 +44,21 @@
       "log_tail": [
         "Mesh setup phase, zero errors so far"
       ],
-      "summary": "Job 284537 hung again despite both wall-surf fixes -- exhaustive check of all 8 registered scripts found no remaining redundant-Show() bugs, so the cause of this particular hang is unidentified. New job 284543 is running with the just-added EquivMetricSurf.py geometry reduction (combustor walls only). Watching to see if this attempt clears the freeze point.",
+      "summary": "Catalyst script strategy changed: dropped all 3 heavy full-3D wall-surface renders entirely (the likely source of the persistent hang/OOM), keeping only the 9 small 2D XY-slice scripts + XTPlot_Pressure -- a script set already proven to work in job 269785. Job 284543 needs to be killed and resubmitted to test this.",
       "notes": [
         {
-          "txt": "284537 hung again (455GB steady-state, user-killed) despite both wall-surf fixes -- cause not yet identified; all 8 scripts checked clean for the known bug pattern.",
-          "level": "critical"
+          "txt": "Catalyst script set changed: removed all 3 heavy full-3D wall-surface scripts (EquivMetricSurf, PressureWallSurf, TemperatureWallSurf), kept only the 9 small XY-slice scripts + XTPlot_Pressure -- proven working in job 269785.",
+          "level": "good"
         },
         {
-          "txt": "284543 running with EquivMetricSurf.py now COMBUSTORWALLS-only (smaller mesh) -- new variable, watching closely.",
-          "level": "info"
+          "txt": "Job 284543 still running the old script set, still hung -- needs to be killed and resubmitted.",
+          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:23:00-04:00"
+      "polled_at": "2026-09-14T12:24:00-04:00"
     },
     {
       "id": "269785",
