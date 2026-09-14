@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T16:45:00-04:00",
-  "next_poll": "2026-09-14T16:46:00-04:00",
+  "polled_at": "2026-09-14T16:48:00-04:00",
+  "next_poll": "2026-09-14T16:53:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,10 +18,10 @@
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "RUN",
+      "state": "EXIT",
       "status": "critical",
-      "state_note": "Job 285234 -- converge.log still unchanged since 16:39:00, now ~7 min frozen at 'Executing ParaView Catalyst scripts', no ncyc line, but ALSO no LSF exit summary yet -- it has now survived longer (wall-clock) than 285187's 392s death point without an explicit OOM kill message, though it also hasn't shown any solver progress. Ambiguous: could be slowly building the Catalyst pipeline (heavier than expected but not fatal) or could be about to die. Watching every minute.",
-      "elapsed": 392,
+      "state_note": "Job 285234 (fixed XTPlot v2.0 monitor-cloud + 8-script set) was OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 455GB, Run time 564s -- essentially the SAME ceiling (455-457GB) as EVERY prior attempt this session regardless of Catalyst content: zero scripts (72GB/591s, manually killed before natural conclusion), 10 XY-slices-only (457GB), old-XTPlot 4-script (457GB), new-XTPlot 8-script (455GB). The XTPlot memory-pipeline fix did NOT resolve the ceiling. This strongly suggests the ~455-457GB ceiling is NOT driven by specific Catalyst script content/bugs, but is likely the actual usable RAM ceiling on this single ttc node (64-core), triggered whenever Catalyst/ParaView is active at all for long enough -- converge.log never advanced past mesh-setup/Catalyst-script-loading in ANY of the Catalyst-enabled attempts. Reported to user; the scripts:[] diagnostic (285009) is the only config that avoided this, but was manually stopped early (72GB/591s) rather than run to a natural conclusion -- worth letting a scripts:[] run go longer to see if it also eventually hits ~455GB, or moving to multi-node (LSF ttcmult) to get more total RAM.",
+      "elapsed": 564,
       "limit": "96:00:00",
       "pct": 0,
       "sim_now": null,
@@ -44,25 +44,25 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "Job 285187 OOM-killed at 457GB after 392s with only 4 Catalyst scripts registered, including one full-3D wall-surface script (TemperatureWallSurf.py). Memory grew silently during Catalyst init before any solver cycle logged. Same ceiling as every prior attempt regardless of script count -- points at the wall-surface geometry pipeline specifically, or an unresolved base-ceiling issue compounded by any Catalyst init overhead.",
+      "summary": "Job 285234 (the fixed monitor-cloud XTPlot + full 8-script Catalyst set) OOM-killed at 455GB, matching every prior attempt regardless of script content. This invalidates the working hypothesis that the XTPlot full-mesh pipeline was the primary driver -- the ceiling now looks like a base single-node RAM limit triggered by having Catalyst active at all, not by what the scripts do.",
       "notes": [
         {
-          "txt": "OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 457GB, Run time 392s -- identical ceiling to 7 prior attempts despite trimming to 4 scripts.",
+          "txt": "OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 455GB, Run time 564s -- virtually identical to every prior Catalyst-enabled attempt.",
           "level": "critical"
         },
         {
-          "txt": "converge.log never progressed past load-balance/cell_count listing -- the memory blowup happened during Catalyst script init, not during solver iteration.",
+          "txt": "Every configuration with ANY Catalyst scripts registered has hit ~455-457GB regardless of content/count; only the fully-disabled scripts:[] run avoided it, but was manually killed early rather than run to conclusion.",
           "level": "warn"
         },
         {
-          "txt": "TemperatureWallSurf.py (full combustor+nozzle wall surface, ~1.14M cells) is the prime suspect for the init-time memory cost, separate from the render-deadlock bug already fixed in that script.",
+          "txt": "Suggests the ceiling may be the node's actual usable RAM, not a fixable script issue -- worth either letting scripts:[] run longer, or moving to multi-node (LSF ttcmult, 128-core/2-node) for more total memory.",
           "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T16:45:00-04:00"
+      "polled_at": "2026-09-14T16:48:00-04:00"
     },
     {
       "id": "269785",
