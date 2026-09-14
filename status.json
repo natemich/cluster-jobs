@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:28:00-04:00",
-  "next_poll": "2026-09-14T12:29:00-04:00",
+  "polled_at": "2026-09-14T12:29:00-04:00",
+  "next_poll": "2026-09-14T12:30:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "braun",
       "state": "RUN",
       "status": "good",
-      "state_note": "Previous job 284543 hung again (TERM_OWNER, 457GB, 561s run) at the same point despite geometry reduction. User's strategy pivot: dropped all 3 heavy full-3D wall-surface scripts entirely (EquivMetricSurf.py, PressureWallSurf.py, TemperatureWallSurf.py), keeping only the 9 small 2D XY-slice scripts + XTPlot_Pressure -- a set already proven working in job 269785. Job 284658 is the first test of this new approach. Still in mesh setup, no errors.",
+      "state_note": "Job 284658 reached the same 'Executing Catalyst scripts' checkpoint as every prior attempt, but now correctly shows only the 10 intended scripts (all XY-slices + XTPlot, zero full-3D wall-surface scripts). Not yet confirmed past the freeze point -- watching closely for real cycle/time output.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -42,7 +42,7 @@
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "Mesh setup / load balancing phase, zero errors so far -- first real test of the all-slices script set"
+        "Executing ParaView Catalyst scripts: (correctly lists only the 10 new scripts -- no wall-surface scripts)"
       ],
       "summary": "Job 284658 (10-script set: all XY-slices + XTPlot, zero full-3D wall-surface scripts) is the first real test of the strategy pivot away from heavy wall renders entirely. Still early mesh setup -- watching closely for whether this finally clears the historical freeze/OOM point.",
       "notes": [
@@ -58,7 +58,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:28:00-04:00"
+      "polled_at": "2026-09-14T12:29:00-04:00"
     },
     {
       "id": "269785",
