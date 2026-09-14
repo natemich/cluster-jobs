@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T16:40:00-04:00",
-  "next_poll": "2026-09-14T16:45:00-04:00",
+  "polled_at": "2026-09-14T16:41:00-04:00",
+  "next_poll": "2026-09-14T16:42:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,16 +11,16 @@
   ],
   "jobs": [
     {
-      "id": null,
+      "id": "285234",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "PEND",
-      "status": "pend",
-      "state_note": "Resubmitted with the full fix+config: XTPlot_Pressure.py v2.0 (native monitor-cloud based, no full-mesh pipeline -- the fix for the 457GB OOM), ring moved to Y=0.022, 8 scripts registered (TemperatureWallSurf, XTPlot_Pressure, EquivMetric/Pressure/Temperature XY at Y022+Y036). Case directory cleaned (unused scripts and old job logs archived to subfolders). Queue-pending, no job id/stdout yet -- watching closely (1-min cadence) for dispatch. This run is the critical test of whether the memory fix worked.",
+      "state": "RUN",
+      "status": "warn",
+      "state_note": "Job 285234 dispatched ~16:39 with the full fix+config (XTPlot v2.0 monitor-cloud, ring Y022, 8 scripts). Cleared mesh setup/load-balance cleanly and just hit 'Executing ParaView Catalyst scripts' with all 8 scripts confirmed loading (TemperatureWallSurf, XTPlot_Pressure, EquivMetric/Pressure/Temperature XY at Y022+Y036) -- THIS IS THE EXACT PHASE where job 285187 (old XTPlot pipeline) went on to OOM at 457GB. Watching very closely at 1-min cadence for whether it proceeds into real ncyc iteration (would strongly suggest the fix worked) or stalls/OOMs again.",
       "elapsed": 392,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T16:40:00-04:00"
+      "polled_at": "2026-09-14T16:41:00-04:00"
     },
     {
       "id": "269785",
