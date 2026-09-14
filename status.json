@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T08:42:00-04:00",
-  "next_poll": "2026-09-14T09:12:00-04:00",
+  "polled_at": "2026-09-14T09:32:00-04:00",
+  "next_poll": "2026-09-14T10:02:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,60 +11,65 @@
   ],
   "jobs": [
     {
-      "id": "805892",
+      "id": "284196",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
-      "sched": "slurm",
-      "queue": "normal",
+      "sched": "lsf",
+      "queue": "braun",
       "state": "EXIT",
       "status": "critical",
-      "state_note": "Catalyst path fix WORKED -- no HDF5 error, no segfault this time. But job 805892 died within ~1 minute (killed at 17:44:19, started 17:43) via a NEW failure: rank 0 on node c205n08 was OOM-killed. converge.log reached exactly 396 lines again (same mesh-setup checkpoint as the segfault run) before dying. RunConverge.slurm has no --mem or --mem-per-cpu directive at all -- relying on SLURM's default per-CPU memory allocation, which is likely too small for 20 ranks/node given rank 0 also carries Catalyst/ParaView's in-situ rendering pipeline (13 registered scripts) on top of its normal solver memory. Needs an explicit memory request added to RunConverge.slurm before the next resubmission.",
-      "elapsed": "~1min",
-      "limit": "72:00:00",
+      "state_note": "User resubmitted via the OLD LSF path (bsub < SubmitJob.sh, ttc preset, single node n0371, 64 ranks, queue braun) rather than the SLURM path -- this is a different submission mechanism than RunConverge.slurm. It got further than any prior attempt: wrote the first post file and started all 13 Catalyst scripts (confirming the path fix works here too), running for 638s before the OS OOM-killed it -- Max Memory hit 456GB against only 128GB requested (Delta -328GB). SubmitJob.sh has its own memory line commented out (###BSUB -R \"rusage[mem=320]\"), so it's the same root cause as the SLURM OOM: no real memory reservation. stderr also showed EquivMetricSurf attempting a 1,144,384-value texture buffer against a 65,536 hardware limit -- a likely contributor to the memory spike, from rendering all 13 Catalyst scripts simultaneously. Reported to user with a proposed fix (raise rusage[mem=...] in SubmitJob.sh); awaiting their decision -- same as the still-unresolved SLURM --mem question on RunConverge.slurm.",
+      "elapsed": "638s",
+      "limit": "96:00:00",
       "pct": 0,
       "sim_now": null,
       "sim_target": "4000 µs",
       "sim_pct": null,
       "monitors": [],
-      "ranks": 60,
+      "ranks": 64,
       "rss": null,
       "s_per_step": null,
-      "node": null,
+      "node": "n0371",
       "restarts": 0,
       "posts": 0,
       "frames": 0,
       "newest": null,
-      "submitted": "2026-09-11T11:41:00-04:00",
-      "cmd": "RunConverge slurm 60 72:00:00 normal .  # resubmission after Catalyst hardcoded-path fix -- 3 nodes x 20 cores, account braun_cpu, partition compute",
+      "submitted": "2026-09-14T09:17:25-04:00",
+      "cmd": "bsub < SubmitJob.sh  # ttc preset, single node, 64 ranks, queue braun -- LSF path, not SLURM",
       "log_name": "converge.log",
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "converge: line 109: Killed (OOM)",
-        "[2026-09-11T17:44:19.334] error: Detected 1 oom_kill event in StepId=805892.0. Some of the step tasks have been OOM Killed.",
-        "srun: error: c205n08: task 0: Out Of Memory"
+        "Writing post file .../outputs_original/output/post000001_+0.00000e+00.h5 complete",
+        "Executing ParaView Catalyst scripts: (all 13 scripts started)",
+        "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Exited with signal termination: Killed.",
+        "Max Memory: 456 GB / Total Requested Memory: 128.00 GB / Delta Memory: -328.00 GB"
       ],
-      "summary": "The Catalyst path fix is confirmed working -- job 805892 got past the old segfault point cleanly. But it hit a new failure: an out-of-memory kill on rank 0 about 1 minute after starting, at the same ~396-line mesh-setup checkpoint. The submission script requests no explicit memory (--mem/--mem-per-cpu), so it's running on SLURM's default allocation, which appears too tight for 20 ranks/node plus rank 0's added Catalyst/ParaView memory footprint.",
+      "summary": "Second resubmission (284196, via the old LSF/bsub path this time, not SLURM) confirmed the Catalyst path fix works -- it got past mesh setup, wrote the first post file, and started executing all 13 Catalyst scripts before being OOM-killed at 638s (456GB used vs 128GB requested). Same underlying issue as the SLURM OOM: no real memory reservation in the submission script. Two parallel unresolved memory questions now: RunConverge.slurm (SLURM path) and SubmitJob.sh (LSF path, rusage[mem] commented out).",
       "notes": [
         {
-          "txt": "Catalyst path fix confirmed working -- no HDF5 error or segfault this run.",
+          "txt": "Resubmitted via LSF (bsub < SubmitJob.sh, ttc preset) instead of SLURM -- got further than ever: wrote post file, started all 13 Catalyst scripts.",
           "level": "good"
         },
         {
-          "txt": "NEW failure: OOM kill on rank 0 (node c205n08) ~1min after start, job auto-marked COMPLETE by SLURM epilogue despite the OOM kill.",
+          "txt": "OOM-killed at 638s: Max Memory 456GB vs 128GB requested (Delta -328GB) -- SubmitJob.sh has rusage[mem] commented out.",
           "level": "critical"
         },
         {
-          "txt": "RunConverge.slurm has no --mem/--mem-per-cpu directive -- recommend adding one (or --mem=0 for whole-node) before resubmitting.",
+          "txt": "stderr shows EquivMetricSurf texture buffer overflow (1,144,384 values vs 65,536 hardware limit) -- likely contributes to the memory spike across 13 simultaneous Catalyst scripts.",
           "level": "warn"
+        },
+        {
+          "txt": "Proposed raising rusage[mem=...] in SubmitJob.sh to the user; awaiting decision (same open question as RunConverge.slurm's --mem).",
+          "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T08:42:00-04:00"
+      "polled_at": "2026-09-14T09:32:00-04:00"
     },
     {
       "id": "269785",
