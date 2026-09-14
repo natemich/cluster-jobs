@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:00:00-04:00",
-  "next_poll": "2026-09-14T12:30:00-04:00",
+  "polled_at": "2026-09-14T12:04:00-04:00",
+  "next_poll": "2026-09-14T12:05:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,16 +11,16 @@
   ],
   "jobs": [
     {
-      "id": "284509",
+      "id": "284517",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "Render deadlock fix confirmed working -- no texture-buffer error this run. But OOM-killed again at 457GB, essentially identical to the two prior single-node attempts (456GB and 455GB) regardless of the mem=8/slot (512GB nominal) request. Three consecutive single-node ttc attempts have all landed within ~2GB of each other (455-457GB), strongly suggesting the actual constraint is the physical RAM ceiling of the ttc single-node hosts (~460GB usable), not the rusage[mem] request math. This case's 5.7M-cell mesh plus all 13 Catalyst scripts running in-situ simultaneously needs more memory than one node can physically provide. Recommended next step: spread across multiple nodes (ttcmult 128-core/2-node LSF preset, or the earlier 3-node SLURM path) rather than further raising the single-node memory request. Awaiting user's choice.",
+      "state": "RUN",
+      "status": "good",
+      "state_note": "Resubmitted with the trimmed 8-script paraview_catalyst.in (dropped EquivMetricSurf_XY_Y036, all 3 PressureSurf_XY_*, TemperatureSurf_XY_Y036) to reduce memory footprint after 3 straight single-node OOM kills at ~455-457GB. Currently in mesh/load-balance setup, no errors yet.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -31,40 +31,34 @@
       "ranks": 64,
       "rss": null,
       "s_per_step": null,
-      "node": "n0379",
+      "node": null,
       "restarts": 0,
       "posts": 0,
       "frames": 0,
       "newest": null,
-      "submitted": "2026-09-14T11:53:33-04:00",
-      "cmd": "RunConverge ttc 64 96:00 braun .  # after mem=8 fix in RunConverge.sh (512GB/host, above prior 456GB OOM peak)",
+      "submitted": "2026-09-14T12:03:22-04:00",
+      "cmd": "RunConverge ttc 64 96:00 braun .  # trimmed to 8 Catalyst scripts (dropped Y036s + all PressureSurf_XY)",
       "log_name": "converge.log",
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "Executing ParaView Catalyst scripts: (all 13 listed, no texture-buffer ERR this time -- render fix confirmed working)",
-        "[mpiexec] Error: Downstream from host n0379 exited abnormally / exited with status 255",
-        "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 349s"
+        "Load balancing / mesh setup phase, zero errors so far, 8-script Catalyst set (down from 13)"
       ],
-      "summary": "Fourth resubmission (284509) confirmed the Catalyst rendering-deadlock fix works (no texture-buffer error), but the job was OOM-killed again at 457GB -- the third single-node attempt to land within 2GB of the same ceiling (455-457GB) regardless of requested memory. This points to the ttc single-node hosts' physical RAM (~460GB) being the real limit, not a request-syntax issue. The case likely needs to run across multiple nodes (ttcmult or SLURM 3-node) to have enough aggregate memory for the full mesh plus all 13 in-situ Catalyst scripts.",
+      "summary": "Fifth resubmission (284517), same single-node LSF ttc config but now with only 8 Catalyst scripts instead of 13. Still early (mesh setup) -- watching closely to see if the reduced script count keeps memory below the ~457GB ceiling that killed the last three attempts.",
       "notes": [
         {
-          "txt": "Rendering deadlock fix (EquivMetricSurf.py) confirmed working -- no texture-buffer error this run.",
+          "txt": "Resubmitted with 8 Catalyst scripts (down from 13) to reduce memory footprint.",
           "level": "good"
         },
         {
-          "txt": "OOM-killed again at 457GB -- third single-node attempt landing within 2GB of the same ceiling (455-457GB) regardless of requested memory (mem=8/slot = 512GB nominal).",
-          "level": "critical"
-        },
-        {
-          "txt": "Likely real constraint: physical RAM of single ttc hosts (~460GB usable), not the memory request syntax. Recommend multi-node (ttcmult or SLURM 3-node) instead of further single-node memory tuning.",
-          "level": "warn"
+          "txt": "Still in early mesh setup, zero errors so far.",
+          "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:00:00-04:00"
+      "polled_at": "2026-09-14T12:04:00-04:00"
     },
     {
       "id": "269785",
