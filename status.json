@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T12:11:00-04:00",
-  "next_poll": "2026-09-14T12:12:00-04:00",
+  "polled_at": "2026-09-14T12:12:00-04:00",
+  "next_poll": "2026-09-14T12:13:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,9 +18,9 @@
       "cluster": "hazel",
       "sched": "lsf",
       "queue": "braun",
-      "state": "RUN",
+      "state": "EXIT",
       "status": "critical",
-      "state_note": "Job 284517 (8-script Catalyst set) hung for 5+ minutes at the exact same checkpoint as before -- confirmed as the same redundant-Show()/texture-buffer deadlock, this time in PressureWallSurf.py (and likely would have recurred in TemperatureWallSurf.py right after) rather than EquivMetricSurf.py. Both scripts had the identical bug pattern: a second Show() of the full wall mesh colored directly by raw CELLS data, redundant with the safe point-interpolated smooth1Display. Fixed both PressureWallSurf.py and TemperatureWallSurf.py the same way EquivMetricSurf.py was fixed. Job 284517 needs to be killed (bkill 284517) and resubmitted -- it's frozen on the old buggy version of PressureWallSurf.py that was already loaded into that run.",
+      "state_note": "Job 284517 ended on its own (TERM_EXTERNAL_SIGNAL, not user-killed) after 481s, Max Memory 457GB -- essentially identical to every prior attempt. But it never got past the PressureWallSurf.py deadlock the whole run, so this 457GB figure is steady-state overhead while stuck, not a genuine peak from real Catalyst execution -- the trimmed 8-script set's actual memory impact remains untested. PressureWallSurf.py and TemperatureWallSurf.py are now both fixed (same redundant-Show()-on-raw-cell-data bug as EquivMetricSurf.py). Next resubmission will be the first real test of both the render fix and the trimmed script count together.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -42,27 +42,28 @@
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
-        "Load balancing / mesh setup phase, zero errors so far, 8-script Catalyst set (down from 13)"
+        "Hung the entire run on PressureWallSurf.py's deadlock bug (same as EquivMetricSurf.py's original bug)",
+        "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 481s"
       ],
-      "summary": "Job 284517 hung on the exact same deadlock bug, this time in PressureWallSurf.py -- confirming my earlier suspicion that it (and TemperatureWallSurf.py) mirrored EquivMetricSurf.py's original buggy structure. Both fixed now. User needs to kill 284517 and resubmit for the fix to take effect.",
+      "summary": "Job 284517 was externally killed after ~8 minutes stuck on PressureWallSurf.py's deadlock bug (now fixed, along with TemperatureWallSurf.py which shares it). Its 457GB memory reading reflects steady-state overhead while hung, not real Catalyst execution, so the trimmed 8-script set's actual memory benefit is still unverified. Awaiting next resubmission.",
       "notes": [
         {
-          "txt": "Job 284517 hung 5+ min at the same checkpoint -- confirmed as the same deadlock bug, this time in PressureWallSurf.py.",
+          "txt": "Job 284517 ended (external kill, not user) after hanging the whole run on PressureWallSurf.py's deadlock -- same bug as EquivMetricSurf.py, now fixed in both wall-surf scripts.",
           "level": "critical"
         },
         {
-          "txt": "Fixed PressureWallSurf.py and TemperatureWallSurf.py (removed the redundant raw-cell-data Show() in both, same fix as EquivMetricSurf.py).",
-          "level": "good"
+          "txt": "457GB memory reading is steady-state-while-hung, not a real execution peak -- trimmed script set's memory benefit still untested.",
+          "level": "info"
         },
         {
-          "txt": "284517 needs to be killed and resubmitted -- it's running the old buggy script version.",
-          "level": "warn"
+          "txt": "Ready for resubmission with both wall-surf fixes in place.",
+          "level": "good"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T12:11:00-04:00"
+      "polled_at": "2026-09-14T12:12:00-04:00"
     },
     {
       "id": "269785",
