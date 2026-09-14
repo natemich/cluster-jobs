@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-14T11:12:00-04:00",
-  "next_poll": "2026-09-14T11:42:00-04:00",
+  "polled_at": "2026-09-14T12:12:00-04:00",
+  "next_poll": "2026-09-14T12:42:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,7 +11,7 @@
   ],
   "jobs": [
     {
-      "id": "284196",
+      "id": "284490",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
@@ -20,7 +20,7 @@
       "queue": "braun",
       "state": "EXIT",
       "status": "critical",
-      "state_note": "User resubmitted via the OLD LSF path (bsub < SubmitJob.sh, ttc preset, single node n0371, 64 ranks, queue braun) rather than the SLURM path -- this is a different submission mechanism than RunConverge.slurm. It got further than any prior attempt: wrote the first post file and started all 13 Catalyst scripts (confirming the path fix works here too), running for 638s before the OS OOM-killed it -- Max Memory hit 456GB against only 128GB requested (Delta -328GB). SubmitJob.sh has its own memory line commented out (###BSUB -R \"rusage[mem=320]\"), so it's the same root cause as the SLURM OOM: no real memory reservation. stderr also showed EquivMetricSurf attempting a 1,144,384-value texture buffer against a 65,536 hardware limit -- a likely contributor to the memory spike, from rendering all 13 Catalyst scripts simultaneously. Reported to user with a proposed fix (raise rusage[mem=...] in SubmitJob.sh); awaiting their decision -- same as the still-unresolved SLURM --mem question on RunConverge.slurm.",
+      "state_note": "The mem=8 fix (512GB/host) resolved the OOM -- but this run then hung (not crashed) right after listing the Catalyst scripts, with zero progress for minutes. Root cause found by reading EquivMetricSurf.py: it called Show() twice on the same wall-surface geometry -- once safely via smooth1 (point-interpolated), and again redundantly via calc_xi (raw cell data on the full combustor+nozzle wall mesh, ~1.14M cells). That second display tried to color directly by cell data, requiring a 1D texture buffer far past the software renderer's 65,536-value limit, which is a collective MPI operation across all 64 ranks -- one rank stalling there hangs the whole job forever instead of crashing. Fixed by deleting the redundant calc_xi Show()/ScalarBar block from EquivMetricSurf.py (kept only the safe point-data smooth1Display). PressureWallSurf.py and TemperatureWallSurf.py were built mirroring EquivMetricSurf.py's structure and likely have the same bug -- flagged to user, not yet fixed pending their go-ahead. No resubmission with the EquivMetricSurf fix yet.",
       "elapsed": "638s",
       "limit": "96:00:00",
       "pct": 0,
@@ -31,45 +31,40 @@
       "ranks": 64,
       "rss": null,
       "s_per_step": null,
-      "node": "n0371",
+      "node": null,
       "restarts": 0,
       "posts": 0,
       "frames": 0,
       "newest": null,
-      "submitted": "2026-09-14T09:17:25-04:00",
-      "cmd": "bsub < SubmitJob.sh  # ttc preset, single node, 64 ranks, queue braun -- LSF path, not SLURM",
+      "submitted": "2026-09-14T11:40:00-04:00",
+      "cmd": "RunConverge ttc 64 96:00 braun .  # after mem=8 fix in RunConverge.sh (512GB/host, above prior 456GB OOM peak)",
       "log_name": "converge.log",
       "log_path": "TriangleRDE_base/outputs_original",
       "log_size": null,
       "log_tail": [
         "Writing post file .../outputs_original/output/post000001_+0.00000e+00.h5 complete",
-        "Executing ParaView Catalyst scripts: (all 13 scripts started)",
-        "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Exited with signal termination: Killed.",
-        "Max Memory: 456 GB / Total Requested Memory: 128.00 GB / Delta Memory: -328.00 GB"
+        "Executing ParaView Catalyst scripts: (all 13 scripts listed, then froze -- no further output)",
+        "stderr: vtkTextureObject ERR: texture buffer exceeding hardware limit (65536 vs 1144384 requested)"
       ],
-      "summary": "Second resubmission (284196, via the old LSF/bsub path this time, not SLURM) confirmed the Catalyst path fix works -- it got past mesh setup, wrote the first post file, and started executing all 13 Catalyst scripts before being OOM-killed at 638s (456GB used vs 128GB requested). Same underlying issue as the SLURM OOM: no real memory reservation in the submission script. Two parallel unresolved memory questions now: RunConverge.slurm (SLURM path) and SubmitJob.sh (LSF path, rusage[mem] commented out).",
+      "summary": "Third resubmission (284490) confirmed the memory fix worked (no more OOM) but the job hung indefinitely right after listing the Catalyst scripts. Diagnosed as a rendering deadlock in EquivMetricSurf.py: a redundant Show() call colored the full wall mesh directly by cell data, exceeding the renderer's texture buffer limit and stalling the collective MPI render call across all ranks. Fixed in EquivMetricSurf.py. PressureWallSurf.py/TemperatureWallSurf.py share the same structure and are suspected to have the identical bug, still unfixed. Awaiting resubmission to test the fix.",
       "notes": [
         {
-          "txt": "Resubmitted via LSF (bsub < SubmitJob.sh, ttc preset) instead of SLURM -- got further than ever: wrote post file, started all 13 Catalyst scripts.",
+          "txt": "Memory fix (mem=8, 512GB/host) resolved the OOM -- no more OOM kill on this attempt.",
           "level": "good"
         },
         {
-          "txt": "OOM-killed at 638s: Max Memory 456GB vs 128GB requested (Delta -328GB) -- SubmitJob.sh has rusage[mem] commented out.",
+          "txt": "New failure: job hung indefinitely right after listing Catalyst scripts -- diagnosed as a rendering deadlock in EquivMetricSurf.py (redundant cell-data Show() exceeding the offscreen renderer's texture buffer limit, a collective MPI hang).",
           "level": "critical"
         },
         {
-          "txt": "stderr shows EquivMetricSurf texture buffer overflow (1,144,384 values vs 65,536 hardware limit) -- likely contributes to the memory spike across 13 simultaneous Catalyst scripts.",
+          "txt": "EquivMetricSurf.py fixed (redundant Show() removed). PressureWallSurf.py/TemperatureWallSurf.py share the same structure and likely have the same bug -- not yet fixed, flagged to user.",
           "level": "warn"
-        },
-        {
-          "txt": "Proposed raising rusage[mem=...] in SubmitJob.sh to the user; awaiting decision (same open question as RunConverge.slurm's --mem).",
-          "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-14T11:12:00-04:00"
+      "polled_at": "2026-09-14T12:12:00-04:00"
     },
     {
       "id": "269785",
