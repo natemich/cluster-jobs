@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-15T16:33:00-04:00",
-  "next_poll": "2026-09-15T16:48:00-04:00",
+  "polled_at": "2026-09-15T16:46:00-04:00",
+  "next_poll": "2026-09-15T16:47:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -11,16 +11,16 @@
   ],
   "jobs": [
     {
-      "id": "285234",
+      "id": "287064",
       "label": "SLURM Triangle",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "EXIT",
-      "status": "critical",
-      "state_note": "User removed XTPlot_Pressure.py from paraview_catalyst.in -- plans to build the x-t plot afterward from the native monitor_cloud_2_mass_avg.out file (ring_cloud.in, cloud_id 2 in monitor_points.in) instead of via Catalyst. paraview_catalyst.in now has 7 scripts: TemperatureWallSurf.py, EquivMetricSurf_XY_Y022/036.py, PressureSurf_XY_Y022/036.py, TemperatureSurf_XY_Y022/036.py. Awaiting resubmission.",
+      "state": "RUN",
+      "status": "warn",
+      "state_note": "Job 287064 (7-script set, XTPlot removed) dispatched, all 7 scripts confirmed loading in stderr with growing init gaps (31s/53s/76s/410s between scripts) -- this timing pattern (increasing delay per script) matches the memory-pressure signature seen before every prior OOM. converge.log stalled at 20616 bytes/mtime 16:33:55, no progress for ~12 min as of 16:46. Watching closely at 1-min cadence for either an OOM (would confirm ceiling is content-independent even without XTPlot) or breakthrough into real ncyc iteration.",
       "elapsed": 564,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-15T16:33:00-04:00"
+      "polled_at": "2026-09-15T16:46:00-04:00"
     },
     {
       "id": "269785",
