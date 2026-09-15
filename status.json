@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-15T16:48:00-04:00",
-  "next_poll": "2026-09-15T16:49:00-04:00",
+  "polled_at": "2026-09-15T16:49:00-04:00",
+  "next_poll": "2026-09-15T16:54:00-04:00",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -18,10 +18,10 @@
       "cluster": "hazel",
       "sched": "LSF",
       "queue": "short",
-      "state": "RUN",
-      "status": "warn",
-      "state_note": "Job 287064 (7-script set, XTPlot removed) dispatched, all 7 scripts confirmed loading in stderr with growing init gaps (31s/53s/76s/410s between scripts) -- this timing pattern (increasing delay per script) matches the memory-pressure signature seen before every prior OOM. converge.log stalled at 20616 bytes/mtime 16:33:55, no progress for ~12 min as of 16:46. Watching closely at 1-min cadence for either an OOM (would confirm ceiling is content-independent even without XTPlot) or breakthrough into real ncyc iteration.",
-      "elapsed": 564,
+      "state": "EXIT",
+      "status": "critical",
+      "state_note": "MAJOR FINDING: Job 287064 (7-script set, XTPlot fully removed) OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 935GB -- nearly DOUBLE the ~455-457GB ceiling seen in every prior attempt this session, and ran 917s (longer than any previous attempt, which died at 392-591s). converge.log never advanced past mesh-setup/Catalyst-init the whole time (stalled at 20616 bytes/mtime 16:33:55). This breaks the 'fixed content-independent ceiling' theory: fewer scripts + longer runtime + no XTPlot still produced a HIGHER peak memory than heavier configs. New leading hypothesis: memory usage grows continuously with wall-clock time (a genuine leak in CONVERGE's Catalyst/pvbatch stack, not tied to specific script content), and the actual OOM point depends on how much free RAM the shared ttc node happens to have available at that moment (other users' jobs on the same node could explain the 455GB vs 935GB variance between runs). This significantly complicates the diagnosis -- worth considering: (a) does the node have other tenants/shared memory contention, (b) is there a genuine unbounded leak in the pvbatch/Catalyst driver itself independent of scripts, (c) multi-node LSF ttcmult may still be the most robust path forward regardless of root cause.",
+      "elapsed": 917,
       "limit": "96:00:00",
       "pct": 0,
       "sim_now": null,
@@ -44,25 +44,25 @@
       "log_tail": [
         "TERM_EXTERNAL_SIGNAL: job killed by a signal external to LSF. Max Memory: 457 GB, Run time: 257s"
       ],
-      "summary": "Job 285234 (the fixed monitor-cloud XTPlot + full 8-script Catalyst set) OOM-killed at 455GB, matching every prior attempt regardless of script content. This invalidates the working hypothesis that the XTPlot full-mesh pipeline was the primary driver -- the ceiling now looks like a base single-node RAM limit triggered by having Catalyst active at all, not by what the scripts do.",
+      "summary": "Job 287064 (XTPlot removed, 7 scripts) OOM-killed at Max Memory 935GB after 917s -- nearly double the previous ~455-457GB ceiling and the longest runtime yet. This breaks the theory of a fixed content-independent RAM ceiling; now looks more like continuous memory growth over time, possibly a genuine leak in the Catalyst/pvbatch stack or shared-node memory contention with other jobs.",
       "notes": [
         {
-          "txt": "OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 455GB, Run time 564s -- virtually identical to every prior Catalyst-enabled attempt.",
+          "txt": "OOM-killed (TERM_EXTERNAL_SIGNAL) at Max Memory 935GB, Run time 917s -- nearly 2x the previous ceiling and longest runtime of any attempt.",
           "level": "critical"
         },
         {
-          "txt": "Every configuration with ANY Catalyst scripts registered has hit ~455-457GB regardless of content/count; only the fully-disabled scripts:[] run avoided it, but was manually killed early rather than run to conclusion.",
+          "txt": "This breaks the 'fixed ~455-457GB ceiling regardless of content' theory -- memory usage appears to grow with wall-clock time rather than hit a hard cap.",
           "level": "warn"
         },
         {
-          "txt": "Suggests the ceiling may be the node's actual usable RAM, not a fixable script issue -- worth either letting scripts:[] run longer, or moving to multi-node (LSF ttcmult, 128-core/2-node) for more total memory.",
+          "txt": "converge.log never advanced past mesh-setup/Catalyst-init the entire 917s run -- whatever is consuming memory happens before the solver ever logs a cycle.",
           "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-15T16:48:00-04:00"
+      "polled_at": "2026-09-15T16:49:00-04:00"
     },
     {
       "id": "269785",
