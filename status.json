@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-16T15:45:30.843Z",
-  "next_poll": "2026-09-16T16:00:30.843Z",
+  "polled_at": "2026-09-16T16:01:03.851Z",
+  "next_poll": "2026-09-16T16:16:03.851Z",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -20,7 +20,7 @@
       "queue": "short",
       "state": "EXIT",
       "status": "critical",
-      "state_note": "Diagnosed likely cause of the Studio-reimport-breaks-things issue: EquivMetricSurf_XY_Y022.py (untouched) follows the full CONVERGE-Studio-generated structure (View/Layout/LUT/Extractor+trigger_script), but XTPlot_Pressure.py v2.0 (my rewrite for the memory fix) deliberately has none of that -- no RenderView, no Extractor -- since it just tails a text file and writes its own PNG. This non-standard shape likely breaks Studio's importer. Awaiting user confirmation it was specifically XTPlot_Pressure.py, and what exactly got dropped, before rebuilding it in Studio-compatible form.",
+      "state_note": "The other agent's fix landed: EquivMetricSurf_XY_Y022.py now has the same registrationName=stream_name Catalyst-channel-binding fix and duplicate-reader collapse (post_1 = post) as the other 6 scripts -- confirmed by diff against the pre-fix backup in .catalyst_backup_20260916_113131. All 7 registered scripts are now consistent. RunConverge.sh mem request also adjusted (rusage[mem=7]/slot, down from 8). Old stdout/stderr archived to old_job_logs/. TriangleRDE.cvg was touched 11:54 (Studio activity). No new job submitted yet -- no new stdout/stderr pair, converge.log still stalled at 20616 bytes/16:33:55 from the dead 287064 run. Awaiting resubmission to test whether the fix resolves the 935GB OOM.",
       "elapsed": 917,
       "limit": "96:00:00",
       "pct": 0,
@@ -62,7 +62,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T15:45:30.843Z"
+      "polled_at": "2026-09-16T16:01:03.851Z"
     },
     {
       "id": "269785",
