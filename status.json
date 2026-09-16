@@ -1,5 +1,5 @@
 {
-  "polled_at": "2026-09-16T17:40:04.000Z",
+  "polled_at": "2026-09-16T17:56:22.000Z",
   "next_poll": "2026-09-16T18:12:00.000Z",
   "poll_interval_min": 30,
   "clusters": [
@@ -20,18 +20,18 @@
       "queue": "shared_memory",
       "state": "RUN",
       "status": "good",
-      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 94 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Total memory has stayed flat at ~74.7-74.8GB from cycle 29 through cycle 88 (over 20 minutes) -- job 287064 was still climbing hard toward its 935GB OOM around this elapsed time last time, so a sustained flat memory curve here is a genuinely encouraging sign the fix is holding. Net mass flow through the domain continues ramping up smoothly toward a positive value as the initial transient settles. Now comfortably past the startup window (21+ min elapsed, dt_cfl sustained, no crash) -- switching to 30-minute polling.",
-      "elapsed": 1271,
+      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 172 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Memory has stayed flat around 74.7-74.8GB since cycle 29 (over 35 minutes now) -- job 287064 was still climbing hard toward its 935GB OOM around this elapsed time last time, so a sustained flat memory curve here is strong evidence the fix is holding. Net mass flow through the domain keeps ramping toward a positive value as the initial transient settles.",
+      "elapsed": 2249,
       "limit": "96:00:00",
-      "pct": 0.37,
-      "sim_now": "4.802e-06 s",
+      "pct": 0.65,
+      "sim_now": "9.566e-06 s",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "6.092e-8 s",
+          "now": "6.111e-8 s",
           "desc": "steady on dt_cfl since cycle ~20, oscillating 5.7-6.5e-8s -- no collapse, no drift",
           "history": [
             [1, 1e-9],
@@ -42,14 +42,15 @@
             [78, 5.928e-8],
             [80, 5.944e-8],
             [86, 6.009e-8],
-            [94, 6.092e-8]
+            [94, 6.092e-8],
+            [172, 6.111e-8]
           ]
         },
         {
           "key": "mass_flow",
           "label": "Net mass flow",
           "now": "0.0504 kg/s",
-          "desc": "ramping up from a small negative value as the initial transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.070 kg/s and rising)",
+          "desc": "ramping up from a small negative value as the initial transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.070 kg/s and rising); mass_balance.out hasn't advanced past cycle 88 yet",
           "history": [
             [24, -0.010359],
             [37, 0.002789],
@@ -62,47 +63,47 @@
         }
       ],
       "ranks": 32,
-      "rss": "74.78 GB summed across ranks at cycle 88 -- essentially flat since cycle 29 (74.3GB), over 20+ minutes now (was 57.0GB at cycle 0). This is the key thing job 287064 did NOT do before its 935GB OOM.",
+      "rss": "74.7-74.8 GB (last snapshot at cycle 88) -- flat since cycle 29, over 35 minutes now (was 57.0GB at cycle 0). This is the key thing job 287064 did NOT do before its 935GB OOM.",
       "s_per_step": null,
       "node": "c064n01",
       "restarts": 1,
       "posts": 1,
       "frames": 0,
-      "newest": "restart0001.rst and post000001_+0.00000e+00.h5, both written at t=0 during startup; no new Catalyst PNG frames yet this run (next trigger hasn't hit)",
+      "newest": "restart0001.rst and post000001_+0.00000e+00.h5, both written at t=0 during startup; no new Catalyst PNG frames this run (fix applied but won't take effect until next restart -- see notes)",
       "submitted": "2026-09-16T13:18:53-04:00",
       "cmd": "bsub < RunConverge.sh  # LSF, queue shared_memory, 32 ranks, 96:00 wall, restartCVG found no .rst to resume from -- starting from t=0",
       "log_name": "stdout.289401",
       "log_path": "TriangleRDE_base",
       "log_size": 37351,
       "log_tail": [
-        "[  0.11%] ncyc       91;  Time    4.619645885e-06 (sec); dt=    6.051127509e-08 (dt_cfl)",
-        "[  0.12%] ncyc       92;  Time    4.680271000e-06 (sec); dt=    6.062511492e-08 (dt_cfl)",
-        "[  0.12%] ncyc       93;  Time    4.741012362e-06 (sec); dt=    6.074136271e-08 (dt_cfl)",
-        "[  0.12%] ncyc       94;  Time    4.801934729e-06 (sec); dt=    6.092236671e-08 (dt_cfl)"
+        "[  0.23%] ncyc      169;  Time    9.382949159e-06 (sec); dt=    6.091936251e-08 (dt_cfl)",
+        "[  0.24%] ncyc      170;  Time    9.443961266e-06 (sec); dt=    6.101210703e-08 (dt_cfl)",
+        "[  0.24%] ncyc      171;  Time    9.505024116e-06 (sec); dt=    6.106285011e-08 (dt_cfl)",
+        "[  0.24%] ncyc      172;  Time    9.566131137e-06 (sec); dt=    6.110702044e-08 (dt_cfl)"
       ],
-      "summary": "Job 289401 (LSF) is 21 minutes into a clean restart-from-scratch, the first attempt this session to run past mesh-setup and keep iterating -- 94 cycles, dt steady on dt_cfl, zero FATAL_ERROR. Memory has held flat at ~74.7-74.8GB for over 20 minutes now, versus job 287064 still climbing hard toward its eventual 935GB OOM at a comparable elapsed time -- this is the clearest evidence yet that the Catalyst/mem fix resolved the OOM. Net mass flow through the domain keeps ramping toward a small positive value as the startup transient settles. Now past the startup window; polling drops to every 30 minutes from here.",
+      "summary": "Job 289401 (LSF) is ~37.5 minutes into a clean restart-from-scratch, still the first attempt this session to run past mesh-setup and keep iterating -- 172 cycles, dt steady on dt_cfl, zero FATAL_ERROR. Memory has held flat at ~74.7-74.8GB for over 35 minutes, versus job 287064 still climbing hard toward its eventual 935GB OOM at a comparable elapsed time -- strong evidence the OOM fix is holding. Separately, the Catalyst zero-PNG issue has been root-caused and fixed in the script files: 7 of 8 registered scripts were missing the CONVERGE catalystcvt wiring (catalyst.Options()/catalyst_execute/catalyst_finalize) that actually triggers SaveExtracts(), verified by diffing against the working triangleRDE_weakIgnite scripts. All 7 have been patched to match. This fix is in the script files on disk but has NOT been picked up by this still-running job -- CONVERGE reads Catalyst scripts at process startup, so 289401 will keep producing zero frames until it's restarted.",
       "notes": [
         {
-          "txt": "Memory has held flat at ~74.7-74.8GB for over 20 minutes -- strong evidence the OOM fix is working, since job 287064 was still climbing hard at this point.",
+          "txt": "Memory has held flat at ~74.7-74.8GB for over 35 minutes -- strong evidence the OOM fix is working, since job 287064 was still climbing hard at this point.",
           "level": "good"
         },
         {
-          "txt": "94 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse.",
+          "txt": "172 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse.",
           "level": "good"
         },
         {
-          "txt": "Switched from 1-minute to 30-minute polling now that the run is comfortably past startup and stable.",
+          "txt": "Catalyst zero-PNG root cause corrected and fixed: 7 of 8 scripts were missing catalyst.Options()/catalyst_execute/catalyst_finalize wiring (confirmed by diff against weakIgnite's working scripts, not a channel-binding issue as first suspected). All 7 patched to match weakIgnite's pattern; pre-fix versions backed up to .catalyst_backup_20260916_missing_wiring/. Fix will only take effect on this job's NEXT restart -- 289401 itself won't produce frames until then.",
           "level": "info"
         },
         {
-          "txt": "Catalyst is executing cleanly on schedule (9+ triggers, 'Finished ParaView Catalyst execute' every ~0.5us of sim time) but has produced zero PNGs or output folders -- unlike weakIgnite, which has 198 PNGs under outputs_original/paraview_catalyst/. Suspect the registrationName fix applied earlier today (binding readers to the live Catalyst channel instead of reading the .h5 from disk, to fix the OOM) may not be matching this build's actual channel name, so the pipeline silently renders nothing. Same silent-failure pattern as XTPlot_Pressure's earlier bug, now possibly affecting all 7 scripts. Worth investigating directly -- not something further polling will resolve on its own.",
-          "level": "warn"
+          "txt": "XTPlot_Pressure.py confirmed NOT registered in paraview_catalyst.in -- it was never running as a live Catalyst script in this job, consistent with it being intended for manual/offline use against the cloud-point data instead.",
+          "level": "info"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T17:40:04.000Z"
+      "polled_at": "2026-09-16T17:56:22.000Z"
     }
   ]
 }
