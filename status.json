@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-16T17:24:16.000Z",
-  "next_poll": "2026-09-16T17:54:16.000Z",
+  "polled_at": "2026-09-16T17:26:48.000Z",
+  "next_poll": "2026-09-16T17:56:48.000Z",
   "poll_interval_min": 30,
   "clusters": [
     {
@@ -12,7 +12,7 @@
   "jobs": [
     {
       "id": "289401",
-      "label": "SLURM Triangle",
+      "label": "TriangleRDE (LSF)",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
       "cluster": "hazel",
@@ -20,29 +20,30 @@
       "queue": "shared_memory",
       "state": "RUN",
       "status": "good",
-      "state_note": "Fresh resubmission to test the Catalyst registrationName fix and the mem/slot change after job 287064 OOM'd at 935GB. A quick prior attempt this same session, job 289387, was killed by the owner after only 53s (TERM_OWNER, not a crash -- looks like an aborted restart attempt, old_job_logs/ shows several other short-lived attempts earlier today too). 289401 started clean with no restart file, passed load balance and Catalyst script init (all 7 registered scripts, including the just-fixed EquivMetricSurf_XY_Y022.py, loaded without error), and is now integrating: dt has already grown through dt_grow and settled onto dt_cfl by cycle 20, matching the healthy dt_cfl (~6.59e-8s) seen in the last good run (weakIgnite). Zero FATAL_ERROR so far; the only stderr lines are the two benign warnings seen on every CONVERGE 5.0.2 startup (network-latency notice, sgs_ke clip reset).",
-      "elapsed": 323,
+      "state_note": "Fresh resubmission (via bsub < RunConverge.sh -- LSF, not SLURM; the RunConverge.slurm file in this directory is unused) to test the Catalyst registrationName fix and the mem/slot change after job 287064 OOM'd at 935GB. A quick prior attempt this same session, job 289387, was killed by the owner after only 53s (TERM_OWNER, not a crash -- looks like an aborted restart attempt, old_job_logs/ shows several other short-lived attempts earlier today too). 289401 started clean with no restart file, passed load balance and Catalyst script init (all 7 registered scripts, including the just-fixed EquivMetricSurf_XY_Y022.py, loaded without error), and is now integrating: dt has settled onto dt_cfl since cycle 20, matching the healthy dt_cfl (~6.5e-8s) seen in the last good run (weakIgnite). Zero FATAL_ERROR so far; the only stderr lines are the two benign warnings seen on every CONVERGE 5.0.2 startup (network-latency notice, sgs_ke clip reset).",
+      "elapsed": 475,
       "limit": "96:00:00",
-      "pct": 0.09,
-      "sim_now": "4.71e-07 s",
+      "pct": 0.14,
+      "sim_now": "1.061e-06 s",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "6.497e-8 s",
-          "desc": "settled onto dt_cfl by cycle 20 (~6.5e-8s), matching weakIgnite's healthy settled dt -- good early sign",
+          "now": "6.404e-8 s",
+          "desc": "settled onto dt_cfl by cycle 20 (~6.5e-8s), matching weakIgnite's healthy settled dt -- steady, no collapse",
           "history": [
             [1, 1e-9],
             [12, 1.164e-8],
             [20, 6.702e-8],
-            [22, 6.497e-8]
+            [22, 6.497e-8],
+            [31, 6.404e-8]
           ]
         }
       ],
       "ranks": 32,
-      "rss": "56.96 GB summed across ranks at the cycle-0 snapshot (memory_usage.out) -- too early to say anything about the 935GB OOM risk from job 287064; watch this on the next few polls",
+      "rss": "74.3 GB summed across ranks at cycle 29, up from 57.0 GB at cycle 0 over ~7.5 min -- watching this against the 935GB OOM from job 287064, which didn't blow up until ~900s in",
       "s_per_step": null,
       "node": "c064n01",
       "restarts": 1,
@@ -50,25 +51,24 @@
       "frames": 0,
       "newest": "restart0001.rst and post000001_+0.00000e+00.h5, both written at t=0 during startup; no Catalyst PNG frames yet this run",
       "submitted": "2026-09-16T13:18:53-04:00",
-      "cmd": "bsub < RunConverge.sh  # queue shared_memory, 32 ranks, 96:00 wall, restartCVG found no .rst to resume from -- starting from t=0",
+      "cmd": "bsub < RunConverge.sh  # LSF, queue shared_memory, 32 ranks, 96:00 wall, restartCVG found no .rst to resume from -- starting from t=0",
       "log_name": "stdout.289401",
       "log_path": "TriangleRDE_base",
-      "log_size": 25751,
+      "log_size": 30051,
       "log_tail": [
-        "[  0.01%] ncyc       18;  Time    2.180446049e-07 (sec); dt=    4.440892099e-08 (dt_grow)",
-        "[  0.01%] ncyc       19;  Time    2.735557562e-07 (sec); dt=    5.551115123e-08 (dt_grow)",
-        "[  0.01%] ncyc       20;  Time    3.405752575e-07 (sec); dt=    6.701950135e-08 (dt_cfl)",
-        "[  0.01%] ncyc       21;  Time    4.060251792e-07 (sec); dt=    6.544992165e-08 (dt_cfl)",
-        "[  0.01%] ncyc       22;  Time    4.709937898e-07 (sec); dt=    6.496861067e-08 (dt_cfl)"
+        "[  0.02%] ncyc       28;  Time    8.672631320e-07 (sec); dt=    6.540431389e-08 (dt_cfl)",
+        "[  0.02%] ncyc       29;  Time    9.320979702e-07 (sec); dt=    6.483483819e-08 (dt_cfl)",
+        "[  0.02%] ncyc       30;  Time    9.965665121e-07 (sec); dt=    6.446854186e-08 (dt_cfl)",
+        "[  0.03%] ncyc       31;  Time    1.060602030e-06 (sec); dt=    6.403551800e-08 (dt_cfl)"
       ],
-      "summary": "Job 289401 is a clean restart-from-scratch of TriangleRDE_base, submitted 5.5 minutes ago to test whether the Catalyst script fix and mem/slot change resolve the 935GB OOM seen in job 287064. It's only 22 cycles / 0.47µs into a 4000µs target, but dt has already settled onto the same healthy dt_cfl value seen in the last successful run (weakIgnite), and zero FATAL_ERROR has been logged. It is far too early to know whether the OOM is actually fixed -- that only showed up after ~900s of sustained growth last time -- so the next poll or two are the ones that matter for that question.",
+      "summary": "Job 289401 (LSF, via bsub) is a clean restart-from-scratch of TriangleRDE_base, ~8 minutes into a run submitted to test whether the Catalyst script fix and mem/slot change resolve the 935GB OOM seen in job 287064. It's only 31 cycles / ~1.06µs into a 4000µs target, but dt settled onto the same healthy dt_cfl value seen in the last successful run (weakIgnite), and zero FATAL_ERROR has been logged. Memory has grown from 57GB to 74GB over the first ~7.5 minutes -- worth watching, since job 287064 didn't OOM until ~900s in, so it's still too early to call the fix confirmed.",
       "notes": [
         {
-          "txt": "22 cycles in, dt already settled onto dt_cfl (~6.5e-8s) matching the last healthy run -- integration looks stable so far.",
+          "txt": "31 cycles in, dt steady on dt_cfl (~6.4e-8s) matching the last healthy run -- integration looks stable so far.",
           "level": "good"
         },
         {
-          "txt": "The real open question (does the Catalyst/mem fix avoid the 935GB OOM from job 287064) can't be answered yet -- that run didn't blow up until ~900s in. Watch memory_usage.out and whether stdout keeps advancing past the ~900s mark.",
+          "txt": "Memory climbed from 57GB to 74GB over the first ~7.5 min. Not alarming yet, but job 287064's 935GB OOM didn't show up until ~900s -- next poll or two are the ones that answer whether the fix worked.",
           "level": "warn"
         },
         {
@@ -79,7 +79,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T17:24:16.000Z"
+      "polled_at": "2026-09-16T17:26:48.000Z"
     },
     {
       "id": "269785",
