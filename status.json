@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-16T17:36:14.000Z",
-  "next_poll": "2026-09-16T17:37:14.000Z",
+  "polled_at": "2026-09-16T17:37:10.000Z",
+  "next_poll": "2026-09-16T17:38:10.000Z",
   "poll_interval_min": 1,
   "clusters": [
     {
@@ -20,18 +20,18 @@
       "queue": "shared_memory",
       "state": "RUN",
       "status": "good",
-      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 78 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Total memory has plateaued at ~74.7GB (up from 57GB at cycle 0, flat for the last ~9 minutes) at ~17.4 minutes elapsed -- job 287064 was still climbing toward its 935GB OOM around this point last time, so a flat memory curve here is a strong early sign the fix is holding. Net mass flow through the domain has been ramping up from slightly negative to +0.035 kg/s as the initial transient settles.",
-      "elapsed": 1041,
+      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 80 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Total memory has plateaued at ~74.7GB (up from 57GB at cycle 0, flat for over 10 minutes now) at ~18.3 minutes elapsed -- job 287064 was still climbing toward its 935GB OOM around this point last time, so a flat memory curve here is a strong early sign the fix is holding. Net mass flow through the domain continues ramping up toward a positive value as the initial transient settles.",
+      "elapsed": 1097,
       "limit": "96:00:00",
-      "pct": 0.3,
-      "sim_now": "3.841e-06 s",
+      "pct": 0.32,
+      "sim_now": "3.959e-06 s",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "5.928e-8 s",
+          "now": "5.944e-8 s",
           "desc": "steady on dt_cfl since cycle ~20, oscillating 5.7-6.5e-8s -- no collapse, no drift",
           "history": [
             [1, 1e-9],
@@ -39,25 +39,27 @@
             [20, 6.702e-8],
             [22, 6.497e-8],
             [31, 6.404e-8],
-            [78, 5.928e-8]
+            [78, 5.928e-8],
+            [80, 5.944e-8]
           ]
         },
         {
           "key": "mass_flow",
           "label": "Net mass flow",
-          "now": "0.0346 kg/s",
-          "desc": "ramping up from a small negative value as the initial flow transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.055 kg/s and rising)",
+          "now": "0.0429 kg/s",
+          "desc": "ramping up from a small negative value as the initial flow transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.063 kg/s and rising)",
           "history": [
             [24, -0.010359],
             [37, 0.002789],
             [50, 0.015288],
             [64, 0.028217],
-            [71, 0.034565]
+            [71, 0.034565],
+            [80, 0.042897]
           ]
         }
       ],
       "ranks": 32,
-      "rss": "74.7 GB summed across ranks at cycle 71 -- flat vs 74.7GB nine minutes ago (was 57.0GB at cycle 0). Plateauing, not climbing -- the key thing job 287064 did NOT do before its 935GB OOM.",
+      "rss": "74.7 GB summed across ranks at cycle 80 -- unchanged from cycle 71 (was 57.0GB at cycle 0). Plateauing, not climbing -- the key thing job 287064 did NOT do before its 935GB OOM.",
       "s_per_step": null,
       "node": "c064n01",
       "restarts": 1,
@@ -70,20 +72,20 @@
       "log_path": "TriangleRDE_base",
       "log_size": 37351,
       "log_tail": [
-        "[  0.09%] ncyc       75;  Time    3.663033874e-06 (sec); dt=    5.893164675e-08 (dt_cfl)",
-        "[  0.09%] ncyc       76;  Time    3.722123220e-06 (sec); dt=    5.908934541e-08 (dt_cfl)",
         "[  0.09%] ncyc       77;  Time    3.781323272e-06 (sec); dt=    5.920005224e-08 (dt_cfl)",
-        "[  0.10%] ncyc       78;  Time    3.840606235e-06 (sec); dt=    5.928296251e-08 (dt_cfl)"
+        "[  0.10%] ncyc       78;  Time    3.840606235e-06 (sec); dt=    5.928296251e-08 (dt_cfl)",
+        "[  0.10%] ncyc       79;  Time    3.899958187e-06 (sec); dt=    5.935195279e-08 (dt_cfl)",
+        "[  0.10%] ncyc       80;  Time    3.959397322e-06 (sec); dt=    5.943913443e-08 (dt_cfl)"
       ],
-      "summary": "Job 289401 (LSF) is ~17 minutes into a clean restart-from-scratch, the first attempt this session to run past mesh-setup and keep iterating -- 78 cycles, dt steady on dt_cfl, zero FATAL_ERROR. The headline result so far is memory: it's plateaued at ~74.7GB rather than continuing to climb, at roughly the same elapsed time job 287064 was still growing toward its eventual 935GB OOM. Net mass flow through the domain is ramping toward a small positive value as the initial transient settles. Still in the startup window (under 20 min elapsed), so being polled every minute; will drop to a 30-minute cadence once comfortably past this point.",
+      "summary": "Job 289401 (LSF) is ~18 minutes into a clean restart-from-scratch, the first attempt this session to run past mesh-setup and keep iterating -- 80 cycles, dt steady on dt_cfl, zero FATAL_ERROR. The headline result so far is memory: it's held flat at ~74.7GB for over 10 minutes rather than continuing to climb, at roughly the same elapsed time job 287064 was still growing toward its eventual 935GB OOM. Net mass flow through the domain keeps ramping toward a small positive value as the initial transient settles. Still in the startup window (just under 20 min elapsed), so being polled every minute; will drop to a 30-minute cadence next poll once comfortably past this point.",
       "notes": [
         {
-          "txt": "Memory plateaued at ~74.7GB (flat over the last ~9 min) instead of continuing to climb -- the clearest sign yet that the OOM fix is holding, though still early.",
+          "txt": "Memory flat at ~74.7GB for over 10 minutes instead of continuing to climb -- the clearest sign yet that the OOM fix is holding, though still early.",
           "level": "good"
         },
         {
-          "txt": "78 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse.",
-          "level": "good"
+          "txt": "80 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse. Cycle pace has slowed a bit (2 cycles in the last ~56s vs ~1/10s earlier) -- not concerning yet, just worth watching.",
+          "level": "info"
         },
         {
           "txt": "yip_afosr tree (weakIgnite, coldflow, 300us_Y10mm) dropped from the dashboard -- confirmed no longer in use, only ONR-YIP is active now.",
@@ -93,7 +95,7 @@
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T17:36:14.000Z"
+      "polled_at": "2026-09-16T17:37:10.000Z"
     }
   ]
 }
