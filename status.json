@@ -1,7 +1,7 @@
 {
-  "polled_at": "2026-09-16T17:38:30.000Z",
-  "next_poll": "2026-09-16T17:39:30.000Z",
-  "poll_interval_min": 1,
+  "polled_at": "2026-09-16T17:40:04.000Z",
+  "next_poll": "2026-09-16T18:12:00.000Z",
+  "poll_interval_min": 30,
   "clusters": [
     {
       "name": "hazel",
@@ -20,18 +20,18 @@
       "queue": "shared_memory",
       "state": "RUN",
       "status": "good",
-      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 86 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Total memory is still at the ~74.7GB plateau seen at cycle 80 (memory_usage.out hasn't written a new snapshot yet; its write cadence is coarser than the cycle log) at ~19.6 minutes elapsed -- job 287064 was still climbing toward its 935GB OOM around this point last time, so a flat memory curve here is a strong early sign the fix is holding. Net mass flow through the domain continues ramping up toward a positive value as the initial transient settles.",
-      "elapsed": 1177,
+      "state_note": "Fresh resubmission (bsub < RunConverge.sh, LSF) to test the Catalyst registrationName fix and mem/slot change after job 287064 OOM'd at 935GB. First attempt all session to run past mesh-setup/Catalyst-init and keep iterating cleanly -- 94 cycles in, dt settled onto dt_cfl since cycle ~20 and holding steady. Zero FATAL_ERROR. Total memory has stayed flat at ~74.7-74.8GB from cycle 29 through cycle 88 (over 20 minutes) -- job 287064 was still climbing hard toward its 935GB OOM around this elapsed time last time, so a sustained flat memory curve here is a genuinely encouraging sign the fix is holding. Net mass flow through the domain continues ramping up smoothly toward a positive value as the initial transient settles. Now comfortably past the startup window (21+ min elapsed, dt_cfl sustained, no crash) -- switching to 30-minute polling.",
+      "elapsed": 1271,
       "limit": "96:00:00",
-      "pct": 0.34,
-      "sim_now": "4.318e-06 s",
+      "pct": 0.37,
+      "sim_now": "4.802e-06 s",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "6.009e-8 s",
+          "now": "6.092e-8 s",
           "desc": "steady on dt_cfl since cycle ~20, oscillating 5.7-6.5e-8s -- no collapse, no drift",
           "history": [
             [1, 1e-9],
@@ -41,26 +41,28 @@
             [31, 6.404e-8],
             [78, 5.928e-8],
             [80, 5.944e-8],
-            [86, 6.009e-8]
+            [86, 6.009e-8],
+            [94, 6.092e-8]
           ]
         },
         {
           "key": "mass_flow",
           "label": "Net mass flow",
-          "now": "0.0429 kg/s",
-          "desc": "ramping up from a small negative value as the initial transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.063 kg/s and rising); mass_balance.out hasn't advanced past cycle 80 yet",
+          "now": "0.0504 kg/s",
+          "desc": "ramping up from a small negative value as the initial transient settles in -- in-flow (-0.02 kg/s fixed) now outpaced by out-flow (~0.070 kg/s and rising)",
           "history": [
             [24, -0.010359],
             [37, 0.002789],
             [50, 0.015288],
             [64, 0.028217],
             [71, 0.034565],
-            [80, 0.042897]
+            [80, 0.042897],
+            [88, 0.050385]
           ]
         }
       ],
       "ranks": 32,
-      "rss": "74.7 GB summed across ranks at cycle 80 (latest snapshot) -- unchanged, still plateaued (was 57.0GB at cycle 0). This is the key thing job 287064 did NOT do before its 935GB OOM.",
+      "rss": "74.78 GB summed across ranks at cycle 88 -- essentially flat since cycle 29 (74.3GB), over 20+ minutes now (was 57.0GB at cycle 0). This is the key thing job 287064 did NOT do before its 935GB OOM.",
       "s_per_step": null,
       "node": "c064n01",
       "restarts": 1,
@@ -73,30 +75,34 @@
       "log_path": "TriangleRDE_base",
       "log_size": 37351,
       "log_tail": [
-        "[  0.10%] ncyc       83;  Time    4.138251784e-06 (sec); dt=    5.971053040e-08 (dt_cfl)",
-        "[  0.10%] ncyc       84;  Time    4.198089364e-06 (sec); dt=    5.983758052e-08 (dt_cfl)",
-        "[  0.11%] ncyc       85;  Time    4.258070874e-06 (sec); dt=    5.998150968e-08 (dt_cfl)",
-        "[  0.11%] ncyc       86;  Time    4.318159893e-06 (sec); dt=    6.008901941e-08 (dt_cfl)"
+        "[  0.11%] ncyc       91;  Time    4.619645885e-06 (sec); dt=    6.051127509e-08 (dt_cfl)",
+        "[  0.12%] ncyc       92;  Time    4.680271000e-06 (sec); dt=    6.062511492e-08 (dt_cfl)",
+        "[  0.12%] ncyc       93;  Time    4.741012362e-06 (sec); dt=    6.074136271e-08 (dt_cfl)",
+        "[  0.12%] ncyc       94;  Time    4.801934729e-06 (sec); dt=    6.092236671e-08 (dt_cfl)"
       ],
-      "summary": "Job 289401 (LSF) is ~19.6 minutes into a clean restart-from-scratch, the first attempt this session to run past mesh-setup and keep iterating -- 86 cycles, dt steady on dt_cfl, zero FATAL_ERROR. The headline result so far is memory: it's held flat at ~74.7GB for over 10 minutes rather than continuing to climb, at roughly the same elapsed time job 287064 was still growing toward its eventual 935GB OOM. Net mass flow through the domain keeps ramping toward a small positive value as the initial transient settles. Just about to cross the 20-minute startup window; next poll will switch to a 30-minute cadence if it's still healthy.",
+      "summary": "Job 289401 (LSF) is 21 minutes into a clean restart-from-scratch, the first attempt this session to run past mesh-setup and keep iterating -- 94 cycles, dt steady on dt_cfl, zero FATAL_ERROR. Memory has held flat at ~74.7-74.8GB for over 20 minutes now, versus job 287064 still climbing hard toward its eventual 935GB OOM at a comparable elapsed time -- this is the clearest evidence yet that the Catalyst/mem fix resolved the OOM. Net mass flow through the domain keeps ramping toward a small positive value as the startup transient settles. Now past the startup window; polling drops to every 30 minutes from here.",
       "notes": [
         {
-          "txt": "Memory flat at ~74.7GB for over 10 minutes instead of continuing to climb -- the clearest sign yet that the OOM fix is holding, though still early.",
+          "txt": "Memory has held flat at ~74.7-74.8GB for over 20 minutes -- strong evidence the OOM fix is working, since job 287064 was still climbing hard at this point.",
           "level": "good"
         },
         {
-          "txt": "86 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse.",
+          "txt": "94 cycles in, dt steady on dt_cfl since ~cycle 20 -- integration healthy, no drift or collapse.",
           "level": "good"
         },
         {
-          "txt": "yip_afosr tree (weakIgnite, coldflow, 300us_Y10mm) dropped from the dashboard -- confirmed no longer in use, only ONR-YIP is active now.",
+          "txt": "Switched from 1-minute to 30-minute polling now that the run is comfortably past startup and stable.",
           "level": "info"
+        },
+        {
+          "txt": "Catalyst is executing cleanly on schedule (9+ triggers, 'Finished ParaView Catalyst execute' every ~0.5us of sim time) but has produced zero PNGs or output folders -- unlike weakIgnite, which has 198 PNGs under outputs_original/paraview_catalyst/. Suspect the registrationName fix applied earlier today (binding readers to the live Catalyst channel instead of reading the .h5 from disk, to fix the OOM) may not be matching this build's actual channel name, so the pipeline silently renders nothing. Same silent-failure pattern as XTPlot_Pressure's earlier bug, now possibly affecting all 7 scripts. Worth investigating directly -- not something further polling will resolve on its own.",
+          "level": "warn"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T17:38:30.000Z"
+      "polled_at": "2026-09-16T17:40:04.000Z"
     }
   ]
 }
