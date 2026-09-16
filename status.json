@@ -98,6 +98,10 @@
         {
           "txt": "XTPlot_Pressure.py confirmed NOT registered in paraview_catalyst.in -- it was never running as a live Catalyst script in this job, consistent with it being intended for manual/offline use against the cloud-point data instead.",
           "level": "info"
+        },
+        {
+          "txt": "Ignition kernel fires at t=300-305us (source.in). Restarts only keep a rolling 100us window (10 files x 10us), so the pre-ignition state would get rotated away on its own. A pre-ignition checkpoint (restart + post file) will be copied to a preserved outputs_original/preignition_checkpoint/ folder automatically once sim_now reaches ~290us -- not yet triggered (currently at 9.6us, ~16+ hours out at current pace).",
+          "level": "info"
         }
       ],
       "xt_plot": {
