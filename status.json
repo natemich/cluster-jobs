@@ -1,6 +1,6 @@
 {
-  "polled_at": "2026-09-16T18:05:26.000Z",
-  "next_poll": "2026-09-16T18:06:26.000Z",
+  "polled_at": "2026-09-16T18:27:28.000Z",
+  "next_poll": "2026-09-16T18:28:28.000Z",
   "poll_interval_min": 1,
   "clusters": [
     {
@@ -11,7 +11,7 @@
   ],
   "jobs": [
     {
-      "id": "289498",
+      "id": "289515",
       "label": "TriangleRDE (LSF)",
       "directory": "Z:\\ONR-YIP\\nsmichno\\TriangleRDE_base",
       "kind": "converge",
@@ -20,19 +20,19 @@
       "queue": "shared_memory",
       "state": "RUN",
       "status": "good",
-      "state_note": "User killed job 289401 (TERM_OWNER, ran 44.5min, peaked at 76GB memory -- consistent with the OOM fix holding) and resubmitted to pick up the Catalyst script fix. New job 289498 auto-resumed from restart0002.rst (t~10us) via restartCVG -- no sim progress lost, cycle count continues from 187 rather than resetting. Outputs for this run now land in a NEW folder, outputs_restart1/ (not outputs_original/) -- CONVERGE creates a fresh output dir per restart. Early positive signal on the Catalyst fix: outputs_restart1/paraview_catalyst/ was auto-created on the very first trigger after restart, which never happened before the fix (confirms the options.ExtractsOutputDirectory wiring is active) -- but no PNG has landed yet after just one trigger, still needs confirmation.",
-      "elapsed": 143,
+      "state_note": "Job 289498 (previous) was also killed by the user (TERM_OWNER) after 17.8min, 10 clean Catalyst triggers, Max Memory 73GB -- but still zero PNGs, and stderr showed repeated 'Argument time already exists' warnings from ParaView's string formatter. Found a second bug: 6 of the 7 scripts had a dead, unused duplicate AnnotateTime object (same registrationName as the real one) that weakIgnite's working scripts don't have -- removed it from all 6. However job 289515 (current) had already loaded the pre-cleanup scripts before that edit landed, so it will likely also show zero frames -- one more restart is needed to actually test this fix. 289515 resumed from restart0002.rst (t~10.06us, same point as 289498), cycle 196, dt steady on dt_cfl, zero FATAL_ERROR, ~65.6GB memory (healthy, same plateau range as before).",
+      "elapsed": 278,
       "limit": "96:00:00",
-      "pct": 0.04,
-      "sim_now": "1.049e-05 s",
+      "pct": 0.08,
+      "sim_now": "1.104e-05 s",
       "sim_target": "4000 µs",
       "sim_pct": 0,
       "monitors": [
         {
           "key": "dt",
           "label": "dt",
-          "now": "6.139e-8 s",
-          "desc": "resumed cleanly on dt_cfl (~6.1-6.4e-8s), same healthy band as before the restart -- no re-ramp needed",
+          "now": "6.086e-8 s",
+          "desc": "resumed cleanly on dt_cfl (~6.1e-8s) after the restart, same healthy band as before",
           "history": [
             [1, 1e-9],
             [12, 1.164e-8],
@@ -42,69 +42,62 @@
             [78, 5.928e-8],
             [80, 5.944e-8],
             [86, 6.009e-8],
-            [94, 6.092e-8],
-            [172, 6.111e-8],
-            [187, 6.139e-8]
+            [196, 6.086e-8]
           ]
         },
         {
           "key": "mass_flow",
           "label": "Net mass flow",
           "now": "0.0504 kg/s",
-          "desc": "last reading from before the restart (mass_balance.out not yet advanced in the new output folder) -- was ramping toward positive as the initial transient settled",
+          "desc": "last reading from before the last two restarts (mass_balance.out not yet re-sampled in outputs_restart1/ this poll)",
           "history": [
             [24, -0.010359],
             [37, 0.002789],
             [50, 0.015288],
             [64, 0.028217],
             [71, 0.034565],
-            [80, 0.042897],
-            [88, 0.050385]
+            [80, 0.042897]
           ]
         }
       ],
       "ranks": 32,
-      "rss": "not yet re-sampled since restart (memory_usage.out is in the new outputs_restart1/ folder, only just created)",
+      "rss": "65.6 GB at cycle 189 -- healthy, same plateau range seen across all restarts so far (57-77GB), well below the 935GB OOM from job 287064.",
       "s_per_step": null,
-      "node": null,
+      "node": "c067n04",
       "restarts": 2,
       "posts": 2,
       "frames": 0,
-      "newest": "resumed from restart0002.rst (t~10us); new post file post000002_+1.00565e-05.h5 written in outputs_restart1/output/ on restart",
-      "submitted": "2026-09-16T14:03:03-04:00",
-      "cmd": "bsub < RunConverge.sh  # LSF, queue shared_memory, 32 ranks, 96:00 wall -- restartCVG resumed from restart0002.rst after user killed 289401 to pick up the Catalyst fix",
-      "log_name": "stdout.289498",
+      "newest": "resumed from restart0002.rst (t~10.06us); outputs_restart1/paraview_catalyst/ exists but empty -- pre-cleanup scripts were already loaded when this job started, so PNGs aren't expected until the NEXT restart",
+      "submitted": "2026-09-16T14:22:50-04:00",
+      "cmd": "bsub < RunConverge.sh  # LSF, queue shared_memory, 32 ranks, 96:00 wall -- restartCVG resumed from restart0002.rst (same point as 289498) after 289498 was killed to test the AnnotateTime-duplicate fix",
+      "log_name": "stdout.289515",
       "log_path": "TriangleRDE_base",
-      "log_size": null,
+      "log_size": 27166,
       "log_tail": [
-        "[  0.26%] ncyc      184;  Time    1.030183292e-05 (sec); dt=    6.134657653e-08 (dt_cfl)",
-        "[  0.26%] ncyc      185;  Time    1.036316905e-05 (sec); dt=    6.133612277e-08 (dt_cfl)",
-        "[  0.26%] ncyc      186;  Time    1.042460327e-05 (sec); dt=    6.143421886e-08 (dt_cfl)",
-        "[  0.26%] ncyc      187;  Time    1.048599160e-05 (sec); dt=    6.138833160e-08 (dt_cfl)"
+        "[  0.27%] ncyc      193;  Time    1.085332431e-05 (sec); dt=    6.107528148e-08 (dt_cfl)",
+        "[  0.27%] ncyc      194;  Time    1.091435601e-05 (sec); dt=    6.103169740e-08 (dt_cfl)",
+        "[  0.27%] ncyc      195;  Time    1.097530295e-05 (sec); dt=    6.094694023e-08 (dt_cfl)",
+        "[  0.28%] ncyc      196;  Time    1.103616603e-05 (sec); dt=    6.086307779e-08 (dt_cfl)"
       ],
-      "summary": "Job 289498 is a clean restart of TriangleRDE_base picking up the Catalyst script fix -- it resumed from restart0002.rst (cycle 187, t~10.5us) rather than starting over, and dt is already steady on dt_cfl with zero FATAL_ERROR. The key open question is whether the Catalyst fix actually produces PNGs now: the good sign is that outputs_restart1/paraview_catalyst/ was created automatically on the first post-restart trigger, which never happened with the broken scripts -- but no image file has appeared yet after just one trigger, so this needs one more check shortly to confirm. Also note outputs now live in outputs_restart1/, not outputs_original/.",
+      "summary": "Job 289515 is a fresh restart (5 min in) picking up from the same point job 289498 started at, after 289498 was also killed once it became clear its Catalyst PNGs still weren't appearing. A second bug was found and fixed in the interim -- 6 of 7 scripts had a dead duplicate AnnotateTime object causing string-formatter warnings -- but 289515 already had the old scripts loaded before that fix landed, so it's expected to still produce zero frames. The sim itself is healthy: dt steady on dt_cfl, zero FATAL_ERROR, memory in the same safe plateau range seen across every restart so far.",
       "notes": [
         {
-          "txt": "Resumed cleanly from restart0002.rst, no progress lost -- cycle count continues from 187, dt already on dt_cfl.",
+          "txt": "Sim health is fine across every restart so far: dt steady, zero FATAL_ERROR, memory staying in the 57-77GB range vs the 935GB OOM ceiling from job 287064.",
           "level": "good"
         },
         {
-          "txt": "outputs_restart1/paraview_catalyst/ folder was auto-created on the first trigger post-restart -- this never happened before the fix, strong sign the catalyst.Options()/ExtractsOutputDirectory wiring is now active. No PNG file yet though -- confirm on next poll.",
-          "level": "info"
+          "txt": "Second Catalyst bug found and fixed: 6 of 7 scripts had a dead duplicate AnnotateTime object (matching neither weakIgnite nor any functional need) causing 'Argument time already exists' formatter warnings on every trigger. Removed. This job (289515) already had the old scripts loaded before the fix landed though, so it likely won't show PNGs either -- needs one more restart to actually test it.",
+          "level": "warn"
         },
         {
-          "txt": "Outputs now write to outputs_restart1/ (a new folder), not outputs_original/ -- CONVERGE creates a fresh output directory per restart. Will change again (outputs_restart2/, etc.) on any future restart.",
+          "txt": "Output folder naming corrected: outputs_restart1/ is tied to inputs.in's fixed restart_number setting (currently 1), not auto-incremented per resubmission -- both 289498 and 289515 wrote into the same outputs_restart1/, not separate folders as first assumed.",
           "level": "info"
-        },
-        {
-          "txt": "Old job 289401 was killed by the user (TERM_OWNER) after 44.5 min, peaking at 76GB memory -- consistent with the OOM fix holding, well below the 935GB ceiling from job 287064.",
-          "level": "good"
         }
       ],
       "xt_plot": {
         "available": false
       },
-      "polled_at": "2026-09-16T18:05:26.000Z"
+      "polled_at": "2026-09-16T18:27:28.000Z"
     }
   ]
 }
